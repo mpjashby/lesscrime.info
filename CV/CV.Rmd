@@ -1,0 +1,118 @@
+---
+name: Matthew P J Ashby
+position: "Lecturer in Crime Science"
+address: "Department of Security and Crime Science, University College London"
+phone: +44 20 3108 3890
+www: lesscrime.info
+email: "matthew.ashby@ucl.ac.uk"
+twitter: lesscrime
+github: mpjashby
+# linkedin: mariecurie
+date: "`r format(Sys.time(), '%B %Y')`"
+output: vitae::hyndman
+---
+
+```{r eval=FALSE, include=FALSE}
+# AFTER KNITTING THIS FILE, run the following line to copy the resulting PDF
+# into the correct location
+file.copy(here::here("CV/CV.pdf"), here::here("static/files/cv.pdf"), 
+					overwrite = TRUE)
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library("lubridate")
+library("rorcid")
+library("vitae")
+library("tidyverse")
+
+my_orcid <- "0000-0003-4201-9239"
+```
+
+
+# Employment
+
+```{r employment}
+orcid_employments(my_orcid) %>% 
+	pluck(my_orcid, "affiliation-group", "summaries") %>% 
+	{ do.call("bind_rows", .) } %>%
+	brief_entries(
+		what = `employment-summary.role-title`,
+		when = paste0(
+			format(ymd(paste(`employment-summary.start-date.year.value`,
+											 `employment-summary.start-date.month.value`,
+											 `employment-summary.start-date.day.value`)), "%b %Y"), 
+			"–",
+			ifelse(is.na(`employment-summary.end-date.year.value`),
+						 "present",
+						 format(ymd(paste(`employment-summary.end-date.year.value`,
+											 `employment-summary.end-date.month.value`,
+											 `employment-summary.end-date.day.value`)), "%b %Y"))
+		),
+		with = glue::glue("{`employment-summary.department-name`}, {`employment-summary.organization.name`}")
+	)
+```
+
+
+# Education
+
+```{r education}
+orcid_educations(my_orcid) %>% 
+	pluck(my_orcid, "affiliation-group", "summaries") %>% 
+	{ do.call("rbind", .) } %>% 
+	brief_entries(
+    what = `education-summary.role-title`,
+    when = glue::glue("{`education-summary.start-date.year.value`}–{`education-summary.end-date.year.value`}"),
+    with = `education-summary.organization.name`
+	)
+```
+
+
+# Professional qualifications
+
+```{r qualifications}
+orcid_qualifications(my_orcid) %>% 
+	pluck(my_orcid, "affiliation-group", "summaries") %>% 
+	{ do.call("rbind", .) } %>% 
+	brief_entries(
+		what = `qualification-summary.role-title`,
+		when = `qualification-summary.start-date.year.value`,
+		with = `qualification-summary.organization.name`
+	)
+```
+
+
+# Publications
+
+ORCID: `r my_orcid`
+
+```{r publications}
+bibliography_entries(here::here("CV/citations.bib"), "", 
+										 sorting = "ydnt") %>% 
+	mutate(journal = ifelse(is.na(journal) & bibtype == "Article",
+													paste("pre-print on", publisher),
+													journal))
+```
+
+
+# Funding
+
+Funding awarded, typically jointly with colleagues.
+
+```{r funding}
+tribble(
+	~type, ~title, ~start_date, ~end_date, ~value, ~funder,
+	"Vice Chancellor's PhD Studentship", "Building evidence to support police initial response to incidents", 2018, 2021, "£60,000", "Nottingham Trent University",
+	"Vice Chancellor's PhD Studentship", "Crime reduction and public reassurance in a diverse society", 2017, 2020, "£60,000", "Nottingham Trent University",
+	"Knowledge Transfer Partnership", "Problem Solving for Neighbourhood Policing", 2012, 2013, "£16,000", "Engineering and Physical Sciences Research Council"
+) %>% 
+	arrange(desc(start_date)) %>% 
+	brief_entries(
+		what = glue::glue("{`type`}: {`title`}"),
+		when = glue::glue("{`start_date`}–{`end_date`}"),
+		with = glue::glue("{`value`} funding from {`funder`}")
+	)
+```
+
+

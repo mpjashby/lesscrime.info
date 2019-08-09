@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L Tompson on Matt Ashby</title>
+    <link>/authors/l-tompson/</link>
+    <description>Recent content in L Tompson on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Sat, 28 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/authors/l-tompson/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Does a good cop really never get wet? The impact of weather on stop and frisk</title>
+      <link>/publication/weather_and_stop_and_frisk/</link>
+      <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/weather_and_stop_and_frisk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Routine activities and proactive police activity: a macro-scale analysis of police searches in London and New York City</title>
+      <link>/publication/police_searches_and_routine_activities/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/police_searches_and_routine_activities/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UK open source crime data: accuracy and possibilities for research</title>
+      <link>/publication/uk_open_source_crime_data/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/uk_open_source_crime_data/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

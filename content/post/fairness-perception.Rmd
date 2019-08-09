@@ -1,0 +1,226 @@
+---
+title: "Chart: Most people think the justice system is fair"
+author: 'Matt Ashby'
+date: '2019-08-19'
+draft: true
+categories: ["Crime and justice chart of the week"]
+tags:
+  - criminal justice
+  - CSEW
+  - perceptions
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "fairness-perception",
+	title = "Most people think the justice system is fair",
+	subtitle = "Across age, education, ethnic and employment groups, most people believe the criminal justice system as a whole is fair, but there are exceptions – for example, only 46% of people who identify as black agree.",
+	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable",
+	source_title = "Crime Survey for England and Wales, 2018"
+)
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data	
+data_file <- tempfile()
+GET("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable/current/perceptionscjs2018q4.zip", write_disk(data_file))
+unzip(data_file, files = "Perceptions_CJS_England and Wales_2018Q4.csv",
+      exdir = tempdir())
+
+# read data file
+file_data <- read_csv(
+	paste0(tempdir(), "/Perceptions_CJS_England and Wales_2018Q4.csv")
+)
+
+	# tidy data
+	tidy_data <- file_data %>% 
+  # clean variable names
+  clean_names() %>% 
+  # convert estimates to numeric
+  mutate_at(vars(one_of("estimate", "standard_error", "unweighted_count")),
+            as.numeric) %>% 
+  # convert percentages to proportions
+  mutate_at(vars(one_of("estimate", "standard_error")), ~ . / 100)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare plot data}
+chart_data <- tidy_data %>% 
+  # filter out characteristics that aren't needed
+  filter(
+    age == "16+",
+    sex == "All adults",
+    measurement_var == "fairova1dv",
+    characteristic_var %in% c(
+      "agegrp7", # age group
+      "educat3", # education level
+      "nsethgrp", # ethnic group
+      "r10sec4a" # occupation
+      # "depremp15", # employment deprivation
+      # "gor" # region
+      # "rural3" # type of area
+    )
+  ) %>% 
+  # amend some category names and order categories by estimate, except where 
+  # they have an intrinsic order
+  mutate(
+    characteristic = case_when(
+      characteristic == "None" & characteristic_var == "educat3" ~ 
+        "No qualifications",
+      characteristic == "Other" & characteristic_var == "educat3" ~ 
+        "Other qualifications",
+      characteristic == "Never worked and long term unemployed" & 
+        characteristic_var == "r10sec4a" ~ "Long term unemployed",
+      TRUE ~ characteristic
+    ),
+    characteristic = str_replace_all(characteristic, " occs$", " occupations")
+  ) %>% 
+	arrange(characteristic_var, estimate) %>% 
+	mutate(
+		row_order = 1:n(),
+		row_order = case_when(
+			characteristic_var == "agegrp7" ~ 0,
+			characteristic == "No qualifications" ~ 1,
+			characteristic == "O level/GCSE" ~ 2,
+			characteristic == "Apprenticeship or A/AS level" ~ 3,
+			characteristic == "Degree or diploma" ~ 4,
+			characteristic == "Other qualifications" ~ 5,
+			TRUE ~ as.double(row_order)
+		)
+	) %>% 
+	arrange(characteristic_var, row_order, characteristic) %>% 
+	mutate(
+		row_order = n():1,
+		characteristic = fct_reorder(characteristic, row_order)
+	)
+
+# get global value
+mean_value <- tidy_data %>% 
+  clean_names() %>% 
+  filter(
+    age == "16+",
+    sex == "All adults",
+    measurement_var == "fairova1dv",
+    characteristic_var == "Total"
+  ) %>% 
+  pull("estimate")
+
+# get value for people who identify as black
+black_value <- tidy_data %>% 
+  clean_names() %>% 
+  filter(
+    age == "16+",
+    sex == "All adults",
+    measurement_var == "fairova1dv",
+    characteristic_var == "nsethgrp",
+    characteristic == "Black/African/Caribbean/Black British"
+  ) %>% 
+  pull("estimate")
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	16, mean_value, 14.5, 0.71, balance_lines("overall, two thirds of people say the justice system is fair", 3), "left", "top", "left"
+)
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+  ggplot(aes(x = characteristic, y = estimate, fill = characteristic_var,
+             label = characteristic)) +
+  geom_col() +
+  geom_hline(aes(yintercept = mean_value), linetype = "11", colour = "grey50") +
+  geom_text(aes(y = 0.01), colour = "white", size = elements$label_text_size, 
+  					hjust = 0) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+  scale_y_continuous(breaks = seq(0, 1, by = 0.2),
+                     expand = c(0.015, 0),
+                     labels = scales::percent_format(), limits = c(0, 1)) +
+  scale_fill_manual(
+    values = unname(ucl_colours_list[c("Orange", "Light Blue", "Dark Green",
+                                       "Mid Purple", "Bright Red", 
+                                       "Bright Blue")])
+  ) +
+  coord_flip() +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle),
+    x = NULL,
+    y = "people who are confident that the criminal justice system as a whole is fair"
+  ) +
+	theme_cjcharts() +
+	theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none",
+    panel.grid.major.x = element_line(),
+    panel.grid.minor.x = element_line(),
+    panel.grid.major.y = element_blank(),
+    strip.text.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

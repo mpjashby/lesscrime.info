@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matt Ashby</title>
+    <link>/</link>
+    <description>Recent content on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chart: Drug use was falling, but that seems to be changing</title>
+      <link>/post/drug-use/</link>
+      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/drug-use/</guid>
+      <description>
+
+
+&lt;p&gt;Self-reported drug use has fallen for most of the past 20 years, but in the past six years the use of cannabis, cocaine and ecstasy has increased, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/drug-use_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-use.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/drug-use.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/drug-misuse-findings-from-the-2017-to-2018-csew&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: For most offences, prison is the exception, not the rule</title>
+      <link>/post/prison-likelihood/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prison-likelihood/</guid>
+      <description>
+
+
+&lt;p&gt;Of the 720,000 non-motoring offences for which people were sentenced in 2017, only about 10% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prison-likelihood.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-likelihood.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2017&#34;&gt;Ministry of Justice, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Most people think the justice system is fair</title>
+      <link>/post/fairness-perception/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/fairness-perception/</guid>
+      <description>
+
+
+&lt;p&gt;Across age, education, ethnic and employment groups, most people believe the criminal justice system as a whole is fair, but there are exceptions – for example, only 46% of people who identify as black agree.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../fairness-perception.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/fairness-perception.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Fewer people are victims of common crimes than 30 years&#39; ago</title>
+      <link>/post/crime-trends/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/crime-trends/</guid>
+      <description>
+
+
+&lt;p&gt;Across many common crime types, fewer people are victims now than 30 years’ ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2017.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/crime-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-trends.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Studying crime and place with the Crime Open Database</title>
+      <link>/publication/crime-open-database/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/crime-open-database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Police cuts haven&#39;t hit everywhere equally</title>
+      <link>/post/police-numbers/</link>
+      <pubDate>Mon, 27 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/police-numbers/</guid>
+      <description>
+
+
+&lt;p&gt;There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven’t dropped equally across police forces. One force (Surrey) has more officers now than 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Is there more violence around schools? Four tests across nine cities</title>
+      <link>/publication/violence_around_schools/</link>
+      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/violence_around_schools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Problem solving in Op Pioneer</title>
+      <link>/talk/leics-ebp-2019/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/leics-ebp-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Local variations in crime seasonality</title>
+      <link>/talk/local-seasonality/</link>
+      <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/local-seasonality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Does a good cop really never get wet? The impact of weather on stop and frisk</title>
+      <link>/publication/weather_and_stop_and_frisk/</link>
+      <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/weather_and_stop_and_frisk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Understanding spatio-temporal patterns of crime around schools</title>
+      <link>/talk/crime-around-schools/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/crime-around-schools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How to solve problems using evidence based policing</title>
+      <link>/talk/solving-problems-using-evidence-based-policing/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/solving-problems-using-evidence-based-policing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alternative denominators in transport crime rates</title>
+      <link>/publication/alternative-denominators-in-transport-crime-rates/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/alternative-denominators-in-transport-crime-rates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comparing methods for measuring crime harm/severity</title>
+      <link>/publication/measuring_crime_harm/</link>
+      <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/measuring_crime_harm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The value of CCTV surveillance cameras as an investigative tool: an empirical analysis</title>
+      <link>/publication/cctv_as_an_investigative_tool/</link>
+      <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/cctv_as_an_investigative_tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Self-guardianship at automated teller machines</title>
+      <link>/publication/self_guardianship_at_atms/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/self_guardianship_at_atms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Children, gender, and sexual exploitation: a quantitative analysis of administrative data</title>
+      <link>/publication/children_gender_and_cse/</link>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/children_gender_and_cse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Using crime science for understanding and preventing theft of metal from the British railway network</title>
+      <link>/publication/crime_science_for_metal_theft/</link>
+      <pubDate>Sun, 28 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/crime_science_for_metal_theft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Immaterial boys? A large-scale exploration of gender-based differences in child sexual exploitation service users</title>
+      <link>/publication/immaterial_boys/</link>
+      <pubDate>Tue, 01 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/immaterial_boys/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Routine activities and proactive police activity: a macro-scale analysis of police searches in London and New York City</title>
+      <link>/publication/police_searches_and_routine_activities/</link>
+      <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/police_searches_and_routine_activities/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Concentrations of railway metal theft and the locations of scrap-metal dealers</title>
+      <link>/publication/scrap_metal_dealers/</link>
+      <pubDate>Wed, 30 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/scrap_metal_dealers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Is metal theft committed by organized crime groups, and why does it matter?</title>
+      <link>/publication/metal_theft_and_organised_crime/</link>
+      <pubDate>Thu, 03 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/metal_theft_and_organised_crime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The when and where of an emerging crime type: the example of metal theft from the railway network of Great Britain</title>
+      <link>/publication/metal_theft_when_and_where/</link>
+      <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/metal_theft_when_and_where/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UK open source crime data: accuracy and possibilities for research</title>
+      <link>/publication/uk_open_source_crime_data/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/uk_open_source_crime_data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Not just a girl thing: a large-scale comparison of male and female users of child sexual exploitation services in the UK</title>
+      <link>/publication/not_just_a_girl_thing/</link>
+      <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/not_just_a_girl_thing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Research on the Sexual Exploitation of Boys and Young Men: a UK scoping study, a summary of the findings</title>
+      <link>/publication/research_on_cse_of_boys/</link>
+      <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/research_on_cse_of_boys/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Copper cable theft: revisiting the price–theft hypothesis</title>
+      <link>/publication/metal_price_theft_hypothesis/</link>
+      <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/metal_price_theft_hypothesis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A comparison of methods for temporal analysis of aoristic crime</title>
+      <link>/publication/aoristic_methods/</link>
+      <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/aoristic_methods/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

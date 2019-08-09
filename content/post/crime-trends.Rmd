@@ -1,0 +1,206 @@
+---
+title: "Chart: Fewer people are victims of common crimes than 30 years' ago"
+author: Matt Ashby
+date: '2019-08-12'
+draft: true
+categories: ["Crime and justice chart of the week"]
+tags:
+  - crime
+  - CSEW
+  - trends
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "crime-trends",
+	title = "Fewer people are victims of common crimes than 30 years' ago",
+	subtitle = "Across many common crime types, fewer people are victims now than 30 years' ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2017.",
+	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables",
+	source_title = "Crime Survey for England and Wales, 2018"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- tempfile()
+	GET("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables/yearendingdecember2018/appendixtablesyearendingdecember2018.xlsx", write_disk(data_file))
+	
+	# read data
+	file_data <- read_excel(data_file, sheet = "Table A3", skip = 4)
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		# unusually, we will not clean_names() at this point because we are going to 
+		# gather the columns later, although we can still rename the first column
+		rename(offence = `Offence group4...1`) %>% 
+		# remove blank rows below header and footnotes below data
+		slice(3:76) %>%
+		# select only columns relating to prevalence (not the separate but adjacent
+		# table of percentage changes)
+		select(1:26) %>% 
+		# filter out blank rows, rows showing base counts and unnecessary 
+		# sub-categories of burglary
+		filter(
+			!is.na(offence),
+			!str_detect(offence, "^Unweighted base"),
+			!offence %in% c("With entry", "With loss", "No loss", "Attempts")
+		) %>%
+		# strip footnote markers from offence types
+		mutate(offence = str_remove(offence, "\\d+$")) %>% 
+		# make offence types unique
+		group_by(offence) %>% 
+		mutate(occurrence = 1:n()) %>%
+		ungroup() %>% 
+		mutate(offence = case_when(
+			offence %in% c("Vehicle-related theft", "Theft from vehicles", 
+										 "Theft of vehicles", "Attempts of and from vehicles") & 
+				occurrence == 1 ~ paste(offence, "(all households)"),
+			offence %in% c("Vehicle-related theft", "Theft from vehicles", 
+										 "Theft of vehicles", "Attempts of and from vehicles") ~ 
+				paste(offence, "(vehicle-owning households)"),
+			offence == "Criminal damage to a vehicle" & occurrence == 1 ~ 
+				paste(offence, "(vehicle-owning households)"),
+			offence == "Criminal damage to a vehicle" ~ 
+				paste(offence, "(all households)"),
+			offence == "Bicycle theft" & occurrence == 1 ~ 
+				paste(offence, "(all households)"),
+			offence == "Bicycle theft" ~ 
+				paste(offence, "(bicycle owning households)"),
+			TRUE ~ offence
+		)) %>% 
+		select(-occurrence) %>% 
+		# gather the years of data into long format
+		gather(key = "period", value = "prevalence", -offence) %>% 
+		# extract year from period description
+		mutate(
+			year = str_sub(str_extract(period, " \\'\\d{2}"), 3),
+			year = ymd(paste0(ifelse(year > 50, 19, 20), year, "-01-01"))
+		) %>% 
+		# convert percentages to proportions
+		mutate(prevalence = as.numeric(prevalence) / 100) %>% 
+		# identify main categories (so that we can change them from all caps, which
+		# is how they are identified in the main data file)
+		mutate(
+			main_type = ifelse(offence == str_to_upper(offence), TRUE, FALSE),
+			offence = str_to_sentence(offence),
+			offence = str_replace_all(offence, "csew", "CSEW")
+		)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r process data}
+chart_data <- tidy_data %>% 
+  # select data wanted for chart
+  filter(
+    # main_type == TRUE,
+    offence %in% c("Violence with injury", "Violence without injury", "Robbery", 
+                   "Domestic burglary", "Criminal damage", 
+                   "Vehicle-related theft (vehicle-owning households)", 
+                   "Bicycle theft (bicycle owning households)"),
+    year >= max(year) - years(30)
+  ) %>% 
+  # index prevalence on prevalence in first year in data
+  group_by(offence) %>% 
+  mutate(prevalence_index = (prevalence / first(prevalence)) * 100) %>% 
+  # find year of maximum value for each group (uses grouping from above)
+  mutate(
+    label_max = ifelse(prevalence_index == max(prevalence_index), year(year), 
+                       NA),
+    label_min = ifelse(prevalence_index == min(prevalence_index), year(year), 
+                       NA)
+  ) %>% 
+  # arrange crime types by proportional decrease (uses grouping from above)
+  mutate(min_val = min(prevalence_index)) %>% 
+  ungroup() %>% 
+  mutate(offence = fct_reorder(str_to_lower(offence), min_val, 
+  														 .desc = TRUE)) %>% 
+  select(-min_val) %>% 
+  # change values for display
+  mutate(
+    offence = recode(
+      offence, 
+      "bicycle theft (bicycle owning households)" = "bicycle theft",
+      "robbery" = "personal robbery",
+      "vehicle-related theft (vehicle-owning households)" = 
+        "vehicle-related theft"
+    )
+  )
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+  ggplot(aes(x = year, y = prevalence_index, colour = offence)) + 
+  geom_hline(aes(yintercept = 100), colour = elements$reference_line_colour) +
+  geom_label(aes(label = label_min), colour = elements$label_text_colour, 
+  					 size = elements$label_text_size, hjust = "right", vjust = "top", 
+  					 nudge_y = -2, label.size = NA, na.rm = TRUE) +
+  geom_label(aes(label = label_max), colour = elements$label_text_colour, 
+  					 size = elements$label_text_size, vjust = "bottom", nudge_y = 2,
+  					 label.size = NA, na.rm = TRUE) +
+  geom_line(size = 0.75) +
+	scale_x_date(date_breaks = "10 years", date_labels = "'%y") +
+  scale_y_continuous(limits = c(0, NA), 
+  									 expand = expand_scale(mult = c(0, 0.05))) +
+  scale_colour_manual(
+    values = unname(ucl_colours_list[c("Orange", "Light Blue", "Bright Pink",
+                                       "Bright Green", "Bright Red", 
+                                       "Bright Blue", "Yellow", "Mid Green")])
+  ) +
+  facet_grid(cols = vars(offence), labeller = label_wrap_gen(width = 15)) +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle),
+    x = NULL,
+    y = glue::glue("victims for every 100 victims in ",
+                   "{min(year(chart_data$year))}")
+  ) +
+	theme_cjcharts() +
+	theme(
+		legend.position = "none"
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

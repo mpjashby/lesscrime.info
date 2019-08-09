@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent &amp; Upcoming Talks on Matt Ashby</title>
+    <link>/talk/</link>
+    <description>Recent content in Recent &amp; Upcoming Talks on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Wed, 13 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Problem solving in Op Pioneer</title>
+      <link>/talk/leics-ebp-2019/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/leics-ebp-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Local variations in crime seasonality</title>
+      <link>/talk/local-seasonality/</link>
+      <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/local-seasonality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Understanding spatio-temporal patterns of crime around schools</title>
+      <link>/talk/crime-around-schools/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/crime-around-schools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How to solve problems using evidence based policing</title>
+      <link>/talk/solving-problems-using-evidence-based-policing/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/solving-problems-using-evidence-based-policing/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

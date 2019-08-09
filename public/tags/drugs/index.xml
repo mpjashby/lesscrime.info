@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>drugs on Matt Ashby</title>
+    <link>/tags/drugs/</link>
+    <description>Recent content in drugs on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/drugs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chart: Drug use was falling, but that seems to be changing</title>
+      <link>/post/drug-use/</link>
+      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/drug-use/</guid>
+      <description>
+
+
+&lt;p&gt;Self-reported drug use has fallen for most of the past 20 years, but in the past six years the use of cannabis, cocaine and ecstasy has increased, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/drug-use_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-use.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/drug-use.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/drug-misuse-findings-from-the-2017-to-2018-csew&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
