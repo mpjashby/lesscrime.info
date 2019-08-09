@@ -88,7 +88,7 @@ format_caption <- function (chart_source, chart_id, chart_note = NA) {
 		"\n\n", 
 		glue::glue(
 			ifelse(!is.na(chart_note), paste0(chart_note, "\n"), ""),
-			"Data: {chart_source} | ", "Details: lesscrime.info/cj-charts/{chart_id}", 
+			"Data: {chart_source} | ", "Details: lesscrime.info/post/{chart_id}", 
 			.sep = " " #, .envir = .GlobalEnv
 		)
 	)

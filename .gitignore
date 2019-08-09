@@ -34,3 +34,9 @@ vignettes/*.pdf
 
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
+
+# Temporarily exclude posts used for testing but not yet published
+content/post/drug-use*
+content/post/fairness-perception*
+content/post/police-numbers*
+content/post/prison-likelihood*
