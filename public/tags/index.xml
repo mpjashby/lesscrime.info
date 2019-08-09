@@ -7,7 +7,7 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>CSEW</title>
       <link>/tags/csew/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/csew/</guid>
       <description></description>
@@ -24,54 +24,9 @@
     <item>
       <title>crime</title>
       <link>/tags/crime/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/crime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>drugs</title>
-      <link>/tags/drugs/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/drugs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>criminal justice</title>
-      <link>/tags/criminal-justice/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/criminal-justice/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prison</title>
-      <link>/tags/prison/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/prison/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sex</title>
-      <link>/tags/sex/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/sex/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>perceptions</title>
-      <link>/tags/perceptions/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/perceptions/</guid>
       <description></description>
     </item>
     
@@ -81,15 +36,6 @@
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/trends/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>police</title>
-      <link>/tags/police/</link>
-      <pubDate>Mon, 27 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/police/</guid>
       <description></description>
     </item>
     
