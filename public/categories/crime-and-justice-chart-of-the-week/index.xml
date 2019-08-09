@@ -21,11 +21,11 @@
       <description>
 
 
-&lt;p&gt;Across many common crime types, fewer people are victims now than 30 years’ ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2017.&lt;/p&gt;
+&lt;p&gt;Across many common crime types, fewer people are victims now than 30 years’ ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2018. However, many of these crime types now appear to becoming slightly more common again.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/crime-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../crime-trends.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

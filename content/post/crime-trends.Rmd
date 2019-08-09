@@ -18,9 +18,9 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 chart_details <- list(
 	id = "crime-trends",
 	title = "Fewer people are victims of common crimes than 30 years' ago",
-	subtitle = "Across many common crime types, fewer people are victims now than 30 years' ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2017.",
+	subtitle = "Across many common crime types, fewer people are victims now than 30 years' ago. For example, for every 100 people who were a victim of vehicle-related theft at least once in 1987, only 25 people were a victim at least once in 2018. However, many of these crime types now appear to becoming slightly more common again.",
 	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables",
-	source_title = "Crime Survey for England and Wales, 2018"
+	source_title = "Crime Survey for England and Wales, 2019"
 )
 ```
 
@@ -38,7 +38,7 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	
 	# download data
 	data_file <- tempfile()
-	GET("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables/yearendingdecember2018/appendixtablesyearendingdecember2018.xlsx", write_disk(data_file))
+	GET("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables/yearendingmarch2019/appendixtablesyearendingmarch19.xlsx", write_disk(data_file))
 	
 	# read data
 	file_data <- read_excel(data_file, sheet = "Table A3", skip = 4)
@@ -52,7 +52,7 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 		slice(3:76) %>%
 		# select only columns relating to prevalence (not the separate but adjacent
 		# table of percentage changes)
-		select(1:26) %>% 
+		select(1:27) %>% 
 		# filter out blank rows, rows showing base counts and unnecessary 
 		# sub-categories of burglary
 		filter(
@@ -121,7 +121,7 @@ chart_data <- tidy_data %>%
                    "Domestic burglary", "Criminal damage", 
                    "Vehicle-related theft (vehicle-owning households)", 
                    "Bicycle theft (bicycle owning households)"),
-    year >= max(year) - years(30)
+    year >= ymd("1987-01-01")
   ) %>% 
   # index prevalence on prevalence in first year in data
   group_by(offence) %>% 

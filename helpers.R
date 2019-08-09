@@ -107,7 +107,7 @@ add_logo <- function (chart, chart_source, chart_id) {
 			scs_logo, 
 			grid::textGrob(
 				glue::glue("Data: {chart_source} | ", 
-									 "Details: lesscrime.info/cj-charts/{chart_id}", 
+									 "Details: lesscrime.info/post/{chart_id}", 
 									 "\nAuthor: Matt Ashby, University College London | ",
 									 "Licence: Creative Commons Attribution ",
 									 .sep = " "),
