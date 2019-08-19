@@ -42,7 +42,7 @@ enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", 
   "_files$", "_cache$", "\\.csv.gz$", "\\-raw.csv$", "UCL_logo_SCS_orange.png",
-  "drug-use", "fairness-perception", "police-numbers", "prison-likelihood"]
+  "drug-use", "fairness-perception", "prison-likelihood"]
   
 [outputs]
   home = [ "HTML", "RSS", "JSON" ]

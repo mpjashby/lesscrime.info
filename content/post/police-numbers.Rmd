@@ -1,7 +1,7 @@
 ---
-title: Police cuts haven't hit everywhere equally
+title: "Chart: Police cuts haven't hit everywhere equally"
 author: Matt Ashby
-date: '2019-05-27'
+date: '2019-08-19'
 slug: police-numbers
 categories: []
 tags:
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 chart_details <- list(
 	id = "police-numbers",
 	title = "Police cuts haven't hit everywhere equally",
-	subtitle = "There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven't dropped equally across police forces. One force (Surrey) has more officers now than 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.",
+	subtitle = "There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven't dropped equally across police forces. One force (Surrey) has the same number of officers now as 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.",
 	source_url = "https://www.gov.uk/government/statistics/police-workforce-open-data-tables",
 	source_title = "Home Office, 2019"
 )
@@ -41,7 +41,7 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	# download most-recent data
 	new_data_file <- tempfile(fileext = ".ods")
 	new_csv_file <- paste0(new_data_file, ".csv")
-	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/726009/open-data-table-police-workforce.ods", write_disk(new_data_file))
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/817734/open-data-table-police-workforce.ods", write_disk(new_data_file))
 	
 	# convert new data from ODS to CSV and read
 	source_python(here::here("ods_to_csv.py"))
@@ -84,9 +84,9 @@ chart_data <- tidy_data %>%
 			"Bedfordshire" = "Beds",
 			"Cambridgeshire" = "Cambs",
 			"Derbyshire" = "Derbys",
-			"Devon & Cornwall" = "Devon & Corn",
+			"Devon & Cornwall" = "Dvn & Corn",
 			"Gloucestershire" = "Gloucs",
-			"Greater Manchester" = "G Manchester",
+			"Greater Manchester" = "G Mnchstr",
 			"Hampshire" = "Hants",
 	  	"Hertfordshire" = "Herts",
 			"Lancashire" = "Lancs",
@@ -107,20 +107,21 @@ chart_data <- tidy_data %>%
 		diff_perc_change = perc_change - lag(perc_change),
 		trajectory = sum(nth(diff_perc_change, -3), nth(diff_perc_change, -2), 
 										 nth(diff_perc_change, -1)),
-		force_group = case_when(
+		force_group = fct_case_when(
 			last(perc_change) > -0.05 & mean(perc_change, na.rm = TRUE) > -0.05 ~ 
 				"no major loss\nof officers (<5%)",
 			# trajectory >= 0.015 & mean(perc_change) <= -0.05 ~ 
 			trajectory >= 0.015 ~ 
-				"increasing after\nprevious losses",
+				"recovering after\nprevious losses",
 			(trajectory >= -0.015 & last(perc_change) <= -0.05) |
 				(last(perc_change) > nth(perc_change, -2)) ~ 
-				"stable after\nprevious losses",
+				"now stable after\nprevious losses",
 			trajectory < -0.015 ~ "still\ndecreasing",
 			TRUE ~ "other"
 		),
 		last = ifelse(year == last(year), TRUE, NA),
 		label = ifelse(last == TRUE, sprintf("%+.0f%%", perc_change * 100), NA),
+		label = ifelse(label == "-0%", "0%", label), 
 		label_vjust = ifelse(last(perc_change) < 0, "bottom", "top")
 	) %>% 
 	ungroup() %>% 
@@ -159,14 +160,14 @@ chart <- chart_data %>%
 	geom_text(aes(y = 0, label = label, vjust = label_vjust), 
 						size = elements$label_text_size * (7 / 9), 
 						hjust = "right", na.rm = TRUE, show.legend = FALSE) + 
-	scale_x_continuous(breaks = c(2010, 2018), labels = c("'10", "'18")) + 
+	scale_x_continuous(breaks = c(2010, 2019), labels = c("'10", "'19")) + 
 	scale_y_continuous(
 		breaks = c(0, min(chart_data$perc_change)), 
 		labels = scales::percent_format(accuracy = 1)
 	) + 
 	scale_colour_manual(
 		aesthetics = c("colour", "fill"),
-		values = unname(ucl_colours_list[c("Bright Green", "Bright Pink", 
+		values = unname(ucl_colours_list[c("Mid Blue", "Orange", 
 																			 "Bright Blue", "Bright Red")]), 
 		guide = guide_legend(ncol = 1), 
 		name = "trajectory, based on\npast three years"
@@ -214,7 +215,7 @@ Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 ggsave(
 	filename = paste0(chart_details$id, ".png"), 
 	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
-	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+	device = "png", width = 600 / 72, height = 600 / 72, units = "in"
 )
 ```
 
