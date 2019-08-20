@@ -36,10 +36,9 @@ vignettes/*.pdf
 rsconnect/
 
 # Blogdown cache directories
-/blogdown/
+blogdown/*
 
 # Temporarily exclude posts used for testing but not yet published
 content/post/drug-use*
 content/post/fairness-perception*
-content/post/police-numbers*
 content/post/prison-likelihood*

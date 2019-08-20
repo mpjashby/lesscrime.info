@@ -50,8 +50,7 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 		read_csv(na = "N/A") %>% 
 		clean_names() %>% 
 		filter(
-			worker_type == "Police officer", 
-			force_name != "British Transport Police"
+			worker_type == "Police officer" 
 		) %>% 
 		rename(year = as_at_31_march) %>% 
 		group_by(year, force_name) %>%
@@ -73,7 +72,8 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 ```{r prepare plot data}
 chart_data <- tidy_data %>% 
 	ungroup() %>% 
-	filter(year >= 2010, force_name != "London, City of") %>% 
+	filter(year >= 2010, force_name != "London, City of", 
+				 force_name != "British Transport Police") %>% 
 	mutate(
 		force_name = str_replace(force_name, "^North ", "N "),
 		force_name = str_replace(force_name, "^South ", "S "),
@@ -206,7 +206,7 @@ add_logo(chart + labs(title = NULL, subtitle = NULL),
 				 chart_details$source_title, chart_details$id)
 ```
 
-[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
 
 Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 

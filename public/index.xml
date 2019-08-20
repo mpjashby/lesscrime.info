@@ -7,10 +7,27 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Tue, 20 Aug 2019 14:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Almost 7 million adults have been victims of partner abuse</title>
+      <link>/post/partner-abuse/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/partner-abuse/</guid>
+      <description>
+
+
+&lt;p&gt;Among the 42 million adults in England and Wales aged between 16 and 74, 1.3 million have been sexually assaulted by a partner, 4.3 million subjected to non-sexual assault and 2.3 million have been stalked. In every category, at least twice as many women as men have been victimised by a partner.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/partner-abuse_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../partner-abuse.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/partner-abuse.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/domesticabusefindingsfromthecrimesurveyforenglandandwales/yearendingmarch2018&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The value of good data about crime</title>
@@ -32,7 +49,7 @@
 
 &lt;p&gt;There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven’t dropped equally across police forces. One force (Surrey) has the same number of officers now as 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
