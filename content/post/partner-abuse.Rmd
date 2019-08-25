@@ -20,7 +20,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 chart_details <- list(
 	id = "partner-abuse",
 	title = "Almost 7 million adults have been victims of partner abuse",
-	subtitle = "Among the 42 million adults in England and Wales aged between 16 and 74, 1.3 million have been sexually assaulted by a partner, 4.3 million subjected to non-sexual assault and 2.3 million have been stalked. In every category, at least twice as many women as men have been victimised by a partner.",
+	subtitle = "Among the 42 million adults in England and Wales aged between 16 and 74, 1.3 million have been sexually assaulted by a current or former partner, 4.3 million subjected to non-sexual assault and 2.3 million have been stalked. In every category, at least twice as many women as men have been victimised.",
 	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/domesticabusefindingsfromthecrimesurveyforenglandandwales/yearendingmarch2018",
 	source_title = "Crime Survey for England and Wales, 2018"
 )
@@ -143,7 +143,7 @@ chart_labels <- tribble(
 	~x, ~y, ~xend, ~yend, ~sex, ~label, ~hjust, ~vjust, ~curve,
 	4.8, 1.8e6, "threats", 2.4e6, "men", balance_lines("includes emotional abuse or financial coercive control", 2), "left", "center", "right",
 	2, 0.8e6, "sexual assault", 1.2e6, "men", balance_lines("includes rape, assault by penetration and indecent exposure", 2), "left", "center", "right",
-	5.4, 4.9e6, "threats", 4.75e6, "women", balance_lines("almost 5 million women have been victims of domestic abuse", 3), "right", "top", "left"
+	5.4, 4.9e6, "threats", 4.75e6, "women", balance_lines("almost 5 million women have been victims of partner abuse", 3), "right", "top", "left"
 )
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Chart: For most offences, prison is the exception, not the rule"
+title: "Chart: For most offences prison is the exception, not the rule"
 author: Matt Ashby
 date: '2019-08-26'
 slug: prison-likelihood
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 ```{r set chart parameters}
 chart_details <- list(
 	id = "prison-likelihood",
-	title = "For most offences, prison is the exception, not the rule",
+	title = "For most offences prison is the exception, not the rule",
 	subtitle = "Of the 720,000 non-motoring offences for which people were sentenced in 2017, only about 10% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.",
 	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2017",
 	source_title = "Ministry of Justice, 2018"

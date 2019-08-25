@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prison on Matt Ashby</title>
+    <link>/tags/prison/</link>
+    <description>Recent content in prison on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Thu, 30 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/prison/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>prisoner types</title>
+      <link>/post/prisoner-types/</link>
+      <pubDate>Thu, 30 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prisoner-types/</guid>
+      <description>
+
+
+&lt;p&gt;About 69,000 adults are currently serving prison sentences, most of them for violent or sexual offences. However, over 10,000 adults are serving sentences for drug offences, more than for all types of theft combined.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prisoner-types_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prisoner-types.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;../prisoner-types.pdf&#34;&gt;PDF&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/prisoner-types.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/offender-management-statistics-quarterly-october-to-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

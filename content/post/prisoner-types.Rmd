@@ -1,0 +1,146 @@
+---
+title: prisoner types
+author: Matt Ashby
+date: '2019-05-30'
+slug: prisoner-types
+categories: []
+tags:
+  - criminal justice
+  - prison
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "prisoner-types",
+	title = "Most prison sentences are for violent crimes",
+	subtitle = "About 69,000 adults are currently serving prison sentences, most of them for violent or sexual offences. However, over 10,000 adults are serving sentences for drug offences, more than for all types of theft combined.",
+	source_url = "https://www.gov.uk/government/statistics/offender-management-statistics-quarterly-october-to-december-2018",
+	source_title = "Ministry of Justice, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+library("treemapify")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- paste0(tempfile(), ".ods")
+	csv_file <- paste0(data_file, ".csv")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/796904/population-31-march-2019.ods", write_disk(data_file))
+	
+	# convert ODS to CSV
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(data_file, "1_2b", csv_file)
+	
+	# read CSV file
+	file_data <- read_csv(csv_file, na = "**", skip = 2)
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		# extract tables for men and women 21 and over
+		slice(75:87, 134:146) %>% 
+		select(1:6) %>% 
+		rename(offence = X1) %>% 
+		mutate(sex = rep(c("male", "female"), each = 13)) %>% 
+		gather("quarter_ending", "count", -sex, -offence) %>% 
+		mutate(
+			count = as.numeric(count),
+			quarter_ending = as_datetime(quarter_ending)
+		)
+		
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(quarter_ending == last(quarter_ending)) %>% 
+	group_by(offence) %>% 
+	summarise(count = sum(count)) %>% 
+	mutate(
+		offence = recode(
+			str_remove(str_to_sentence(offence), " offences"),
+			"Criminal damage and arson" = "Criminal damage", 
+			"Drug" = "Drugs",
+			"Miscellaneous crimes against society" = "Other",
+			"Offence not recorded" = "Other",
+			"Possession of weapons" = "Weapons possession",
+			"Summary non-motoring" = "Other",
+			"Summary motoring" = "Other",
+			"Violence against the person" = "Violence"
+		)
+	) %>% 
+	group_by(offence) %>% 
+	summarise(count = sum(count)) %>% 
+	mutate(
+		offence_against = case_when(
+			offence %in% c("Violence", "Sexual", "Robbery", "Weapons possession") ~
+				"offences against people (59%)",
+			offence %in% c("Theft", "Fraud", "Criminal damage") ~ 
+				"offences against property (16%)",
+			TRUE ~ "offences against society (25%)"
+		),
+		perc = count / sum(count),
+		offence = paste0(balance_lines(offence, 2), " (", 
+										 scales::percent(perc, accuracy = 1), ")"),
+		offence = fct_reorder(offence, count, .desc = TRUE)
+	)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(area = count, subgroup = offence_against, 
+											 fill = offence_against, label = offence)) +
+	geom_treemap(layout = "squarified", colour = "white") +
+	geom_treemap_text(layout = "squarified", colour = "white", size = 9) +
+	scale_fill_manual(values = unname(ucl_colours_list[c("Orange", "Mid Blue", 
+																											 "Bright Pink")])) +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle),
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+	theme_cjcharts()
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [PDF](../`r chart_details$id`.pdf)
+| [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

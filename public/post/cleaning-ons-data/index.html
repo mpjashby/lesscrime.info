@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.3.1">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Matt Ashby">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="UK Office for National Statistics data can be in formats that are hard to analyse. This tutorial works through how to clean ONS data tables.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/cleaning-ons-data/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Lora:400,700|Roboto:400,700&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.802f36aed673a0434c090667f12e3b46.css">
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/cleaning-ons-data/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@lesscrime">
+  <meta property="twitter:creator" content="@lesscrime">
+  
+  <meta property="og:site_name" content="Matt Ashby">
+  <meta property="og:url" content="/post/cleaning-ons-data/">
+  <meta property="og:title" content="Cleaning UK Office for National Statistics data in R with the tidyverse | Matt Ashby">
+  <meta property="og:description" content="UK Office for National Statistics data can be in formats that are hard to analyse. This tutorial works through how to clean ONS data tables."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-08-27T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-08-25T11:12:49&#43;09:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Cleaning UK Office for National Statistics data in R with the tidyverse | Matt Ashby</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="70" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Matt Ashby</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Cleaning UK Office for National Statistics data in R with the tidyverse</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-08-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-08-25 11:12:49 &#43;0900 &#43;0900" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    <time>25 August 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    13 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/cleaning-ons-data/&amp;text=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/cleaning-ons-data/&amp;t=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse&amp;body=/post/cleaning-ons-data/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/cleaning-ons-data/&amp;title=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse%20/post/cleaning-ons-data/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/cleaning-ons-data/&amp;title=Cleaning%20UK%20Office%20for%20National%20Statistics%20data%20in%20R%20with%20the%20tidyverse" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>TL; DR: <a href="#complete">skip to the complete script</a></p>
+<p>The UK <a href="https://ons.gov.uk/">Office for National Statistics</a> (ONS) publishes a
+lot of quantitative information on all the topics you’d expect from a national
+statistical office, but most of it is released in formats that need manual
+cleaning before they can be used for data analysis.</p>
+<p>ONS has started publishing some information as what it calls open data, by which
+it means data that is easily machine readable, since (virtually?) all the data
+it produces is already open licenced under the <a href="http://nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government
+Licence</a>.
+However, most products of its produces are Excel tables that are optimised for
+human reading by mimicking the format of tables in the printed statistical
+reports that ONS produced for decades.</p>
+<p>This tutorial talks through how to clean a human-readable table produced by ONS
+using the <code>tidyverse</code> collection of packages, so the resulting <a href="http://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidy
+data</a> can
+be used for analysis. As an example, we’ll use a file containing <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">population
+estimates for each nation within the United Kingdom</a>
+by five-year age groups.</p>
+<p>If you don’t have the tidyverse collection of packages installed already, run
+<code>install.packages(&quot;tidyverse&quot;)</code> before continuing.</p>
+<div id="download" class="section level1">
+<h1>Download the data</h1>
+<p>Although ONS is relatively good at providing archive data, it’s good practice to
+always save an unamended copy of the raw data for any project just in case it
+later disappears from the source website.</p>
+<pre class="r"><code># download the data file
+download.file(
+  url = &quot;https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland/mid20182019laboundaries/ukmidyearestimates20182019ladcodes.xls&quot;,
+  destfile = &quot;ons_pop_data.xls&quot;
+)</code></pre>
+</div>
+<div id="load" class="section level1">
+<h1>Load the data into R</h1>
+<p>Since the data are in an Excel file, we can use the <code>readxl</code> package to read it
+into R. ONS publishes data using a mixture of file formats, including both the
+pre-2007 Excel <code>.xls</code> file format and the current <code>.xlsx</code> format<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The
+<code>read_excel()</code> function can handle both <code>.xls</code> and <code>.xlsx</code> files, but can only
+load a single sheet from within an Excel workbook (i.e. file). We can use the
+<code>excel_sheets()</code> function to get the names of each sheet in the Excel file.</p>
+<pre class="r"><code>library(&quot;readxl&quot;)
+library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>excel_sheets(&quot;ons_pop_data.xls&quot;)</code></pre>
+<pre><code>##  [1] &quot;Contents &quot;                  &quot;Terms and conditions &quot;     
+##  [3] &quot;Notes and definitions&quot;      &quot;Admin. geography hierarchy&quot;
+##  [5] &quot;MYE1&quot;                       &quot;MYE2-All&quot;                  
+##  [7] &quot;MYE2 - Males&quot;               &quot;MYE2 - Females&quot;            
+##  [9] &quot;MYE3&quot;                       &quot;MYE4 &quot;                     
+## [11] &quot;MYE 5&quot;                      &quot;MYE 6&quot;                     
+## [13] &quot;Related publications&quot;</code></pre>
+<p>Note that some of the sheets have a space at the end of the name, which will be
+invisible when viewing the file in Excel but which we need to know about to
+specify the sheet name for <code>read_excel()</code>.</p>
+<p>The <code>Contents</code> sheet contains a short description of the data in each of the
+other sheets. There are blank rows between every row in this table (an example
+of how ONS optimises for human rather than computer readability), but we can
+remove these rows using the <code>drop_na()</code> function from the <code>tidyr</code> package.</p>
+<pre class="r"><code>drop_na(read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;Contents &quot;))</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    Contents             `Population Estimates for UK, England and Wales, S…
+##    &lt;chr&gt;                &lt;chr&gt;                                              
+##  1 Terms and conditions Terms and conditions                               
+##  2 Notes and definitio… Notes and definitions                              
+##  3 Admin. geography hi… Administrative geography hierarchy for the United …
+##  4 MYE1                 Population estimates: Summary for the UK, mid-2018 
+##  5 MYE2 - All           Population estimates: Persons by single year of ag…
+##  6 MYE2 - M             Population estimates: Males by single year of age …
+##  7 MYE2 - F             Population estimates: Females by single year of ag…
+##  8 MYE3                 Components of population change for local authorit…
+##  9 MYE4                 Population estimates: Summary for the UK, mid-1971…
+## 10 MYE5                 Population estimates: Population density for local…
+## 11 MYE6                 Median age of population for local authorities in …
+## 12 Related publications Provides links to further population statistics &amp; …</code></pre>
+<p>We’re going to use the data from the mid-2018 UK population summary, so we want
+the <code>MYE1</code> sheet. We can now use <code>read_excel()</code> to load the data.</p>
+<pre class="r"><code>file_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;MYE1&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; ...2
+## * `` -&gt; ...3
+## * `` -&gt; ...4
+## * `` -&gt; ...5
+## * `` -&gt; ...6
+## * … and 3 more problems</code></pre>
+</div>
+<div id="clean" class="section level1">
+<h1>Clean the data</h1>
+<p>In Excel, the <code>MYE1</code> sheet looks like this:</p>
+<div class="figure">
+<img src="mye1-sheet-preview.png" alt="Screenshot of the MYE1 sheet as viewed in Excel" />
+<p class="caption">Screenshot of the MYE1 sheet as viewed in Excel</p>
+</div>
+<p>The <code>file_data</code> object contains the result of the <code>read_excel()</code> function’s
+attempt to load this sheet into R:</p>
+<pre class="r"><code>file_data</code></pre>
+<pre><code>## # A tibble: 33 x 9
+##    Contents     ...2   ...3   ...4   ...5   ...6    ...7    ...8    ...9   
+##    &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+##  1 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
+##  2 MYE1: Popul… &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &quot;Pleas… This m… I need… &quot;This …
+##  3 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
+##  4 Country / C… K0200… K0300… K0400… E9200… W92000… S92000… N92000… &lt;NA&gt;   
+##  5 &lt;NA&gt;         UNITE… GREAT… ENGLA… ENGLA… WALES   SCOTLA… NORTHE… &lt;NA&gt;   
+##  6 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
+##  7 All Persons  66435… 64553… 59115… 55977… 3138631 5438100 1881641 &lt;NA&gt;   
+##  8 Males        32790… 31864… 29215… 27667… 1547309 2648751 926200  &lt;NA&gt;   
+##  9 Females      33645… 32689… 29900… 28309… 1591322 2789349 955441  &lt;NA&gt;   
+## 10 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
+## # … with 23 more rows</code></pre>
+<p>This isn’t very useful. There are several problems we need to fix:</p>
+<ol style="list-style-type: decimal">
+<li>the column names don’t reflect the data in each column,</li>
+<li>all the columns have the type <code>&lt;chr&gt;</code> (character) even when the columns
+contain numbers,</li>
+<li>there are several blank or partially blank rows,</li>
+<li>the feedback questionnaire in the top-left corner of the sheet means
+<code>file_data</code> contains an extra column,</li>
+<li>there is a row containg a footnote,</li>
+<li>the data are in wide rather than long format.</li>
+</ol>
+<p>We can fix all of these either using the parameters of <code>read_excel()</code> or the
+functions from the tidyverse packages.</p>
+<p>We can exclude all the cells in the sheet except those containing data with the
+<code>range =</code> parameter of <code>read_excel()</code>. We can either specify the cell range
+manually (e.g. <code>range = &quot;A5:H31&quot;</code>) or we can use one of the <code>cell_*</code> collection
+of helper functions from the <code>cellranger</code> package, which is loaded with
+<code>readxl</code>.</p>
+<pre class="r"><code>file_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;MYE1&quot;, 
+                                                range = cell_rows(5:31))
+
+file_data</code></pre>
+<pre><code>## # A tibble: 26 x 8
+##    `Country / Code` K02000001 K03000001 K04000001 E92000001 W92000004
+##    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 &lt;NA&gt;             UNITED K… GREAT BR… ENGLAND … ENGLAND   WALES    
+##  2 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  3 All Persons      66435550  64553909  59115809  55977178  3138631  
+##  4 Males            32790202  31864002  29215251  27667942  1547309  
+##  5 Females          33645348  32689907  29900558  28309236  1591322  
+##  6 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  7 Age Groups       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  8 0-4              3914028   3792292   3515430   3346727   168703   
+##  9 5-9              4138524   4009409   3708320   3523866   184454   
+## 10 10-14            3858894   3738572   3450782   3274119   176663   
+## # … with 16 more rows, and 2 more variables: S92000003 &lt;chr&gt;,
+## #   N92000002 &lt;chr&gt;</code></pre>
+<p>This deals with the unwanted rows above and below the table, as well as the
+unwanted columns produced because of the feedback questionnaire.</p>
+<p>The next problem is that the column names represent the <a href="">GSS statistical codes</a> for the different nations of the UK, rather than the names of the nations. You may prefer the codes, but we’ll assume that you want the names.</p>
+<p>We can use functions from the <code>magrittr</code> package to work with individual values
+in the data. All these functions are aliases for base R functions, but can be
+easier to work with.</p>
+<pre class="r"><code>library(&quot;magrittr&quot;)
+
+# set a value for the first row in the first column, which is currently blank
+file_data &lt;- inset(file_data, 1, 1, &quot;group&quot;)
+
+# replace the existing column names with the values from the first row
+file_data &lt;- set_colnames(file_data, file_data[1, ])
+
+# remove the first row, which we no longer need, using slice() from dplyr
+file_data &lt;- slice(file_data, 2:n())
+
+file_data</code></pre>
+<pre><code>## # A tibble: 25 x 8
+##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
+##    &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;
+##  1 &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
+##  2 All … 66435550         64553909        59115809         559771… 3138…
+##  3 Males 32790202         31864002        29215251         276679… 1547…
+##  4 Fema… 33645348         32689907        29900558         283092… 1591…
+##  5 &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
+##  6 Age … &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
+##  7 0-4   3914028          3792292         3515430          3346727 1687…
+##  8 5-9   4138524          4009409         3708320          3523866 1844…
+##  9 10-14 3858894          3738572         3450782          3274119 1766…
+## 10 15-19 3669250          3555359         3270795          3096575 1742…
+## # … with 15 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;, `NORTHERN
+## #   IRELAND` &lt;chr&gt;</code></pre>
+<p>Next we remove any rows containing empty cells, since none of the data rows
+contain empty cells (see <a href="#tips">Tips</a>, below, for tables where this isn’t the
+case).</p>
+<pre class="r"><code>file_data &lt;- drop_na(file_data)
+
+file_data</code></pre>
+<pre><code>## # A tibble: 22 x 8
+##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
+##    &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;
+##  1 All … 66435550         64553909        59115809         559771… 3138…
+##  2 Males 32790202         31864002        29215251         276679… 1547…
+##  3 Fema… 33645348         32689907        29900558         283092… 1591…
+##  4 0-4   3914028          3792292         3515430          3346727 1687…
+##  5 5-9   4138524          4009409         3708320          3523866 1844…
+##  6 10-14 3858894          3738572         3450782          3274119 1766…
+##  7 15-19 3669250          3555359         3270795          3096575 1742…
+##  8 20-24 4184575          4068584         3717960          3512654 2053…
+##  9 25-29 4527175          4404612         4022272          3815924 2063…
+## 10 30-34 4463357          4337288         3976030          3787597 1884…
+## # … with 12 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;, `NORTHERN
+## #   IRELAND` &lt;chr&gt;</code></pre>
+<p>We can convert the data from wide to long using <code>gather()</code>:</p>
+<pre class="r"><code>file_data &lt;- gather(file_data, key = &quot;geography&quot;, value = &quot;population&quot;, -group)
+
+file_data</code></pre>
+<pre><code>## # A tibble: 154 x 3
+##    group       geography      population
+##    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;     
+##  1 All Persons UNITED KINGDOM 66435550  
+##  2 Males       UNITED KINGDOM 32790202  
+##  3 Females     UNITED KINGDOM 33645348  
+##  4 0-4         UNITED KINGDOM 3914028   
+##  5 5-9         UNITED KINGDOM 4138524   
+##  6 10-14       UNITED KINGDOM 3858894   
+##  7 15-19       UNITED KINGDOM 3669250   
+##  8 20-24       UNITED KINGDOM 4184575   
+##  9 25-29       UNITED KINGDOM 4527175   
+## 10 30-34       UNITED KINGDOM 4463357   
+## # … with 144 more rows</code></pre>
+<p>Finally, we will tidy up the data by converting the population variable to
+numeric and the geography variable to title case (using a function from the
+<code>stringr</code> package).</p>
+<pre class="r"><code>tidy_data &lt;- mutate(
+    file_data,
+    geography = str_to_title(geography),
+    population = as.numeric(population)
+)
+
+tidy_data</code></pre>
+<pre><code>## # A tibble: 154 x 3
+##    group       geography      population
+##    &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;
+##  1 All Persons United Kingdom   66435550
+##  2 Males       United Kingdom   32790202
+##  3 Females     United Kingdom   33645348
+##  4 0-4         United Kingdom    3914028
+##  5 5-9         United Kingdom    4138524
+##  6 10-14       United Kingdom    3858894
+##  7 15-19       United Kingdom    3669250
+##  8 20-24       United Kingdom    4184575
+##  9 25-29       United Kingdom    4527175
+## 10 30-34       United Kingdom    4463357
+## # … with 144 more rows</code></pre>
+</div>
+<div id="complete" class="section level1">
+<h1>A complete script</h1>
+<p>Using the <code>magrittr</code> pipe <code>%&gt;%</code>, we can combine all these cleaning steps
+together, which makes the code more compact and (arguably) more readable.</p>
+<pre class="r"><code>library(&quot;lubridate&quot;)  # lubridate and magrittr are part of the 
+library(&quot;magrittr&quot;)   # tidyverse but not loaded with it by default
+library(&quot;readxl&quot;)
+library(&quot;tidyverse&quot;)
+
+tidy_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;MYE1&quot;, 
+                                                range = cell_rows(5:31)) %&gt;% 
+    inset(1, 1, &quot;group&quot;) %&gt;% 
+    set_colnames(.[1, ]) %&gt;% 
+    slice(2:n()) %&gt;% 
+    drop_na() %&gt;% 
+    gather(key = &quot;geography&quot;, value = &quot;population&quot;, -group) %&gt;% 
+    mutate(
+        geography = str_to_title(geography),
+        population = as.numeric(population)
+    )
+
+tidy_data</code></pre>
+<pre><code>## # A tibble: 154 x 3
+##    group       geography      population
+##    &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;
+##  1 All Persons United Kingdom   66435550
+##  2 Males       United Kingdom   32790202
+##  3 Females     United Kingdom   33645348
+##  4 0-4         United Kingdom    3914028
+##  5 5-9         United Kingdom    4138524
+##  6 10-14       United Kingdom    3858894
+##  7 15-19       United Kingdom    3669250
+##  8 20-24       United Kingdom    4184575
+##  9 25-29       United Kingdom    4527175
+## 10 30-34       United Kingdom    4463357
+## # … with 144 more rows</code></pre>
+</div>
+<div id="tips" class="section level1">
+<h1>Tips for other ONS tables</h1>
+<p>There is a huge number of ONS tables available, some having different formatting
+issues from those mentioned above. These are some of the issues I’ve come across
+and potential ways to deal with them.</p>
+<p>(The examples below all assumed your data is in a data frame/tibble called
+<code>data</code>.)</p>
+<div id="missing-values-in-the-data" class="section level2">
+<h2>Missing values in the data</h2>
+<p>Many ONS datasets have missing values, and some even have multiple
+values representing different reasons for the values being missing. For example,
+data for small geographic areas might be missing because the data could not be
+collected for a particular location or have been redacted to prevent disclosure
+of personal information.</p>
+<p>The <code>na =</code> parameter of <code>read_excel()</code> can be used to specify values in the
+data that should be treated as missing. For example, if an ONS table uses a
+blank cell to represent data that could not be collected and <code>**</code> to represent
+redacted data, <code>read_excel(&quot;data.xlsx&quot;, sheet = &quot;Sheet 1&quot;, na = c(&quot;&quot;, &quot;**&quot;))</code>
+will ensure both values are represented by <code>NA</code> in R.</p>
+<p>It isn’t possible to use <code>drop_na()</code> to remove empty rows if there are missing
+values in the data, because <code>drop_na()</code> removes rows that contain <em>any</em> missing
+values. Instead, you can use <code>remove_empty()</code> from the <code>janitor</code> package to
+remove rows or columns that are entirely empty. If there are rows that you want
+to remove from the data that contain some missing values and some values that
+are not missing, use <code>filter()</code> from <code>dplyr</code> based on the value of a specific
+column. For example, to remove rows with the value of <code>population</code> missing,
+use <code>filter(data, !is.na(population))</code>. To remove single manually by row number,
+use <code>slice()</code>, also from <code>dplyr</code>.</p>
+</div>
+<div id="multiple-tables-in-a-single-sheet" class="section level2">
+<h2>Multiple tables in a single sheet</h2>
+<p>Sometimes multiple related data tables are placed on a single Excel sheet. You
+can either import them separately and then combine the resulting datasets
+manually (e.g. with <code>rbind()</code>) or just treat the rows or columns between each
+table as noise that can be removed using a combination of <code>drop_na()</code> and
+<code>slice()</code> as above. In the latter case, modify the <code>range =</code> argument of
+<code>read_excel()</code> so that the selected cells/rows/columns include all the tables.</p>
+</div>
+<div id="category-names-or-values-with-footnote-markers" class="section level2">
+<h2>Category names or values with footnote markers</h2>
+<p>If tables have multiple footnotes, some categories or values may end in a
+footnote marker (typically a number). To remove these, use <code>str_remove()</code> from
+<code>stringr</code>. For example, if the column <code>place</code> contains values with footnote
+markers, you can use <code>mutate(data, place = str_remove(place, &quot;\\d+$&quot;))</code> to
+remove them. This only works for non-numeric values with numeric footnote
+markers, since the regular expression <code>\\d+$</code> will match any sequence of numbers
+at the end of a cell.</p>
+</div>
+<div id="dates-and-date-ranges-stored-as-text" class="section level2">
+<h2>Dates and date ranges stored as text</h2>
+<p>Since many ONS statistics are published for financial years, time periods are
+often stored as strings showing, for example, <code>2018-19</code>. Converting these to
+dates helps with things like plotting values on an axis with date values or
+using the data in a time-series model.</p>
+<p>The <code>lubridate</code> package is very useful for converting dates. You can either
+represent each date as a specific moment in time, or as an interval in time.
+For example, if a financial year is stored as <code>2018-19</code> in the <code>year</code> column,
+you can extract the specific moment the year started using
+<code>mutate(year_beginning = ymd(paste(str_sub(year, 0, 4)), &quot;04&quot;, &quot;01&quot;))</code>.</p>
+<p>To store a date as an interval, we extract both the date on which the year
+started and the date it ended. For example,</p>
+<pre class="r"><code>mutate(
+    data, 
+    year_interval = interval(
+        ymd(paste(str_sub(year, 0, 4), &quot;04&quot;, &quot;01&quot;)),
+        ymd(paste(str_sub(year, -2), &quot;03&quot;, &quot;31&quot;))
+  )
+)</code></pre>
+</div>
+</div>
+<div id="other-functions" class="section level1">
+<h1>Some other useful data cleaning functions</h1>
+<p>Some other functions that are useful for cleaning ONS data include:</p>
+<ul>
+<li><code>clean_names()</code> from the <code>janitor</code> package, which converts column names to
+lower case with non-alphanumeric characters replaced with underscores;</li>
+<li><code>mutate_at(vars(value1, value2), ~ . / 100)</code> from <code>dplyr</code> to replace (across
+multiple specified columns) percentage values such as prevalence rates with
+proportions, which are more useful for a variety of operations;</li>
+</ul>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I have not been able to work out why some ONS files are in <code>.xls</code> format
+and some in <code>.xlsx</code>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/tutorial/">tutorial</a>
+  
+  <a class="badge badge-light" href="/tags/r/">R</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu6f220e83370d2dbfd39d511c0d0919f9_158802_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Matt Ashby</a></h5>
+      <h6 class="card-subtitle">Lecturer in Crime Science</h6>
+      <p class="card-text" itemprop="description">I am a lecturer in crime science at the <a href="https://ucl.ac.uk/jill-dando-institute/" target="_blank">Jill Dando Institute of Security and Crime Science</a> at <a href="https://ucl.ac.uk/" target="_blank">University College London</a> (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/lesscrime" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="//orcid.org/0000-0003-4201-9239" >
+              <i class="ai ai-orcid"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=dwcesrQAAAAJ" target="_blank" rel="noopener">
+              <i class="ai ai-google-scholar"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/mpjashby" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.24e4ae3437f67be0520f6066707da44b.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    CC-BY &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

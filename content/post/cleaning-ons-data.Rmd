@@ -1,0 +1,326 @@
+---
+title: Cleaning UK Office for National Statistics data in R with the tidyverse
+author: Matt Ashby
+date: '2019-08-27'
+slug: cleaning-ons-data
+categories: []
+tags:
+  - tutorial
+  - R
+subtitle: ''
+summary: 
+  UK Office for National Statistics data can be in formats that are hard to 
+  analyse. This tutorial works through how to clean ONS data tables.
+lastmod: '2019-08-25T11:12:49+09:00'
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r include=FALSE}
+options("conflicts.policy" = list(warn = FALSE))
+```
+
+
+TL; DR: [skip to the complete script](#complete)
+
+The UK [Office for National Statistics](https://ons.gov.uk/) (ONS) publishes a 
+lot of quantitative information on all the topics you'd expect from a national 
+statistical office, but most of it is released in formats that need manual
+cleaning before they can be used for data analysis.
+
+ONS has started publishing some information as what it calls open data, by which 
+it means data that is easily machine readable, since (virtually?) all the data 
+it produces is already open licenced under the [Open Government
+Licence](http://nationalarchives.gov.uk/doc/open-government-licence/version/3/). 
+However, most products of its produces are Excel tables that are optimised for 
+human reading by mimicking the format of tables in the printed statistical 
+reports that ONS produced for decades.
+
+This tutorial talks through how to clean a human-readable table produced by ONS
+using the `tidyverse` collection of packages, so the resulting [tidy 
+data](http://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) can 
+be used for analysis. As an example, we'll use a file containing [population 
+estimates for each nation within the United Kingdom](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) 
+by five-year age groups.
+
+If you don't have the tidyverse collection of packages installed already, run
+`install.packages("tidyverse")` before continuing.
+
+
+# Download the data {#download}
+
+Although ONS is relatively good at providing archive data, it's good practice to
+always save an unamended copy of the raw data for any project just in case it
+later disappears from the source website.
+
+```{r eval=FALSE}
+# download the data file
+download.file(
+  url = "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland/mid20182019laboundaries/ukmidyearestimates20182019ladcodes.xls",
+  destfile = "ons_pop_data.xls"
+)
+```
+
+
+# Load the data into R {#load}
+
+Since the data are in an Excel file, we can use the `readxl` package to read it
+into R. ONS publishes data using a mixture of file formats, including both the 
+pre-2007 Excel `.xls` file format and the current `.xlsx` format[^1]. The 
+`read_excel()` function can handle both `.xls` and `.xlsx` files, but can only 
+load a single sheet from within an Excel workbook (i.e. file). We can use the 
+`excel_sheets()` function to get the names of each sheet in the Excel file.
+
+```{r}
+library("readxl")
+library("tidyverse")
+```
+
+```{r}
+excel_sheets("ons_pop_data.xls")
+```
+
+Note that some of the sheets have a space at the end of the name, which will be
+invisible when viewing the file in Excel but which we need to know about to
+specify the sheet name for `read_excel()`.
+
+The `Contents ` sheet contains a short description of the data in each of the
+other sheets. There are blank rows between every row in this table (an example
+of how ONS optimises for human rather than computer readability), but we can 
+remove these rows using the `drop_na()` function from the `tidyr` package.
+
+```{r paged.print=FALSE}
+drop_na(read_excel("ons_pop_data.xls", sheet = "Contents "))
+```
+
+We're going to use the data from the mid-2018 UK population summary, so we want
+the `MYE1` sheet. We can now use `read_excel()` to load the data.
+
+```{r}
+file_data <- read_excel("ons_pop_data.xls", sheet = "MYE1")
+```
+
+
+# Clean the data {#clean}
+
+In Excel, the `MYE1` sheet looks like this:
+
+![Screenshot of the MYE1 sheet as viewed in Excel](mye1-sheet-preview.png)
+
+The `file_data` object contains the result of the `read_excel()` function's 
+attempt to load this sheet into R:
+
+```{r}
+file_data
+```
+
+This isn't very useful. There are several problems we need to fix:
+
+  1. the column names don't reflect the data in each column,
+  2. all the columns have the type `<chr>` (character) even when the columns
+     contain numbers,
+  3. there are several blank or partially blank rows,
+  4. the feedback questionnaire in the top-left corner of the sheet means
+     `file_data` contains an extra column,
+  5. there is a row containg a footnote,
+  6. the data are in wide rather than long format.
+
+We can fix all of these either using the parameters of `read_excel()` or the 
+functions from the tidyverse packages.
+
+We can exclude all the cells in the sheet except those containing data with the
+`range = ` parameter of `read_excel()`. We can either specify the cell range
+manually (e.g. `range = "A5:H31"`) or we can use one of the `cell_*` collection
+of helper functions from the `cellranger` package, which is loaded with 
+`readxl`.
+
+```{r}
+file_data <- read_excel("ons_pop_data.xls", sheet = "MYE1", 
+												range = cell_rows(5:31))
+
+file_data
+```
+
+This deals with the unwanted rows above and below the table, as well as the
+unwanted columns produced because of the feedback questionnaire.
+
+The next problem is that the column names represent the [GSS statistical codes]() for the different nations of the UK, rather than the names of the nations. You may prefer the codes, but we'll assume that you want the names.
+
+We can use functions from the `magrittr` package to work with individual values
+in the data. All these functions are aliases for base R functions, but can be
+easier to work with.
+
+```{r}
+library("magrittr")
+
+# set a value for the first row in the first column, which is currently blank
+file_data <- inset(file_data, 1, 1, "group")
+
+# replace the existing column names with the values from the first row
+file_data <- set_colnames(file_data, file_data[1, ])
+
+# remove the first row, which we no longer need, using slice() from dplyr
+file_data <- slice(file_data, 2:n())
+
+file_data
+```
+
+Next we remove any rows containing empty cells, since none of the data rows
+contain empty cells (see [Tips](#tips), below, for tables where this isn't the
+case). 
+
+```{r}
+file_data <- drop_na(file_data)
+
+file_data
+```
+
+We can convert the data from wide to long using `gather()`:
+
+```{r}
+file_data <- gather(file_data, key = "geography", value = "population", -group)
+
+file_data
+```
+
+Finally, we will tidy up the data by converting the population variable to 
+numeric and the geography variable to title case (using a function from the
+`stringr` package).
+
+```{r}
+tidy_data <- mutate(
+	file_data,
+	geography = str_to_title(geography),
+	population = as.numeric(population)
+)
+
+tidy_data
+```
+
+
+# A complete script {#complete}
+
+Using the `magrittr` pipe `%>%`, we can combine all these cleaning steps 
+together, which makes the code more compact and (arguably) more readable.
+
+```{r}
+library("lubridate")  # lubridate and magrittr are part of the 
+library("magrittr")   # tidyverse but not loaded with it by default
+library("readxl")
+library("tidyverse")
+
+tidy_data <- read_excel("ons_pop_data.xls", sheet = "MYE1", 
+												range = cell_rows(5:31)) %>% 
+	inset(1, 1, "group") %>% 
+	set_colnames(.[1, ]) %>% 
+	slice(2:n()) %>% 
+	drop_na() %>% 
+	gather(key = "geography", value = "population", -group) %>% 
+	mutate(
+		geography = str_to_title(geography),
+		population = as.numeric(population)
+	)
+
+tidy_data
+```
+
+
+# Tips for other ONS tables {#tips}
+
+There is a huge number of ONS tables available, some having different formatting
+issues from those mentioned above. These are some of the issues I've come across
+and potential ways to deal with them.
+
+(The examples below all assumed your data is in a data frame/tibble called 
+`data`.)
+
+
+## Missing values in the data
+
+Many ONS datasets have missing values, and some even have multiple 
+values representing different reasons for the values being missing. For example,
+data for small geographic areas might be missing because the data could not be
+collected for a particular location or have been redacted to prevent disclosure
+of personal information.
+
+The `na = ` parameter of `read_excel()` can be used to specify values in the
+data that should be treated as missing. For example, if an ONS table uses a
+blank cell to represent data that could not be collected and `**` to represent
+redacted data, `read_excel("data.xlsx", sheet = "Sheet 1", na = c("", "**"))`
+will ensure both values are represented by `NA` in R.
+
+It isn't possible to use `drop_na()` to remove empty rows if there are missing 
+values in the data, because `drop_na()` removes rows that contain *any* missing
+values. Instead, you can use `remove_empty()` from the `janitor` package to 
+remove rows or columns that are entirely empty. If there are rows that you want
+to remove from the data that contain some missing values and some values that
+are not missing, use `filter()` from `dplyr` based on the value of a specific
+column. For example, to remove rows with the value of `population` missing,
+use `filter(data, !is.na(population))`. To remove single manually by row number, 
+use `slice()`, also from `dplyr`.
+
+
+## Multiple tables in a single sheet
+
+Sometimes multiple related data tables are placed on a single Excel sheet. You
+can either import them separately and then combine the resulting datasets 
+manually (e.g. with `rbind()`) or just treat the rows or columns between each
+table as noise that can be removed using a combination of `drop_na()` and 
+`slice()` as above. In the latter case, modify the `range = ` argument of 
+`read_excel()` so that the selected cells/rows/columns include all the tables.
+
+
+## Category names or values with footnote markers
+
+If tables have multiple footnotes, some categories or values may end in a
+footnote marker (typically a number). To remove these, use `str_remove()` from
+`stringr`. For example, if the column `place` contains values with footnote
+markers, you can use `mutate(data, place = str_remove(place, "\\d+$"))` to 
+remove them. This only works for non-numeric values with numeric footnote 
+markers, since the regular expression `\\d+$` will match any sequence of numbers 
+at the end of a cell.
+
+
+## Dates and date ranges stored as text
+
+Since many ONS statistics are published for financial years, time periods are
+often stored as strings showing, for example, `2018-19`. Converting these to
+dates helps with things like plotting values on an axis with date values or
+using the data in a time-series model.
+
+The `lubridate` package is very useful for converting dates. You can either
+represent each date as a specific moment in time, or as an interval in time.
+For example, if a financial year is stored as `2018-19` in the `year` column,
+you can extract the specific moment the year started using
+`mutate(year_beginning = ymd(paste(str_sub(year, 0, 4)), "04", "01"))`.
+
+To store a date as an interval, we extract both the date on which the year 
+started and the date it ended. For example,
+
+```{r eval=FALSE}
+mutate(
+	data, 
+	year_interval = interval(
+		ymd(paste(str_sub(year, 0, 4), "04", "01")),
+		ymd(paste(str_sub(year, -2), "03", "31"))
+  )
+)
+```
+
+
+# Some other useful data cleaning functions {#other-functions}
+
+Some other functions that are useful for cleaning ONS data include:
+
+  * `clean_names()` from the `janitor` package, which converts column names to
+    lower case with non-alphanumeric characters replaced with underscores;
+  * `mutate_at(vars(value1, value2), ~ . / 100)` from `dplyr` to replace (across
+    multiple specified columns) percentage values such as prevalence rates with 
+    proportions, which are more useful for a variety of operations;
+
+
+[^1]: I have not been able to work out why some ONS files are in `.xls` format
+and some in `.xlsx`.
