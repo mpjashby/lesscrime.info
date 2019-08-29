@@ -1,7 +1,7 @@
 ---
 title: "Chart: For most offences prison is the exception, not the rule"
 author: Matt Ashby
-date: '2019-08-26'
+date: '2019-09-02'
 slug: prison-likelihood
 categories: ["Crime and justice chart of the week"]
 tags:
@@ -18,9 +18,9 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 chart_details <- list(
 	id = "prison-likelihood",
 	title = "For most offences prison is the exception, not the rule",
-	subtitle = "Of the 720,000 non-motoring offences for which people were sentenced in 2017, only about 10% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.",
-	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2017",
-	source_title = "Ministry of Justice, 2018"
+	subtitle = "Of the 663,000 non-motoring offences for which people were sentenced in 2018, only about 11% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.",
+	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018",
+	source_title = "Ministry of Justice, 2019"
 )
 ```
 
@@ -36,12 +36,12 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	
 	# download data
 	# data_file <- tempfile()
-	# GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780207/fte-pivot-tables-2018-q3.xls", write_disk(data_file), progress())
+	# GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/802314/outcomes-by-offence-tool-2018.xlsx", write_disk(data_file), progress())
 
   # The downloaded data are in a .xls file, but the data are hidden in a pivot
-  # table rather than a simple sheet. The data can be revealed by right-clicking
-	# the pivot table and clicking 'Show Details' then saving the resulting sheet
-	# as a CSV file
+  # table rather than a simple sheet. The data can be revealed by *selecting all
+	# the cells* in the pivot table, right-clicking on the pivot table and 
+	# clicking 'Show Details' then saving the resulting sheet as a CSV file
 	
 	# read data
 	file_data <- read_csv("prison-likelihood-data-raw.csv")
@@ -62,73 +62,132 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 }
 ```
 
-```{r prepare plot data}
-# tidy_data %>% 
-	# filter(str_detect(str_to_lower(detailed_offence), "stolen"),
-	# 			 str_detect(str_to_lower(detailed_offence), "goods")) %>% 
-	# filter(offence_group %in% c("04: Theft Offences", "10: Fraud Offences")) %>% 
-	# count(detailed_offence, wt = sentenced, sort = TRUE)
+```{r count total sentences, eval=FALSE, include=FALSE}
+tidy_data %>% 
+	filter(
+		year == 2018, 
+		person_other == "01: Person",
+		offence_group != "12: Summary motoring"
+	) %>% 
+	summarise(sentenced = sum(sentenced), 
+						custody = sum(total_immediate_custody)) %>% 
+	mutate(`custody proportion` = custody / sentenced) %>% 
+	gather(key = "category", value = "count") %>% 
+	mutate(count = ifelse(category == "custody proportion", 
+												scales::percent(count, accuracy = 0.1), 
+												scales::comma(count, accuracy = 1000)))
+```
 
+
+
+```{r prepare plot data}
 chart_data <- tidy_data %>% 
-	filter(offence_type %in% c("01: Indictable only", "02: Triable either way")) %>% 
+	filter(year == 2018, person_other == "01: Person") %>% 
 	mutate(detailed_offence = case_when(
-		offence == "1 Murder" ~ "murder",
-		str_detect(detailed_offence, "^Sexual assault") ~ "sexual assault",
-		str_detect(detailed_offence, "^Rape") ~ "rape",
-		detailed_offence == "Theft from shops" ~ "shoplifting",
-		detailed_offence == "Having possession of a controlled drug - class B (cannabis, including cannabis resin, cannabinol and cannabinol derivatives)" ~ "cannabis possession",
-		str_detect(detailed_offence, "^Burglary") | detailed_offence == "Other burglary in a dwelling" ~
-			"burglary",
-		detailed_offence == "Breach of a restraining order" ~ 
+	  offence == "1 Murder" ~ "murder",
+		str_detect(offence, "Sexual assault") | str_detect(offence, "^Indecent assault") ~ 
+			"sexual assault",
+		str_detect(offence, "Rape of") ~ "rape",
+		offence == "46 Theft from Shops" ~ "shoplifting",
+		str_detect(offence, "^92E") ~ "cannabis possession",
+		str_detect(offence, "Burglary") ~ "burglary",
+		offence == "8.10 Breach of a restraining order" ~ 
 			"breach of restraining order",
-		detailed_offence == "Assault occasioning actual bodily harm" ~ 
+		offence == "8.01 Assault occasioning actual bodily harm" ~ 
 			"causing actual bodily harm",
-		detailed_offence == "Having an article with a blade or point in a public place" ~
+		offence == "10D Possession of article with blade or point" ~ 
 			"possess bladed article",
-		str_detect(detailed_offence, "^Fraud by false representation") ~ 
+		str_detect(offence, "^53C") | str_detect(offence, "^53D") ~ 
 			"fraud by false representation",
-		detailed_offence == "Robbery" ~ "robbery",
-		detailed_offence == "Theft by an employee" ~ "theft by employee",
-		str_detect(str_to_lower(detailed_offence), "cocaine") & str_detect(str_to_lower(detailed_offence), "supply") ~ "cocaine supply",
-		str_detect(str_to_lower(detailed_offence), "cannabis") & str_detect(str_to_lower(detailed_offence), "supply") ~ 
-			"cannabis supply",
-		detailed_offence == "Having possession of a controlled drug - class A (cocaine)" ~
-			"cocaine possession",
-		detailed_offence %in% c("Wound/inflict grievous bodily harm without intent", "Wounding with intent to cause grievous bodily harm") ~ 
+		offence == "34 Robbery" ~ "robbery",
+		offence == "41 Theft by an Employee" ~ "theft by employee",
+		str_detect(offence, "^92A.09") ~ "class A drug supply (e.g. cocaine)",
+		str_detect(offence, "^92A.10") ~ "class B drug supply (e.g. cannabis)",
+		str_detect(offence, "^92D.01") ~ "class A drug possession",
+		str_detect(offence, "grievous bodily harm") ~ 
 			"causing grievous bodily harm",
-		str_detect(str_to_lower(detailed_offence), "stolen") & str_detect(str_to_lower(detailed_offence), "goods") ~ "handling stolen goods",
-		detailed_offence == "Possession of offensive weapons without lawful authority or reasonable excuse" ~
+		offence == "54 Handling Stolen Goods" ~ "handling stolen goods",
+		offence == "10C.2 Possession of other weapons - triable either way" ~ 
 			"possess offensive weapon",
-		detailed_offence == "Theft of pedal cycle" ~ "pedal cycle theft",
-		detailed_offence %in% c("Unauthorised taking or driving or attempt taking or driving of a motor vehicle", "Theft of a motor vehicle (excluding aggravated vehicle taking) - triable either way") ~ 
+		offence == "44 Theft of Pedal Cycle" ~ "pedal cycle theft",
+		offence %in% c("130 Theft of a motor vehicle  - summary (MOT)", "48 Theft of a motor vehicle (excl. aggravated vehicle taking) - triable either way (MOT)") ~ 
 			"motor vehicle theft/taking",
-		detailed_offence == "Stealing from vehicles: from motor vehicles" ~ "theft from motor vehicle",
+		offence == "45 Theft from Vehicle" ~ "theft from motor vehicle",
 		TRUE ~ "other"
-		# TRUE ~ detailed_offence
 	)) %>% 
 	filter(detailed_offence != "other") %>% 
-	# count(detailed_offence, wt = sentenced, sort = TRUE)
-	mutate(
-		age_group = as.character(fct_recode(age_group, 
-																				"juvenile offenders" = "01: Juveniles",
-																				"adult offenders" = "02: Young adults", 
-																				"adult offenders" = "03: Adults")),
-		offence_group = as.character(fct_recode(
-			offence_group,
-			"violent or sexual crime" = "01: Violence against the person", 
-			"violent or sexual crime" = "02: Sexual offences",
-			"violent or sexual crime" = "03: Robbery",
-			"theft or fraud" = "04: Theft Offences",
-			"theft or fraud" = "10: Fraud Offences",
-			"other crime" = "06: Drug offences",
-			"other crime" = "07: Possession of weapons",
-			"other crime" = "09: Miscellaneous crimes against society"
-		))
-	) %>% 
-	group_by(offence_group, detailed_offence, age_group) %>% 
-	summarise(sentenced = sum(sentenced), custody = sum(immediate_custody)) %>% 
+	mutate(age_group = as.character(fct_recode(
+		age_group, 
+		"juvenile offenders" = "01: Juveniles",
+		"adult offenders" = "02: Young adults", 
+		"adult offenders" = "03: Adults")
+	)) %>% 
+	group_by(detailed_offence, age_group) %>% 
+	summarise(sentenced = sum(sentenced), 
+						custody = sum(total_immediate_custody)) %>% 
 	ungroup() %>% 
 	mutate(custody_prop = custody / sentenced)
+
+# chart_data <- tidy_data %>% 
+# 	# filter(offence_type %in% c("01: Indictable only", "02: Triable either way")) %>% 
+# 	mutate(detailed_offence = case_when(
+# 		offence == "1 Murder" ~ "murder",
+# 		str_detect(detailed_offence, "^Sexual assault") ~ "sexual assault",
+# 		str_detect(detailed_offence, "^Rape") ~ "rape",
+# 		detailed_offence == "Theft from shops" ~ "shoplifting",
+# 		detailed_offence == "Having possession of a controlled drug - class B (cannabis, including cannabis resin, cannabinol and cannabinol derivatives)" ~ "cannabis possession",
+# 		str_detect(detailed_offence, "^Burglary") | detailed_offence == "Other burglary in a dwelling" ~
+# 			"burglary",
+# 		detailed_offence == "Breach of a restraining order" ~ 
+# 			"breach of restraining order",
+# 		detailed_offence == "Assault occasioning actual bodily harm" ~ 
+# 			"causing actual bodily harm",
+# 		detailed_offence == "Having an article with a blade or point in a public place" ~
+# 			"possess bladed article",
+# 		str_detect(detailed_offence, "^Fraud by false representation") ~ 
+# 			"fraud by false representation",
+# 		detailed_offence == "Robbery" ~ "robbery",
+# 		detailed_offence == "Theft by an employee" ~ "theft by employee",
+# 		str_detect(str_to_lower(detailed_offence), "cocaine") & str_detect(str_to_lower(detailed_offence), "supply") ~ "cocaine supply",
+# 		str_detect(str_to_lower(detailed_offence), "cannabis") & str_detect(str_to_lower(detailed_offence), "supply") ~ 
+# 			"cannabis supply",
+# 		detailed_offence == "Having possession of a controlled drug - class A (cocaine)" ~
+# 			"cocaine possession",
+# 		detailed_offence %in% c("Wound/inflict grievous bodily harm without intent", "Wounding with intent to cause grievous bodily harm") ~ 
+# 			"causing grievous bodily harm",
+# 		str_detect(str_to_lower(detailed_offence), "stolen") & str_detect(str_to_lower(detailed_offence), "goods") ~ "handling stolen goods",
+# 		detailed_offence == "Possession of offensive weapons without lawful authority or reasonable excuse" ~
+# 			"possess offensive weapon",
+# 		detailed_offence == "Theft of pedal cycle" ~ "pedal cycle theft",
+# 		detailed_offence %in% c("Unauthorised taking or driving or attempt taking or driving of a motor vehicle", "Theft of a motor vehicle (excluding aggravated vehicle taking) - triable either way") ~ 
+# 			"motor vehicle theft/taking",
+# 		detailed_offence == "Stealing from vehicles: from motor vehicles" ~ "theft from motor vehicle",
+# 		TRUE ~ "other"
+# 		# TRUE ~ detailed_offence
+# 	)) %>% 
+# 	filter(detailed_offence != "other") %>% 
+# 	# count(detailed_offence, wt = sentenced, sort = TRUE)
+# 	mutate(
+# 		age_group = as.character(fct_recode(age_group, 
+# 																				"juvenile offenders" = "01: Juveniles",
+# 																				"adult offenders" = "02: Young adults", 
+# 																				"adult offenders" = "03: Adults")),
+# 		offence_group = as.character(fct_recode(
+# 			offence_group,
+# 			"violent or sexual crime" = "01: Violence against the person", 
+# 			"violent or sexual crime" = "02: Sexual offences",
+# 			"violent or sexual crime" = "03: Robbery",
+# 			"theft or fraud" = "04: Theft Offences",
+# 			"theft or fraud" = "10: Fraud Offences",
+# 			"other crime" = "06: Drug offences",
+# 			"other crime" = "07: Possession of weapons",
+# 			"other crime" = "09: Miscellaneous crimes against society"
+# 		))
+# 	) %>% 
+# 	group_by(offence_group, detailed_offence, age_group) %>% 
+# 	summarise(sentenced = sum(sentenced), custody = sum(immediate_custody)) %>% 
+# 	ungroup() %>% 
+# 	mutate(custody_prop = custody / sentenced)
 
 offence_order <- chart_data %>% 
 	filter(age_group == "adult offenders") %>% 
@@ -138,18 +197,15 @@ offence_order <- chart_data %>%
 chart_data <- chart_data %>% 
 	mutate(
 		age_group = factor(age_group),
-		offence_group = factor(offence_group, levels = c("violent or sexual crime",
-																										 "theft or fraud", 
-																										 "other crime")),
 		detailed_offence = fct_rev(factor(detailed_offence, levels = offence_order))
 	)
 
 # add chart labels
 chart_labels <- tribble(
 	~x, ~y, ~xend, ~yend, ~age_group, ~label, ~hjust, ~vjust, ~curve,
-	20, 0.4, 18.5, 0.51, "juvenile offenders", balance_lines("most children convicted of rape (and all offences except murder) received a non-custodial sentence", 5), "left", "top", "left",
-	16, 0.64, 14.5, 0.76, "adult offenders", balance_lines("63% of adults convicted of burglary were imprisoned, compared to 14% of juveniles", 5), "center", "top", "left",
-	1, 0.03, 2, 0.34, "adult offenders", balance_lines("5 years in prison is the maximum penalty for cannabis possession, but in practice almost no offenders were imprisoned", 5), "left", "bottom", "right",
+	20, 0.35, 18.5, 0.45, "juvenile offenders", balance_lines("most children convicted of rape (and all offences except murder) received a non-custodial sentence", 5), "left", "top", "left",
+	16, 0.66, 14.5, 0.76, "adult offenders", balance_lines("64% of adults convicted of burglary were imprisoned, compared to 17% of juveniles", 5), "center", "top", "left",
+	1, 0.04, 2, 0.34, "adult offenders", balance_lines("the maximum penalty for cannabis possession is 5 years in prison, but in practice almost no offenders were imprisoned", 5), "left", "bottom", "right",
 ) %>% 
 	# order factor levels according to order in chart data, to maintain facet and
 	# legend order
@@ -161,7 +217,7 @@ chart_labels <- tribble(
 ```{r build plot}
 chart <- ggplot(chart_data, aes(detailed_offence, custody_prop, 
 																fill = age_group)) +
-	geom_col() +
+	geom_col(width = 0.8) +
 	# add explanatory labels
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
 						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
@@ -196,7 +252,7 @@ chart <- ggplot(chart_data, aes(detailed_offence, custody_prop,
     title = chart_details$title,
     subtitle = format_subtitle(chart_details$subtitle, .width = 80),
 		x = NULL,
-		y = "proportion of sentenced offenders given an immediate custodial sentence, 2015–17",
+		y = "proportion of sentences that were an immediate custodial sentence, 2018",
 		fill = NULL
 	) +
 	theme_cjcharts() +

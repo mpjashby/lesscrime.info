@@ -7,15 +7,15 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Cleaning UK Office for National Statistics data in R with the tidyverse</title>
+      <title>Tutorial: Cleaning UK Office for National Statistics data in R with the tidyverse</title>
       <link>/post/cleaning-ons-data/</link>
-      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/cleaning-ons-data/</guid>
       <description>
@@ -26,11 +26,12 @@
 lot of quantitative information on all the topics you’d expect from a national
 statistical office, but most of it is released in formats that need manual
 cleaning before they can be used for data analysis.&lt;/p&gt;
-&lt;p&gt;ONS has started publishing some information as what it calls open data, by which
-it means data that is easily machine readable, since (virtually?) all the data
-it produces is already open licenced under the &lt;a href=&#34;http://nationalarchives.gov.uk/doc/open-government-licence/version/3/&#34;&gt;Open Government
+&lt;p&gt;&lt;a href=&#34;https://developer.ons.gov.uk&#34;&gt;ONS has started publishing some information as what it refers to as open
+data&lt;/a&gt;, by which it means data that is easily
+machine readable, since (almost) all the data it produces is already open
+&lt;a href=&#34;https://www.ons.gov.uk/methodology/geography/licences&#34;&gt;licenced under the Open Government
 Licence&lt;/a&gt;.
-However, most products of its produces are Excel tables that are optimised for
+However, most products its produces are Excel tables that are optimised for
 human reading by mimicking the format of tables in the printed statistical
 reports that ONS produced for decades.&lt;/p&gt;
 &lt;p&gt;This tutorial talks through how to clean a human-readable table produced by ONS
@@ -41,6 +42,28 @@ estimates for each nation within the United Kingdom&lt;/a&gt;
 by five-year age groups.&lt;/p&gt;
 &lt;p&gt;If you don’t have the tidyverse collection of packages installed already, run
 &lt;code&gt;install.packages(&amp;quot;tidyverse&amp;quot;)&lt;/code&gt; before continuing.&lt;/p&gt;
+&lt;div id=&#34;why&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Why?&lt;/h1&gt;
+&lt;p&gt;It might be tempting not to clean the data in R but instead simply open the
+relevant file in Excel and make the necessary changes there. This will work, but
+there are at least three reasons why cleaning the data in Excel is not
+necessarily a good idea.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;It’s harder to repeat the process&lt;/em&gt;. For example, if ONS updates the
+table (either because new data is available or to correct a problem) then
+you have to repeat the manual process in Excel. If you clean the data in R,
+all you have to do is run the script again.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;It’s harder to find mistakes&lt;/em&gt;. If you make a mistake while changing data in
+Excel but don’t notice until later (e.g. if your results don’t make sense)
+it will be difficult to track down exactly what happened. If you use a
+script to clean the data, you can go back and run it line-by-line to
+identify the problem.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;It’s harder for others to trust your work&lt;/em&gt;. If someone else wants to check
+your analysis (e.g. before taking action based on it), that’s more difficult
+if you have manipulated the data manually in ways the other person cannot
+see.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;div id=&#34;download&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Download the data&lt;/h1&gt;
 &lt;p&gt;Although ONS is relatively good at providing archive data, it’s good practice to
@@ -54,12 +77,13 @@ download.file(
 &lt;/div&gt;
 &lt;div id=&#34;load&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Load the data into R&lt;/h1&gt;
-&lt;p&gt;Since the data are in an Excel file, we can use the &lt;code&gt;readxl&lt;/code&gt; package to read it
-into R. ONS publishes data using a mixture of file formats, including both the
-pre-2007 Excel &lt;code&gt;.xls&lt;/code&gt; file format and the current &lt;code&gt;.xlsx&lt;/code&gt; format&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. The
-&lt;code&gt;read_excel()&lt;/code&gt; function can handle both &lt;code&gt;.xls&lt;/code&gt; and &lt;code&gt;.xlsx&lt;/code&gt; files, but can only
-load a single sheet from within an Excel workbook (i.e. file). We can use the
-&lt;code&gt;excel_sheets()&lt;/code&gt; function to get the names of each sheet in the Excel file.&lt;/p&gt;
+&lt;p&gt;Since the data are in an Excel file, we can use the &lt;a href=&#34;https://readxl.tidyverse.org&#34;&gt;&lt;code&gt;readxl&lt;/code&gt;&lt;/a&gt;
+package to read it into R. ONS publishes data using a mixture of file formats,
+including both the pre-2007 Excel &lt;code&gt;.xls&lt;/code&gt; file format and the current &lt;code&gt;.xlsx&lt;/code&gt;
+format&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. The &lt;code&gt;read_excel()&lt;/code&gt; function can handle both &lt;code&gt;.xls&lt;/code&gt; and &lt;code&gt;.xlsx&lt;/code&gt;
+files, but can only load a single sheet from within an Excel workbook (i.e.
+file). We can use the &lt;code&gt;excel_sheets()&lt;/code&gt; function to get the names of each sheet
+in the Excel file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;readxl&amp;quot;)
 library(&amp;quot;tidyverse&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
@@ -115,10 +139,7 @@ the &lt;code&gt;MYE1&lt;/code&gt; sheet. We can now use &lt;code&gt;read_excel()
 &lt;div id=&#34;clean&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Clean the data&lt;/h1&gt;
 &lt;p&gt;In Excel, the &lt;code&gt;MYE1&lt;/code&gt; sheet looks like this:&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;mye1-sheet-preview.png&#34; alt=&#34;Screenshot of the MYE1 sheet as viewed in Excel&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Screenshot of the MYE1 sheet as viewed in Excel&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;img src=&#34;/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;file_data&lt;/code&gt; object contains the result of the &lt;code&gt;read_excel()&lt;/code&gt; function’s
 attempt to load this sheet into R:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data&lt;/code&gt;&lt;/pre&gt;
@@ -147,15 +168,17 @@ contain numbers,&lt;/li&gt;
 &lt;li&gt;there is a row containg a footnote,&lt;/li&gt;
 &lt;li&gt;the data are in wide rather than long format.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;We can fix all of these either using the parameters of &lt;code&gt;read_excel()&lt;/code&gt; or the
+&lt;p&gt;We can fix all of these either using the parameters of &lt;code&gt;read_excel()&lt;/code&gt; or&lt;br /&gt;
 functions from the tidyverse packages.&lt;/p&gt;
 &lt;p&gt;We can exclude all the cells in the sheet except those containing data with the
 &lt;code&gt;range =&lt;/code&gt; parameter of &lt;code&gt;read_excel()&lt;/code&gt;. We can either specify the cell range
 manually (e.g. &lt;code&gt;range = &amp;quot;A5:H31&amp;quot;&lt;/code&gt;) or we can use one of the &lt;code&gt;cell_*&lt;/code&gt; collection
 of helper functions from the &lt;code&gt;cellranger&lt;/code&gt; package, which is loaded with
 &lt;code&gt;readxl&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data &amp;lt;- read_excel(&amp;quot;ons_pop_data.xls&amp;quot;, sheet = &amp;quot;MYE1&amp;quot;, 
-                                                range = cell_rows(5:31))
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data &amp;lt;- read_excel(&amp;quot;ons_pop_data.xls&amp;quot;,
+  sheet = &amp;quot;MYE1&amp;quot;,
+  range = cell_rows(5:31)
+)
 
 file_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 26 x 8
@@ -175,7 +198,10 @@ file_data&lt;/code&gt;&lt;/pre&gt;
 ## #   N92000002 &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This deals with the unwanted rows above and below the table, as well as the
 unwanted columns produced because of the feedback questionnaire.&lt;/p&gt;
-&lt;p&gt;The next problem is that the column names represent the &lt;a href=&#34;&#34;&gt;GSS statistical codes&lt;/a&gt; for the different nations of the UK, rather than the names of the nations. You may prefer the codes, but we’ll assume that you want the names.&lt;/p&gt;
+&lt;p&gt;The next problem is that the column names represent the &lt;a href=&#34;https://webarchive.nationalarchives.gov.uk/20160106185615/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/index.html&#34;&gt;GSS statistical
+codes&lt;/a&gt;
+for the different nations of the UK, rather than the names of the nations. You
+may prefer the codes, but we’ll assume that you want the names.&lt;/p&gt;
 &lt;p&gt;We can use functions from the &lt;code&gt;magrittr&lt;/code&gt; package to work with individual values
 in the data. All these functions are aliases for base R functions, but can be
 easier to work with.&lt;/p&gt;
@@ -245,13 +271,13 @@ file_data&lt;/code&gt;&lt;/pre&gt;
 ##  9 25-29       UNITED KINGDOM 4527175   
 ## 10 30-34       UNITED KINGDOM 4463357   
 ## # … with 144 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, we will tidy up the data by converting the population variable to
+&lt;p&gt;Finally, we will neaten the data by converting the population variable to
 numeric and the geography variable to title case (using a function from the
 &lt;code&gt;stringr&lt;/code&gt; package).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_data &amp;lt;- mutate(
-    file_data,
-    geography = str_to_title(geography),
-    population = as.numeric(population)
+  file_data,
+  geography = str_to_title(geography),
+  population = as.numeric(population)
 )
 
 tidy_data&lt;/code&gt;&lt;/pre&gt;
@@ -272,24 +298,27 @@ tidy_data&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;complete&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;A complete script&lt;/h1&gt;
-&lt;p&gt;Using the &lt;code&gt;magrittr&lt;/code&gt; pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;, we can combine all these cleaning steps
-together, which makes the code more compact and (arguably) more readable.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;lubridate&amp;quot;)  # lubridate and magrittr are part of the 
-library(&amp;quot;magrittr&amp;quot;)   # tidyverse but not loaded with it by default
+&lt;p&gt;Using the &lt;a href=&#34;https://cran.r-project.org/package=magrittr/vignettes/magrittr.html&#34;&gt;&lt;code&gt;magrittr&lt;/code&gt; pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;&lt;/a&gt;,
+we can combine all these cleaning steps together, which makes the code more
+compact and (arguably) more readable.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;lubridate&amp;quot;) # lubridate and magrittr are part of the
+library(&amp;quot;magrittr&amp;quot;) # tidyverse but not loaded with it by default
 library(&amp;quot;readxl&amp;quot;)
 library(&amp;quot;tidyverse&amp;quot;)
 
-tidy_data &amp;lt;- read_excel(&amp;quot;ons_pop_data.xls&amp;quot;, sheet = &amp;quot;MYE1&amp;quot;, 
-                                                range = cell_rows(5:31)) %&amp;gt;% 
-    inset(1, 1, &amp;quot;group&amp;quot;) %&amp;gt;% 
-    set_colnames(.[1, ]) %&amp;gt;% 
-    slice(2:n()) %&amp;gt;% 
-    drop_na() %&amp;gt;% 
-    gather(key = &amp;quot;geography&amp;quot;, value = &amp;quot;population&amp;quot;, -group) %&amp;gt;% 
-    mutate(
-        geography = str_to_title(geography),
-        population = as.numeric(population)
-    )
+tidy_data &amp;lt;- read_excel(&amp;quot;ons_pop_data.xls&amp;quot;,
+  sheet = &amp;quot;MYE1&amp;quot;,
+  range = cell_rows(5:31)
+) %&amp;gt;%
+  inset(1, 1, &amp;quot;group&amp;quot;) %&amp;gt;%
+  set_colnames(.[1, ]) %&amp;gt;%
+  slice(2:n()) %&amp;gt;%
+  drop_na() %&amp;gt;%
+  gather(key = &amp;quot;geography&amp;quot;, value = &amp;quot;population&amp;quot;, -group) %&amp;gt;%
+  mutate(
+    geography = str_to_title(geography),
+    population = as.numeric(population)
+  )
 
 tidy_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 154 x 3
@@ -333,15 +362,15 @@ remove rows or columns that are entirely empty. If there are rows that you want
 to remove from the data that contain some missing values and some values that
 are not missing, use &lt;code&gt;filter()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; based on the value of a specific
 column. For example, to remove rows with the value of &lt;code&gt;population&lt;/code&gt; missing,
-use &lt;code&gt;filter(data, !is.na(population))&lt;/code&gt;. To remove single manually by row number,
-use &lt;code&gt;slice()&lt;/code&gt;, also from &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
+use &lt;code&gt;filter(data, !is.na(population))&lt;/code&gt;. To remove single rows manually by row
+number, use &lt;code&gt;slice()&lt;/code&gt;, also from &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;multiple-tables-in-a-single-sheet&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Multiple tables in a single sheet&lt;/h2&gt;
 &lt;p&gt;Sometimes multiple related data tables are placed on a single Excel sheet. You
 can either import them separately and then combine the resulting datasets
 manually (e.g. with &lt;code&gt;rbind()&lt;/code&gt;) or just treat the rows or columns between each
-table as noise that can be removed using a combination of &lt;code&gt;drop_na()&lt;/code&gt; and
+table as clutter that can be removed using a combination of &lt;code&gt;drop_na()&lt;/code&gt; and
 &lt;code&gt;slice()&lt;/code&gt; as above. In the latter case, modify the &lt;code&gt;range =&lt;/code&gt; argument of
 &lt;code&gt;read_excel()&lt;/code&gt; so that the selected cells/rows/columns include all the tables.&lt;/p&gt;
 &lt;/div&gt;
@@ -369,24 +398,49 @@ you can extract the specific moment the year started using
 &lt;p&gt;To store a date as an interval, we extract both the date on which the year
 started and the date it ended. For example,&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mutate(
-    data, 
-    year_interval = interval(
-        ymd(paste(str_sub(year, 0, 4), &amp;quot;04&amp;quot;, &amp;quot;01&amp;quot;)),
-        ymd(paste(str_sub(year, -2), &amp;quot;03&amp;quot;, &amp;quot;31&amp;quot;))
+  data,
+  year_interval = interval(
+    ymd(paste(str_sub(year, 0, 4), &amp;quot;04&amp;quot;, &amp;quot;01&amp;quot;)),
+    ymd(paste(str_sub(year, -2), &amp;quot;03&amp;quot;, &amp;quot;31&amp;quot;))
   )
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div id=&#34;r-session-information&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R session information&lt;/h2&gt;
+&lt;p&gt;The code in this tutorial was run in R:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.6.0 (2019-04-26)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS Mojave 10.14.5
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] lubridate_1.7.4 magrittr_1.5    forcats_0.4.0   stringr_1.4.0  
+##  [5] dplyr_0.8.3     purrr_0.3.2     readr_1.3.1     tidyr_0.8.3    
+##  [9] tibble_2.1.3    ggplot2_3.2.1   tidyverse_1.2.1 readxl_1.3.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.2       cellranger_1.1.0 pillar_1.4.2     compiler_3.6.0  
+##  [5] tools_3.6.0      zeallot_0.1.0    digest_0.6.20    jsonlite_1.6    
+##  [9] evaluate_0.14    nlme_3.1-141     gtable_0.3.0     lattice_0.20-38 
+## [13] pkgconfig_2.0.2  rlang_0.4.0      cli_1.1.0        rstudioapi_0.10 
+## [17] yaml_2.2.0       haven_2.1.1      blogdown_0.14    xfun_0.8        
+## [21] withr_2.1.2      xml2_1.2.2       httr_1.4.1       knitr_1.24      
+## [25] vctrs_0.2.0      hms_0.5.0        generics_0.0.2   grid_3.6.0      
+## [29] tidyselect_0.2.5 glue_1.3.1       R6_2.4.0         fansi_0.4.0     
+## [33] rmarkdown_1.14   bookdown_0.12    modelr_0.1.5     backports_1.1.4 
+## [37] scales_1.0.0     htmltools_0.3.6  rvest_0.3.4      assertthat_0.2.1
+## [41] colorspace_1.4-1 utf8_1.1.4       stringi_1.4.3    lazyeval_0.2.2  
+## [45] munsell_0.5.0    broom_0.5.2      crayon_1.3.4&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;other-functions&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Some other useful data cleaning functions&lt;/h1&gt;
-&lt;p&gt;Some other functions that are useful for cleaning ONS data include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;clean_names()&lt;/code&gt; from the &lt;code&gt;janitor&lt;/code&gt; package, which converts column names to
-lower case with non-alphanumeric characters replaced with underscores;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mutate_at(vars(value1, value2), ~ . / 100)&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; to replace (across
-multiple specified columns) percentage values such as prevalence rates with
-proportions, which are more useful for a variety of operations;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
