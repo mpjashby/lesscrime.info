@@ -42,3 +42,6 @@ blogdown/
 content/post/drug-use*
 content/post/fairness-perception*
 content/post/prison-likelihood*
+
+# Raw data files
+*-raw.csv
