@@ -78,6 +78,28 @@ If you don't have the tidyverse collection of packages installed already, run
 `install.packages("tidyverse")` before continuing.
 
 
+# Why?
+
+It might be tempting not to clean the data in R but instead simply open the
+relevant file in Excel and make the necessary changes there. This will work, but
+there are at least three reasons why cleaning the data in Excel is not 
+necessarily a good idea.
+
+  * *It's harder to repeat the process*. For example, if ONS updates the
+    table (either because new data is available or to correct a problem) then
+    you have to repeat the manual process in Excel. If you clean the data in R,
+    all you have to do is run the script again.
+  * *It's harder to find mistakes*. If you make a mistake while changing data in
+    Excel but don't notice until later (e.g. if your results don't make sense)
+    it will be difficult to track down exactly what happened. If you use a 
+    script to clean the data, you can go back and run it line-by-line to 
+    identify the problem.
+  * *It's harder for others to trust your work*. If someone else wants to check
+    your analysis (e.g. before taking action based on it), that's more difficult
+    if you have manipulated the data manually in ways the other person cannot
+    see.
+
+
 # Download the data {#download}
 
 Although ONS is relatively good at providing archive data, it's good practice to
@@ -374,6 +396,9 @@ sessionInfo()
 [^1]: I have not been able to work out why some ONS files are in `.xls` format
 and some in `.xlsx`.
 
+<<<<<<< HEAD
 [^2]: The `readxl` package is [installed as part of the 
 tidyverse](https://www.tidyverse.org/packages/) but is not automatically loaded 
 by `library("tidyverse")`.
+=======
+>>>>>>> d378dba5b66a949584100a2ae1f12a1cdb3a38e7
