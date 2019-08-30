@@ -26,14 +26,10 @@ projects: []
 lot of quantitative information on all the topics you’d expect from a national
 statistical office, but most of it is released in formats that need manual
 cleaning before they can be used for data analysis.</p>
-<p><a href="https://developer.ons.gov.uk">ONS has started publishing some information as what it refers to as open
-data</a>, by which it means data that is easily
-machine readable, since (almost) all the data it produces is already open
-<a href="https://www.ons.gov.uk/methodology/geography/licences">licensed under the Open Government
-Licence</a>.
-However, most products its produces are Excel tables that are optimised for
-human reading by mimicking the format of tables in the printed statistical
-reports that ONS produced for decades.</p>
+<p><a href="">ONS has started publishing some machine-readable data</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, but most products
+its produces are Excel tables that are optimised for human reading by mimicking
+the format of tables in the printed statistical reports that ONS produced for
+decades.</p>
 <p>This tutorial talks through how to clean a human-readable table produced by ONS
 using the <code>tidyverse</code> collection of packages, so the resulting <a href="http://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidy
 data</a> can
@@ -50,7 +46,7 @@ necessarily a good idea.</p>
 <li><em>It’s harder to repeat the process</em>. For example, if ONS updates the
 table (either because new data is available or to correct a problem) then
 you have to repeat the manual process in Excel. If you clean the data in R,
-all you have to do is run the script again.</li>
+typically all you have to do is run the script again.</li>
 <li><em>It’s harder to find mistakes</em>. If you make a mistake while changing data in
 Excel but don’t notice until later (e.g. if your results don’t make sense)
 it will be difficult to track down exactly what happened. If you use a
@@ -67,7 +63,8 @@ see.</li>
 <p>This tutorial assumes you have <a href="https://cloud.r-project.org">R</a> installed and
 that you’re comfortable with the basics of <a href="https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html">using R to manipulate data</a>.
 If you don’t have the tidyverse collection of packages installed already, run
-<code>install.packages(&quot;tidyverse&quot;)</code> before continuing.</p>
+<code>install.packages(&quot;tidyverse&quot;)</code> before continuing. It also a good idea to run
+this code from <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/">inside a project</a>.</p>
 </div>
 <div id="download" class="section level1">
 <h1>Download the data</h1>
@@ -83,9 +80,9 @@ download.file(
 <div id="load" class="section level1">
 <h1>Load the data into R</h1>
 <p>Since the data are in an Excel file, we can use the <a href="https://readxl.tidyverse.org"><code>readxl</code></a>
-package to read it into R<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. ONS publishes data using a mixture of file formats,
+package to read it into R<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. ONS publishes data using a mixture of file formats,
 including both the pre-2007 Excel <code>.xls</code> file format and the current <code>.xlsx</code>
-format<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The <code>read_excel()</code> function can handle both <code>.xls</code> and <code>.xlsx</code>
+format<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. The <code>read_excel()</code> function can handle both <code>.xls</code> and <code>.xlsx</code>
 files, but can only load a single sheet from within an Excel workbook (i.e.
 file). We can use the <code>excel_sheets()</code> function to get the names of each sheet
 in the Excel file.</p>
@@ -182,7 +179,7 @@ of helper functions from the <code>cellranger</code> package, which is loaded wi
 <code>readxl</code>.</p>
 <p>We can work out which cells we want to retain either by opening the file in
 Excel and noting which rows contain the data, or by running <code>View(file_data)</code> in
-R and then adjusting the value of <code>range =</code> in <code>read_excel()</code> until you are
+R and then adjusting the value of <code>range =</code> in <code>read_excel()</code> until we are
 happy with the result.</p>
 <pre class="r"><code>file_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;,
   sheet = &quot;MYE1&quot;,
@@ -426,7 +423,7 @@ started and the date it ended. For example,</p>
 </div>
 <div id="r-session-information" class="section level2">
 <h2>R session information</h2>
-<p>The code in this tutorial was run in R:</p>
+<p>The code in this tutorial was run in R with the following configuration:</p>
 <pre><code>## R version 3.6.0 (2019-04-26)
 ## Platform: x86_64-apple-darwin15.6.0 (64-bit)
 ## Running under: macOS Mojave 10.14.5
@@ -464,10 +461,13 @@ started and the date it ended. For example,</p>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>The <code>readxl</code> package is <a href="https://www.tidyverse.org/packages/">installed as part of the
+<li id="fn1"><p>ONS refers to this as ‘open data’, although (almost) all the products it
+produces are already open <a href="https://www.ons.gov.uk/methodology/geography/licences">licensed under the Open Government
+Licence</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The <code>readxl</code> package is <a href="https://www.tidyverse.org/packages/">installed as part of the
 tidyverse</a> but is not automatically loaded
-by <code>library(&quot;tidyverse&quot;)</code>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>I have not been able to work out why some ONS files are in <code>.xls</code> format
-and some in <code>.xlsx</code>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+by <code>library(&quot;tidyverse&quot;)</code>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I have not been able to work out why some ONS files are in <code>.xls</code> format
+and some in <code>.xlsx</code>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
