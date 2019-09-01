@@ -376,5 +376,5 @@ tidyverse](https://www.tidyverse.org/packages/) but is not automatically loaded
 by `library("tidyverse")`.
 
 [^3]: ONS refers to this as 'open data', although (almost) all the products it 
-produces are already open [licensed under the Open Government
+produces are already [open licensed under the Open Government
 Licence](https://www.ons.gov.uk/methodology/geography/licences)

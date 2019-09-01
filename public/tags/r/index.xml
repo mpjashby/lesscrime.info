@@ -462,7 +462,7 @@ started and the date it ended. For example,&lt;/p&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;ONS refers to this as ‘open data’, although (almost) all the products it
-produces are already open &lt;a href=&#34;https://www.ons.gov.uk/methodology/geography/licences&#34;&gt;licensed under the Open Government
+produces are already &lt;a href=&#34;https://www.ons.gov.uk/methodology/geography/licences&#34;&gt;open licensed under the Open Government
 Licence&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;The &lt;code&gt;readxl&lt;/code&gt; package is &lt;a href=&#34;https://www.tidyverse.org/packages/&#34;&gt;installed as part of the
 tidyverse&lt;/a&gt; but is not automatically loaded
