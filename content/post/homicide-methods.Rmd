@@ -1,0 +1,211 @@
+---
+title: "Chart: Homicide methods are changing"
+author: Matt Ashby
+date: '2019-09-09'
+slug: homicide-methods
+categories: ["Crime and justice chart of the week"]
+tags:
+  - crime
+  - violence
+  - homicide
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "homicide-methods",
+	title = "Homicide methods are changing",
+	subtitle = "Homicide (murder, manslaughter and infanticide) in England and Wales is rare, with about 12 homicides per million people last year, a similar rate to a decade ago. But homicide methods are changing: the rise in knife murders is well known, but there are other changes, too.",
+	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018",
+	source_title = "Office for National Statistics, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- tempfile(fileext = ".xls")
+	GET("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/appendixtableshomicideinenglandandwales/current/homicideappendixtables201718finalv5corrected.xls", write_disk(data_file))
+	
+	# read data
+	file_data <- read_excel(data_file, sheet = "Table 4", skip = 3) 
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		slice(3:14, 18:29) %>% 
+		janitor::clean_names() %>% 
+		rename(method = x1) %>%
+		mutate(sex = c(rep("male", 12), rep("female", 12))) %>% 
+		gather("year", "count", -method, -sex) %>%
+		mutate(
+			count = as.numeric(count),
+			method = str_remove(method, "\\d$"),
+			year = str_sub(str_replace_all(year, "(\\d{2})\\d$", "\\1"), -2, -1),
+			date = ymd(paste(as.numeric(year) + 2000, "04", "01"))
+		) %>%
+		select(-year)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}		
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(date > ymd("2008-04-01")) %>% 
+	mutate(
+		method = fct_recode(str_to_lower(method), "stabbing" = "sharp instrument"),
+		method = fct_other(
+			method,
+			keep = c("stabbing", "shooting", "hitting, kicking, etc.",
+							 "strangulation, asphyxiation", "blunt instrument", "not known"),
+			other_level = "other"
+		),
+		method = fct_relevel(fct_reorder(method, count, .desc = TRUE), "other", 
+												 "not known", after = Inf),
+ 		# sex = fct_rev(sex)
+		sex = fct_recode(sex, "female victims" = "female", "male victims" = "male")
+	) %>% 
+	group_by(date, method, sex) %>%
+	summarise(count = sum(count)) %>% 
+ 	mutate(
+		# remove Hillsborough, using victim details from
+		# https://www.theguardian.com/football/datablog/2012/sep/12/hillsborough-victims-list
+		# and Manchester bombings, using victim details from
+		# https://www.manchestereveningnews.co.uk/news/greater-manchester-news/manchester-bombing-victims-who-died-14688420
+		count = case_when(
+			date == ymd("2017-04-01") & method == "strangulation, asphyxiation" & 
+				sex == "male victims" ~ count - 89,
+			date == ymd("2017-04-01") & method == "strangulation, asphyxiation" & 
+				sex == "female victims" ~ count - 7,
+			date == ymd("2018-04-01") & method == "other" & sex == "male victims" ~
+				count - 5,
+			date == ymd("2018-04-01") & method == "other" & sex == "female victims" ~
+				count - 17,
+			TRUE ~ count
+		)
+	)
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~method, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2016-04-01"), 140, ymd("2018-04-01"), 150, "stabbing", balance_lines("homcides of men by stabbing have almost doubled since 2015, while fatal stabbings of women have not changed", 3), "left", "bottom", "right",
+	ymd("2012-04-01"), 50, ymd("2015-04-01"), 80, "strangulation, asphyxiation", balance_lines("asphyxiation remains the only homicide method used against more women than men", 4), "left", "bottom", "left",
+	ymd("2011-04-01"), 55, ymd("2017-04-01"), 120, "shooting", balance_lines("firearms homicides are less common now than 10 years ago", 3), "left", "bottom", "left"
+) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(method = factor(method, levels = levels(chart_data$method))) %>% 
+	# add constant variables
+	mutate(sex = "male victims")
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(date, count, colour = sex, linetype = sex)) +
+	geom_line(size = 0.75) +
+	geom_point(data = filter(chart_data, date == ymd("2018-04-01"))) +
+	geom_text_repel(aes(label = count), 
+									data = filter(chart_data, date == ymd("2018-04-01")), 
+									size = elements$label_text_size, 
+									lineheight = elements$label_text_lineheight, 
+									xlim = c(ymd("2018-04-01"), NA)) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(
+		breaks = c(ymd("2010-04-01"), ymd("2014-04-01"), ymd("2018-04-01")), 
+		date_labels = "'%y", 
+		expand = expand_scale(mult = c(0.05, 0.5))
+	) +
+	scale_y_continuous(limits = c(0, NA), 
+										 expand = expand_scale(mult = c(0, 0.05))) +
+  scale_colour_manual(
+  	name = "",
+    values = unname(ucl_colours_list[c("Mid Purple", "Orange")]),
+  	guide = guide_legend(override.aes = list(label = ""))
+  ) +
+	scale_linetype_manual(
+		name = "",
+		values = c("21", "solid")
+	) +
+	coord_cartesian(clip = "off") +
+	facet_grid(cols = vars(method), labeller = label_wrap_gen(width = 15)) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = NULL,
+		y = "number of homicides",
+		colour = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.line.x = element_line(colour = "grey92"),
+		panel.grid = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+The homicide counts here exclude victims of the Hillsborough disaster, who died
+in 1989 but were recorded as manslaughter cases in 2017, and victims of the
+Manchester Arena bombing in 2018.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

@@ -7,10 +7,30 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Homicide methods are changing</title>
+      <link>/post/homicide-methods/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homicide-methods/</guid>
+      <description>
+
+
+&lt;p&gt;Homicide (murder, manslaughter and infanticide) in England and Wales is rare, with about 12 homicides per million people last year, a similar rate to a decade ago. But homicide methods are changing: the rise in knife murders is well known, but there are other changes, too.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homicide-methods_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-methods.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-methods.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018&#34;&gt;Office for National Statistics, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The homicide counts here exclude victims of the Hillsborough disaster, who died
+in 1989 but were recorded as manslaughter cases in 2017, and victims of the
+Manchester Arena bombing in 2018.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: For most offences prison is the exception, not the rule</title>

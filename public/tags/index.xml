@@ -7,10 +7,37 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>crime</title>
+      <link>/tags/crime/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>homicide</title>
+      <link>/tags/homicide/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/homicide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>violence</title>
+      <link>/tags/violence/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/violence/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>age</title>
@@ -67,29 +94,11 @@
     </item>
     
     <item>
-      <title>crime</title>
-      <link>/tags/crime/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/crime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>domestic abuse</title>
       <link>/tags/domestic-abuse/</link>
       <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/domestic-abuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>violence</title>
-      <link>/tags/violence/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/violence/</guid>
       <description></description>
     </item>
     
