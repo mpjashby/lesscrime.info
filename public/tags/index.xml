@@ -7,10 +7,28 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>criminal justice</title>
+      <link>/tags/criminal-justice/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/criminal-justice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>police</title>
+      <link>/tags/police/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/police/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>crime</title>
@@ -45,15 +63,6 @@
       <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/age/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>criminal justice</title>
-      <link>/tags/criminal-justice/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/criminal-justice/</guid>
       <description></description>
     </item>
     
@@ -99,15 +108,6 @@
       <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/domestic-abuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>police</title>
-      <link>/tags/police/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/police/</guid>
       <description></description>
     </item>
     

@@ -7,10 +7,29 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/criminal-justice/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Over 10 years, basic police pay has fallen by 22% in real terms</title>
+      <link>/post/police-pay/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/police-pay/</guid>
+      <description>
+
+
+&lt;p&gt;A combination of several government-led changes to police pay mean a newly qualified police officer is paid about £6,800 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but these are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/police-pay_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-pay.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;../police-pay.pdf&#34;&gt;PDF&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-pay.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pay for years before 2019 has been adjusted for inflation using the &lt;a href=&#34;https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23&#34;&gt;Office for
+National Statistics preferred CPIH measure&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: For most offences prison is the exception, not the rule</title>
