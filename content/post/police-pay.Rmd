@@ -16,8 +16,8 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 ```{r set chart parameters}
 chart_details <- list(
 	id = "police-pay",
-	title = "Over 10 years, basic police pay has fallen by 22% in real terms",
-	subtitle = "A combination of several government-led changes to police pay mean a newly qualified police officer is paid about £6,800 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but these are unlikely to have made up for decreasing basic pay.",
+	title = "Over 10 years, pay for new police officers has fallen 22%",
+	subtitle = "A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £6,700 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.",
 	source_url = "https://www.whatdotheyknow.com/request/police_constable_pay_scales",
 	source_title = "Police Federation, 2019"
 )
@@ -38,67 +38,28 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	# the data are provided as a series of scanned PDFs of Federation circulars,
 	# so must be entered manually
 	# 2019 police data from https://www.gov.uk/government/publications/police-remuneration-review-body-report-2019-england-and-wales
-	# MPs pay data from 2010 from http://www.theipsa.org.uk/mp-costs/mps-pay-and-pensions/
 	police_pay <- tribble(
-		~date, ~job, ~pay,
-		"2005-04-01", "police", 22107,
-		"2005-09-01", "police", 22770,
-		"2006-09-01", "police", 23454,
-		"2007-12-01", "police", 24039,
-		"2008-09-01", "police", 24675,
-		"2009-09-01", "police", 25317,
-		"2010-09-01", "police", 25962,
-		"2011-09-01", "police", 25962,
-		"2012-09-01", "police", 25962,
-		"2013-04-01", "police", 22000,
-		"2013-09-01", "police", 22221,
-		"2014-09-01", "police", 22443,
-		"2015-09-01", "police", 22668,
-		"2016-09-01", "police", 22896,
-		"2017-09-01", "police", 23124,
-		"2018-09-01", "police", 23586,
-		"2019-09-01", "police", 24177
-		# "2005-04-01", "mp", 59095,
-		# "2006-04-01", "mp", 59686,
-		# "2006-11-01", "mp", 60277,
-		# "2007-04-01", "mp", 61181,
-		# "2007-11-01", "mp", 61820,
-		# "2008-04-01", "mp", 63291,
-		# "2009-04-01", "mp", 64766,
-		# "2010-04-01", "mp", 65738,
-		# "2011-04-01", "mp", 65738,
-		# "2012-04-01", "mp", 65738,
-		# "2013-04-01", "mp", 66396,
-		# "2014-04-01", "mp", 67060,
-		# "2015-04-01", "mp", 74000,
-		# "2016-04-01", "mp", 74962,s
-		# "2017-04-01", "mp", 76011,
-		# "2018-04-01", "mp", 77379,
-		# "2019-04-01", "mp", 79468
+		~date, ~new, ~mid, ~top,
+		# "2005-04-01", 22107, 31092,
+		"2005-09-01", 22770, 27213, 32025,
+		"2006-09-01", 23454, 28029, 32985,
+		"2007-12-01", 24039, 28731, 33810,
+		"2008-09-01", 24675, 29493, 34707,
+		"2009-09-01", 25317, 30261, 35610,
+		"2010-09-01", 25962, 31032, 36519,
+		"2011-09-01", 25962, 31032, 36519,
+		"2012-09-01", 25962, 31032, 36519,
+		# "2013-04-01", 22000, 36885,
+		"2013-09-01", 22221, 31341, 36885,
+		"2014-09-01", 22443, 31653, 37254,
+		"2015-09-01", 22668, 31971, 37626,
+		"2016-09-01", 22896, 31971, 37626,
+		"2017-09-01", 23124, 32616, 38382,
+		"2018-09-01", 23586, 33267, 39150, # officers with 5 years' service will be at point 6 on new scale
+		"2019-09-01", 24177, 34098, 40128
 	) %>% 
+		gather("service", "pay", -date) %>% 
 		mutate(date = ymd(date), year = year(date))
-	
-	# get median public sector pay
-	public_pay_data <- tempfile()
-	GET(
-		"https://www.ons.gov.uk/file?uri=/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/ashe1997to2015selectedestimates/current/ashe19972018timeseries.xls",
-		write_disk(public_pay_data)
-	)
-	public_pay <- read_excel(
-		public_pay_data, 
-		sheet = "Table 1", skip = 2, na = "N/A"
-	) %>% 
-		slice(4) %>% 
-		gather("year", "pay") %>% 
-		slice(5:n()) %>% 
-		drop_na() %>% 
-		mutate(
-			job = "public",
-			pay = as.numeric(pay),
-			year = as.numeric(str_sub(year, 0, 4))
-		) %>% 
-		group_by(year) %>% 
-		summarise(pay = mean(pay), job = first(job))
 	
 	# get ONS CPIH inflation indices, where 2015 = 100
 	deflator <- read_csv("https://www.ons.gov.uk/generator?format=csv&uri=/economy/inflationandpriceindices/timeseries/l522/mm23", skip = 8, col_names = c("year", "index")) %>% 
@@ -111,11 +72,11 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	# adjust pay for inflation using method described at 
 	# https://researchbriefings.parliament.uk/ResearchBriefing/Summary/SN04962
 	tidy_data <- police_pay %>% 
-		bind_rows(public_pay) %>% 
 		left_join(deflator, by = "year") %>% 
 		mutate(
 			date = as_date(ifelse(is.na(date), ymd(paste(year, "04 01")), date)),
-			pay_adj = pay * (last(index) / index)
+			index19 = index / last(index),
+			pay_adj = pay / index19
 		)
 	
 	# save tidy data
@@ -132,33 +93,45 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 
 ```{r prepare data for chart}
 chart_data <- tidy_data %>% 
-	filter(year >= 2005, job == "police") %>% 
-	# for years with more than one salary revision choose the last
-	group_by(year) %>% 
-	summarise_all(last) %>% 
 	mutate(
 		date = ymd(paste(year, "09", "01")),
 		party = fct_case_when(
 			year < 2010 ~ "Labour",
 			year < 2015 ~ "Coalition",
 			TRUE ~ "Conservative"
+		),
+		service = fct_case_when(
+			service == "new" ~ "pay after initial training",
+			service == "mid" ~ "pay after 5 years' service",
+			service == "top" ~ "pay after 10 years' service",
+			TRUE ~ NA_character_
 		)
 	) %>% 
 	# calculate changes
+	group_by(service) %>% 
 	mutate(
 		perc_change = (pay_adj - lag(pay_adj)) / lag(pay_adj),
-		cash_change = (pay_adj - lag(pay_adj))
-	)
-	# add effect of different pensions schemes, using contribution rates from 
-	# https://www.gov.uk/government/collections/police-pension-schemes
-	# mutate(
-	# 	pension_contribution = case_when(
-	# 		year >= 2015 ~ 0.1244, # 2015 scheme
-	# 		year >= 2006 ~ 0.095,  # 2006 scheme
-	# 		TRUE ~ 0.11            # 1987 scheme
-	# 	),
-	# 	pay_adj = pay_adj * (1 - pension_contribution)
-	# )
+		cash_change = (pay_adj - lag(pay_adj)),
+		perc_change = ifelse(year == first(year), NA, perc_change),
+		cash_change = ifelse(year == first(year), NA, cash_change),
+		change_label = scales::comma(cash_change, accuracy = 1),
+		change_label = case_when(
+			year == first(year) ~ scales::comma(pay_adj, accuracy = 1, prefix = " £"),
+			cash_change > 0 ~ paste0(" +", change_label),
+			cash_change < 0 ~ str_replace(change_label, "^-", " –"),
+			TRUE ~ ""
+		),
+		change_label = ifelse(
+			year == last(year), 
+			paste(
+				change_label, "=", scales::comma(pay_adj, accuracy = 1, prefix = "£"),
+				str_replace(perc_change(first(pay_adj), last(pay_adj), accuracy = 1, 
+																prefix = "(", suffix = "%)"), "\\-", "–")
+			), 
+			change_label
+		)
+	) %>% 
+	ungroup()
 
 # RULES FOR CHART LABELS
 # Label positions must be calculated manually, using the space created by 
@@ -169,58 +142,68 @@ chart_data <- tidy_data %>%
 
 # add chart labels
 chart_labels <- tribble(
-	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
-	ymd("2009-09-01"), 31000, ymd("2008-09-01"), 34000, str_wrap("before 2010, pay rises kept pace with inflation", 25), "right", "center", "right",
-	ymd("2010-09-01"), 31000, ymd("2010-03-01"), 38000, str_wrap("the 2010 pay freeze eroded salaries in real terms", 30), "right", "bottom", "right",
-	ymd("2013-09-01"), 24500, ymd("2014-09-01"), 36000, str_wrap("in 2013, salaries for new officers were reduced by over £4,000", 35), "left", "bottom", "left",
-	ymd("2015-09-01"), 24500, ymd("2016-03-01"), 30000, str_wrap("below-inflation increases have reduced salaries further since the pay freeze ended", 30), "left", "center", "left"
+	~x, ~y, ~xend, ~yend, ~service, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2005-09-01"), 31500, ymd("2007-09-01"), 47000, "pay after initial training", balance_lines("an officer completing training in 2005 earned the equivalent of £30,900 in 2019 terms", 2), "left", "bottom", "left",
+	ymd("2010-09-01"), 37500, ymd("2011-03-01"), 42000, "pay after 5 years' service", balance_lines("the 2010 pay freeze began to erode salaries for existing officers in real terms", 4), "left", "bottom", "left",
+	ymd("2013-09-01"), 25000, ymd("2015-03-01"), 39000, "pay after initial training", balance_lines("in 2013, salaries for new officers were reduced by £4,800 in 2019 terms", 3), "left", "bottom", "left",
+	ymd("2018-09-01"), 40500, ymd("2017-09-01"), 45000, "pay after 10 years' service", balance_lines("below-inflation increases have reduced salaries slightly further since the pay freeze ended", 3), "right", "bottom", "right"
 ) %>% 
-	mutate(party = "Labour")
+	mutate(
+		party = "Labour",
+		service = factor(service, levels = levels(chart_data$service))
+	)
 ```
 
 ```{r build plot}
 chart <- chart_data %>% 
 	ggplot(aes(date, pay_adj, fill = party)) + 
 	geom_col() + 
-	geom_hline(aes(yintercept = y), data = tibble(y = seq(0, 4e4, by = 5e3)), 
-						 colour = "white", size = 0.25) +
+	geom_text(aes(label = change_label), colour = "white", 
+						size = elements$label_text_size * 0.9, angle = -90, hjust = 0) +
 	# add explanatory labels
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
-						 curvature = elements$label_line_curvature, 
-						 colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature,
+						 colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
 	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "straight"), 
-						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "straight"),
+						 inherit.aes = FALSE, colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
-						 curvature = elements$label_line_curvature * -1, 
-						 colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature * -1,
+						 colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
-	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust,
 								 vjust = vjust),
-						data = chart_labels, inherit.aes = FALSE, 
+						data = chart_labels, inherit.aes = FALSE,
 						colour = elements$label_text_colour,
-						fill = elements$label_text_fill, size = elements$label_text_size, 
+						fill = elements$label_text_fill, size = elements$label_text_size,
 						lineheight = elements$label_text_lineheight,
 						label.size = NA, show.legend = FALSE) +
 	# end of explanatory labels
-	scale_x_date(date_breaks = "1 years", date_labels = "%Y", expand = c(0, 0)) +
-	scale_y_continuous(limits = c(0, NA), labels = scales::comma_format(),
-										 expand = expand_scale(add = c(0, 3000))) + 
+	coord_cartesian(clip = "off") +
+	scale_x_date(date_breaks = "2 years", date_labels = "'%y", 
+							 expand = expand_scale(mult = c(0, 0.01))) +
+	scale_y_continuous(
+		breaks = seq(0, 40e3, by = 5e3),
+		labels = scales::number_format(scale = 1/1000, prefix = "£", suffix = "k"),
+		limits = c(0, NA), 
+		expand = expand_scale(add = c(0, 6000))
+	) + 
 	scale_fill_manual(
-		values = c("Labour" = "#DC241F", "Coalition" = "#44E8EB",
+		values = c("Labour" = "#DC241F", "Coalition" = "#8DB9CA",
 							 "Conservative" = "#0087DC"),
 		labels = c("Labour" = "Labour, 1997–2010  ", 
 							 "Coalition" = "Coalition, 2010–2015  ", 
 							 "Conservative" = "Conservative, 2015–present  ")
 	) +
+	facet_grid(cols = vars(service)) +
 	labs(
 		title = chart_details$title,
 		subtitle = format_subtitle(chart_details$subtitle),
-		legend = "government",
+		legend = NULL,
 		x = NULL,
 		y = "gross salary before allowances, inflation adjusted to 2019",
 		fill = NULL
@@ -240,13 +223,14 @@ add_logo(chart + labs(title = NULL, subtitle = NULL),
 				 chart_details$source_title, chart_details$id)
 ```
 
-[larger image](../`r chart_details$id`.png) | [PDF](../`r chart_details$id`.pdf)
-| [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
 
 Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 
 Pay for years before 2019 has been adjusted for inflation using the [Office for
 National Statistics preferred CPIH measure](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23).
+For 2019, second-quarter inflation estimates have been used.
 
 ```{r export chart}
 # save PNG for social media

@@ -21,13 +21,14 @@
       <description>
 
 
-&lt;p&gt;A combination of several government-led changes to police pay mean a newly qualified police officer is paid about £6,800 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but these are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
+&lt;p&gt;A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £6,700 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/police-pay_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../police-pay.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;../police-pay.pdf&#34;&gt;PDF&lt;/a&gt;
-| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-pay.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-pay.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-pay.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, 2019&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Pay for years before 2019 has been adjusted for inflation using the &lt;a href=&#34;https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23&#34;&gt;Office for
-National Statistics preferred CPIH measure&lt;/a&gt;.&lt;/p&gt;
+National Statistics preferred CPIH measure&lt;/a&gt;.
+For 2019, second-quarter inflation estimates have been used.&lt;/p&gt;
 </description>
     </item>
     

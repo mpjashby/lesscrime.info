@@ -149,3 +149,14 @@ balance_lines <- Vectorize(function (str, lines) {
 	str_wrap(str, width)
 })
 
+
+# function to calculate percentage change
+perc_change <- function (from, to, format = TRUE, ...) {
+	change <- (to - from) / from
+	if (format == TRUE) {
+		scales::percent(change, ...)
+	} else {
+		change
+	}
+}
+
