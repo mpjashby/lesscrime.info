@@ -3,6 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/talk/esc-2019/</loc>
+    <lastmod>2019-09-19T22:35:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-09-19T22:35:23+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/talk/</loc>
+    <lastmod>2019-09-19T22:35:23+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2019-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -15,12 +31,6 @@
   
   <url>
     <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
-    <lastmod>2019-09-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2019-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -131,11 +141,6 @@
     <loc>/tags/domestic-abuse/</loc>
     <lastmod>2019-08-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/talk/</loc>
-    <lastmod>2019-08-20T14:00:00+08:00</lastmod>
   </url>
   
   <url>

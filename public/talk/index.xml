@@ -7,10 +7,19 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Tue, 20 Aug 2019 14:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Indoors and outdoors: weather and the spatial displacement of crime</title>
+      <link>/talk/esc-2019/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/talk/esc-2019/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>The value of good data about crime</title>
