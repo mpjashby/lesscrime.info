@@ -1,7 +1,7 @@
 ---
 title: "Chart: Drug use was falling, but that seems to be changing"
 author: Matt Ashby
-publishdate: '2019-09-02'
+date: '2019-09-23'
 categories: ["Crime and justice chart of the week"]
 tags:
   - crime
@@ -25,10 +25,10 @@ source(here::here("helpers.R"))
 ```{r set chart parameters}
 chart_details <- list(
 	id = "drug-use",
-	title = "Drug use was falling, but that seems to be changing",
-	subtitle = "Self-reported drug use has fallen for most of the past 20 years, but in the past six years the use of cannabis, cocaine and ecstasy has increased, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium.",
-	source_url = "https://www.gov.uk/government/statistics/drug-misuse-findings-from-the-2017-to-2018-csew",
-	source_title = "Crime Survey for England and Wales, 2018"
+	title = "After falls, drug use by young adults is on the rise",
+	subtitle = "Self-reported drug use has fallen for most of the past 20 years according to the Crime Survey for England and Wales, but in the past seven years the use of cannabis, cocaine and ecstasy has increased substantially, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium, with about 10% of adults saying they've used an illegal drug in the past year.",
+	source_url = "https://www.gov.uk/government/collections/drug-misuse-declared",
+	source_title = "Crime Survey for England and Wales, 2019"
 )
 ```
 
@@ -37,14 +37,14 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	
 	# download data
 	data_file <- tempfile(fileext = ".xlsx")
-	GET("https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/728748/drug-misuse-1718-tables.xlsx", write_disk(data_file))
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/832332/drug-misuse-1819-tables.xlsx", write_disk(data_file))
 	
 	# read data
 	# data for young people is in a separate sheet to data for all adults, so the
 	# two sheets are read separately and then merged
 	file_data <- list(
-		"16–59 years" = read_excel(data_file, sheet = "1.02", skip = 3),
-		"16–24 years" = read_excel(data_file, sheet = "1.06", skip = 3)
+		"16–59 years" = read_excel(data_file, sheet = "1.02", skip = 3, na = "n/a"),
+		"16–24 years" = read_excel(data_file, sheet = "1.06", skip = 3, na = "n/a")
 	)
 	
 	# tidy data
@@ -55,9 +55,9 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 			# column
 			rename(drug_type = `...1`) %>%
 			# remove blank rows below header and footnotes below data
-			slice(3:33) %>% 
+			slice(3:33, 35) %>% 
 			# remove trailing columns showing significance, etc.
-			select(1:21) %>% 
+			select(1:22) %>% 
 			# remove blank columns
 			filter_all(all_vars(!is.na(.))) %>% 
 			# strip footnote markers from drug_type
@@ -91,15 +91,22 @@ chart_data <- tidy_data %>%
 	# select data wanted for chart
 	filter(
 		drug_type %in% c("Any cocaine", "Ecstasy", "Hallucinogens", "Amphetamines", 
-										 "Cannabis", "Amyl nitrite"),
+										 "Cannabis", "Heroin", "Any drug"),
 		year >= max(year) - years(20)
 	) %>% 
 	# change category names for display
 	mutate(
 		drug_type = str_to_lower(drug_type),
-		drug_type = recode(drug_type,
-											 "any cocaine" = "cocaine",
-											 "hallucinogens" = "LSD/magic mushrooms")
+		drug_type = recode(
+			drug_type,
+			"any drug" = "any illegal drug",
+			"amphetamines" = "amphetamines (5th)",
+			"cannabis" = "cannabis (6th)",
+			"any cocaine" = "cocaine (4th)",
+			"ecstasy" = "ecstasy (15th)",
+			"hallucinogens" = "LSD/magic mushrooms (16th)",
+			"heroin" = "heroin (1st)"
+		)
 	)
 
 mean_data <- chart_data %>% 
@@ -115,51 +122,97 @@ chart_data <- chart_data %>%
 
 perc_change <- chart_data %>% 
 	filter(
-		drug_type %in% c("cocaine", "ecstasy", "cannabis"),
+		drug_type %in% c("cocaine (4th)", "ecstasy (15th)", "cannabis (6th)", 
+										 "LSD/magic mushrooms (16th)", "any illegal drug"),
 		age_group == "16–24 years"
 	) %>% 
 	group_by(drug_type, age_group) %>% 
 	summarise(
-		some_estimate_ago = nth(estimate, -6),
+		some_estimate_ago = nth(estimate, -7),
 		last_estimate = last(estimate),
-		some_years_ago = nth(year, -6),
+		some_years_ago = nth(year, -7),
 		last_year = last(year),
-		change = (last(estimate) - nth(estimate, -6)) / nth(estimate, -6),
+		change = (last(estimate) - nth(estimate, -7)) / nth(estimate, -7),
 		label = sprintf("%+.0f%%", change * 100)
 	)
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~drug_type, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2004-06-01"), 0.28, ymd("2011-01-01"), 0.30, "any illegal drug", balance_lines("compared to all adults, people aged 16–24 years are twice as likely to report using illegal drugs", 2), "left", "center", "left",
+	ymd("2013-01-01"), 0.1, ymd("2016-01-01"), 0.13, "cocaine (4th)", balance_lines("cocaine use among young adults has doubled since 2012 while being largely stable for older adults", 4), "left", "bottom", "left",
+	ymd("2008-01-01"), 0.32, ymd("2011-01-01"), 0.29, "amphetamines (5th)", balance_lines("rank of relative harm caused by different drugs, according to Nutt et al. 2010", 3), "left", "top", "right",
+	ymd("2017-01-01"), 0.01, ymd("2012-01-01"), 0.1, "heroin (1st)", balance_lines("<0.1% of adults reported using heroin in the past year, which is likely to be an underestimate because the Crime Survey does not cover people living in places like hostels or prisons", 6), "right", "bottom", "right"
+	# ymd(""), 60, ymd(""), 70, "", balance_lines("", 3), "left", "center", "right",
+) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(drug_type = factor(drug_type, levels = levels(chart_data$drug_type)))
 ```
 
 ```{r build plot}
 chart <- chart_data %>% 
-  ggplot(aes(x = year, y = estimate, linetype = age_group, shape = age_group,
+  ggplot(aes(x = year, y = estimate, shape = age_group, linetype = age_group, 
   					 colour = drug_type)) + 
+  geom_label(aes(x = last_year, y = last_estimate, colour = drug_type, 
+  							 label = label), 
+  					data = perc_change, size = elements$label_text_size,
+            hjust = "right", vjust = "center", nudge_y = 0.03,
+  					label.size = 0) +
+	# geom_area(aes(fill = drug_type), 
+	# 					data = filter(chart_data, age_group == "16–24 years"), alpha = 0.5, 
+	# 					colour = NA) +
+	geom_area(aes(fill = drug_type), 
+						data = filter(chart_data, age_group == "16–59 years"), 
+						colour = NA, alpha = 0.67, key_glyph = "path") +
 	geom_line(size = 0.75) +
 	geom_segment(aes(x = some_years_ago, xend = last_year, y = some_estimate_ago, 
 									 yend = last_estimate, colour = drug_type), 
 							 data = perc_change, linetype = "solid", 
 							 arrow = arrow(length = unit(4, "points")), 
 							 position = position_nudge(y = 0.02), show.legend = FALSE) + 
-  geom_text(aes(x = last_year, y = last_estimate, colour = drug_type, 
-  							label = label), 
-  					data = perc_change, size = elements$label_text_size,
-            hjust = "right", vjust = "bottom", nudge_y = 0.03) +
-	scale_x_date(date_breaks = "6 years", date_labels = "'%y") +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(date_breaks = "5 years", date_labels = "'%y") +
   scale_y_continuous(limits = c(0, NA), expand = c(0, 0),
   									 labels = scales::percent_format(accuracy = 1)) +
   scale_colour_manual(
     values = unname(ucl_colours_list[c("Orange", "Bright Blue", "Bright Pink",
                                        "Bright Green", "Bright Red", 
                                        "Light Blue", "Yellow", "Mid Green")]),
+    aesthetics = c("colour", "fill"),
     guide = "none"
   ) +
 	scale_linetype_manual(
-		values = elements$linetype, 
+		values = rev(elements$linetype[1:2]), 
 		guide = guide_legend(
 			override.aes = list(colour = elements$label_line_colour)
 		)
 	) + 
 	scale_shape_manual(values = c(16, 1), guide = "none") + 
-  facet_grid(cols = vars(drug_type), labeller = label_wrap_gen(width = 15)) +
+	coord_cartesian(clip = "off") +
+  facet_grid(cols = vars(drug_type), labeller = label_wrap_gen(width = 12)) +
   labs(
     title = chart_details$title,
     subtitle = format_subtitle(chart_details$subtitle),
@@ -167,7 +220,11 @@ chart <- chart_data %>%
     y = "people who have used drugs in the past year",
     linetype = NULL
   ) +
-	theme_cjcharts()
+	theme_cjcharts() +
+	theme(
+		axis.line.x = element_line(colour = "grey80"),
+		panel.grid = element_blank()
+	)
 ```
 
 `r chart_details$subtitle`
@@ -178,7 +235,7 @@ add_logo(chart + labs(title = NULL, subtitle = NULL),
 ```
 
 [larger image](../`r chart_details$id`.png)
-| [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
 
 Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 

@@ -39,7 +39,6 @@ rsconnect/
 blogdown/
 
 # Temporarily exclude posts used for testing but not yet published
-content/post/drug-use*
 content/post/fairness-perception*
 
 # Raw data files
