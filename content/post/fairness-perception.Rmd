@@ -2,7 +2,6 @@
 title: "Chart: Most people think the justice system is fair"
 author: 'Matt Ashby'
 date: '2019-08-19'
-draft: true
 categories: ["Crime and justice chart of the week"]
 tags:
   - criminal justice
@@ -25,10 +24,10 @@ source(here::here("helpers.R"))
 ```{r set chart parameters}
 chart_details <- list(
 	id = "fairness-perception",
-	title = "Most people think the justice system is fair",
-	subtitle = "Across age, education, ethnic and employment groups, most people believe the criminal justice system as a whole is fair, but there are exceptions – for example, only 46% of people who identify as black agree.",
+	title = "Most people think the justice system is fair, fewer say it's effective",
+	subtitle = "Every month, the Crime Survey for England and Wales asks a representative sample of adults about their perceptions of the criminal justice system. Across age, education, ethnic and employment groups, most people believe the system as a whole is fair, but only about half say it is effective.",
 	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable",
-	source_title = "Crime Survey for England and Wales, 2018"
+	source_title = "Crime Survey for England and Wales, 2019"
 )
 ```
 
@@ -73,7 +72,8 @@ chart_data <- tidy_data %>%
   filter(
     age == "16+",
     sex == "All adults",
-    measurement_var == "fairova1dv",
+    # measurement_var == "fairova1dv",
+    measurement_var %in% c("cjsovb1dv", "fairova1dv"),
     characteristic_var %in% c(
       "agegrp7", # age group
       "educat3", # education level
@@ -96,7 +96,12 @@ chart_data <- tidy_data %>%
         characteristic_var == "r10sec4a" ~ "Long term unemployed",
       TRUE ~ characteristic
     ),
-    characteristic = str_replace_all(characteristic, " occs$", " occupations")
+    characteristic = str_replace_all(characteristic, " occs$", " occupations"),
+    measurement_var = recode(
+    	measurement_var, 
+    	"cjsovb1dv" = "criminal justice system is effective", 
+    	"fairova1dv" = "criminal justice system is fair"
+    )
   ) %>% 
 	arrange(characteristic_var, estimate) %>% 
 	mutate(
@@ -115,6 +120,15 @@ chart_data <- tidy_data %>%
 	mutate(
 		row_order = n():1,
 		characteristic = fct_reorder(characteristic, row_order)
+	) %>% 
+	# shorten some category names
+	mutate(
+		characteristic = recode(
+			characteristic,
+			"Black/African/Caribbean/Black British" = "Black/African/Caribbean",
+			"Managerial and professional occupations" = "Managerial/professional",
+			"Routine and manual occupations" = "Routine/manual"
+		)
 	)
 
 # get global value
@@ -123,10 +137,16 @@ mean_value <- tidy_data %>%
   filter(
     age == "16+",
     sex == "All adults",
-    measurement_var == "fairova1dv",
+    measurement_var %in% c("cjsovb1dv", "fairova1dv"),
     characteristic_var == "Total"
   ) %>% 
-  pull("estimate")
+	mutate(
+    measurement_var = recode(
+    	measurement_var, 
+    	"cjsovb1dv" = "criminal justice system is effective", 
+    	"fairova1dv" = "criminal justice system is fair"
+    )
+	)
 
 # get value for people who identify as black
 black_value <- tidy_data %>% 
@@ -142,8 +162,12 @@ black_value <- tidy_data %>%
 
 # add chart labels
 chart_labels <- tribble(
-	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
-	16, mean_value, 14.5, 0.71, balance_lines("overall, two thirds of people say the justice system is fair", 3), "left", "top", "left"
+	~x, ~y, ~xend, ~yend, ~measurement_var, ~label, ~hjust, ~vjust, ~curve,
+	19.5, 0.50, 20.5, 0.67, "criminal justice system is effective", balance_lines("50% of people overall say the CJS is effective", 3), "left", "bottom", "right",
+	18, 0.38, 17, 0.60, "criminal justice system is effective", balance_lines("only 37% of 65–74s say the CJS is effective", 2), "left", "top", "left",
+	9, 0.49, 10, 0.58, "criminal justice system is effective", balance_lines("white people are the ethnic group least likely to say the CJS is effective", 4), "left", "bottom", "right",
+	18.5, 0.66, 19.5, 0.76, "criminal justice system is fair", balance_lines("66% of people overall say the CJS is fair", 3), "left", "bottom", "right",
+	11, 0.47, 8.25, 0.78, "criminal justice system is fair", balance_lines("only 46% of black people say the CJS is fair", 4), "left", "top", "left"
 )
 ```
 
@@ -152,34 +176,35 @@ chart <- chart_data %>%
   ggplot(aes(x = characteristic, y = estimate, fill = characteristic_var,
              label = characteristic)) +
   geom_col() +
-  geom_hline(aes(yintercept = mean_value), linetype = "11", colour = "grey50") +
+  geom_hline(aes(yintercept = estimate), data = mean_value, linetype = "11", 
+  					 colour = "grey50") +
   geom_text(aes(y = 0.01), colour = "white", size = elements$label_text_size, 
   					hjust = 0) +
 	# add explanatory labels
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
-						 curvature = elements$label_line_curvature, 
-						 colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature,
+						 colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
 	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "straight"), 
-						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "straight"),
+						 inherit.aes = FALSE, colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
-						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
-						 curvature = elements$label_line_curvature * -1, 
-						 colour = elements$label_line_colour, 
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature * -1,
+						 colour = elements$label_line_colour,
 						 arrow = elements$label_arrow, show.legend = FALSE) +
-	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust,
 								 vjust = vjust),
-						data = chart_labels, inherit.aes = FALSE, 
+						data = chart_labels, inherit.aes = FALSE,
 						colour = elements$label_text_colour,
-						fill = elements$label_text_fill, size = elements$label_text_size, 
+						fill = elements$label_text_fill, size = elements$label_text_size,
 						lineheight = elements$label_text_lineheight,
 						label.size = NA, show.legend = FALSE) +
 	# end of explanatory labels
   scale_y_continuous(breaks = seq(0, 1, by = 0.2),
-                     expand = c(0.015, 0),
+                     expand = expand_scale(mult = 0.025),
                      labels = scales::percent_format(), limits = c(0, 1)) +
   scale_fill_manual(
     values = unname(ucl_colours_list[c("Orange", "Light Blue", "Dark Green",
@@ -187,11 +212,12 @@ chart <- chart_data %>%
                                        "Bright Blue")])
   ) +
   coord_flip() +
+	facet_grid(cols = vars(measurement_var), scales = "free") +
   labs(
     title = chart_details$title,
     subtitle = format_subtitle(chart_details$subtitle),
     x = NULL,
-    y = "people who are confident that the criminal justice system as a whole is fair"
+    y = "people who are confident that the criminal justice system is effective/fair"
   ) +
 	theme_cjcharts() +
 	theme(
@@ -201,6 +227,7 @@ chart <- chart_data %>%
     panel.grid.major.x = element_line(),
     panel.grid.minor.x = element_line(),
     panel.grid.major.y = element_blank(),
+    # panel.spacing = unit(1, "lines"),
     strip.text.y = element_blank()
 	)
 ```

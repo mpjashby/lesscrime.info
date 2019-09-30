@@ -160,8 +160,19 @@
   </url>
   
   <url>
+    <loc>/post/fairness-perception/</loc>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/police-numbers/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/perceptions/</loc>
+    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
