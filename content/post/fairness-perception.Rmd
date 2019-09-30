@@ -1,5 +1,5 @@
 ---
-title: "Chart: Most people think the justice system is fair"
+title: "Chart: Most people think the justice system is fair, fewer say it's effective"
 author: 'Matt Ashby'
 date: '2019-09-30'
 categories: ["Crime and justice chart of the week"]
