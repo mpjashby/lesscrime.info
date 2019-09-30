@@ -7,7 +7,7 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 23 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,27 @@
     <item>
       <title>CSEW</title>
       <link>/tags/csew/</link>
-      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/csew/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>criminal justice</title>
+      <link>/tags/criminal-justice/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/criminal-justice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>perceptions</title>
+      <link>/tags/perceptions/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/perceptions/</guid>
       <description></description>
     </item>
     
@@ -36,15 +54,6 @@
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/drugs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>criminal justice</title>
-      <link>/tags/criminal-justice/</link>
-      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/criminal-justice/</guid>
       <description></description>
     </item>
     
@@ -117,15 +126,6 @@
       <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/domestic-abuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>perceptions</title>
-      <link>/tags/perceptions/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/perceptions/</guid>
       <description></description>
     </item>
     

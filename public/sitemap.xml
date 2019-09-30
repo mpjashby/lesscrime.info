@@ -4,42 +4,59 @@
   
   <url>
     <loc>/tags/csew/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/fairness-perception/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/criminal-justice/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/perceptions/</loc>
+    <lastmod>2019-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/drug-use/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -67,12 +84,6 @@
   <url>
     <loc>/post/police-pay/</loc>
     <lastmod>2019-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/criminal-justice/</loc>
-    <lastmod>2019-09-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -160,19 +171,8 @@
   </url>
   
   <url>
-    <loc>/post/fairness-perception/</loc>
-    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/police-numbers/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/perceptions/</loc>
-    <lastmod>2019-08-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

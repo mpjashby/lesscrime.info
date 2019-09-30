@@ -7,10 +7,26 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 23 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Most people think the justice system is fair</title>
+      <link>/post/fairness-perception/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/fairness-perception/</guid>
+      <description>
+
+
+&lt;p&gt;Every month, the Crime Survey for England and Wales asks a representative sample of adults about their perceptions of the criminal justice system. Across age, education, ethnic and employment groups, most people believe the system as a whole is fair, but only about half say it is effective.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../fairness-perception.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/fairness-perception.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Drug use was falling, but that seems to be changing</title>
@@ -562,22 +578,6 @@ and some in &lt;code&gt;.xlsx&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34; class=&#
 &lt;p&gt;&lt;a href=&#34;../partner-abuse.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/partner-abuse.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/domesticabusefindingsfromthecrimesurveyforenglandandwales/yearendingmarch2018&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Chart: Most people think the justice system is fair</title>
-      <link>/post/fairness-perception/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/fairness-perception/</guid>
-      <description>
-
-
-&lt;p&gt;Every month, the Crime Survey for England and Wales asks a representative sample of adults about their perceptions of the criminal justice system. Across age, education, ethnic and employment groups, most people believe the system as a whole is fair, but only about half say it is effective.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../fairness-perception.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/fairness-perception.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
