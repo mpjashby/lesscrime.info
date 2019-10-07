@@ -1,0 +1,167 @@
+---
+title: "Chart: Online crime now the most-likely threat to many businesses"
+author: 'Matt Ashby'
+date: '2019-10-07'
+categories: ["Crime and justice chart of the week"]
+tags:
+  - crime
+  - CVS
+  - business
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "business-crime",
+	title = "Online crime now the most-likely threat to many businesses",
+	subtitle = "Online crime (including hacking, phishing and virus attacks) is now experienced by more businesses than any other type across sectors as varied as manufacturing and communications. But in the sectors most-likely to experience a crime (retail, accomodation and entertainment), traditional offences such as theft are still more likely. The data come from the government's Commercial Victimisation Survey, which each year asks about crime against selected business types.",
+	source_url = "https://www.gov.uk/government/statistics/crime-against-businesses-findings-from-the-2018-commercial-victimisation-survey",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data	
+	data_file <- paste0(tempfile(), ".ods")
+	csv_file <- paste0(data_file, ".csv")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/828758/crime-against-businesses-headline-2018-tables.ods", write_disk(data_file))
+	
+	# convert ODS to CSV
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(data_file, "T4", csv_file)
+	
+	# read CSV file
+	file_data <- read_csv(csv_file, na = c("n/a", ".."), skip = 4)
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		# remove blank rows below header and footnotes below data
+		slice(2:40) %>% 
+		rename(crime_type = X1) %>% 
+		pivot_longer(names_to = "sector", values_to = "prevalence", 
+								 -crime_type) %>% 
+		# gather(key = "sector", value = "prevalence", -crime_type) %>% 
+		# strip footnote markers from crime_type
+		mutate(crime_type = str_remove(crime_type, "\\d+$")) %>% 
+		# convert percentage to proportion
+		mutate(prevalence = prevalence / 100)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+# format main chart data
+chart_data <- tidy_data %>% 
+	filter(
+		crime_type %in% c(
+			"All burglary (inc. attempts)", "Vandalism", "All vehicle-related theft", 
+			"Assaults and threats", "All theft", "All fraud", "ALL ONLINE CRIME", 
+			"ALL CVS CRIME"
+		)
+	) %>% 
+	mutate(
+		crime_type = str_remove(str_to_lower(crime_type), "^all "),
+		crime_type = str_remove(crime_type, " \\(.+\\)$"),
+		sector = str_to_lower(str_replace_all(sector, " & ", " and "))
+	)
+
+# extract order of facets based on all-crime prevalence
+sector_order <- chart_data %>% 
+	filter(crime_type == "cvs crime") %>% 
+	arrange(desc(prevalence)) %>% 
+	pluck("sector")
+
+# extract order of bars based on prevalence for sector with most crime
+crime_type_order <- chart_data %>% 
+	filter(sector == sector_order[[1]], crime_type != "cvs crime") %>% 
+	arrange(prevalence) %>% 
+	pluck("crime_type")
+
+# relevel factors to correct order
+chart_data <- chart_data %>% 
+	filter(crime_type != "cvs crime") %>% 
+	mutate(
+		crime_type = fct_rev(fct_relevel(crime_type, crime_type_order)),
+		crime_type = fct_rev(fct_relevel(crime_type, "online crime", after = Inf)),
+		sector = fct_relevel(sector, sector_order),
+		online_crime = crime_type == "online crime"
+	) %>% 
+	remove_missing(na.rm = TRUE)
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+	ggplot(aes(x = crime_type, y = prevalence, fill = crime_type)) +
+	geom_col() +
+	scale_y_continuous(expand = expand_scale(mult = c(0, 0.05)),
+										 breaks = seq(0, 0.25, by = 0.1),
+										 labels = scales::percent_format(accuracy = 1)) + 
+	# scale_fill_manual(
+	# 	values = unname(ucl_colours_list[c("Light Blue", "Orange")])
+	# ) +
+	scale_fill_manual(
+		values = unname(ucl_colours_list[c("Yellow", "Mid Green", "Light Blue", 
+																			 "Light Green", "Light Purple", 
+																			 "Grey", "Stone")])
+	) +
+	# scale_alpha_manual(
+	# 	values = c(1, 0.33, 0.33, 0.33, 0.33, 0.33, 0.33)
+	# ) + 
+	coord_flip() +
+	facet_wrap(vars(sector)) +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle),
+    x = NULL,
+    y = "proportion of premises that experienced crime in the last 12 months"
+  ) +
+	theme_cjcharts() +
+	theme(
+		axis.ticks.y = element_blank(),
+		legend.position = "none",
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
