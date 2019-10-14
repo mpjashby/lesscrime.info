@@ -1,0 +1,161 @@
+---
+title: "Chart: Police are arresting half as many people as a decade ago"
+author: 'Matt Ashby'
+date: '2019-10-14'
+categories: ["Crime and justice chart of the week"]
+tags:
+  - police
+  - arrests
+  - criminal justice
+  - trends
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-arrests",
+	title = "Police are arresting half as many people as a decade ago",
+	subtitle = "A combination of legal changes and decreases in many common types of crime, together with  closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.",
+	source_url = "https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018",
+	source_title = "Home Office, 2018"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	new_data_file <- tempfile(fileext = ".ods")
+	new_csv_file <- paste0(new_data_file, ".csv")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/751158/arrests-open-data-tables-ppp.ods", write_disk(new_data_file))
+	
+	# convert new data from ODS to CSV and read
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(new_data_file, "AOD_0607_1718", new_csv_file)
+	file_data <- read_csv(new_csv_file, na = c("..", "*", "N/A"))
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		clean_names() %>% 
+		# for some reason there are empty rows at the end of the file
+		filter(financial_year != "") %>% 
+		rename(
+			offence_group = reason_for_arrest_offence_group, 
+			ethnic_group = ethnic_group_self_defined
+		) %>% 
+		mutate(year_ending = ymd(paste(str_sub(financial_year, -2), "03", "31")))
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}		
+
+officer_data <- read_csv("police-numbers-data.csv.gz") %>% 
+	mutate(year_ending = ymd(paste(year, "03", "31"))) %>% 
+	count(year_ending, wt = officers, name = "officers")
+
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(
+		age_group %in% c("10 - 17 years", "18 - 20 years", "21 years and over"),
+		year_ending >= ymd("2009-03-31")
+	) %>% 
+	count(year_ending, sex, age_group, wt = arrests, name = "arrests") %>%
+	left_join(officer_data) %>%
+	group_by(sex, age_group) %>%
+	mutate(
+		arrest_rate = (arrests / officers),
+		arrest_index = (arrest_rate / first(arrest_rate)) * 100
+	) %>% 
+	ungroup() %>% 
+	mutate(group = fct_case_when(
+		sex == "Female" & age_group == "10 - 17 years" ~ "girls\n10–17 years",
+		sex == "Male" & age_group == "10 - 17 years" ~ "boys\n10–17 years",
+		sex == "Female" & age_group == "18 - 20 years" ~ "women\n18–20 years",
+		sex == "Male" & age_group == "18 - 20 years" ~ "men\n18–20 years",
+		sex == "Female" & age_group == "21 years and over" ~ "women\n21+ years",
+		sex == "Male" & age_group == "21 years and over" ~ "men\n21+ years",
+		TRUE ~ NA_character_
+	))
+
+chart_labels <- chart_data %>% 
+	group_by(group) %>% 
+	summarise(
+		year_ending = last(year_ending),
+		arrest_index = last(arrest_index),
+		label = sprintf("down **%.0f%%**<br>in 10 years<br>to %s", 
+										100 - last(arrest_index), scales::comma(last(arrests)))
+	)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(year_ending, arrest_index, fill = group)) +
+	geom_area() +
+	ggtext::geom_rich_text(aes(label = label), data = chart_labels, 
+												 colour = "white", size = elements$label_text_size,
+												 hjust = 1, vjust = 1, label.size = NA) +
+	# geom_point(data = chart_labels) +
+	scale_x_date(date_breaks = "2 years", date_labels = "'%y", 
+							 expand = expand_scale(mult = c(0, 0.05))) +
+	scale_y_continuous(expand = expand_scale(mult = c(0, 0.05))) +
+	scale_fill_manual(
+		values = unname(ucl_colours_list[c("Mid Green", "Bright Green", 
+																			 "Mid Red", "Light Red", "Mid Blue", 
+																			 "Light Blue")])
+	) +
+	facet_grid(cols = vars(group)) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = NULL,
+		y = "arrests for every 100 arrests per officer in 2008–09"
+	) +
+	theme_cjcharts() + 
+	theme(
+		axis.title = element_text(hjust = 0),
+		legend.position = "none"
+	)
+
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
