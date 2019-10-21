@@ -7,10 +7,37 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>crime</title>
+      <link>/tags/crime/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>homicide</title>
+      <link>/tags/homicide/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/homicide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trends</title>
+      <link>/tags/trends/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/trends/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>arrests</title>
@@ -40,15 +67,6 @@
     </item>
     
     <item>
-      <title>trends</title>
-      <link>/tags/trends/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/trends/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>CVS</title>
       <link>/tags/cvs/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
@@ -63,15 +81,6 @@
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/business/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>crime</title>
-      <link>/tags/crime/</link>
-      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/crime/</guid>
       <description></description>
     </item>
     
@@ -99,15 +108,6 @@
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/drugs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>homicide</title>
-      <link>/tags/homicide/</link>
-      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/homicide/</guid>
       <description></description>
     </item>
     

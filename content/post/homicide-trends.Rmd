@@ -1,0 +1,242 @@
+---
+title: "Chart: Much of the homicide drop has already been erased"
+author: Matt Ashby
+date: '2019-10-21'
+slug: homicide-trends
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - homicide
+  - trends
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "homicide-trends",
+	title = "Much of the homicide drop has already been erased",
+	subtitle = "The rapid decrease in the homicide (murder, manslaughter and infanticide) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.",
+	source_url = "https://www.gov.uk/government/statistics/historical-crime-data",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+  
+  # download data up to 2001 from the Home Office
+  data_file <- tempfile()
+  download.file("https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/116649/rec-crime-1898-2002.xls", destfile = data_file)
+  file_data <- read_excel(data_file, skip = 5)
+  
+  # download data for 2002 onwards from ONS
+  download.file("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables/yearendingjune2019/appendixtableyearendingjune201915102019170156.xlsx", destfile = data_file)
+  file_data_new <- read_excel(data_file, sheet = "Table A4", skip = 3)
+  
+  tidy_data <- file_data %>% 
+    select(2:3) %>% 
+    slice(2:101, 104:107) %>% 
+    set_names(c("year", "homicide_count")) %>% 
+    mutate(
+      year = ymd(paste(str_sub(year, 0, 4), "01", "01")),
+      year = if_else(row_number() >= 101, year + months(3), year)
+    )
+  
+  tidy_data_new <- file_data_new %>% 
+    select(3:20) %>%
+    slice(9) %>% 
+    pivot_longer(-`...3`, names_to = "year", values_to = "homicide_count") %>% 
+    select(-`...3`) %>% 
+    mutate(year = ymd(paste(str_sub(year, 6, 7), "04", "01")))
+  
+  tidy_data <- bind_rows(tidy_data, tidy_data_new) %>% 
+    mutate(homicide_count = as.numeric(homicide_count))
+  
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+  
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+  
+}	
+
+# get population data
+if (!file.exists(paste0(chart_details$id, "-pop-data.csv.gz"))) {
+  
+  pop_file <- tempfile()
+  download.file("https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland/mid2016detailedtimeseries/ukandregionalpopulationestimates1838to2016.zip", destfile = pop_file)
+  unzip(pop_file, files = "UK Population Estimates 1838-2016.xlsx", 
+        exdir = tempdir())
+  
+  pop_data <- read_excel(
+    paste0(tempdir(), "/UK Population Estimates 1838-2016.xlsx"), 
+    sheet = "Table 7", skip = 4
+  ) %>% 
+    select(Year, Persons) %>% 
+    slice(1:179) %>% 
+    clean_names() %>% 
+    mutate(year = as.numeric(str_remove(year, "Mid-")))
+  
+  pop_data_new <- read_csv("https://www.ons.gov.uk/generator?format=csv&uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ewpop/pop") %>% 
+    slice(8:55) %>% 
+    clean_names() %>% 
+    set_names(c("year", "persons")) %>% 
+    filter(year > 2016) %>% 
+    mutate_all(as.numeric)
+  
+  pop_data <- pop_data %>% 
+    bind_rows(pop_data_new) %>% 
+    arrange(year)
+  
+	# save tidy data
+	write_csv(pop_data, paste0(chart_details$id, "-pop-data.csv.gz"))	
+	
+} else {
+  
+	# load tidy data
+	pop_data <- read_csv(paste0(chart_details$id, "-pop-data.csv.gz"))
+  
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+  mutate(year = year(year)) %>% 
+  filter(year > last(year) - 99) %>% 
+  select(year, homicides = homicide_count) %>%
+  # move Hillsborough deaths from 2016 to 1989
+  mutate(homicides = case_when(
+    year == 1989 ~ homicides + 96, 
+    year == 2016 ~ homicides - 96, 
+    TRUE ~ homicides
+  )) %>% 
+  left_join(pop_data, by = "year") %>% 
+  mutate(
+    homicide_rate = (homicides / persons) * 1000000,
+    year = ymd(paste(year, "01", "01"))
+  )
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	ymd("1941-01-01"), 9.25, ymd("1937-01-01"), 11, balance_lines("the homicide rate increased during the Second World War", 4), "right", "center", "right",
+	ymd("1961-06-01"), 5.5, ymd("1966-06-01"), 4.5, balance_lines("the homicide rate was lowest in 1961", 2), "left", "center", "right",
+	ymd("1985-01-01"), 13, ymd("1979-01-01"), 15, balance_lines("in the 40 years between 1960 and 2000, the homicide rate trippled", 3), "right", "center", "right",
+	ymd("2002-06-01"), 19.7, ymd("2004-06-01"), 18.7, balance_lines("the 173 Harold Shipman murders are recorded as all occurring in 2002", 5), "left", "center", "right",
+	ymd("2013-06-01"), 9.1, ymd("2008-06-01"), 8.1, balance_lines("after 15 years of decreases, the homicide rate has been rising since 2014", 3), "right", "center", "left"
+	# ymd("1961-06-01"), 5.5, ymd("1966-06-01"), 4.5, balance_lines("", 2), "left", "center", "right"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(year, homicide_rate)) +
+  geom_point(aes(alpha = "point"), colour = "grey75", na.rm = TRUE) +
+  geom_smooth(aes(colour = "line"), method = "loess", span = 0.2, se = FALSE, 
+              na.rm = TRUE, key_glyph = "timeseries", alpha = 1) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+  scale_x_date(date_breaks = "10 years", date_labels = "%Y", 
+               expand = expand_scale(mult = 0.025)) +
+  scale_y_continuous(limits = c(0, NA), 
+                     expand = expand_scale(mult = c(0, 0.05))) +
+  scale_colour_manual(
+    values = c("line" = ucl_colours_list[["Orange"]]),
+    labels = c("line" = "trend estimated from annual rates")
+  ) + 
+  scale_alpha_manual(
+    values = c("point" = 1),
+    labels = c("point" = "annual homicide rate")
+  ) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = NULL,
+		y = "homicides per million people",
+		alpha = NULL,
+		colour = NULL
+	) +
+	theme_cjcharts() +
+  theme(
+    legend.background = element_rect(fill = "white", colour = "white"),
+    legend.direction = "horizontal",
+    legend.justification = c(0, 0),
+    legend.key.width = unit(1, "lines"),
+    legend.margin = margin(3, 4, 3, 4),
+    legend.position = c(0, 0.025),
+    legend.spacing = unit(0, "lines"),
+    legend.text = element_text(colour = elements$label_text_colour)
+  )
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data sources: [Homicide counts 1898 to 2001/02](`r chart_details$source_url`),
+[Homicide counts 2001/02 onwards](https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables), [Population estimates 1838 to 2018](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland).
+
+### Notes
+
+This chart uses police-recorded homicide offences because that time series 
+extends further back in time than the [Home Office Homicide Index](https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured), the main 
+alternative source of homicide data. The main disadvantage of this approach is 
+that crimes that are initially recorded homicides in police data but are 
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.
+
+Victims of the Hillsborough disaster are recorded in ONS data as manslaughter 
+cases in the year ending March 2017 because that was when the revised inquest 
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

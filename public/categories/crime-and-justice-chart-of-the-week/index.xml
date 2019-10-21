@@ -7,10 +7,41 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/categories/crime-and-justice-chart-of-the-week/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Much of the homicide drop has already been erased</title>
+      <link>/post/homicide-trends/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homicide-trends/</guid>
+      <description>
+
+
+&lt;p&gt;The rapid decrease in the homicide (murder, manslaughter and infanticide) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homicide-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-trends.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data sources: &lt;a href=&#34;https://www.gov.uk/government/statistics/historical-crime-data&#34;&gt;Homicide counts 1898 to 2001/02&lt;/a&gt;,
+&lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Homicide counts 2001/02 onwards&lt;/a&gt;, &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;Population estimates 1838 to 2018&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;This chart uses police-recorded homicide offences because that time series
+extends further back in time than the &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured&#34;&gt;Home Office Homicide Index&lt;/a&gt;, the main
+alternative source of homicide data. The main disadvantage of this approach is
+that crimes that are initially recorded homicides in police data but are
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.&lt;/p&gt;
+&lt;p&gt;Victims of the Hillsborough disaster are recorded in ONS data as manslaughter
+cases in the year ending March 2017 because that was when the revised inquest
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Police are arresting half as many people as a decade ago</title>
