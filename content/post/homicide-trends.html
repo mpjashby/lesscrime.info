@@ -1,0 +1,34 @@
+---
+title: "Chart: Much of the homicide drop has already been erased"
+author: Matt Ashby
+date: '2019-10-21'
+slug: homicide-trends
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - homicide
+  - trends
+---
+
+
+
+<p>The rapid decrease in the homicide (murder, manslaughter and infantice) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.</p>
+<p><img src="/post/homicide-trends_files/figure-html/display%20plot-1.png" width="672" /></p>
+<p><a href="../homicide-trends.png">larger image</a>
+| <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd">annotated R code to produce this chart</a></p>
+<p>Data sources: <a href="https://www.gov.uk/government/statistics/historical-crime-data">Homicide counts 1898 to 2001/02</a>,
+<a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables">Homicide counts 2001/02 onwards</a>, <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">Population estimates 1838 to 2018</a>.</p>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
+<p>This chart uses police-recorded homicide offences because that time series
+extends further back in time than the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured">Home Office Homicide Index</a>, the main
+alternative source of homicide data. The main disadvantage of this approach is
+that crimes that are initially recorded homicides in police data but are
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.</p>
+<p>Victims of the Hillsborough disaster are recorded in ONS data as manslaughter
+cases in the year ending March 2017 because that was when the revised inquest
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.</p>
+</div>

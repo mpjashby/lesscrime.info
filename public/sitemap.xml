@@ -4,36 +4,59 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/homicide-trends/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/crime/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/homicide/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/trends/</loc>
+    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/police-arrests/</loc>
     <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -55,12 +78,6 @@
   </url>
   
   <url>
-    <loc>/tags/trends/</loc>
-    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/cvs/</loc>
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -73,12 +90,6 @@
   
   <url>
     <loc>/tags/business/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/crime/</loc>
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -129,12 +140,6 @@
   <url>
     <loc>/post/homicide-methods/</loc>
     <lastmod>2019-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/homicide/</loc>
-    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

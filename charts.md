@@ -15,12 +15,12 @@ future plans (in approximate order with subject names).
 7. [Drug use was falling, but that seems to be changing](http://lesscrime.info/post/drug-use/)
 8. [Most people think the justice system is fair, fewer say it's effective](http://lesscrime.info/post/fairness-perception/)
 9. [Online crime now the most-likely threat to many businesses](http://lesscrime.info/post/business-crime/)
+10. [Police are arresting half as many people as a decade ago](http://lesscrime.info/post/police-arrests/)
+11. [Much of the homicide drop has already been erased](http://lesscrime.info/post/homicide-trends/)
 
 
 ## Planned (slug name if code written)
 
-10. [Police are arresting half as many people as a decade ago](http://lesscrime.info/post/police-arrests/)
-11. Murder rates from ~1900 onwards
 12. Prison population by offence (prisoner-types)
 13. Self-reported offending by age group
 14. Police use of force by injury resulting (use-of-force)

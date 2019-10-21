@@ -28,10 +28,13 @@
   
     
   
-  <meta name="description" content="Lecturer in Crime Science">
+  <meta name="description" content="The rapid decrease in the homicide (murder, manslaughter and infantice) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.
+larger image | annotated R code to produce this chart
+Data sources: Homicide counts 1898 to 2001/02, Homicide counts 2001/02 onwards, Population estimates 1838 to 2018.
+Notes This chart uses police-recorded homicide offences because that time series extends further back in time than the Home Office Homicide Index, the main alternative source of homicide data.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/categories/">
+  <link rel="alternate" hreflang="en-us" href="/post/homicide-trends/">
 
   
 
@@ -93,15 +96,12 @@
   
 
   
-  <link rel="alternate" href="/categories/index.xml" type="application/rss+xml" title="Matt Ashby">
-  <link rel="feed" href="/categories/index.xml" type="application/rss+xml" title="Matt Ashby">
-  
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/categories/">
+  <link rel="canonical" href="/post/homicide-trends/">
 
   
   
@@ -116,12 +116,17 @@
   <meta property="twitter:creator" content="@lesscrime">
   
   <meta property="og:site_name" content="Matt Ashby">
-  <meta property="og:url" content="/categories/">
-  <meta property="og:title" content="Categories | Matt Ashby">
-  <meta property="og:description" content="Lecturer in Crime Science"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/homicide-trends/">
+  <meta property="og:title" content="Chart: Much of the homicide drop has already been erased | Matt Ashby">
+  <meta property="og:description" content="The rapid decrease in the homicide (murder, manslaughter and infantice) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.
+larger image | annotated R code to produce this chart
+Data sources: Homicide counts 1898 to 2001/02, Homicide counts 2001/02 onwards, Population estimates 1838 to 2018.
+Notes This chart uses police-recorded homicide offences because that time series extends further back in time than the Home Office Homicide Index, the main alternative source of homicide data."><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2019-10-21T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-10-21T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-10-21T00:00:00&#43;00:00">
   
 
   
@@ -133,7 +138,7 @@
 
 
 
-  <title>Categories | Matt Ashby</title>
+  <title>Chart: Much of the homicide drop has already been erased | Matt Ashby</title>
 
 </head>
 
@@ -388,59 +393,377 @@
 </nav>
 
 
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Chart: Much of the homicide drop has already been erased</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-10-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-10-21 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>21 October 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/crime-and-justice-chart-of-the-week/">Crime and justice chart of the week</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/homicide-trends/&amp;text=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/homicide-trends/&amp;t=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased&amp;body=/post/homicide-trends/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/homicide-trends/&amp;title=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased%20/post/homicide-trends/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/homicide-trends/&amp;title=Chart:%20Much%20of%20the%20homicide%20drop%20has%20already%20been%20erased" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>The rapid decrease in the homicide (murder, manslaughter and infantice) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.</p>
+<p><img src="/post/homicide-trends_files/figure-html/display%20plot-1.png" width="672" /></p>
+<p><a href="../homicide-trends.png">larger image</a>
+| <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd">annotated R code to produce this chart</a></p>
+<p>Data sources: <a href="https://www.gov.uk/government/statistics/historical-crime-data">Homicide counts 1898 to 2001/02</a>,
+<a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables">Homicide counts 2001/02 onwards</a>, <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">Population estimates 1838 to 2018</a>.</p>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
+<p>This chart uses police-recorded homicide offences because that time series
+extends further back in time than the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured">Home Office Homicide Index</a>, the main
+alternative source of homicide data. The main disadvantage of this approach is
+that crimes that are initially recorded homicides in police data but are
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.</p>
+<p>Victims of the Hillsborough disaster are recorded in ONS data as manslaughter
+cases in the year ending March 2017 because that was when the revised inquest
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.</p>
+</div>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/crime/">crime</a>
+  
+  <a class="badge badge-light" href="/tags/homicide/">homicide</a>
+  
+  <a class="badge badge-light" href="/tags/trends/">trends</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
   
 
 
 
 
-
-
-
-
-
-
-
-
-  
 
   
   
   
     
   
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Categories</h1>
-
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-  <div>
-    <h2><a href="/categories/crime-and-justice-chart-of-the-week/">Crime and justice chart of the week</a></h2>
-    <div class="article-style">
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
       
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu6f220e83370d2dbfd39d511c0d0919f9_158802_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Matt Ashby</a></h5>
+      <h6 class="card-subtitle">Lecturer in Crime Science</h6>
+      <p class="card-text" itemprop="description">I am a lecturer in crime science at the <a href="https://ucl.ac.uk/jill-dando-institute/" target="_blank">Jill Dando Institute of Security and Crime Science</a> at <a href="https://ucl.ac.uk/" target="_blank">University College London</a> (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/lesscrime" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="//orcid.org/0000-0003-4201-9239" >
+              <i class="ai ai-orcid"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=dwcesrQAAAAJ" target="_blank" rel="noopener">
+              <i class="ai ai-google-scholar"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/mpjashby" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-  
-  <div>
-    <h2><a href="/categories/r-tutorials/">R Tutorials</a></h2>
-    <div class="article-style">
+
+
+
       
-    </div>
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/homicide-methods/">Chart: Homicide methods are changing</a></li>
+          
+          <li><a href="/post/crime-trends/">Chart: Fewer people are victims of common crimes than 30 years&#39; ago</a></li>
+          
+          <li><a href="/post/police-arrests/">Chart: Police are arresting half as many people as a decade ago</a></li>
+          
+          <li><a href="/post/business-crime/">Chart: Online crime now the most-likely threat to many businesses</a></li>
+          
+          <li><a href="/post/drug-use/">Chart: Drug use was falling, but that seems to be changing</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
   </div>
-  
-
-  
-
-</div>
+</article>
 
       
 
