@@ -1,0 +1,252 @@
+---
+title: 'Chart: Sentences for knife carrying are increasing, but not for teens'
+author: Matt Ashby
+date: '2019-10-28'
+slug: knife-sentencing
+categories:
+  - Crime and justice chart of the week
+tags:
+  - sentencing
+  - criminal justice
+  - courts
+  - knife crime
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "knife-sentencing",
+	title = "Sentences for knife carrying are increasing, but not for teens",
+	subtitle = "Sentences for carrying a bladed or pointed article have become more severe for adults over the past decade, with 41% of men now going to prison on conviction. For younger offenders, the picture is different: half of girls and a third of boys caught with a knife receive no penalty – a proportion that is largely unchanged since 2008 – while fewer than one in ten receive a custodial sentence.",
+	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018",
+	source_title = "Ministry of Justice, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- tempfile(fileext = ".zip")
+	download.file("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/804669/Data-behind-interactive-tools-csv.zip", destfile = data_file)
+	unzip(data_file, files = "outcomes-by-offence-2018.csv", exdir = tempdir())
+	
+	# if unzip() fails then use the terminal to run:
+	# unzip {data_file} outcomes-by-offence-2018.csv
+	
+	# read CSV file
+	file_data <- read_csv(paste0(tempdir(), "/outcomes-by-offence-2018.csv"), 
+												locale = locale(encoding = "latin1"))
+
+	# tidy data
+	tidy_data <- file_data %>% 
+		clean_names() %>% 
+		gather(key = "disposal", value = "count", -year, -quarter, 
+					 -indictable_summary, -offence_type, -offence_group, -offence, 
+					 -person_other, -sex, -ethnicity, -age_group, -age_range) %>% 
+		filter(count != 0) %>% 
+		mutate(disposal = str_replace_all(disposal, "_", " ")) %>% 
+		# some combinations appear in the data more than once, so we reduce these to
+		# a single row for each unique combination of values, summing the count of
+		# cases
+		group_by_at(vars(-count)) %>% 
+		summarise(count = sum(count)) %>% 
+		ungroup()
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(
+		offence == "10D Possession of article with blade or point", 
+		sex != "04: Not known", 
+		# this selection of sentences doesn't quite cover all cases, since a few
+		# are disposed of under the category "total otherwise dealt with"
+		disposal %in% c("cautions issued", "absolute discharge", 
+										"conditional discharge", "fine", "total community sentence", 
+										"suspended sentence", "total immediate custody")
+	) %>% 
+	mutate(
+		year = lubridate::ymd(paste(year, "01", "01")),
+		sex = factor(str_to_lower(str_remove(sex, "\\d+\\: "))),
+		group = fct_case_when(
+			age_group %in% c("02: Young adults", "03: Adults") & sex == "female" ~ 
+				"women 18+ yrs",
+			age_group %in% c("02: Young adults", "03: Adults") & sex == "male" ~ 
+				"men 18+ yrs",
+			age_group == "01: Juveniles" & sex == "female" ~ "girls 10–17 yrs",
+			age_group == "01: Juveniles" & sex == "male" ~ "boys 10–17 yrs",
+			TRUE ~ NA_character_
+		),
+		sentence_type = ifelse(
+			disposal %in% c("cautions issued", "absolute discharge", 
+											"conditional discharge"),
+			"no penalty (caution/discharge)",
+			str_remove(disposal, "^total ")
+		),
+		sentence_type = fct_relevel(sentence_type, "immediate custody",
+																"suspended sentence", "community sentence",
+																"fine", "no penalty (caution/discharge)")
+	) %>% 
+	count(year, group, sentence_type, wt = count) %>% 
+	complete(year, group, sentence_type, fill = list(n = 0)) %>% 
+	group_by(year, group) %>% 
+	mutate(perc = n / sum(n)) %>% 
+	ungroup()
+
+# calculate annual frequency of cases
+chart_freq <- chart_data %>% 
+	count(group, wt = n, name = "annual_freq") %>% 
+	mutate(annual_freq = scales::comma(annual_freq / 11, accuracy = 10))
+
+# add annual frequencies to group names
+chart_data <- chart_data %>% 
+	left_join(chart_freq, by = "group") %>% 
+	mutate(
+		group_name = glue::glue("{group} (~{annual_freq} cases per yr)"),
+		group_name = fct_reorder(group_name, as.numeric(group))
+	)
+
+# calculate first and final percentages
+chart_perc <- chart_data %>% 
+	filter(year %in% c(first(year), last(year))) %>% 
+	arrange(year, group_name, desc(sentence_type)) %>% 
+	group_by(year, group_name) %>% 
+	mutate(mid_perc = cumsum(perc) - (0.5 * perc)) %>% 
+	ungroup() %>% 
+	# strip labels that won't be plotted
+	filter(perc > 0.01 & between(mid_perc, 0.01, 0.99)) %>% 
+	# format labels
+	mutate(
+		hjust = if_else(year == first(year), 1, 0),
+		label = scales::percent(perc, accuracy = 1),
+		x = if_else(year == first(year), ymd("2007-11-01"), ymd("2018-03-01")),
+		xend = if_else(year == first(year), ymd("2008-02-01"), ymd("2017-12-01"))
+	)
+
+# add chart labels (x and y have no effect if curve == "none")
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~group, ~label, ~hjust, ~vjust, ~curve,
+	ymd("1970-01-01"), 0, ymd("2017-10-01"), 0.9, "women 18+ yrs", balance_lines("immediate custody", 2), "right", "middle", "none",
+	ymd("1970-01-01"), 0, ymd("2017-10-01"), 0.63, "women 18+ yrs", balance_lines("suspended sentence*", 2), "right", "middle", "none",
+	ymd("1970-01-01"), 0, ymd("2008-07-01"), 0.57, "women 18+ yrs", balance_lines("community penalty (e.g. unpaid work)", 2), "left", "middle", "none",
+	ymd("2012-06-01"), 0.37, ymd("2013-06-01"), 0.42, "women 18+ yrs", "fine", "left", "middle", "left",
+	ymd("1970-01-01"), 0, ymd("2008-04-01"), 0.13, "women 18+ yrs", balance_lines("no penalty (caution or absolute/conditional discharge)", 2), "left", "middle", "none"
+) %>% 
+	left_join(
+		summarise(group_by(chart_data, group), group_name = first(group_name)),
+		by = "group"
+	) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(group_name = factor(group_name, levels = levels(chart_data$group_name)))
+
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+	ggplot(aes(x = year, y = perc, fill = sentence_type)) + 
+	geom_area() + 
+	geom_line(colour = "white", size = 0.25, position = "stack") +
+	geom_segment(aes(x = x, y = mid_perc, xend = xend, yend = mid_perc), 
+							 data = chart_perc, colour = elements$label_line_colour) +
+	geom_text(aes(x = x, y = mid_perc, label = label, hjust = hjust), 
+						data = chart_perc, colour = elements$label_text_colour, 
+						size = elements$label_text_size) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = "white", 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = "white", 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = "white", 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = "white",
+						fill = NA, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	facet_wrap(vars(group_name), ncol = 2) +
+	scale_x_date(date_breaks = "2 years", date_labels = "%Y", 
+							 expand = expand_scale(mult = 0.1)) +
+	scale_y_continuous(
+		labels = scales::percent_format(),
+		expand = c(0, 0)
+	) + 
+	scale_fill_manual(
+		values = unname(ucl_colours_list[c("Mid Red", "Bright Red", "Light Blue", 
+																			 "Bright Blue", "Mid Blue")])
+	) +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle),
+    caption = "* suspended sentences typically include a community penalty (e.g. unpaid work)",
+    legend = NULL,
+    x = NULL,
+    y = "proportion of people convicted",
+    fill = "sentence\ntype"
+  ) +
+	theme_cjcharts() +
+	theme(
+		axis.text.y = element_blank(),
+		axis.ticks.y = element_blank(),
+		axis.title.y = element_text(hjust = 0.5),
+		legend.position = "none",
+		# legend.title.align = 1,
+		panel.grid = element_blank(),
+		# panel.spacing = unit(1, "lines")
+		strip.text.y = element_text(angle = 270, hjust = 0.5)
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [PDF](../`r chart_details$id`.pdf)
+| [annotated R code to produce this chart](https://github.com/mpjashby/cj-charts/blob/master/content/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

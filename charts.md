@@ -17,15 +17,15 @@ future plans (in approximate order with subject names).
 9. [Online crime now the most-likely threat to many businesses](http://lesscrime.info/post/business-crime/)
 10. [Police are arresting half as many people as a decade ago](http://lesscrime.info/post/police-arrests/)
 11. [Much of the homicide drop has already been erased](http://lesscrime.info/post/homicide-trends/)
+12. [Sentences for knife carrying are increasing, but not for teens](http://lesscrime.info/post/knife-sentencing/)
 
 
 ## Planned (slug name if code written)
 
-12. Prison population by offence (prisoner-types)
 13. Self-reported offending by age group
 14. Police use of force by injury resulting (use-of-force)
 15. Reasons for crime non-reporting, by crime type
-16. Knife-possession sentencing since 2008 (knife-sentencing)
+16. Prison population by offence (prisoner-types)
 17. Substance misuse in prison
 18. Quantity of different drugs seized by Border Force (drug-seizures)
 19. Prison population over time

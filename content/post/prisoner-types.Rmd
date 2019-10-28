@@ -18,7 +18,7 @@ chart_details <- list(
 	id = "prisoner-types",
 	title = "Most prison sentences are for violent crimes",
 	subtitle = "About 69,000 adults are currently serving prison sentences, most of them for violent or sexual offences. However, over 10,000 adults are serving sentences for drug offences, more than for all types of theft combined.",
-	source_url = "https://www.gov.uk/government/statistics/offender-management-statistics-quarterly-october-to-december-2018",
+	source_url = "https://www.gov.uk/government/collections/offender-management-statistics-quarterly",
 	source_title = "Ministry of Justice, 2019"
 )
 ```
@@ -32,6 +32,12 @@ library("treemapify")
 # load this after loading custom packages
 source(here::here("helpers.R"))
 ```
+
+Changes to make:
+
+* disaggregate by sex if possible
+* change labels from percentages to rounded counts
+* clarify that 'drugs' means possession and supply
 
 ```{r get and tidy data}
 if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
