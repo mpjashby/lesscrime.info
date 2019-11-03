@@ -7,10 +7,27 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 28 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/criminal-justice/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Young offenders are more likely to re-offend than adults</title>
+      <link>/post/reoffending-rates/</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/reoffending-rates/</guid>
+      <description>
+
+
+&lt;p&gt;Most people convicted of a crime will not be convicted or cautioned for another offence within 12 months, although young offenders are more likely to offend again than adults. Most re-offending is by a small number of prolific offenders who frequently pass through the criminal justice system – more than 60% of people released from short prison sentences will reoffend within a year.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/reoffending-rates_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../reoffending-rates.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/reoffending-rates.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/proven-reoffending-statistics-july-to-september-2017&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Sentences for knife carrying are increasing, but not for teens</title>
