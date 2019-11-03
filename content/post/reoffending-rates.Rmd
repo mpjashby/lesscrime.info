@@ -1,0 +1,198 @@
+---
+title: "Chart: Young offenders are more likely to re-offend than adults"
+author: Matt Ashby
+date: '2019-11-04'
+slug: reoffending-rates
+categories:
+  - Crime and justice chart of the week
+tags:
+  - offending
+  - reoffending
+  - criminal justice
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "reoffending-rates",
+	title = "Young offenders are more likely to re-offend than adults",
+	subtitle = "Most people convicted of a crime will not be convicted or cautioned for another offence within 12 months, although young offenders are more likely to offend again than adults. Most re-offending is by a small number of prolific offenders who frequently pass through the criminal justice system – more than 60% of people released from short prison sentences will reoffend within a year.",
+	source_url = "https://www.gov.uk/government/statistics/proven-reoffending-statistics-july-to-september-2017",
+	source_title = "Ministry of Justice, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggtext")
+library("lubridate")
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	new_data_file <- tempfile(fileext = ".ods")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/820359/proven-reoffending-jul17-sep17-annual.ods", write_disk(new_data_file))
+	
+	# convert new data from ODS to CSV and read
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(new_data_file, "A4a_(annual_average)", 
+						 paste0(new_data_file, "_adult.csv"))
+	ods_to_csv(new_data_file, "A4b_(annual_average)", 
+						 paste0(new_data_file, "_juvenile.csv"))
+
+	# read data and tidy
+	tidy_data <- map_dfr(
+		c("adult" = paste0(new_data_file, "_adult.csv"), 
+			"juvenile" = paste0(new_data_file, "_juvenile.csv")), 
+		function (x) {
+			
+			read_csv(x, skip = 3, na = "*") %>% 
+				mutate(index_offence = lag(X1)) %>% 
+				filter(str_detect(X1, "^Proportion of ")) %>% 
+				select(index_offence, everything(), -X1) %>% 
+				gather("year", "proportion", -index_offence)
+			
+		}, 
+		.id = "age"
+	) %>% 
+		mutate(
+			index_offence = str_to_lower(index_offence),
+			proportion = proportion / 100,
+			year_ending = ymd(paste(str_sub(str_replace(year, "20161$", "2016"), -4), 
+															"03", "31"))
+		) %>% 
+		select(year_ending, age, index_offence, proportion)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}		
+
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(
+		!index_offence %in% c("other", "summary motoring",
+													"summary non-motoring", 
+													"miscellaneous crimes against society"),
+		year_ending == last(year_ending)
+	) %>% 
+	mutate(
+		index_offence = fct_reorder(index_offence, proportion, .desc = TRUE),
+		index_offence = fct_other(
+			index_offence, 
+			drop = c("all adult offenders", "all juvenile offenders"), 
+			other_level = "all offences"
+		),
+		label = if_else(
+			index_offence == "all offences", 
+			scales::percent(proportion, accuracy = 1, prefix = " "), 
+			NA_character_
+		)
+	)
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	9, 0.15, 8, 0.35, balance_lines("people convicted of sex offences are least likely to reoffend", 2), "left", "top", "left",
+	9.9, 0.39, 9, 0.52, balance_lines("juveniles offenders are more likely to be reconvicted than adults", 2), "left", "middle", "right",
+	1, 0.52, 2.75, 0.62, balance_lines("people convicted of theft are most likely to be convicted of another offence within a year", 3), "center", "bottom", "right"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(index_offence, proportion, fill = age, 
+																label = label)) +
+	geom_col(position = "dodge") +
+	geom_text(na.rm = TRUE, position = position_dodge(width = 1), hjust = 0, 
+						size = elements$label_text_size, 
+						colour = elements$label_text_colour) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_discrete(labels = label_wrap_gen(width = 18)) +
+	scale_y_continuous(breaks = seq(0, 1, 0.2), 
+										 expand = expand_scale(mult = c(0, 0.02)), 
+										 labels = scales::percent_format(), limits = c(0, 1)) +
+  scale_fill_manual(
+    values = unname(ucl_colours_list[c("Mid Purple", "Orange")]),
+    labels = c("adult" = "adult offenders  ", "juvenile" = "juvenile offenders")
+  ) +
+	coord_flip() +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = NULL,
+		y = "proportion of offenders proven to reoffend within 12 months of conviction",
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.ticks.y = element_blank(),
+		legend.background = element_rect(fill = "white", colour = NA),
+		legend.justification = c(0.95, 0.05),
+		legend.key.width = unit(4, "mm"),
+		legend.position = c(1, 0),
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

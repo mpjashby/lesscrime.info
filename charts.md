@@ -18,19 +18,19 @@ future plans (in approximate order with subject names).
 10. [Police are arresting half as many people as a decade ago](http://lesscrime.info/post/police-arrests/)
 11. [Much of the homicide drop has already been erased](http://lesscrime.info/post/homicide-trends/)
 12. [Sentences for knife carrying are increasing, but not for teens](http://lesscrime.info/post/knife-sentencing/)
+13. [Young offenders are more likely to re-offend than adults](http://lesscrime.info/post/reoffending-rates)
 
 
 ## Planned (slug name if code written)
 
-13. Self-reported offending by age group
-14. Police use of force by injury resulting (use-of-force)
-15. Reasons for crime non-reporting, by crime type
-16. Prison population by offence (prisoner-types)
+14. Crime severity per police officer by force (crime-pressure)
+15. Prison population by offence (prisoner-types)
+16. Police use of force by injury resulting (use-of-force)
 17. Substance misuse in prison
 18. Quantity of different drugs seized by Border Force (drug-seizures)
 19. Prison population over time
 20. Clearance rates for different crime types (detection-rates)
-21. Re-offending rates by offence type (reoffending-rates)
+21. Reasons for crime non-reporting, by crime type
 22. Football banning orders by club (football-bans)
 23. Proportion of people on NDNAD by ethnicity (dna-database)
 24. Police use of firearms
