@@ -110,7 +110,7 @@ chart_data <- tidy_data %>%
 chart_labels <- tribble(
 	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
 	9, 0.15, 8, 0.35, balance_lines("people convicted of sex offences are least likely to reoffend", 2), "left", "top", "left",
-	9.9, 0.39, 9, 0.52, balance_lines("juveniles offenders are more likely to be reconvicted than adults", 2), "left", "middle", "right",
+	9.9, 0.39, 9, 0.52, balance_lines("juvenile offenders are more likely to be reconvicted than adults", 2), "left", "middle", "right",
 	1, 0.52, 2.75, 0.62, balance_lines("people convicted of theft are most likely to be convicted of another offence within a year", 3), "center", "bottom", "right"
 )
 ```
