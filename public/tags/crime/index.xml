@@ -7,10 +7,38 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/crime/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: In five years, crime-related demands on police have almost doubled</title>
+      <link>/post/crime-pressure/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/crime-pressure/</guid>
+      <description>
+
+
+&lt;p&gt;One way to understand crime-related demands on police forces is to track ‘crime pressure’, a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. In the past five years, this measure has risen in every police force in England and Wales, and has doubled in many places.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/crime-pressure_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-pressure.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-pressure.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;Office for National Statistics, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;The Office for National Statistics (ONS) publishes &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;estimates of the severity of different types of police-recorded crime&lt;/a&gt;, derived from the average sentence imposed in court for each type of offence. In the same dataset, ONS publishes an overall estimate of the severity of crime per capita in each police force area. To convert this to an estimate of crime severity per officer (referred to above as &lt;em&gt;crime pressure&lt;/em&gt;), severity per capita was multiplied by police force area population&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and then divided by the &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;number of full-time equivalent police officers in each force&lt;/a&gt;. Crime pressure is therefore defined as the severity of police-recorded crime per full-time equivalent officer.&lt;/p&gt;
+&lt;p&gt;Estimates of the severity of different crimes are inherently limited, although they are likely to be more informative for some purposes than simply counting crimes (which implicitly assumes all crimes are of equal importance). For a further discussion of this, see &lt;a href=&#34;/publication/measuring_crime_harm/&#34;&gt;&lt;em&gt;Comparing methods for measuring crime harm/severity&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Police force area populations were calculated by aggregating &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;mid-year population estimates for local authorities&lt;/a&gt; to police force areas using the ONS open geography portal &lt;a href=&#34;https://geoportal.statistics.gov.uk/datasets/local-authority-district-to-community-safety-partnerships-to-police-force-areas-december-2018-lookup-in-england-and-wales&#34;&gt;local authority to police force lookup table&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Much of the homicide drop has already been erased</title>

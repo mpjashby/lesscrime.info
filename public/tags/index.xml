@@ -7,10 +7,46 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>crime</title>
+      <link>/tags/crime/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crime pressure</title>
+      <link>/tags/crime-pressure/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime-pressure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crime severity</title>
+      <link>/tags/crime-severity/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime-severity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>police</title>
+      <link>/tags/police/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/police/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>criminal justice</title>
@@ -67,15 +103,6 @@
     </item>
     
     <item>
-      <title>crime</title>
-      <link>/tags/crime/</link>
-      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/crime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>homicide</title>
       <link>/tags/homicide/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
@@ -99,15 +126,6 @@
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/arrests/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>police</title>
-      <link>/tags/police/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/police/</guid>
       <description></description>
     </item>
     
