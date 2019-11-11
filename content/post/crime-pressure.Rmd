@@ -1,0 +1,327 @@
+---
+title: "Chart: In five years, crime-related demands on police have almost doubled"
+author: Matt Ashby
+date: '2019-11-11'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - crime pressure
+  - crime severity
+  - police
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "crime-pressure",
+	title = "In five years, crime-related demands on police have almost doubled",
+	subtitle = "One way to understand crime-related demands on police forces is to track 'crime pressure', a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. In the past five years, this measure has risen in every police force in England and Wales, and has doubled in many places.",
+	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics",
+	source_title = "Office for National Statistics, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+
+# get severity score data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+  
+  # download data
+  data_file <- tempfile(fileext = ".xls")
+  download.file("https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fcrimeandjustice%2fdatasets%2fcrimeseverityscoreexperimentalstatistics%2fcurrent/datatool.xls", destfile = data_file)
+  
+  # load data
+  file_data <- read_excel(data_file, sheet = "Data - reg + pfa", skip = 1)
+  
+  # tidy data
+  tidy_data <- file_data %>% 
+    # extract only columns relevant to severity scores, not the adjacent table
+    # of offence rates
+    select(1:22) %>% 
+    pivot_longer(c(-`Offence group`, -Code, -Name), names_to = "year", 
+                 values_to = "severity_score") %>% 
+    mutate(
+      # extract the month/year of the end of the data period
+      year_ending = str_trim(str_remove(str_extract(year, "\\n.+?\\.{3}"), 
+                                        "\\.{3}")),
+      # convert this into a date
+      year_ending = parse_date(year_ending, format = "%b '%y"),
+      # convert date to final day of the month rather than the first
+      year_ending = year_ending + days_in_month(year_ending) - days(1)
+    ) %>% 
+    select(-year) %>% 
+    clean_names()
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}	
+
+# get population data for local authorities, because population data aren't
+# published for police force areas
+if (!file.exists(paste0(chart_details$id, "-pop-data.csv.gz"))) {
+  
+  # download data
+  pop_data_file <- tempfile(fileext = ".zip")
+  download.file("https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fpopulationestimatesforukenglandandwalesscotlandandnorthernireland%2fmid2001tomid2018detailedtimeseries/ukdetailedtimeseries20012018.zip", destfile = pop_data_file)
+  unzip(pop_data_file, 
+        files = "MYEB1_detailed_population_estimates_series_UK_(2018).csv", 
+        exdir = tempdir())
+  
+  # load data
+  pop_data <- read_csv(paste0(
+    tempdir(), 
+    "/MYEB1_detailed_population_estimates_series_UK_(2018).csv")
+  ) %>% 
+    pivot_longer(c(-lad2018_code, -lad2018_name, -country, -sex, -Age),
+                 names_to = "year", values_to = "population", 
+                 names_prefix = "population_") %>% 
+    count(lad2018_code, lad2018_name, year, wt = population, 
+          name = "population")
+  
+  # save tidy data
+	write_csv(pop_data, paste0(chart_details$id, "-pop-data.csv.gz"))	
+  
+} else {
+	
+	# load tidy data
+	pop_data <- read_csv(paste0(chart_details$id, "-pop-data.csv.gz"))
+	
+}
+
+# load police numbers data
+police_numbers <- read_csv("police-numbers-data.csv.gz") %>% 
+  mutate(force_name = case_when(
+    force_name == "Avon & Somerset" ~ "Avon and Somerset",
+    force_name == "Devon & Cornwall" ~ "Devon and Cornwall",
+    force_name == "London, City of" ~ "Metropolitan Police",
+    TRUE ~ force_name
+  )) %>% 
+  # merge MPS and City Police because they're combined in the severity scores
+  count(force_name, year, wt = officers, name = "officers")
+
+# get LAD to PFA lookup table
+pfa_lookup <- read_csv("https://opendata.arcgis.com/datasets/7874e494dc544a138a502b3baba87678_0.csv") %>% 
+  clean_names()
+```
+
+```{r prepare data for chart}
+# get population for police force areas
+pfa_population <- pop_data %>% 
+  left_join(pfa_lookup, by = c("lad2018_code" = "lad18cd")) %>% 
+  # combine MPS and City Police because they're combined in the severity scores
+  mutate(
+    pfa18cd = if_else(pfa18cd == "E23000034", "E23000001", pfa18cd),
+    pfa18nm = if_else(pfa18nm == "London, City of", "Metropolitan Police", 
+                      pfa18nm)
+  ) %>% 
+  group_by(pfa18cd, pfa18nm, year) %>% 
+  summarise(population = sum(population)) %>% 
+  # remove rows that represent Scottish/NI population, for which pfa18cd is NA
+  remove_missing(na.rm = TRUE) %>%
+  mutate(year = as.numeric(year))
+
+chart_data <- tidy_data %>% 
+  filter(
+    offence_group == "Total recorded crime",
+    # only severity estimates for police force areas
+    str_sub(code, 0, 3) %in% c("E23", "W15"),
+    # exclude City Police, since its severity scores are included in the MPS
+    name != "City of London",
+    # only severity estimates for financial years
+    month(year_ending) == 3
+  ) %>% 
+  # create a temporary column containing the year prior to year_ending, for
+  # matching to the appropriate *mid calendar year* population estimates
+  mutate(year_match = year(year_ending - years(1))) %>% 
+  left_join(pfa_population, 
+            by = c("code" = "pfa18cd", "year_match" = "year")) %>% 
+  mutate(year_match = year_match + 1) %>% 
+  left_join(police_numbers, 
+            by = c("name" = "force_name", "year_match" = "year")) %>% 
+  select(name, year_ending, severity_score, population, officers) %>% 
+  filter(year_ending >= ymd("2010-01-01")) %>% 
+  mutate(total_severity = as.numeric(severity_score) * population) %>% 
+  select(name, year_ending, total_severity, officers) %>% 
+	mutate(
+		name = str_replace(name, "^North ", "N "),
+		name = str_replace(name, "^South ", "S "),
+		name = str_replace(name, "^West ", "W "),
+		name = str_replace(name, " Yorkshire$", " Yorks"),
+		name = recode(name, 
+  		"Metropolitan Police" = "Met Police",
+  		"Northamptonshire" = "Northants"
+  	)
+	)
+
+# calculate national severity and bind to force data
+chart_data <- chart_data %>% 
+  group_by(year_ending) %>% 
+  summarise_if(is.numeric, sum) %>% 
+  mutate(name = "England and Wales") %>% 
+  select(name, everything()) %>% 
+  bind_rows(chart_data) %>% 
+  mutate(severity_per_officer = total_severity / officers)
+
+# calculate national severity-per-officer in 2010
+national_severity_2010 <- chart_data %>% 
+  filter(year_ending == first(year_ending), name == "England and Wales") %>% 
+  pluck("severity_per_officer")
+
+# index chart data to national severity-per-officer in 2010
+chart_data <- chart_data %>% 
+  group_by(name) %>% 
+  mutate(severity_index = (severity_per_officer / national_severity_2010)) %>% 
+  ungroup()
+
+# order forces by most-recent severity index
+forces_in_order <- chart_data %>% 
+  filter(year_ending == last(year_ending)) %>% 
+  arrange(desc(severity_index)) %>% 
+  pluck("name")
+chart_data <- chart_data %>% 
+  mutate(
+    highlight = if_else(name == "England and Wales", TRUE, FALSE),
+    name = factor(name, levels = forces_in_order),
+    name = fct_relevel(name, "England and Wales", after = Inf),
+    label = if_else(
+      year_ending == last(year_ending) & 
+        name %in% c(head(forces_in_order, 3), tail(forces_in_order, 3), 
+                    "England and Wales"),
+      as.character(name),
+      NA_character_
+    ),
+    label = recode(label, "Met Police" = "London\n(Met + City*)",
+                   "England and Wales" = "England and\nWales (×1.9\nsince 2010)")
+  )
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2010-04-30"), 1.55, ymd("2010-10-31"), 1.75, balance_lines("crime pressure has always varied between police forces", 2), "left", "center", "left",
+	ymd("2014-03-31"), 0.99, ymd("2016-01-01"), 0.65, balance_lines("falling recorded crime kept crime pressure constant until 2014, despite falling officer numbers", 3), "left", "center", "right",
+	ymd("2016-06-30"), 2, ymd("2016-01-01"), 2.3, balance_lines("crime pressure in 21 forces is now more than double the 2010 national average", 3), "right", "center", "right"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(year_ending, severity_index, group = name,
+                                colour = highlight, size = highlight)) +
+  geom_hline(aes(yintercept = 1), colour = elements$average_line_colour,
+             linetype = elements$average_line_linetype) + 
+  geom_line() +
+  geom_label_repel(
+    aes(label = label),
+    na.rm = TRUE,
+    direction = "y",
+    xlim = c(ymd("2019-06-01"), NA),
+    colour = elements$label_text_colour,
+    size = elements$label_text_size,
+    hjust = 0,
+    lineheight = elements$label_text_lineheight,
+    label.padding = unit(0.1, "lines"),
+    label.size = NA,
+    segment.colour = elements$label_line_colour,
+    segment.size = 0.25,
+    max.iter = 20000
+  ) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+  scale_x_date(
+    breaks = seq.Date(ymd("2011-03-31"), ymd("2019-03-31"), by = "1 year"), 
+    date_labels = "%Y",
+    expand = expand_scale(mult = c(0, 0.2))
+  ) +
+  scale_y_continuous(
+    breaks = seq(0.5, 2.5, by = 0.5), 
+    labels = scales::number_format(accuracy = 0.1, prefix = "×"), 
+    trans = "log",
+    limits = c(0.5, NA), 
+    expand = c(0, 0.05)
+  ) +
+  scale_colour_manual(
+    values = c(`TRUE` = ucl_colours_list[["Mid Blue"]], 
+               `FALSE` = ucl_colours_list[["Blue Celeste"]])
+  ) +
+  scale_size_manual(values = c(`TRUE` = 1, `FALSE` = 0.25)) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		caption = "* ONS does not publish separate severity estimates for City of London Police",
+		legend = NULL,
+		x = NULL,
+		y = "crime pressure relative to 2010 national average (log scale)"
+	) +
+  theme_cjcharts() +
+  theme(legend.position = "none")
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+### Notes
+
+The Office for National Statistics (ONS) publishes [estimates of the severity of different types of police-recorded crime](https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics), derived from the average sentence imposed in court for each type of offence. In the same dataset, ONS publishes an overall estimate of the severity of crime per capita in each police force area. To convert this to an estimate of crime severity per officer (referred to above as _crime pressure_), severity per capita was multiplied by police force area population[^fn1] and then divided by the [number of full-time equivalent police officers in each force](https://www.gov.uk/government/collections/police-workforce-england-and-wales). Crime pressure is therefore defined as the severity of police-recorded crime per full-time equivalent officer.
+
+Estimates of the severity of different crimes are inherently limited, although they are likely to be more informative for some purposes than simply counting crimes (which implicitly assumes all crimes are of equal importance). For a further discussion of this, see [_Comparing methods for measuring crime harm/severity_](/publication/measuring_crime_harm/).
+
+[^fn1]: Police force area populations were calculated by aggregating [mid-year population estimates for local authorities](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) to police force areas using the ONS open geography portal [local authority to police force lookup table](https://geoportal.statistics.gov.uk/datasets/local-authority-district-to-community-safety-partnerships-to-police-force-areas-december-2018-lookup-in-england-and-wales).
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

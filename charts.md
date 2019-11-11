@@ -19,11 +19,11 @@ future plans (in approximate order with subject names).
 11. [Much of the homicide drop has already been erased](http://lesscrime.info/post/homicide-trends/)
 12. [Sentences for knife carrying are increasing, but not for teens](http://lesscrime.info/post/knife-sentencing/)
 13. [Young offenders are more likely to re-offend than adults](http://lesscrime.info/post/reoffending-rates)
+14. [In five years, crime-related demands on police have almost doubled](http://lesscrime.info/post/crime-pressure)
 
 
 ## Planned (slug name if code written)
 
-14. Crime severity per police officer by force (crime-pressure)
 15. Prison population by offence (prisoner-types)
 16. Police use of force by injury resulting (use-of-force)
 17. Substance misuse in prison
