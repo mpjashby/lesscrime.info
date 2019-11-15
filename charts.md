@@ -18,13 +18,13 @@ future plans (in approximate order with subject names).
 10. [Police are arresting half as many people as a decade ago](http://lesscrime.info/post/police-arrests/)
 11. [Much of the homicide drop has already been erased](http://lesscrime.info/post/homicide-trends/)
 12. [Sentences for knife carrying are increasing, but not for teens](http://lesscrime.info/post/knife-sentencing/)
-13. [Young offenders are more likely to re-offend than adults](http://lesscrime.info/post/reoffending-rates)
-14. [In five years, crime-related demands on police have almost doubled](http://lesscrime.info/post/crime-pressure)
+13. [Young offenders are more likely to re-offend than adults](http://lesscrime.info/post/reoffending-rates/)
+14. [In five years, crime-related demands on police have almost doubled](http://lesscrime.info/post/crime-pressure/)
+15. [Most prison sentences are for violent crimes](http://lesscrime.info/post/prisoner-types/)
 
 
 ## Planned (slug name if code written)
 
-15. Prison population by offence (prisoner-types)
 16. Police use of force by injury resulting (use-of-force)
 17. Substance misuse in prison
 18. Quantity of different drugs seized by Border Force (drug-seizures)
