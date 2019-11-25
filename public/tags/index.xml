@@ -7,7 +7,7 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 18 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,27 @@
     <item>
       <title>criminal justice</title>
       <link>/tags/criminal-justice/</link>
-      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/criminal-justice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>police</title>
+      <link>/tags/police/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/police/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>use of force</title>
+      <link>/tags/use-of-force/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/use-of-force/</guid>
       <description></description>
     </item>
     
@@ -54,15 +72,6 @@
       <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/crime-severity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>police</title>
-      <link>/tags/police/</link>
-      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/police/</guid>
       <description></description>
     </item>
     

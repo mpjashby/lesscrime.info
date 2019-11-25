@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>use of force on Matt Ashby</title>
+    <link>/tags/use-of-force/</link>
+    <description>Recent content in use of force on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Mon, 25 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/use-of-force/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chart: When police use force, they rarely cause injury</title>
+      <link>/post/use-of-force/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/use-of-force/</guid>
+      <description>
+
+
+&lt;p&gt;Police reported using force on over 300,000 occasions last year, or about 850 each day, with most incidents involving either handcuffing or other restraint. Almost all force used by police resulted in no injury to the person force was used against. When officers did injure people, the injuries were usually minor. However, since these are new statistics there is likely to be some under-reporting, especially of minor incidents.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/use-of-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../use-of-force.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/use-of-force.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-use-of-force-statistics-england-and-wales-april-2017-to-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

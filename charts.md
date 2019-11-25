@@ -21,11 +21,11 @@ future plans (in approximate order with subject names).
 13. [Young offenders are more likely to re-offend than adults](http://lesscrime.info/post/reoffending-rates/)
 14. [In five years, crime-related demands on police have almost doubled](http://lesscrime.info/post/crime-pressure/)
 15. [Most prison sentences are for violent crimes](http://lesscrime.info/post/prisoner-types/)
+16. [When police use force, they rarely cause injury](http://lesscrime.info/post/use-of-force/)
 
 
 ## Planned (slug name if code written)
 
-16. Police use of force by injury resulting (use-of-force)
 17. Substance misuse in prison
 18. Quantity of different drugs seized by Border Force (drug-seizures)
 19. Prison population over time
