@@ -22,15 +22,15 @@ future plans (in approximate order with subject names).
 14. [In five years, crime-related demands on police have almost doubled](http://lesscrime.info/post/crime-pressure/)
 15. [Most prison sentences are for violent crimes](http://lesscrime.info/post/prisoner-types/)
 16. [When police use force, they rarely cause injury](http://lesscrime.info/post/use-of-force/)
+17. [Seizures of the most harmful drugs at UK borders are falling](http://lesscrime.info/post/drug-seizures/)
 
 
 ## Planned (slug name if code written)
 
-17. Substance misuse in prison
-18. Quantity of different drugs seized by Border Force (drug-seizures)
-19. Prison population over time
+18. Reasons for crime non-reporting, by crime type
+19. Substance misuse in prison
 20. Clearance rates for different crime types (detection-rates)
-21. Reasons for crime non-reporting, by crime type
+21. Prison population over time
 22. Football banning orders by club (football-bans)
 23. Proportion of people on NDNAD by ethnicity (dna-database)
 24. Police use of firearms

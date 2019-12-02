@@ -7,10 +7,28 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 25 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>crime</title>
+      <link>/tags/crime/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/crime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>drugs</title>
+      <link>/tags/drugs/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/drugs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>criminal justice</title>
@@ -45,15 +63,6 @@
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/prison/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>crime</title>
-      <link>/tags/crime/</link>
-      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/crime/</guid>
       <description></description>
     </item>
     
@@ -180,15 +189,6 @@
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/perceptions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>drugs</title>
-      <link>/tags/drugs/</link>
-      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/drugs/</guid>
       <description></description>
     </item>
     

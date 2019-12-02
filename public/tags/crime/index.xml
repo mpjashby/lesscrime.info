@@ -7,10 +7,30 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 11 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/crime/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Seizures of the most harmful drugs at UK borders are falling</title>
+      <link>/post/drug-seizures/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/drug-seizures/</guid>
+      <description>
+
+
+&lt;p&gt;Border Force is responsible for seizing drugs at ports, airports and international parcels depots. However, reports by the Chief Inspector of Borders and Immigration suggest drug-detection efforts are hindered by understaffing, lack of training and focus on conducting passport checks on travellers. Most drug seizures are of small amounts: only 19% of seizures involve more than one kilogram of drugs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/drug-seizures_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-seizures.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/drug-seizures.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/seizures-of-drugs-in-england-and-wales-financial-year-ending-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For estimates of the relative harmfulness of different controlled drugs, see
+‘&lt;a href=&#34;https://doi.org/10.1016/S0140-6736(10)61462-6&#34;&gt;Drug harms in the UK: a multicriteria decision analysis&lt;/a&gt;’ by Nutt et al.&lt;/p&gt;
+&lt;p&gt;Reports on Border Force can be found on the website of the &lt;a href=&#34;https://www.gov.uk/government/organisations/independent-chief-inspector-of-borders-and-immigration&#34;&gt;Independent Chief Inspector of Borders and Immigration&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: In five years, crime-related demands on police have almost doubled</title>
