@@ -1,0 +1,222 @@
+---
+title: "Chart: More than 1,400 football arrests each season"
+author: Matt Ashby
+date: '2019-12-09'
+slug: football-arrests
+categories:
+  - Crime and justice chart of the week
+tags:
+  - arrests
+  - police
+  - criminal justice
+  - football
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "football-arrests",
+	title = "More than 1,400 football arrests each season",
+	subtitle = "Over the past five years, more than 1,400 people have been arrested on average each season for football-related offences across the top five English divisions, with incidents reported at over 1,000 different matches. Most arrests are for violence, and about half are for offences outside the grounds themselves. More fans are arrested at away games, even though far fewer fans typically travel than attend home games. However, the rate of arrests at football matches overall is low, at about 3 arrests per 100,000 match spectators.",
+	source_url = "https://www.gov.uk/government/statistics/football-related-arrests-and-banning-orders-england-and-wales-2018-to-2019-season",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	new_data_file <- tempfile(fileext = ".ods")
+	csv_file <- paste0(new_data_file, ".csv")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/831833/football-related-arrests-banning-orders-1819-hosb2219-tables.ods", write_disk(new_data_file))
+	
+	# convert new data from ODS to CSV and read
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(new_data_file, "Table_5", csv_file)
+
+	# read data and tidy
+	tidy_data <- read_csv(csv_file, skip = 4) %>% 
+		janitor::clean_names() %>% 
+		select(1:6) %>% 
+		filter(club != "*Total") %>% 
+		mutate(
+			year_ending = ymd(paste(str_sub(season, -2), "07", "31"))
+		) %>% 
+		select(year_ending, everything(), -season)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+
+clubs <- jsonlite::fromJSON("football-clubs.json") %>% 
+	map_dfr(~ list(club = .), .id = "league") %>% 
+	# remove clubs that weren't in the Premier League or Championship for some of
+	# the three past seasons
+	filter(!club %in% c(
+		"Wigan Athletic", "Blackburn Rovers", "Rotherham United", # to Chmpshp 2018-19
+		"Sheffield United", "Bolton Wanderers", "Millwall", # to Chmpshp 2017-18
+		"Wigan Athletic", "Burton Albion", "Barnsley", # to Chmpshp for 2016-17
+		"Bristol City", "Milton Keynes Dons", "Preston North End" # to Chmpshp for 2015-16
+		# "Wolverhampton Wanderers", "Brentford", "Rotherham United" # to Chmpshp for 2014-15
+	))
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	left_join(clubs, by = "club") %>% 
+	filter(
+		# year_ending > ymd("2016-08-01"),
+		!is.na(league)
+	) %>%
+	mutate(
+		away = away + neutral,
+		club = case_when(
+			club == "Manchester United" ~ "Manchester U",
+			club == "Manchester City" ~ "Manchester C",
+			club == "Sheffield Wednesday" ~ "Sheffield Wed",
+			TRUE ~ club
+		),
+		club = str_remove(club, "^AFC "),
+		club = str_remove(club, " Albion$"),
+		club = str_remove(club, " City$"),
+		club = str_remove(club, " County$"),
+		club = str_remove(club, " Hotspur$"),
+		club = str_remove(club, " North End$"),
+		club = str_remove(club, " Town$"),
+		club = str_remove(club, " United$"),
+		club = str_remove(club, " Wanderers$"),
+		club = case_when(
+			club == "Manchester U" ~ "Manchester United",
+			club == "Manchester C" ~ "Manchester City",
+			TRUE ~ club
+		)
+	) %>% 
+	arrange(year_ending) %>%
+	group_by(club) %>%
+	summarise(total = mean(total), home = mean(home), away = mean(away), 
+						league = last(league)) %>% 
+	mutate(
+		club = fct_rev(fct_reorder(club, total, .desc = TRUE)),
+		league = fct_rev(paste(league, "(2018–19)"))
+	) %>% 
+	gather("venue", "arrests", -club, -league, -total)
+
+league_average <- chart_data %>% 
+	group_by(league, club) %>% 
+	summarise(arrests = sum(arrests)) %>% 
+	ungroup() %>% 
+	group_by(league) %>% 
+	summarise(arrests = median(arrests))
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~league, ~label, ~hjust, ~vjust, ~curve,
+	"Crystal Palace", 16, "Brighton & Hove", 20, "Premier League (2018–19)", balance_lines("a higher proportion of arrests of fans of some clubs (e.g. Newcastle and Crystal Palace) occurred on the road, compared to most clubs", 3), "left", "center", "right",
+	"Leeds", 54, "Middlesbrough", 52.5, "Championship (2018–19)", balance_lines("Birmingham City fans were arrested more often away from home than most clubs' home and away arrests combined", 3), "right", "top", "left",
+	"Queens Park Rangers", 21.5, "Queens Park Rangers", 25, "Championship (2018–19)", balance_lines("half of clubs in this league had more/fewer arrests than this value", 3), "left", "center", "left"
+) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(league = factor(league, levels = levels(chart_data$league)))
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(club, arrests, fill = venue)) +
+	geom_col() +
+	geom_hline(aes(yintercept = arrests), data = league_average, linetype = "11", 
+						 colour = "grey50") + 
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_y_continuous(expand = c(0, 0)) +
+  scale_fill_manual(
+    values = unname(ucl_colours_list[c("Light Blue", "Mid Blue")]), # "Orange", "Mid Purple"
+    labels = c("home" = "home", "away" = "away/neutral venue")
+  ) +
+	coord_flip() +
+	facet_grid(rows = vars(league), scales = "free", space = "free") +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		caption = "only including clubs in Premier League/Championship for all five seasons",
+		legend = NULL,
+		x = NULL,
+		y = "mean number of arrests per season, all competitions, Aug 2014 to Jul 2019",
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.text.y = element_text(size = 7),
+		axis.ticks.y = element_blank(),
+		legend.background = element_rect(fill = "white", colour = NA),
+		legend.justification = c(0.95, 0.05),
+		legend.key.width = unit(4, "mm"),
+		legend.position = c(1, 0),
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank(),
+		strip.text.y = element_text(angle = -90, hjust = 0.5)
+	)
+
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

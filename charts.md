@@ -23,15 +23,15 @@ future plans (in approximate order with subject names).
 15. [Most prison sentences are for violent crimes](http://lesscrime.info/post/prisoner-types/)
 16. [When police use force, they rarely cause injury](http://lesscrime.info/post/use-of-force/)
 17. [Seizures of the most harmful drugs at UK borders are falling](http://lesscrime.info/post/drug-seizures/)
+18. [More than 1,400 football arrests each season](http://lesscrime.info/post/football-arrests/)
 
 
 ## Planned (slug name if code written)
 
-18. Reasons for crime non-reporting, by crime type
-19. Substance misuse in prison
-20. Clearance rates for different crime types (detection-rates)
-21. Prison population over time
-22. Football banning orders by club (football-bans)
+19. Reasons for crime non-reporting, by crime type
+20. Substance misuse in prison
+21. Clearance rates for different crime types (detection-rates)
+22. Prison population over time
 23. Proportion of people on NDNAD by ethnicity (dna-database)
 24. Police use of firearms
 25. Attrition of sex-offending cases in the CJS

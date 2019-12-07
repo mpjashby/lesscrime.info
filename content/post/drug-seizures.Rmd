@@ -96,7 +96,7 @@ chart_labels <- tribble(
 	ymd("2011-01-01"), 4, ymd("2011-01-01"), 50, "heroin (1st)", balance_lines("heroin is the most-harmful illegal drug and is only grown overseas, but is rarely seized at the border", 3), "left", "bottom", "left",
 	ymd("2018-04-01"), 8, ymd("2017-01-01"), 28, "cocaine (4th)", balance_lines("cocaine seizures by Border Force have fallen by 72% since 2009 even though cocaine use has remained steady", 5), "right", "bottom", "right",
 	ymd("2018-04-01"), 9, ymd("2015-04-01"), 19, "ecstasy (15th)", balance_lines("since 2009, ecstasy seizures have increased more than 15-fold", 2), "right", "bottom", "right",
-	ymd("2012-10-01"), 74, ymd("2015-10-01"), 64, "ketamine (9th)", balance_lines("rank of relative harm caused by different drugs, according to Nutt et al. 2010", 3), "left", "top", "right",
+	ymd("2012-10-01"), 74, ymd("2015-10-01"), 64, "ketamine (9th)", balance_lines("rank of relative harm caused by different illegal drugs, according to Nutt et al. 2010", 3), "left", "top", "right",
 	ymd("2007-03-31"), 70, ymd("2009-03-31"), 70, "heroin (1st)", "most harmful drugs", "left", "center", "straight",
 	ymd("2018-03-31"), 70, ymd("2016-03-31"), 70, "ecstasy (15th)", "least harmful drugs", "right", "center", "straight",
 	# ymd(""), 60, ymd(""), 70, "", balance_lines("", 3), "left", "center", "right",
