@@ -116,7 +116,7 @@ chart_data <- tidy_data %>%
 						league = last(league)) %>% 
 	mutate(
 		club = fct_rev(fct_reorder(club, total, .desc = TRUE)),
-		league = fct_rev(paste(league, "(2018–19)"))
+		league = fct_rev(paste(league, "(2019–20)"))
 	) %>% 
 	gather("venue", "arrests", -club, -league, -total)
 
@@ -130,9 +130,9 @@ league_average <- chart_data %>%
 # add chart labels
 chart_labels <- tribble(
 	~x, ~y, ~xend, ~yend, ~league, ~label, ~hjust, ~vjust, ~curve,
-	"Crystal Palace", 16, "Brighton & Hove", 20, "Premier League (2018–19)", balance_lines("a higher proportion of arrests of fans of some clubs (e.g. Newcastle and Crystal Palace) occurred on the road, compared to most clubs", 3), "left", "center", "right",
-	"Leeds", 54, "Middlesbrough", 52.5, "Championship (2018–19)", balance_lines("Birmingham City fans were arrested more often away from home than most clubs' home and away arrests combined", 3), "right", "top", "left",
-	"Queens Park Rangers", 21.5, "Queens Park Rangers", 25, "Championship (2018–19)", balance_lines("half of clubs in this league had more/fewer arrests than this value", 3), "left", "center", "left"
+	"Crystal Palace", 16, "Brighton & Hove", 20, "Premier League (2019–20)", balance_lines("a higher proportion of arrests of fans of some clubs (e.g. Crystal Palace and Stoke City) occurred on the road, compared to most clubs", 3), "left", "center", "right",
+	"Leeds", 54, "Middlesbrough", 52.5, "Championship (2019–20)", balance_lines("Birmingham City fans were arrested more often away from home than most clubs' home and away arrests combined", 3), "right", "top", "left",
+	"Swansea", 18.5, "Swansea", 22, "Championship (2019–20)", balance_lines("half of clubs in this league had more/fewer arrests than this value", 3), "left", "center", "left"
 ) %>% 
 	# order factor levels according to order in chart data, to maintain facet and
 	# legend order
