@@ -1,0 +1,251 @@
+---
+title: "Chart: One in ten of us is on the National DNA Database"
+author: Matt Ashby
+date: '2019-12-16'
+slug: dna-database
+categories:
+  - Crime and justice chart of the week
+tags:
+  - DNA
+  - criminal justice
+  - ethnicity
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "dna-database",
+	title = "One in ten of us is on the National DNA Database",
+	subtitle = "About 5.3 million people in England and Wales (about 10% of the population aged 10 or over) have their DNA stored on the National DNA Database, one of the largest DNA databases in the world. Police routinely collect DNA from arrested suspects, and it can be stored (often permanently) if they are convicted of almost any offence.",
+	source_url = "https://www.gov.uk/government/statistics/national-dna-database-statistics",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	new_data_file <- tempfile(fileext = ".ods")
+	csv_file <- paste0(new_data_file, ".csv")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/818992/NDNAD_Website_statistics_Q1_19-20.ods", write_disk(new_data_file))
+	
+	# convert new data from ODS to CSV and read
+	source_python(here::here("ods_to_csv.py"))
+	ods_to_csv(new_data_file, "Sheet1", csv_file)
+
+	# read data
+	file_data <- read_csv(csv_file, skip = 71)
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		slice(1:7) %>% 
+		select(1:2) %>% 
+		janitor::clean_names() %>% 
+		mutate(subject_profiles = as.numeric(subject_profiles))
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+
+if (!file.exists(paste0(chart_details$id, "-ethnicity-data.csv.gz"))) {
+
+	pop_data <- read_csv("https://www.ethnicity-facts-figures.service.gov.uk/uk-population-by-ethnicity/demographics/age-groups/latest/downloads/age-groups.csv") %>% 
+		pivot_longer(-Ethnicity, names_to = "age_group", values_to = "people") %>% 
+		janitor::clean_names() %>% 
+		write_csv(paste0(chart_details$id, "-ethnicity-data.csv.gz"))
+	
+} else {
+	
+	# load population data
+	pop_data <- read_csv(paste0(chart_details$id, "-ethnicity-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+# harmonise population ethnicity categories
+pop_data <- pop_data %>% 
+		mutate(ethnicity = case_when(
+			str_detect(ethnicity, "White and Black") ~ 
+				"Black/African/Caribbean/Black British: Total",
+			str_detect(ethnicity, "White and Asian") ~ "Asian/Asian British: Total",
+			str_detect(ethnicity, "Other Mixed") ~ 
+				"Other ethnic group: Total",
+			TRUE ~ ethnicity
+		)) %>% 
+		filter(
+			str_detect(ethnicity, "Total$"), 
+			!age_group %in% c("All ages", "Age 0 to 4", "Age 5 to 7", "Age 8 to 9")
+		) %>% 
+		group_by(ethnicity) %>% 
+		summarise(people = sum(people)) %>% 
+		filter(ethnicity != "Mixed/multiple ethnic group: Total") %>% 
+		mutate(ethnicity = recode(
+			ethnicity, 
+			"Asian/Asian British: Total" = "Asian", 
+			"Black/African/Caribbean/Black British: Total" = "Black", 
+			"Other ethnic group: Total" = "Other", 
+			"White: Total" = "White"
+		)) %>% 
+	rename(population = people)
+
+chart_data <- tidy_data %>% 
+	mutate(ethnicity = case_when(
+		ethnic_appearance %in% c("White North European", "White South European") ~ 
+			"White",
+		ethnic_appearance %in% c("Chinese, Japanese or SE Asian", 
+														 "Middle Eastern") ~ "Other",
+		TRUE ~ ethnic_appearance
+	)) %>% 
+	group_by(ethnicity) %>% 
+	summarise(profiles = sum(subject_profiles)) %>% 
+	left_join(pop_data, by = "ethnicity") %>% 
+	drop_na() %>% 
+	mutate(
+		# decrease the number of profiles in each category by 14.1% to account for
+		# the estimated proportion of DNA profiles that are duplicates
+		profiles = profiles * (1 - 0.141),
+		not_on_db = population - profiles
+	) %>% 
+	select(-population) %>% 
+	gather("on_ndnad", "people", -ethnicity) %>% 
+	mutate(
+		ethnicity = factor(str_to_lower(ethnicity), 
+											 levels = c("white", "asian", "black", "other")),
+		ethnicity = fct_recode(ethnicity, "Asian" = "asian"),
+		on_ndnad = on_ndnad == "profiles"
+	) %>% 
+	arrange(desc(ethnicity)) %>% 
+	group_by(ethnicity) %>% 
+	mutate(
+		on_ndnad = fct_rev(factor(on_ndnad)),
+		population = sum(people),
+		prop = people / population,
+		xmin = ifelse(on_ndnad == TRUE, 0, 1 - prop),
+		xmax = ifelse(on_ndnad == TRUE, prop, 1)
+	) %>% 
+	ungroup() %>% 
+	group_by(on_ndnad) %>% 
+	mutate(
+		ymax = cumsum(population) + (sum(population) * 0.01),
+		ymin = ymax - population,
+		ycen = ymin + (0.5 * (ymax - ymin)),
+		ymax = ymax - (sum(population) * 0.01),
+		label = ifelse(on_ndnad == TRUE, as.character(ethnicity), NA)
+	) %>% 
+	ungroup()
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	0.1, 56075912 * 0.5, 0.15, 56075912 * 0.5, balance_lines("most people on the DNA database are white, simply because most of the population is white", 3), "left", "center", "right",
+	0.13, 56075912 * 0.07, 0.18, 56075912 * 0.18, balance_lines("black people are twice as likely to have their DNA stored on the database, compared to white people", 3), "left", "bottom", "left"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(xmin = xmin, ymin = ymin, xmax = xmax, ymax = ymax, 
+											 fill = on_ndnad)) +
+	geom_rect() +
+	geom_text(aes(x = 1, y = ycen, label = label), hjust = 0, nudge_x = 0.01,
+						na.rm = TRUE, size = (11 * 0.8) / (14 / 5), colour = "grey30") +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = "black",
+						fill = ucl_colours_list[["Light Green"]], 
+						size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_continuous(breaks = seq(0, 1, by = 0.1), 
+										 labels = scales::percent_format(accuracy = 1), 
+										 expand = expand_scale(mult = c(0, 0.05))) +
+	scale_y_continuous(expand = c(0, 0), 
+										 labels = scales::number_format(accuracy = 1, scale = 1/1e6, 
+										 															 suffix = "m")) +
+	# the false value is a 90% tint from https://www.color-hex.com/color/500778
+  scale_fill_manual(
+    values = c(`TRUE` = ucl_colours_list[["Dark Green"]], 
+    					 `FALSE` = ucl_colours_list[["Light Green"]]),
+    labels = c(`TRUE` = "people on DNA database  ", 
+    					 `FALSE` = "people not on DNA database")
+  ) +
+	coord_cartesian(clip = "off") +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = "proportion of people in an ethnic group",
+		y = "population",
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		panel.grid = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+The estimated proportion of people on the National DNA Database attempts to take 
+account of the presence of duplicate records on the database by reducing the 
+number of samples in each category by 14.1%, the estimated proportion of records 
+that are duplicates. See the data source for more information.
+
+Since the National DNA Database does not have an equivalent ethnicity category
+to the 'Mixed/multiple ethnic group' categories in population data, people in 
+these groups have been categorised on this chart as being of Black, Asian or 
+other ethnicity.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

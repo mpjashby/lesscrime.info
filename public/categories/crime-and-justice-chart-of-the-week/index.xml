@@ -7,10 +7,35 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/categories/crime-and-justice-chart-of-the-week/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: One in ten of us is on the National DNA Database</title>
+      <link>/post/dna-database/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/dna-database/</guid>
+      <description>
+
+
+&lt;p&gt;About 5.3 million people in England and Wales (about 10% of the population aged 10 or over) have their DNA stored on the National DNA Database, one of the largest DNA databases in the world. Police routinely collect DNA from arrested suspects, and it can be stored (often permanently) if they are convicted of almost any offence.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/dna-database_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../dna-database.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/dna-database.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/national-dna-database-statistics&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The estimated proportion of people on the National DNA Database attempts to take
+account of the presence of duplicate records on the database by reducing the
+number of samples in each category by 14.1%, the estimated proportion of records
+that are duplicates. See the data source for more information.&lt;/p&gt;
+&lt;p&gt;Since the National DNA Database does not have an equivalent ethnicity category
+to the ‘Mixed/multiple ethnic group’ categories in population data, people in
+these groups have been categorised on this chart as being of Black, Asian or
+other ethnicity.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: More than 1,400 football arrests each season</title>

@@ -1,7 +1,7 @@
 # Crime and Justice Charts of the Week
 
-This list shows the charts already published (in order with publishd titles) and 
-future plans (in approximate order with subject names).
+This list shows the charts already published (in order with published titles) 
+and future plans (in approximate order with subject names).
 
 
 ## Published
@@ -24,15 +24,15 @@ future plans (in approximate order with subject names).
 16. [When police use force, they rarely cause injury](http://lesscrime.info/post/use-of-force/)
 17. [Seizures of the most harmful drugs at UK borders are falling](http://lesscrime.info/post/drug-seizures/)
 18. [More than 1,400 football arrests each season](http://lesscrime.info/post/football-arrests/)
+19. [One in ten of us is on the National DNA Database](http://lesscrime.info/post/dna-database/)
 
 
 ## Planned (slug name if code written)
 
-19. Reasons for crime non-reporting, by crime type
-20. Substance misuse in prison
-21. Clearance rates for different crime types (detection-rates)
-22. Prison population over time
-23. Proportion of people on NDNAD by ethnicity (dna-database)
+20. Reasons for crime non-reporting, by crime type
+21. Substance misuse in prison
+22. Clearance rates for different crime types (detection-rates)
+23. Prison population over time
 24. Police use of firearms
 25. Attrition of sex-offending cases in the CJS
 26. Importance of crime as an issue of public concern over time
