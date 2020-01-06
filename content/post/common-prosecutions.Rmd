@@ -1,5 +1,5 @@
 ---
-title: "Chart: What offences are people most often proseucted for?"
+title: "Chart: What offences are people most often prosecuted for?"
 author: Matt Ashby
 date: '2020-01-06'
 slug: common-prosecutions
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 ```{r set chart parameters}
 chart_details <- list(
 	id = "common-prosecutions",
-	title = "What offences are people most often proseucted for?",
+	title = "What offences are people most often prosecuted for?",
 	subtitle = "About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.",
 	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018",
 	source_title = "Ministry of Justice, 2019"
