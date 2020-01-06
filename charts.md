@@ -25,6 +25,7 @@ and future plans (in approximate order with subject names).
 17. [Seizures of the most harmful drugs at UK borders are falling](http://lesscrime.info/post/drug-seizures/)
 18. [More than 1,400 football arrests each season](http://lesscrime.info/post/football-arrests/)
 19. [One in ten of us is on the National DNA Database](http://lesscrime.info/post/dna-database/)
+20. [What offences are people most often proseucted for?](http://lesscrime.info/post/common-prosecutions/)
 
 
 ## Planned (slug name if code written)
@@ -42,7 +43,6 @@ and future plans (in approximate order with subject names).
 30. Trust in CJ professions (police, judges etc.) over time in comparison to other professions
 31. Seasonal variation in different crimes
 32. Police complaints by type
-33. Commonly prosecuted offences (common-prosecutions)
 34. Variations in procurement costs between police forces
 35. Repeat victimisation
 36. Police officer causes of on-duty death

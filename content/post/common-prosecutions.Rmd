@@ -1,0 +1,208 @@
+---
+title: "Chart: What offences are people most often proseucted for?"
+author: Matt Ashby
+date: '2020-01-06'
+slug: common-prosecutions
+categories:
+  - Crime and justice chart of the week
+tags:
+  - criminal justice
+  - courts
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "common-prosecutions",
+	title = "What offences are people most often proseucted for?",
+	subtitle = "About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.",
+	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018",
+	source_title = "Ministry of Justice, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- tempfile(fileext = ".zip")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/804669/Data-behind-interactive-tools-csv.zip", write_disk(data_file), progress())
+
+  # The downloaded data are in a .xls file, but the data are hidden in a pivot
+  # table rather than a simple sheet. The data can be revealed by right-clicking
+	# the pivot table and clicking 'Show Details' then saving the resulting sheet
+	# as a CSV file. The default MacOS unzip utility fails, but using Keka works.
+	system(glue::glue("open -a Keka {data_file}"))
+	
+	# read data
+	file_data <- read_csv(str_replace(data_file, "\\.zip$", 
+																		"/HO-code-principal-offence-2018.csv"))
+	
+	# tidy data
+	tidy_data <- file_data %>%
+		# clean variable names
+		clean_names()
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare plot data}
+chart_data <- tidy_data %>%
+	rename(year = year_of_appearance) %>% 
+	filter(year %in% c("2016", "2017", "2018")) %>% 
+	mutate(
+		offence_name = case_when(
+			detailed_offence %in% c("Speeding offences detected by camera devices", "Speeding offences not detected by camera devices") ~ "speeding",
+			detailed_offence == "Television licence evasion" ~ "TV licence evasion",
+			detailed_offence %in% c("Using motor vehicle uninsured against third party risks", "Keeping vehicle which does not meet insurance requirements") ~ "driving without insurance",
+			detailed_offence == "Keeper of vehicle or person other than keeper of vehicle failing to supply information as to driver's identity as required by or on behalf of Chief Officer of Police" ~ "not identifying driver to police",
+			detailed_offence == "Common assault and battery" ~ "common assault",
+			detailed_offence == "Keeping a motor vehicle on highway without a current vehicle excise licence" ~ "vehicle tax evasion",
+			detailed_offence == "Theft from shops" ~ "shoplifting",
+			detailed_offence %in% c("Railway byelaws as to the conduct of passengers", "Summary offences under Midland Metro System Byelaws 1999", "Summary offences under Transport for London Regional Railway Network Byelaws", "Summary offences under Transport for London Road Transport Premises Byelaws", "Summary offences under Tyneside Metro Byelaws") ~ "railway byelaws",
+			detailed_offence == c("Driving or attempting to drive a motor vehicle while having a breath, urine or blood alcohol concentration in excess of the prescribed limit") | (str_detect(detailed_offence, "drive") & (str_detect(detailed_offence, "drug") | str_detect(detailed_offence, "drink"))) ~ "drink/drug driving",
+			# detailed_offence %in% c("Other criminal damage", "Summary criminal or malicious damage") ~ "criminal damage",
+			# offence_group == "05: Criminal damage and arson" ~ "criminal damage",
+			detailed_offence == "Depositing litter (Environmental Protection Act 1990)" ~ "littering",
+			detailed_offence == "Travelling by railway without paying correct fare, failing to show ticket, failing to give name and address, etc." ~ "railway fare evasion",
+			detailed_offence %in% c("Causing fear or provocation of violence", "Causing harassment, alarm or distress", "Causing intentional harassment alarm or distress") ~ "disorderly/threatening behaviour",
+			detailed_offence == "Offences related to stage carriage and public service vehicles" ~ "bus fare evasion",
+			detailed_offence == "Parent's failure to secure child's regular attendance at school" ~ "parent allowing truancy",
+			str_detect(detailed_offence, "^Burglary") | detailed_offence == "Other burglary in a dwelling" ~ "burglary",
+			detailed_offence == "Having possession of a controlled drug - class B (cannabis, including cannabis resin, cannabinol and cannabinol derivatives)" ~ "cannabis possession",
+			detailed_offence == "Careless driving  - without due care and attention or reasonable consideration for other road users" ~ "careless driving",
+			# detailed_offence == "Using hand held mobile phone while driving" ~ "using mobile phone while driving",
+			detailed_offence == "Failing to comply with traffic lights, signals or signs (motor vehicles) - offences detected by camera devices" ~ "ignoring traffic signs/lights",
+			detailed_offence == "Absconding by person released on bail" ~ "absconding on bail",
+			offence == "104 Assaulting, resisting or obstructing a constable or designated officer in execution of duty" ~ "assault on police",
+			# detailed_offence == "Assaults occasioning actual bodily harm" ~ "actual bodily harm",
+			offence == "8.10 Breach of a restraining order" ~ "breach restraining order",
+			detailed_offence == "Drunkenness, with aggravation - disorderly in a public place" ~ "drunk and disorderly",
+			# detailed_offence == "Driving whilst disqualified from holding or obtaining a licence" ~ "disqualified driving",
+			# detailed_offence == "Breach of a restraining order" ~ "breach of restraining order",
+			# detailed_offence == "Assault on a constable" ~ "assault police",
+			# detailed_offence == "Having an article with a blade or point in a public place" ~ "possess bladed article",
+			# detailed_offence == "Offence of harassment" ~ "harassment",
+			# detailed_offence == "Other summary non-motoring offences" ~ "other",
+			TRUE ~ "other"
+		),
+		motoring = ifelse(
+			(offence_type == "04: Summary motoring" & offence_name != "other") | 
+				offence_name == "vehicle tax evasion", 
+			TRUE, 
+			FALSE
+		)
+	) %>% 
+	count(motoring, offence_name, year, wt = prosecuted) %>% 
+	group_by(motoring, offence_name) %>% 
+	summarise(n = mean(n)) %>% 
+	ungroup() %>% 
+	filter(offence_name != "other") %>% 
+	arrange(desc(n)) %>% 
+	mutate(
+		offence_name = 
+			fct_rev(as_factor(glue::glue("{row_number()}. {offence_name}")))
+	)
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	19.25, 177000, 16, 177000, balance_lines("speeding is the offence prosecuted most often, even though 90% of offences are dealt with by a fixed penalty rather than prosecution", 6), "right", "top", "left",
+	17.25, 120000, 13.5, 110000, balance_lines("many of the most commonly prosecuted offences typically involve prosecutions by TV Licensing or rail/bus/tram companies, rather than the Crown Prosecution Service", 6), "right", "top", "left",
+	9, 24000, 7.5, 35000, balance_lines("local authorities frequently prosecute for offences such as littering or failing to ensure a child attends school", 4), "left", "top", "left"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(offence_name, n, fill = motoring)) +
+	geom_col() +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_y_continuous(
+		labels = scales::number_format(accuracy = 1, scale = 1/1e3, suffix = "k"), 
+		expand = c(0, 0)
+	) +
+	scale_fill_manual(
+		values = unname(ucl_colours_list[c("Bright Blue", "Bright Green")]),
+		labels = c(`TRUE` = "motoring", `FALSE` = "non-motoring")
+	) +
+	coord_flip() +
+	labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle, .width = 80),
+		x = NULL,
+		y = "average annual prosecutions, 2016–18, excluding out-of-court disposals",
+		alpha = NULL,
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.ticks.y = element_blank(),
+		legend.justification = "right",
+		legend.position = c(1, 0.1),
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
