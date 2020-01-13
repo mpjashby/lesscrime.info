@@ -4,7 +4,53 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/custody-deaths/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/criminal-justice/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/deaths/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/police/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -14,36 +60,7 @@
   </url>
   
   <url>
-    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/courts/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/criminal-justice/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -78,12 +95,6 @@
   
   <url>
     <loc>/tags/football/</loc>
-    <lastmod>2019-12-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/police/</loc>
     <lastmod>2019-12-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

@@ -7,10 +7,37 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 06 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>criminal justice</title>
+      <link>/tags/criminal-justice/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/criminal-justice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deaths</title>
+      <link>/tags/deaths/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/deaths/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>police</title>
+      <link>/tags/police/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/police/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>courts</title>
@@ -18,15 +45,6 @@
       <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/courts/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>criminal justice</title>
-      <link>/tags/criminal-justice/</link>
-      <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/criminal-justice/</guid>
       <description></description>
     </item>
     
@@ -63,15 +81,6 @@
       <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/football/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>police</title>
-      <link>/tags/police/</link>
-      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/police/</guid>
       <description></description>
     </item>
     

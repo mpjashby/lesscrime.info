@@ -1,0 +1,186 @@
+---
+title: "Chart: 10 times more people die in police collisions than in shootings"
+author: Matt Ashby
+date: '2020-01-13'
+slug: custody-deaths
+categories:
+  - Crime and justice chart of the week
+tags:
+  - criminal justice
+  - police
+  - deaths
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "custody-deaths",
+	title = "10 times more people die in police collisions than in shootings",
+	subtitle = "About 100 people a year die following contact with police in England and Wales. Public debate has often focused on deaths in custody or police shootings, but people are much more likely to die in collisions with police vehicles or in suicides following release from custody.",
+	source_url = "https://www.policeconduct.gov.uk/research-and-learning/statistics/annual-deaths-during-or-following-police-contact-statistics",
+	source_title = "Independent Office for Police Conduct, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# downloading the data using httr::GET() causes an error, but downloading via a
+	# browser works, so download the data manually from
+	# https://www.policeconduct.gov.uk/sites/default/files/Documents/statistics/Time_series_tables_2018-19.ods
+	# and then load
+	
+	# load ODS to CSV converter
+	source_python(here::here("ods_to_csv.py"))
+	
+	# convert ODS sheets to CSV
+	ods_to_csv(here::here("content/post/Time_series_tables_2018-19.ods"), 
+						 "RTI", glue::glue("{tempdir()}/deaths_rti.csv"))
+	ods_to_csv(here::here("content/post/Time_series_tables_2018-19.ods"), 
+						 "Shootings", glue::glue("{tempdir()}/deaths_shooting.csv"))
+	ods_to_csv(here::here("content/post/Time_series_tables_2018-19.ods"), 
+						 "Custody", glue::glue("{tempdir()}/deaths_custody.csv"))
+	ods_to_csv(here::here("content/post/Time_series_tables_2018-19.ods"), 
+						 "Apparent_suicides", glue::glue("{tempdir()}/deaths_suicide.csv"))
+
+	# read data and tidy
+	tidy_data <- bind_rows(
+		"traffic" = read_csv(glue::glue("{tempdir()}/deaths_rti.csv"), skip = 70, 
+												 n_max = 6),
+		"shootings" = read_csv(glue::glue("{tempdir()}/deaths_shooting.csv"), 
+													 skip = 53, n_max = 5),
+		"custody" = read_csv(glue::glue("{tempdir()}/deaths_custody.csv"), 
+												 skip = 56, n_max = 5),
+		"suicide" = read_csv(glue::glue("{tempdir()}/deaths_suicide.csv"), 
+												 skip = 54, n_max = 6),
+		.id = "type"
+	) %>% 
+		select(-X17) %>% 
+		janitor::clean_names() %>% 
+		pivot_longer(c(-type, -ethnic_group), names_to = "year", 
+								 values_to = "count") %>% 
+		mutate(
+			year = as.numeric(paste0("20", str_sub(year, -2))),
+			year = glue::glue("{year-1}-{year}"),
+			ethnic_group = ifelse(ethnic_group == "Other^", "Other", ethnic_group)
+		)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+	# remove original data file
+	file.remove(here::here("content/post/Time_series_tables_2018-19.ods"))
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>%
+	mutate(
+		type = recode_factor(
+			type,
+			suicide = "apparent suicide after release",
+			traffic = "road traffic collision",
+			custody = "in or after custody or arrest",
+			shootings = "shot by police"
+		),
+		year = lubridate::ymd(paste(str_sub(year, -4), "03 31"))
+	) %>% 
+	group_by(type, year) %>% 
+	summarise(count = sum(count))
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~type, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2015-06-01"), 72, ymd("2018-06-01"), 77, "apparent suicide after release", balance_lines("apparent suicide after being released from custody is the most common reason for death after police contact", 3), "left", "center", "left",
+	ymd("2019-03-31"), 43, ymd("2019-03-31"), 51, "road traffic collision", balance_lines("deaths in road traffic collisions have more than doubled in five years", 3), "left", "bottom", "left",
+	ymd("2015-03-31"), 20, ymd("2018-03-31"), 29, "in or after custody or arrest", balance_lines("deaths in or after custody have been broadly static for the past decade even though the number of arrests has halved in that time", 4), "left", "bottom", "left",
+) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(type = factor(type, levels = levels(chart_data$type)))
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(year, count, fill = type)) +
+	geom_col() +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	scale_x_date(date_breaks = "3 years", date_labels = "'%y") +
+	scale_y_continuous(expand = expand_scale(mult = c(0, 0.1))) +
+	scale_fill_manual(values = unname(
+		ucl_colours_list[c("Bright Blue", "Orange", "Mid Purple", "Light Red")])) +
+	coord_cartesian(clip = "off") +
+	facet_grid(cols = vars(type), labeller = label_wrap_gen(width = 20)) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		caption = "excludes 'other' deaths because definitions have changed over time",
+		x = NULL,
+		y = "annual number of deaths"
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.line.x = element_line(colour = "grey80"),
+		legend.position = "none",
+		panel.grid = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

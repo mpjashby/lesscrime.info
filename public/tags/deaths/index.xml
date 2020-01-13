@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deaths on Matt Ashby</title>
+    <link>/tags/deaths/</link>
+    <description>Recent content in deaths on Matt Ashby</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>CC-BY</copyright>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/deaths/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chart: 10 times more people die in police collisions than in shootings</title>
+      <link>/post/custody-deaths/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/custody-deaths/</guid>
+      <description>
+
+
+&lt;p&gt;About 100 people a year die following contact with police in England and Wales. Public debate has often focused on deaths in custody or police shootings, but people are much more likely to die in collisions with police vehicles or in suicides following release from custody.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/custody-deaths_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../custody-deaths.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/custody-deaths.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.policeconduct.gov.uk/research-and-learning/statistics/annual-deaths-during-or-following-police-contact-statistics&#34;&gt;Independent Office for Police Conduct, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

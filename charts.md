@@ -30,19 +30,19 @@ and future plans (in approximate order with subject names).
 
 ## Planned (slug name if code written)
 
-20. Reasons for crime non-reporting, by crime type
-21. Substance misuse in prison
-22. Clearance rates for different crime types (detection-rates)
-23. Prison population over time
-24. Police use of firearms
-25. Attrition of sex-offending cases in the CJS
-26. Importance of crime as an issue of public concern over time
-27. Variation in violence victimisation risk by age, sex etc. (violence-risk)
-28. Deaths in police custody by type since ~2008
-29. Incidence of CSEW fraud by type
-30. Trust in CJ professions (police, judges etc.) over time in comparison to other professions
-31. Seasonal variation in different crimes
-32. Police complaints by type
+21. Deaths in police custody by type since ~2008
+22. Reasons for crime non-reporting, by crime type
+23. Substance misuse in prison
+24. Clearance rates for different crime types (detection-rates)
+25. Prison population over time
+26. Police use of firearms
+27. Attrition of sex-offending cases in the CJS
+28. Importance of crime as an issue of public concern over time
+29. Variation in violence victimisation risk by age, sex etc. (violence-risk)
+30. Incidence of CSEW fraud by type
+31. Trust in CJ professions (police, judges etc.) over time in comparison to other professions
+32. Seasonal variation in different crimes
+33. Police complaints by type
 34. Variations in procurement costs between police forces
 35. Repeat victimisation
 36. Police officer causes of on-duty death
