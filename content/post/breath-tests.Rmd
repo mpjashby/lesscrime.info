@@ -1,0 +1,237 @@
+---
+title: "Chart: Police crackdowns catch few drink drivers"
+author: Matt Ashby
+date: '2020-01-20'
+slug: breath-tests
+categories:
+  - Crime and justice chart of the week
+tags:
+  - criminal justice
+  - police
+  - breath tests
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "breath-tests",
+	title = "Police crackdowns catch few drink drivers",
+	subtitle = "Police routinely breathalyse drivers they suspect have been drinking, but also carry out an annual Christmas crackdown, breath-testing more than three times as many drivers in December as in other months. However, only about 1.6% of these extra tests catch a drink driver, compared to about 14% of routine tests.",
+	source_url = "https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+
+# load ODS to CSV converter
+source_python(here::here("ods_to_csv.py"))
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	data_file <- tempfile(fileext = ".ods")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841257/breath-test-police-powers-procedures-mar19-hosb2519-tables.ods", write_disk(data_file))
+	
+	# convert ODS sheet to CSV
+	ods_to_csv(data_file, "BT_01", glue::glue("{data_file}.csv"))
+
+	# read data
+	tidy_data <- glue::glue("{data_file}.csv") %>% 
+		read_csv(skip = 1) %>% 
+		rename(
+			year = `Calendar Year`,
+			force = `Police Force`,
+			quarter = `Calendar Quarter`,
+			month = Month,
+			tests = `Number of breath tests`,
+			positive = `Number of positive or refused breath tests`
+		) %>% 
+		mutate(
+			negative = tests - positive,
+			quarter = str_sub(quarter, 0, 2)
+		) %>% 
+		pivot_longer(c("positive", "negative"), names_to = "type", 
+								 values_to = "count")
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+
+# get population data for local authorities, because population data aren't
+# published for police force areas
+pop_data <- read_csv(here::here("content/post/crime-pressure-pop-data.csv.gz"))
+
+# get LAD to PFA lookup table
+pfa_lookup <- read_csv("https://opendata.arcgis.com/datasets/7874e494dc544a138a502b3baba87678_0.csv") %>% 
+  clean_names()
+```
+
+```{r prepare data for chart}
+# get population for police force areas
+pfa_population <- pop_data %>% 
+  left_join(pfa_lookup, by = c("lad2018_code" = "lad18cd")) %>% 
+  # combine MPS and City Police because they're combined in the severity scores
+  mutate(
+    pfa18cd = if_else(pfa18cd == "E23000034", "E23000001", pfa18cd),
+    pfa18nm = recode(pfa18nm, 
+    								 "London, City of" = "Metropolitan Police",
+    								 "Devon & Cornwall" = "Devon and Cornwall")
+  ) %>% 
+  group_by(pfa18cd, pfa18nm, year) %>% 
+  summarise(population = sum(population)) %>% 
+  # remove rows that represent Scottish/NI population, for which pfa18cd is NA
+  remove_missing(na.rm = TRUE) %>%
+  mutate(year = as.numeric(year))
+
+chart_data <- tidy_data %>%
+	mutate(
+		date = as_date(glue::glue("1 {month} {year}"), tz = "GMT", 
+									 format = "%d %B %Y"),
+		month_date = as_date(glue::glue("1 {month} 2019"), tz = "GMT", 
+									 format = "%d %B %Y")
+	) %>% 
+	filter(
+		date >= ymd("2010-01-01"), 
+		!force %in% c("London, City of", "Metropolitan", "Norfolk", "Suffolk", 
+									"Sussex")
+	) %>% 
+  left_join(pfa_population, 
+            by = c("force" = "pfa18nm", "year" = "year")) %>% 
+	group_by(type, date) %>% 
+	summarise(count = sum(count, na.rm = TRUE)) %>% 
+	# mutate(lagged = lead(count)) %>% 
+	ungroup() %>%
+	mutate(
+		# date = date + months(1),
+		type = recode(
+			type,
+			positive = "failed or refused breath tests", 
+			negative = "passed breath tests"
+		)
+	) %>% 
+	# pivot_longer(c("count", "lagged"), values_to = "count") %>% 
+	remove_missing(na.rm = TRUE)
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2013-12-31"), 145000, ymd("2014-06-01"), 160000, balance_lines("the number of tests has been falling since 2014, likely due to budget cuts", 2), "left", "center", "left",
+	ymd("2015-06-15"), 60000, ymd("2015-11-01"), 120000, balance_lines("a smaller crackdown takes place each summer", 2), "left", "bottom", "left",
+	ymd("2018-09-15"), 7000, ymd("2018-06-01"), 65000, balance_lines("about 4,400 people failed a breath test per month in 2018", 4), "right", "bottom", "right"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(date, count, colour = fct_rev(type))) + 
+	geom_step(size = 0.75) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(date_breaks = "1 year", date_labels = "%Y", 
+							 expand = expand_scale(mult = 0.02)) +
+	scale_y_continuous(
+		labels = scales::comma_format(scale = 1/1000, suffix = "k"), 
+		expand = expand_scale(add = c(0, 10000))
+	) + 
+	scale_colour_manual(
+		values = unname(ucl_colours_list[c("Light Blue", "Light Red")])
+	) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle, .width = 90),
+		caption = "Excludes London, Norfolk, Suffolk and Sussex as police could not provide consistent data for all years",
+		legend = NULL,
+		x = NULL,
+		y = "monthly number of breath tests",
+		colour = NULL
+	) +
+	theme_cjcharts()
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+### Notes
+
+```{r calculate rates, eval=FALSE, include=FALSE}
+# this chunk calculates the proportion of failed/refused tests in December and
+# separately in other months, as well as the rate for 'extra' tests done during
+# Decembers compared to the mean of the other months
+monthly_counts <- chart_data %>% 
+	mutate(
+		month = month(date, label = TRUE),
+		is_dec = ifelse(month == "Dec", "Dec", "other"),
+		type = str_extract(type, "^\\w+")
+	)
+
+monthly_counts %>% 
+	filter(date >= ymd("2018-01-01")) %>% 
+	group_by(type) %>% 
+	summarise(mean_count = mean(count), count_sd = sd(count))
+
+monthly_counts %>% 
+	pivot_wider(names_from = "is_dec", values_from = "count") %>% 
+	group_by(type) %>% 
+	summarise_if(is.numeric, mean, na.rm = TRUE) %>% 
+	mutate(extra = Dec - other) %>% 
+	adorn_percentages(denominator = "col")
+```
+
+'Extra' tests associated with the annual Chirstmas crackdown on drink driving were calculated as the mean number of tests conducted in December each year minus the mean number of tests conducted in other months.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
+
