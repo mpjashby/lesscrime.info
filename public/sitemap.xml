@@ -43,13 +43,13 @@
   </url>
   
   <url>
-    <loc>/tags/criminal-justice/</loc>
+    <loc>/tags/international-comparisons/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/prisons/</loc>
+    <loc>/tags/trends/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -61,6 +61,12 @@
   
   <url>
     <loc>/tags/breath-tests/</loc>
+    <lastmod>2020-01-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/criminal-justice/</loc>
     <lastmod>2020-01-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -218,12 +224,6 @@
   
   <url>
     <loc>/tags/homicide/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/trends/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

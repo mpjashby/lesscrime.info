@@ -1,13 +1,13 @@
 ---
-title: "Chart: Homcides haven't only increased in Britain"
+title: "Chart: Homicides haven't only increased in Britain"
 author: Matt Ashby
 date: '2020-01-27'
 categories:
   - Crime and justice chart of the week
 tags:
   - crime
-  - criminal justice
-  - prisons
+  - trends
+  - international comparisons
 ---
 
 ```{r set knitr options, include=FALSE}
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 ```{r set chart parameters}
 chart_details <- list(
 	id = "homicide-europe",
-	title = "Homcides haven't only increased in Britain",
+	title = "Homicides haven't only increased in Britain",
 	subtitle = "The homicide-rate increase over the past five years hasn't been unique to England and Wales, with murders also increasing in France, Germany and Sweden after continent-wide decreases since the 1990s. The UK-wide homicide rate remains about average for European countries.",
 	source_url = "https://ec.europa.eu/eurostat/data/database",
 	source_title = "Eurostat, 2019"

@@ -28,31 +28,33 @@ and future plans (in approximate order with subject names).
 20. [What offences are people most often proseucted for?](http://lesscrime.info/post/common-prosecutions/)
 21. [10 times more people die in police collisions than in shootings](http://lesscrime.info/post/custody-deaths/)
 22. [Police crackdowns catch few drink drivers](http://lesscrime.info/post/breath-tests/)
+23. [Homicides haven't only increased in Britain](http://lesscrime.info/post/homicide-europe/)
 
 ## Planned (slug name if code written)
 
-22. Reasons for crime non-reporting, by crime type
-23. Substance misuse in prison
-24. Clearance rates for different crime types (detection-rates)
-25. Prison population over time
-26. Police use of firearms
-27. Attrition of sex-offending cases in the CJS
-28. Importance of crime as an issue of public concern over time
-29. Variation in violence victimisation risk by age, sex etc. (violence-risk)
-30. Incidence of CSEW fraud by type
-31. Trust in CJ professions (police, judges etc.) over time in comparison to other professions
-32. Seasonal variation in different crimes
-33. Police complaints by type
-34. Variations in procurement costs between police forces
-35. Repeat victimisation
-36. Police officer causes of on-duty death
-37. Fear of crime
-38. Police force reserves as a proportion of budget over time
-39. Overdose deaths
-40. Places that have lost their local magistrates court, based on Voronoi polygons
-41. Stop and search over time
-42. Police chief officer pay by force size
-43. Variations in sentencing around the country
-44. Variations in disposals for cannabis possession by police force
-45. Self harm in prisons
-46. Annual prison performance ratings over time
+24. Reasons for crime non-reporting, by crime type
+25. Substance misuse in prison
+26. Clearance rates for different crime types (detection-rates)
+27. Prison population over time
+28. Police use of firearms
+29. Attrition of sex-offending cases in the CJS
+30. Importance of crime as an issue of public concern over time
+31. Variation in violence victimisation risk by age, sex etc. (violence-risk)
+32. Incidence of CSEW fraud by type
+33. Trust in CJ professions (police, judges etc.) over time in comparison to other professions
+34. Seasonal variation in different crimes
+35. Police complaints by type
+36. Variations in procurement costs between police forces
+37. Repeat victimisation
+38. Police officer causes of on-duty death
+39. Fear of crime
+40. Police force reserves as a proportion of budget over time
+41. Overdose deaths
+42. Places that have lost their local magistrates court, based on Voronoi polygons
+43. Stop and search over time
+44. Police chief officer pay by force size
+45. Variations in sentencing around the country
+46. Variations in disposals for cannabis possession by police force
+47. Self harm in prisons
+48. Annual prison performance ratings over time
+49. Proportion of prisoners on remand in different European countries
