@@ -7,10 +7,27 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 20 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/categories/crime-and-justice-chart-of-the-week/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: Homcides haven&#39;t only increased in Britain</title>
+      <link>/post/homicide-europe/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homicide-europe/</guid>
+      <description>
+
+
+&lt;p&gt;The homicide-rate increase over the past five years hasn’t been unique to England and Wales, with murders also increasing in France, Germany and Sweden after continent-wide decreases since the 1990s. The UK-wide homicide rate remains about average for European countries.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homicide-europe_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-europe.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-europe.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://ec.europa.eu/eurostat/data/database&#34;&gt;Eurostat, 2019&lt;/a&gt; database tables &lt;code&gt;crim_off_cat&lt;/code&gt; and &lt;code&gt;crim_gen&lt;/code&gt; with population data from table &lt;code&gt;demo_pjan&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Police crackdowns catch few drink drivers</title>

@@ -1,0 +1,215 @@
+---
+title: "Chart: Homcides haven't only increased in Britain"
+author: Matt Ashby
+date: '2020-01-27'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - criminal justice
+  - prisons
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "homicide-europe",
+	title = "Homcides haven't only increased in Britain",
+	subtitle = "The homicide-rate increase over the past five years hasn't been unique to England and Wales, with murders also increasing in France, Germany and Sweden after continent-wide decreases since the 1990s. The UK-wide homicide rate remains about average for European countries.",
+	source_url = "https://ec.europa.eu/eurostat/data/database",
+	source_title = "Eurostat, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("eurostat")
+library("lubridate")
+library("RcppRoll")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+
+# get severity score data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# the eurostat package allows direct downloading from the Eurostat database,
+	# so there is no need to download any data files
+ 
+	file_data_old <- get_eurostat("crim_gen") %>% 
+		filter(
+			iccs == "ICCS0101", 
+			unit == "NR"
+		) %>% 
+		mutate_if(is.factor, as.character) %>% 
+		arrange(time, geo) %>% 
+		select(country = geo, year = time, count = values)
+	
+	file_data_new <- get_eurostat("crim_off_cat") %>% 
+		filter(
+			iccs == "ICCS0101", 
+			unit == "NR",
+			# there is a problem with Netherlands data for years from 2010 onwards,
+			# so exclude these
+			!(geo == "NL" & time >= ymd("2010-01-01"))
+		) %>% 
+		mutate_if(is.factor, as.character) %>% 
+		arrange(time, geo) %>% 
+		select(country = geo, year = time, count = values)
+
+	tidy_data <- bind_rows(file_data_old, file_data_new)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}	
+
+# get EU state population
+pop_data <- get_eurostat("demo_pjan") %>% 
+	filter(age == "TOTAL", sex == "T") %>% 
+	arrange(time, geo) %>% 
+	mutate_if(is.factor, as.character) %>% 
+	select(country = geo, year = time, pop = values)
+
+```
+
+```{r prepare data for chart}
+large_countries <- pop_data %>% 
+	filter(
+		str_length(country) == 2, 
+		pop > 10 * 10^6, 
+		year == ymd("2018-01-01")
+	) %>% 
+	pluck("country") %>% 
+	as.character()
+
+chart_data <- tidy_data %>% 
+	mutate(country = str_sub(country, 0, 2)) %>% 
+	group_by(country, year) %>% 
+	summarise(homicides = sum(count)) %>% 
+	ungroup() %>% 
+	filter(country %in% large_countries, !country %in% c("NL", "TR")) %>%
+	left_join(pop_data, by = c("country", "year")) %>% 
+	mutate(
+		country = countrycode::countrycode(country, "eurostat", "country.name", warn = FALSE),
+		rate = homicides / (pop / 100000)
+	) %>% 
+	group_by(country) %>% 
+	mutate(mean_rate = mean(rate)) %>% 
+	ungroup() %>% 
+	mutate(country = fct_reorder(country, mean_rate, .desc = TRUE))
+
+mean_data <- tidy_data %>% 
+	mutate(country = str_sub(country, 0, 2)) %>% 
+	group_by(country, year) %>% 
+	summarise(homicides = sum(count)) %>% 
+	ungroup() %>% 
+	filter(country %in% large_countries, !country %in% c("TR")) %>%
+	left_join(pop_data, by = c("country", "year")) %>% 
+	group_by(year) %>% 
+	summarise(rate = sum(homicides) / (sum(pop) / 100000))
+	
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~country, ~label, ~hjust, ~vjust, ~curve,
+	ymd("1997-01-01"), 1.6, ymd("2003-01-01"), 0.8, "Belgium", balance_lines("European trend", 2), "left", "top", "right",
+	ymd("1998-01-01"), 1.9, ymd("2004-01-01"), 2.5, "France", balance_lines("national trend", 2), "left", "center", "left",
+	ymd("2000-01-01"), 2.35, ymd("2006-01-01"), 2.95, "Poland", balance_lines("annual count", 2), "left", "center", "left"
+) %>% 
+	mutate(country = factor(country, levels = levels(chart_data$country)))
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(year, rate, colour = country)) +
+	geom_hline(aes(yintercept = 0), colour = elements$reference_line_colour) +
+	geom_smooth(data = mean_data, method = "loess", se = FALSE, na.rm = TRUE, 
+							colour = elements$average_line_colour, size = 0.5,
+							linetype = elements$average_line_linetype) +
+	geom_point(colour = "grey75", size = 0.75) +
+	geom_smooth(method = "loess", se = FALSE, na.rm = TRUE) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, na.rm = TRUE, show.legend = FALSE) +
+	# end of explanatory labels
+  scale_x_date(
+  	date_breaks = "7 years",
+    date_labels = "'%y",
+    expand = expand_scale(mult = c(0, 0.02))
+  ) +
+  scale_y_continuous(
+    limits = c(0, NA),
+    expand = expand_scale(mult = c(0, 0.05))
+  ) +
+  scale_colour_manual(
+    values = unname(ucl_colours_list[c(
+    	"Bright Red", "Bright Blue", "Mid Red", "Bright Green", "Mid Blue", 
+    	"Mid Green", "Mid Purple", "Orange", "Grey", "Light Red", "Light Blue", 
+    	"Dark Brown"
+    )])
+  ) +
+	facet_wrap(vars(country), nrow = 2) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		caption = "EU countries with 2018 populations greater than 10 million, excluding Netherlands due to missing data",
+		legend = NULL,
+		x = NULL,
+		y = "intentional homicides per 100,000 people",
+		linetype = "European trend"
+	) +
+  theme_cjcharts() +
+  theme(legend.position = "none")
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`) database tables `crim_off_cat` and `crim_gen` with population data from table `demo_pjan`.
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
