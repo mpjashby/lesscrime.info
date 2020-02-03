@@ -11,3 +11,11 @@ def ods_to_csv(ods_file, ods_sheet, csv_file):
   with open(csv_file, "w") as write_file:
     writer = csv.writer(write_file, encoding = "utf-8")
     writer.writerows(data)
+
+
+def ods_sheets(ods_file):
+  
+  # load data
+  data = pyexcel.get_book(file_name = ods_file)
+  
+  return(data.keys())

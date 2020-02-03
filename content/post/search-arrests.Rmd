@@ -1,0 +1,221 @@
+---
+title: "Chart: Stop and search has fallen, arrests from searches less so"
+author: Matt Ashby
+date: '2020-02-03'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - stop and search
+  - time series
+  - police
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "search-arrests",
+	title = "Stop and search has fallen, arrests from searches less so",
+	subtitle = "Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.",
+	source_url = "https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper, include=FALSE}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("reticulate")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+
+# get severity score data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# although the data are available in an ODS file, it was not possible to
+	# convert this to CSV in the usual way, so this was done manually
+  
+  # download data
+#   data_file <- tempfile(fileext = ".ods")
+# 	csv_file <- paste0(data_file, ".csv")
+#   download.file("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841261/stop-search-open-data-tables-ppp.ods", destfile = data_file)
+
+	# convert new data from ODS to CSV and read
+# 	source_python(here::here("ods_to_csv.py"))
+# 	ods_to_csv(data_file, "S&S_OD", csv_file)
+
+  # load data
+  file_data <- read_csv("search-arrests-raw.csv", na = c("-", "..", "*"))
+  
+  # tidy data
+  tidy_data <- file_data %>% 
+    clean_names() %>% 
+  	mutate(year_ending = ymd(paste(str_sub(financial_year, -2), "03 31"))) %>% 
+  	select(year_ending, everything(), -financial_year)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}	
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	rename(
+		arrests = resultant_arrests, 
+		ethnic_group = ethnic_group_self_defined,
+		reason = reason_for_search_arrest
+	) %>% 
+	filter(
+	  # BTP data aren't available until 2009, so exclude
+		!force_name %in% c("British Transport Police"),
+		!reason %in% c("Prevent acts of terrorism"),
+		year_ending >= ymd("2010-03-31")
+	) %>%
+	# merge come reason categories
+	mutate(
+		reason = recode(
+			reason, 
+			"Criminal Damage" = "Other",
+			"Going Equipped" = "Stolen Property"
+		)
+	) %>% 
+	group_by(year_ending, reason) %>% 
+	summarise(
+		arrests = sum(arrests, na.rm = TRUE),
+		searches = sum(searches, na.rm = TRUE)
+	) %>%
+	pivot_longer(c("arrests", "searches"), names_to = "measure", 
+							 values_to = "count") %>% 
+	mutate(
+		reason = recode(
+			str_to_lower(reason),
+			"anticipation of violence" = "section 60*",
+			"stolen property" = "stolen property/going equipped"
+		)
+	) %>% 
+	ungroup() %>% 
+	group_by(reason, measure) %>% 
+	mutate(
+		change = ((count - first(count)) / first(count)),
+		label = ifelse(
+			year_ending == last(year_ending), 
+			str_replace(scales::percent(change, accuracy = 1), "-", " –"), 
+			NA
+		)
+	) %>% 
+	ungroup()
+
+chart_data_diff <- chart_data %>% 
+	select(-count, -label) %>% 
+	pivot_wider(names_from = "measure", values_from = "change")
+
+chart_data_means <- chart_data %>% 
+	group_by(reason, year_ending) %>% 
+	summarise(count = sum(count)) %>% 
+	summarise(mean = mean(count)) %>% 
+	arrange(desc(mean)) %>% 
+	pluck("reason")
+
+chart_data <- mutate(chart_data, reason = factor(reason, chart_data_means))
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~reason, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2020-03-01"), -0.65, ymd("2019-06-01"), -0.375, "section 60*", balance_lines("section-60 searches rarely lead to arrests, so arrests fall with searches", 3), "right", "bottom", "right",
+	ymd("2020-03-01"), -0.65, ymd("2019-06-01"), -0.875, "firearms", balance_lines("firearms searches halved, but arrests barely fell", 2), "right", "center", "left",
+) %>% 
+	# order factor levels according to order in chart data, to maintain facet and
+	# legend order
+	mutate(reason = factor(reason, levels = levels(chart_data$reason)))
+```
+
+```{r build chart}
+chart <- ggplot(chart_data, aes(year_ending, change, colour = measure)) +
+	geom_hline(aes(yintercept = 0), colour = elements$average_line_colour, 
+						 linetype = elements$average_line_linetype) +
+	geom_ribbon(aes(x = year_ending, ymin = arrests, ymax = searches), 
+							data = chart_data_diff, inherit.aes = FALSE, 
+							fill = ucl_colours_list[["Bright Blue"]], alpha = 0.33) +
+	geom_line(size = 0.75, key_glyph = "timeseries") +
+	geom_point(data = filter(chart_data, year_ending == last(year_ending)), 
+						 show.legend = FALSE) +
+	geom_text(aes(label = label), na.rm = TRUE, hjust = "left", vjust = "bottom", 
+						size = elements$label_text_size, show.legend = FALSE) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(expand = expand_scale(add = c(0, 365))) +
+	scale_y_continuous(labels = scales::percent_format(accuracy = 1), 
+										 position = "right") +
+	scale_colour_manual(
+		values = unname(ucl_colours_list[c("Bright Red", "Bright Blue")])
+	) +
+	facet_wrap(vars(reason), nrow = 2) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		caption = "* searches conducted without suspicion, authorised when a senior officer anticipates violence in an area",
+		x = NULL,
+		y = "change from 2010",
+		colour = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.title.y = element_text(hjust = 0),
+		panel.grid.minor.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

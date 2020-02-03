@@ -29,6 +29,7 @@ and future plans (in approximate order with subject names).
 21. [10 times more people die in police collisions than in shootings](http://lesscrime.info/post/custody-deaths/)
 22. [Police crackdowns catch few drink drivers](http://lesscrime.info/post/breath-tests/)
 23. [Homicides haven't only increased in Britain](http://lesscrime.info/post/homicide-europe/)
+24. [Stop and search has fallen, arrests from searches less so](http://lesscrime.info/post/search-arrests/)
 
 ## Planned (slug name if code written)
 

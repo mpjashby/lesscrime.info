@@ -28,10 +28,12 @@
   
     
   
-  <meta name="description" content="Lecturer in Crime Science">
+  <meta name="description" content="Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.
+larger image | annotated R code to produce this chart
+Data source: Home Office, 2019">
 
   
-  <link rel="alternate" hreflang="en-us" href="/categories/">
+  <link rel="alternate" hreflang="en-us" href="/post/search-hits/">
 
   
 
@@ -93,15 +95,12 @@
   
 
   
-  <link rel="alternate" href="/categories/index.xml" type="application/rss+xml" title="Matt Ashby">
-  <link rel="feed" href="/categories/index.xml" type="application/rss+xml" title="Matt Ashby">
-  
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/categories/">
+  <link rel="canonical" href="/post/search-hits/">
 
   
   
@@ -116,12 +115,16 @@
   <meta property="twitter:creator" content="@lesscrime">
   
   <meta property="og:site_name" content="Matt Ashby">
-  <meta property="og:url" content="/categories/">
-  <meta property="og:title" content="Categories | Matt Ashby">
-  <meta property="og:description" content="Lecturer in Crime Science"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/search-hits/">
+  <meta property="og:title" content="Chart: Stop and search has fallen, arrests from searches less so | Matt Ashby">
+  <meta property="og:description" content="Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.
+larger image | annotated R code to produce this chart
+Data source: Home Office, 2019"><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-02-03T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2020-02-03T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-02-03T00:00:00&#43;00:00">
   
 
   
@@ -133,7 +136,7 @@
 
 
 
-  <title>Categories | Matt Ashby</title>
+  <title>Chart: Stop and search has fallen, arrests from searches less so | Matt Ashby</title>
 
 </head>
 
@@ -388,59 +391,363 @@
 </nav>
 
 
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Chart: Stop and search has fallen, arrests from searches less so</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2020-02-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-02-03 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>3 February 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/crime-and-justice-chart-of-the-week/">Crime and justice chart of the week</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/search-hits/&amp;text=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/search-hits/&amp;t=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so&amp;body=/post/search-hits/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/search-hits/&amp;title=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so%20/post/search-hits/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/search-hits/&amp;title=Chart:%20Stop%20and%20search%20has%20fallen,%20arrests%20from%20searches%20less%20so" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.</p>
+<p><img src="/post/search-hits_files/figure-html/display%20plot-1.png" width="672" /></p>
+<p><a href="../search-hits.png">larger image</a>
+| <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-hits.Rmd">annotated R code to produce this chart</a></p>
+<p>Data source: <a href="https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019">Home Office, 2019</a></p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/stop-and-search/">stop and search</a>
+  
+  <a class="badge badge-light" href="/tags/time-series/">time series</a>
+  
+  <a class="badge badge-light" href="/tags/police/">police</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
   
 
 
 
 
-
-
-
-
-
-
-
-
-  
 
   
   
   
     
   
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Categories</h1>
-
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-  <div>
-    <h2><a href="/categories/crime-and-justice-chart-of-the-week/">Crime and justice chart of the week</a></h2>
-    <div class="article-style">
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
       
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu6f220e83370d2dbfd39d511c0d0919f9_158802_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Matt Ashby</a></h5>
+      <h6 class="card-subtitle">Lecturer in Crime Science</h6>
+      <p class="card-text" itemprop="description">I am a lecturer in crime science at the <a href="https://ucl.ac.uk/jill-dando-institute/" target="_blank">Jill Dando Institute of Security and Crime Science</a> at <a href="https://ucl.ac.uk/" target="_blank">University College London</a> (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/lesscrime" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="//orcid.org/0000-0003-4201-9239" >
+              <i class="ai ai-orcid"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=dwcesrQAAAAJ" target="_blank" rel="noopener">
+              <i class="ai ai-google-scholar"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/mpjashby" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-  
-  <div>
-    <h2><a href="/categories/r-tutorials/">R Tutorials</a></h2>
-    <div class="article-style">
+
+
+
       
-    </div>
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/search-arrests/">Chart: Stop and search has fallen, arrests from searches less so</a></li>
+          
+          <li><a href="/post/breath-tests/">Chart: Police crackdowns catch few drink drivers</a></li>
+          
+          <li><a href="/post/custody-deaths/">Chart: 10 times more people die in police collisions than in shootings</a></li>
+          
+          <li><a href="/post/football-arrests/">Chart: More than 1,400 football arrests each season</a></li>
+          
+          <li><a href="/post/use-of-force/">Chart: When police use force, they rarely cause injury</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
   </div>
-  
-
-  
-
-</div>
+</article>
 
       
 
