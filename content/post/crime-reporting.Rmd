@@ -1,0 +1,218 @@
+---
+title: "Chart: 73% of victim-based crime is not reported to police"
+author: Matt Ashby
+date: '2020-02-10'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - reporting
+  - CSEW
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "crime-reporting",
+	title = "73% of victim-based crime is not reported to police",
+	subtitle = "Of the 10.9 million crimes which individual adults aged 16 years and over experienced in the past year, only 27% were reported to the authorities. Reporting rates vary substantially, with more-serious crimes more likely to be reported. Fraud makes up almost half of victim-based crime but is particularly unlikely to be reported, dragging down the overall average.",
+	source_url = "https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesannualtrendanddemographictables",
+	source_title = "Crime Survey for England and Wales, 2019"
+)
+```
+
+```{r load packages and helper, include=FALSE}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	new_data_file <- tempfile(fileext = ".xls")
+	GET("https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fcrimeandjustice%2fdatasets%2fcrimeinenglandandwalesannualtrendanddemographictables%2fcurrent/annualtrendanddemographictablesyearendingmarch19.xls", write_disk(new_data_file))
+	
+	# read data and tidy
+	tidy_data <- new_data_file %>% 
+		read_excel(sheet = "Table D10", skip = 3, na = c("..", "-")) %>% 
+		slice(4:80) %>% 
+		select(1:23) %>% 
+		remove_empty(which = c("rows", "cols")) %>% 
+		rename(category = `Offence group3`) %>% 
+		mutate_at(vars(-category), as.numeric) %>% 
+		pivot_longer(-category, names_to = "year_ending", 
+								 values_to = "proportion") %>% 
+		mutate(
+			category = str_remove(
+				str_replace_all(str_to_lower(category), "csew", "CSEW"), 
+				"[\\d\\,]+$"
+			),
+			proportion = proportion / 100,
+			year_ending = as.Date(paste("01", str_sub(year_ending, -7)), "%d %b '%y")
+		)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(
+		category %in% c(
+			"wounding", 
+			"assault with minor injury or without injury", 
+			"robbery", 
+			"theft from the person",
+			"domestic burglary",
+			"other household theft",
+			"theft from vehicles", 
+			"theft of vehicles",
+			"bicycle theft", 
+			"criminal damage",
+			"fraud",
+			"computer misuse"
+		),
+		year_ending == last(year_ending)
+	) %>% 
+	mutate(
+		category = recode(
+			category, 
+			"wounding" = "assault with serious injury",
+			"assault with minor injury or without injury" = 
+				"assault with minor or no injury"
+		),
+		group = fct_case_when(
+			category %in% c(
+				"assault with serious injury", 
+				"assault with minor or no injury", 
+				"robbery"
+			) ~ "violence",
+			category %in% c(
+				"theft from the person", 
+				"domestic burglary", 
+				"other household theft", 
+				"theft from vehicles", 
+				"theft of vehicles",
+				"bicycle theft"
+			) ~ "theft",
+			TRUE ~ "other offences"
+		),
+		category = fct_reorder(category, proportion),
+		label = scales::percent(proportion, accuracy = 1)
+	)
+
+overall_prop <- tidy_data %>% 
+	filter(
+		category == "all CSEW crime (including fraud and computer misuse)",
+		year_ending == last(year_ending)
+	) %>% 
+	pluck("proportion")
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	11.5, 0.72, 10, 0.78, balance_lines("thefts of vehicles are usually reported for insurance purposes", 3), "left", "center", "right",
+	2, 0.28, 2, 0.36, balance_lines("overall, 27% of CSEW crime is reported to police or Action Fraud", 3), "left", "center", "left"
+)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(category, proportion, fill = group, label = label)) +
+	geom_col(width = 0.8) +
+	geom_label(hjust = "left", colour = elements$label_text_colour, 
+						 size = elements$label_text_size, fill = "white", label.size = NA) +
+	geom_hline(
+		aes(yintercept = overall_prop), 
+		colour = elements$average_line_colour, 
+		linetype = elements$average_line_linetype
+	) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_y_continuous(
+		breaks = seq(0, 1, by = 0.2), 
+		limits = c(0, 1), 
+		expand = expand_scale(mult = c(0, 0.025)),
+		labels = scales::percent_format()
+	) +
+	scale_fill_manual(values = unname(ucl_colours_list[c(
+		"Light Green", "Light Blue", "Yellow"
+	)])) +
+	coord_flip() +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle, .width = 80),
+		caption = "CSEW excludes crimes with no individual victims, victims not living in households or victims aged under 16 years",
+		legend = NULL,
+		x = NULL,
+		y = "percentage of offences reported to police or Action Fraud",
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.ticks.y = element_blank(),
+		legend.background = element_rect(colour = NA, fill = "white"),
+		legend.justification = c(1, 0),
+		legend.position = c(1, 0),
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
