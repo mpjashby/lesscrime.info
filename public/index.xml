@@ -7,10 +7,27 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 10 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: England &amp; Wales has highest per-capita prison population in Western Europe</title>
+      <link>/post/prison-europe/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prison-europe/</guid>
+      <description>
+
+
+&lt;p&gt;While Turkey has Europe’s highest imprisonment rate, England and Wales locks up more people per 100,000 population than any other western European country.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prison-europe_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prison-europe.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-europe.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://ec.europa.eu/eurostat/data/database&#34;&gt;Eurostat, 2019&lt;/a&gt; database tables &lt;code&gt;crim_pris_cap&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: 73% of victim-based crime is not reported to police</title>
@@ -42,6 +59,23 @@
 &lt;p&gt;&lt;img src=&#34;/post/search-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../search-arrests.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Stop and search has fallen, arrests from searches less so</title>
+      <link>/post/search-hits/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/search-hits/</guid>
+      <description>
+
+
+&lt;p&gt;Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/search-hits_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../search-hits.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-hits.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>

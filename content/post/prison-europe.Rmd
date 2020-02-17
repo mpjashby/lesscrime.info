@@ -1,0 +1,256 @@
+---
+title: "Chart: England & Wales has highest per-capita prison population in Western Europe"
+author: Matt Ashby
+date: '2020-02-17'
+categories:
+  - Crime and justice chart of the week
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "prison-europe",
+	title = "England & Wales has highest per-capita prison population in Western Europe",
+	subtitle = "While Turkey has Europe's highest imprisonment rate, England and Wales locks up more people per 100,000 population than any other western European country.",
+	source_url = "https://ec.europa.eu/eurostat/data/database",
+	source_title = "Eurostat, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("eurostat")
+library("ggrepel")
+library("ggtext")
+library("rnaturalearth")
+library("sf")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+
+# get severity score data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# the eurostat package allows direct downloading from the Eurostat database,
+	# so there is no need to download any data files
+ 
+	tidy_data <- get_eurostat("crim_pris_cap") %>% 
+		mutate_if(is.factor, as.character) %>% 
+		arrange(time, geo, indic_cr)
+
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}	
+
+# get European country outlines
+boundaries_uk <- ne_countries(
+	scale = 10, 
+	type = "map_units", 
+	country = "United Kingdom", 
+	returnclass = "sf"
+) %>% 
+	mutate(geo_code = recode(geounit, "England" = "UKC-L", "Scotland" = "UKM", 
+													 "Wales" = "UKC-L", "Northern Ireland" = "UKN")) %>% 
+	group_by(geo_code) %>% 
+	summarise(name = first(geounit)) %>% 
+	mutate(name = ifelse(name == "Wales", "England and Wales", name))
+
+boundaries <- ne_countries(scale = 10, returnclass = "sf") %>% 
+	# the ISO 2A code for France is missing from the NE data, so we add manually
+	mutate(
+		iso_a2 = case_when(
+			admin == "France" ~ "FR", 
+			admin == "Norway" ~ "NO",
+			TRUE ~ iso_a2
+		)
+	) %>% 
+	filter(iso_a2 != "GB") %>% 
+	select(name = admin, geo_code = iso_a2) %>% 
+	rbind(boundaries_uk)
+
+# get capital city co-ordinates
+capitals_file <- tempfile(fileext = ".zip")
+download.file("https://simplemaps.com/static/data/world-cities/basic/simplemaps_worldcities_basicv1.6.zip",destfile = capitals_file)
+unzip(capitals_file, files = "worldcities.csv", exdir = tempdir())
+capitals <- glue::glue("{tempdir()}/worldcities.csv") %>% 
+	read_csv() %>% 
+	filter(
+		(
+			capital == "primary" | 
+				(city %in% c("Belfast", "Edinburgh") & capital == "admin")
+		) & 
+			!city %in% c("Amsterdam")
+	) %>% 
+	mutate(
+		iso2 = case_when(
+			city == "London" ~ "UKC-L",
+			city == "Edinburgh" ~ "UKM",
+			city == "Belfast" ~ "UKN",
+			TRUE ~ iso2
+		)
+	) %>% 
+	st_as_sf(coords = c("lng", "lat"), crs = 4326) %>% 
+	st_transform(3035) %>% 
+	cbind(st_coordinates(.)) %>% 
+	st_set_geometry(NULL) %>% 
+	as_tibble() %>% 
+	clean_names()
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(indic_cr == "PRIS_ACT_CAP", unit == "P_HTHAB") %>% 
+	group_by(geo) %>% 
+	filter(time == last(time)) %>% 
+	ungroup() %>% 
+	select(-indic_cr, -unit) %>% 
+	right_join(boundaries, c("geo" = "geo_code")) %>% 
+	left_join(capitals, by = c("geo" = "iso2")) %>% 
+	select(name, geo, x, y, time, prison_rate = values, geometry) %>% 
+	filter(
+		!is.na(prison_rate) | 
+			geo %in% c("AM", "AZ", "BY", "DZ", "EG", "GE", "GR", "IL", "IR", "IQ", 
+								 "JO", "KW", "KZ", "LB", "LY", "MA", "MD", "RU", "PS", "SA", 
+								 "SY", "TM", "TN", "TR", "UA", "UZ")
+	) %>% 
+	# remove Iceland because space is needed for the plot title
+	filter(geo != "IS") %>% 
+	st_as_sf(crs = 4326) %>% 
+	st_transform(3035) %>% 
+	clean_names() %>% 
+	mutate(
+		country_code = case_when(
+			geo == "UKC-L" ~ "E&W",
+			geo == "UKM" ~ "SCO",
+			geo == "UKN" ~ "NIR",
+			TRUE ~ geo
+		),
+		label = ifelse(
+			is.na(prison_rate),
+			NA,
+			glue::glue("{country_code}: {scales::comma(prison_rate)}")
+		)
+	)
+
+# set bounding box
+bounds <- ne_countries(scale = 10, continent = "europe", returnclass = "sf") %>% 
+	filter(!admin %in% c("Russia")) %>% 
+	pull("admin") %>% 
+	ne_states(returnclass = "sf") %>% 
+	filter(
+		!geonunit %in% c("Azores", "Svalbard"),
+		!name %in% c("Saba", "St. Eustatius"),
+		!region %in% c("Canary Is."),
+		type != "Overseas département"
+	) %>% 
+	st_transform(3035) %>% 
+	st_bbox()
+
+# use Vaasa, Finland as the northern bounding box
+bounds_n <- c(21.07, 60) %>% 
+	st_point() %>% 
+	st_sfc() %>% 
+	st_sf(crs = 4326) %>% 
+	st_transform(3035) %>% 
+	st_bbox()
+
+# generate graticules manually because they will then extend beyond the plot 
+# area once coord_sf(clip = "off") is set
+graticules <- st_graticule(chart_data)
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(geometry = geometry)) +
+	# geom_sf(data = graticules, colour = "grey92") +
+	geom_sf(aes(fill = prison_rate), size = 0.25) +
+	geom_label_repel(
+		aes(x = x, y = y, label = label), 
+		na.rm = TRUE,
+		data = filter(chart_data, !is.na(label) & 
+										!geo %in% c("AD", "LI", "SM", "VA")), # "ME", "MK"
+		colour = elements$label_text_colour, 
+		fill = "white",
+		alpha = 0.75,
+		size = elements$label_text_size * 0.8, 
+		label.size = NA,
+		label.padding = unit(0.15, "lines"),
+		force = 5,
+		min.segment.length = unit(0.25, "lines"),
+		segment.colour = "grey80",
+		segment.alpha = 0.85,
+		arrow = arrow(length = unit(4, "points"))
+	) +
+	scale_fill_gradient(trans = "log",
+		low = "white", 
+		high = ucl_colours_list[["Mid Red"]], 
+		na.value = "grey90"
+	) +
+	coord_sf(
+		expand = FALSE,
+		xlim = c(bounds$xmin, bounds$xmax), 
+		ylim = c(bounds$ymin, bounds_n$ymax),
+		clip = "off",
+		default = TRUE
+	) +
+	labs(
+		title = chart_details$title,
+		subtitle = chart_details$subtitle,
+		legend = NULL,
+		x = NULL,
+		y = NULL,
+		fill = str_wrap("prisoners per 100,000 people (latest available year, log scale)", 20)
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.text = element_blank(),
+		legend.box.background = element_rect(colour = NA, 
+																				 fill = rgb(1, 1, 1, 0.67)),
+		legend.justification = c(0.5, 1),
+		legend.position = c(1, 1),
+		legend.title.align = 0,
+		panel.grid = element_blank(),
+		plot.title = element_textbox_simple(fill = rgb(1, 1, 1, 0.67), hjust = 0, vjust = 1, padding = margin(3, 3, 3, 3)),
+		plot.subtitle = element_textbox_simple(fill = rgb(1, 1, 1, 0.67), hjust = 0, vjust = 1, margin = margin(24, 0, 0, 0), padding = margin(3, 3, 3, 3)),
+		plot.title.position = "plot"
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(
+	chart + labs(title = NULL, subtitle = NULL) + 
+		coord_sf(xlim = c(bounds$xmin, bounds$xmax), 
+						 ylim = c(bounds$ymin, bounds_n$ymax), 
+						 clip = "on") +
+		theme(legend.justification = c(1, 1)), 
+	chart_details$source_title, 
+	chart_details$id
+)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`) database tables `crim_pris_cap`.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```

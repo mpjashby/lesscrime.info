@@ -31,6 +31,7 @@ and future plans (in approximate order with subject names).
 23. [Homicides haven't only increased in Britain](http://lesscrime.info/post/homicide-europe/)
 24. [Stop and search has fallen, arrests from searches less so](http://lesscrime.info/post/search-arrests/)
 25. [73% of victim-based crime is not reported to police](http://lesscrime.info/post/crime-reporting/)
+26. [England & Wales has highest per-capita prison population in Western Europe](http://lesscrime.info/post/prison-europe/)
 
 ## Planned (slug name if code written)
 
