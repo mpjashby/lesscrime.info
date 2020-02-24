@@ -7,10 +7,82 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: No big changes in sentences after new police-assaults law</title>
+      <link>/post/police-assaults/</link>
+      <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/police-assaults/</guid>
+      <description>
+
+
+&lt;p&gt;The government recently doubled the maximum sentence for assaulting a police officer to 12 months in prison, introducing a new offence of assaulting an emergency worker. So far, this change is associated with only small increases in sentences handed down in court.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/police-assaults_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-assaults.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-assaults.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-september-2019&#34;&gt;Ministry of Justice, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;To test whether there were any differences between imprisonment probability or sentence length before and after the new law was introduced, I ran separate ARIMA regression models (using the &lt;code&gt;auto.arima()&lt;/code&gt; function in the &lt;a href=&#34;http://pkg.robjhyndman.com/forecast&#34;&gt;&lt;code&gt;forecast&lt;/code&gt;&lt;/a&gt; R package) on the monthly probability of being imprisoned for assaulting police and on the average length of prison sentences. Each model included a variable that was set to false for months before the new law was introduced and true for months afterwards. If these variables were statistically significant (i.e. &lt;span class=&#34;math inline&#34;&gt;\(p &amp;lt; 0.05\)&lt;/span&gt;) we can say there is a difference in either imprisonment probability or imprisonment length after the law was introduced.&lt;/p&gt;
+&lt;p&gt;The first model assessed whether the new law was associated with any change in the probability of being imprisoned on conviction for assaulting a police officer. This table shows that there was a small, but statistically significant, increase in the probability of being imprisoned after the new law came into effect.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;standard error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.135&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.005&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;after new law passed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.026&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.007&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The second model assessed whether the new law was associated with any change in the number of days imprisonment that people were sentenced to, if they were sent to prison for assaulting police. This table shows there was another small, but again statistically significant, increase in sentence length.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;standard error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;after new law passed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Both these models are limited, because there are no comparison groups against which to compare the differences observed. This means it is not possible to estimate how likely it is that any differences are due to the new law or to other factors (such as long-term trends in sentencing practice) that were happening at the same time.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: England &amp; Wales has highest per-capita prison population in Western Europe</title>

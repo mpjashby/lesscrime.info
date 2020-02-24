@@ -1,0 +1,327 @@
+---
+title: "Chart: No big changes in sentences after new police-assaults law"
+author: Matt Ashby
+date: '2020-02-24'
+slug: police-assaults
+categories:
+  - Crime and justice chart of the week
+tags:
+  - police
+  - criminal justice
+  - violence
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-assaults",
+	title = "No big changes in sentences after new police-assaults law",
+	subtitle = "The government recently doubled the maximum sentence for assaulting a police officer to 12 months in prison, introducing a new offence of assaulting an emergency worker. So far, this change is associated with only small increases in sentences handed down in court.",
+	source_url = "https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-september-2019",
+	source_title = "Ministry of Justice, 2020"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("cowplot")
+library("ggtext")
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download most-recent data
+	data_file <- tempfile(fileext = ".xlsx")
+	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/866997/emergency-workers-table-sept-2019.xlsx", write_disk(data_file))
+	
+	# read data and tidy
+	tidy_data <- read_excel(data_file, "Table", skip = 3, na = "*") %>% 
+		janitor::clean_names() %>% 
+		slice(1:48) %>% 
+		remove_empty("cols") %>% 
+		# colnames have been jumbled by clean_names(), so just set them all
+		magrittr::set_colnames(c(
+			"offence", 
+			format(seq.Date(ymd("2018-01-01"), ymd("2019-09-01"), by = "month"), 
+						 "%Y_%m")
+		)) %>% 
+		# identify rows that contain only headers
+		mutate(sentence = ifelse(is.na(`2019_09`), offence, NA_character_)) %>% 
+		# fill headers down
+		fill(sentence, .direction = "down") %>% 
+		# remove rows that contain only headers
+		filter(!is.na(`2019_09`)) %>% 
+		# move header col to left
+		select(sentence, offence, everything()) %>% 
+		pivot_longer(c(-sentence, -offence), names_to = "month", 
+								 values_to = "count") %>% 
+		mutate(month = as_date(paste(month, "01"), format = "%Y_%m %d", tz = "UTC"))
+		
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data_a <- tidy_data %>% 
+	filter(
+		!sentence %in% c("Prosecuted", "Convicted", "Sentenced", 
+										 "Average custodial sentence length (months)"),
+		offence != "Common assault and battery"
+	) %>% 
+	mutate(custody = sentence == "Immediate custody") %>% 
+	count(custody, month, wt = count) %>% 
+	group_by(month) %>% 
+	mutate(prop = n / sum(n)) %>% 
+	filter(custody == TRUE) %>% 
+	select(-custody)
+
+chart_data_b <- tidy_data %>%
+	filter(
+		sentence == "Average custodial sentence length (months)",
+		offence != "Common assault and battery"
+	) %>%
+	select(offence, month, days = count) %>%
+	mutate(
+		days = ifelse(
+			days == 0 |
+				(offence == "Assault on a constable" & month > ymd("2019-03-01")),
+			NA,
+			days * 28
+		),
+		offence = str_to_lower(offence)
+	) %>%
+	remove_missing(na.rm = TRUE)
+
+# add chart labels
+chart_labels_a <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2018-01-01"), 0.002, ymd("2018-01-01"), 0.002, balance_lines("without a comparison group it isn't possible to say if these differences were due to the new law or to other factors (e.g. long-term trends in sentencing) that were happening at the same time", 4), "left", "bottom", "none",
+	ymd("2018-11-10"), 0.075, ymd("2019-01-01"), 0.075, balance_lines("longer sentences were introduced in November 2018", 3), "left", "center", "right",
+	ymd("2018-09-01"), 0.1325, ymd("2018-09-01"), 0.11, balance_lines("the likelihood of going to prison may have already been rising before the new law applied, so any increase might not be due to the legal change", 8), "right", "top", "left"
+)
+chart_labels_b <- tribble(
+	~x, ~y, ~xend, ~yend, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2019-02-01"), 62, ymd("2019-02-01"), 45, balance_lines("some people were sentenced under the old law even after the change", 3), "right", "top", "left",
+	ymd("2019-09-01"), 1, ymd("2019-08-01"), 10, balance_lines("only 10 months of data are available after the new law was introduced – as time passes, more data may show a different picture", 3), "right", "center", "right"
+	# ymd("2019-06-15"), 73.5, ymd("2019-06-15"), 21, balance_lines("prison sentences under the new law are on average about 13 days longer than under the old law", 4), "right", "top", "left"
+)
+```
+
+```{r build plot}
+chart_a <- ggplot(chart_data_a, aes(month, prop)) +
+	geom_vline(aes(xintercept = ymd("2018-11-01")), 
+						 colour = elements$average_line_colour, 
+						 linetype = elements$average_line_linetype) +
+	geom_point(colour = ucl_colours_list[["Bright Red"]], size = 0.75, 
+						 alpha = 0.67) +
+	geom_smooth(method = "loess", formula = "y ~ x", se = FALSE, 
+							colour = ucl_colours_list[["Bright Red"]]) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_a, curve == "right"), 
+						 inherit.aes = FALSE, curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_a, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_a, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels_a, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(date_breaks = "6 months", date_labels = "%b '%y", 
+							 expand = expansion(mult = 0.02)) +
+	scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA),
+										 labels = scales::percent_format(accuracy = 1)) +
+	labs(
+		title = "there has been about a three percentage-point increase in the chance of going to prison …",
+		legend = NULL,
+		x = NULL,
+		y = "proportion of convicted offenders sent to prison   "
+	) +
+	theme_cjcharts() +
+	theme() +
+	theme(
+		plot.margin = unit(c(6, 6, 0, 0), "pt"),
+		plot.title = element_textbox_simple(
+			size = 10, 
+			colour = ucl_colours_list[["Bright Red"]]
+		),
+		plot.title.position = "plot"
+	)
+
+chart_b <- ggplot(chart_data_b, aes(month, days, colour = offence, 
+																		group = offence)) +
+	geom_vline(aes(xintercept = ymd("2018-11-01")), 
+						 colour = elements$average_line_colour, 
+						 linetype = elements$average_line_linetype) +
+	geom_point(size = 0.75, alpha = 0.67) +
+	geom_smooth(method = "lm", formula = "y ~ x", se = FALSE) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_b, curve == "right"), 
+						 inherit.aes = FALSE, curvature = elements$label_line_curvature, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_b, curve == "straight"), 
+						 inherit.aes = FALSE, colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels_b, curve == "left"), inherit.aes = FALSE, 
+						 curvature = elements$label_line_curvature * -1, 
+						 colour = elements$label_line_colour, 
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust, 
+								 vjust = vjust),
+						data = chart_labels_b, inherit.aes = FALSE, 
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size, 
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	scale_x_date(date_breaks = "6 months", date_labels = "%b '%y", 
+							 expand = expansion(mult = 0.02)) +
+	scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
+	scale_colour_manual(
+		values = unname(ucl_colours_list[c("Bright Blue", "Mid Blue")])
+	) +
+	labs(
+		title = "… and those given prison sentences are given about 10 days longer",
+		legend = NULL,
+		x = NULL,
+		y = "average days of imprisonment   "
+	) +
+	theme_cjcharts() +
+	theme(
+		legend.position = "none",
+		plot.margin = unit(c(6, 0, 0, 6), "pt"),
+		plot.title = element_textbox_simple(
+			size = 10, 
+			colour = ucl_colours_list[["Bright Blue"]]
+		),
+		plot.title.position = "plot"
+	)
+
+chart <- plot_grid(
+		chart_a, 
+		chart_b, 
+		align = "h"
+	)
+```
+
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart, chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+### Notes
+
+To test whether there were any differences between imprisonment probability or sentence length before and after the new law was introduced, I ran separate ARIMA regression models (using the `auto.arima()` function in the [`forecast`](http://pkg.robjhyndman.com/forecast) R package) on the monthly probability of being imprisoned for assaulting police and on the average length of prison sentences. Each model included a variable that was set to false for months before the new law was introduced and true for months afterwards. If these variables were statistically significant (i.e. $p < 0.05$) we can say there is a difference in either imprisonment probability or imprisonment length after the law was introduced.
+
+```{r model changes}
+chart_model_a <- forecast::auto.arima(
+	chart_data_a$prop,
+	xreg = as.numeric(chart_data_a$month >= ymd("2018-11-01"))
+)
+
+chart_model_b <- forecast::auto.arima(
+	chart_data_b$days,
+	xreg = as.numeric(chart_data_b$month >= ymd("2018-11-01"))
+)
+```
+
+The first model assessed whether the new law was associated with any change in the probability of being imprisoned on conviction for assaulting a police officer. This table shows that there was a small, but statistically significant, increase in the probability of being imprisoned after the new law came into effect.
+
+```{r report model A, echo=FALSE, include=TRUE}
+tibble(
+	variable = names(chart_model_a$coef),
+	estimate = chart_model_a$coef,
+	`standard error` = sqrt(diag(chart_model_a$var.coef)),
+	`p value` = scales::pvalue((1 - pnorm(abs(estimate) / `standard error`))	* 2)
+) %>% 
+	mutate(
+		variable = recode_factor(variable, intercept = "intercept", ar1 = "AR(1)",
+														 xreg = "after new law passed")
+	) %>% 
+	mutate_if(is.numeric, scales::comma, accuracy = 0.001) %>% 
+	arrange(variable) %>% 
+	knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+The second model assessed whether the new law was associated with any change in the number of days imprisonment that people were sentenced to, if they were sent to prison for assaulting police. This table shows there was another small, but again statistically significant, increase in sentence length.
+
+```{r report model B, echo=FALSE, include=TRUE}
+tibble(
+	variable = names(chart_model_b$coef),
+	estimate = chart_model_b$coef,
+	`standard error` = sqrt(diag(chart_model_b$var.coef)),
+	`p value` = scales::pvalue((1 - pnorm(abs(estimate) / `standard error`))	* 2)
+) %>% 
+	mutate(
+		variable = recode_factor(variable, intercept = "intercept", 
+														 xreg = "after new law passed")
+	) %>% 
+	mutate_if(is.numeric, scales::comma, accuracy = 0.1) %>% 
+	arrange(variable) %>% 
+	knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+Both these models are limited, because there are no comparison groups against which to compare the differences observed. This means it is not possible to estimate how likely it is that any differences are due to the new law or to other factors (such as long-term trends in sentencing practice) that were happening at the same time.
+
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(
+		plot_grid(
+			ggdraw() + 
+				draw_label(chart_details$title, x = 0, hjust = 0, fontface = "bold", 
+									 size = 16),
+			ggdraw() +
+				draw_label(format_subtitle(chart_details$subtitle, .width = 90), x = 0, 
+									 hjust = 0, fontface = "plain", size = 12),
+			chart,
+			ncol = 1,
+			rel_heights = c(0.04, 0.16, 0.8)
+		), 
+		chart_details$source_title, 
+		chart_details$id
+	), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
