@@ -1,0 +1,164 @@
+---
+title: "Chart: Some police forces are much more likely to prosecute violence"
+author: Matt Ashby
+date: '2020-03-02'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - criminal justice
+  - police
+  - violence
+  - prosecutions
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "violence-prosecutions",
+	title = "Some police forces are much more likely to prosecute violence",
+	subtitle = "Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.",
+	source_url = "https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables",
+	source_title = "Home Office, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggtext")
+library("readODS")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+# get data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# download data
+	# data_file <- tempfile(fileext = ".ods")
+	# download.file("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/859290/prc-outcomes-open-data-mar2019-tables.ods", destfile = data_file)
+	
+	# convert the downloaded ODS file to CSV (e.g. in Excel)
+	
+	# load data
+	file_data <- read_csv(
+		"drug-disposals-raw-data.csv.gz", 
+		col_types = cols(
+			`Financial Quarter` = col_double(),
+			`Outcome Type` = col_double(),
+			`Force outcomes for offences recorded in quarter` = col_double(),
+			`Force outcomes recorded in quarter` = col_double(),
+			.default = col_character()
+		), 
+		na = c("N/A - offence code expired", "--")
+	)
+	
+	# tidy data
+	tidy_data <- file_data %>% 
+		clean_names() %>% 
+		mutate(offence_code_expired = offence_code_expired == "x") %>% 
+		filter(!(force_outcomes_for_offences_recorded_in_quarter == 0 & 
+						 	force_outcomes_recorded_in_quarter == 0))
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	filter(
+		offence_group == "Violence against the person",
+		outcome_group %in% c("Charged/Summonsed", "Out-of-court (formal)", 
+												 "Out-of-court (informal)")
+	) %>% 
+	count(force_name, outcome_group, 
+				wt = force_outcomes_for_offences_recorded_in_quarter) %>% 
+	remove_missing(na.rm = TRUE) %>% 
+	mutate(
+		force_name = recode(force_name, "London, City of" = "City of London"),
+		outcome_group = recode_factor(
+			outcome_group,
+			"Out-of-court (informal)" = "informal community resolution",
+			"Out-of-court (formal)" = "formal caution or fixed penalty notice",
+			"Charged/Summonsed" = "prosecution"
+		)
+	)
+
+national_data <- chart_data %>% 
+	count(outcome_group, wt = n) %>% 
+	mutate(force_name = "**England and Wales**")
+
+force_order <- chart_data %>% 
+	group_by(force_name) %>% 
+	mutate(prop = n / sum(n)) %>% 
+	filter(outcome_group == "prosecution") %>% 
+	arrange(desc(prop)) %>% 
+	pull("force_name")
+
+chart_data <- chart_data %>% 
+	rbind(national_data) %>% 
+	mutate(force_name = factor(force_name, 
+														 levels = c("**England and Wales**", force_order)))
+```
+
+```{r build plot}
+chart <- ggplot(chart_data, aes(n, force_name, fill = outcome_group)) +
+	geom_col(position = position_fill(), width = 0.8) +
+	geom_vline(xintercept = seq(0, 1, by = 0.1), colour = "white", alpha = 0.25) +
+	scale_x_continuous(n.breaks = 10, 
+										 labels = scales::percent_format(accuracy = 1), 
+										 expand = expansion(mult = c(0, 0.02))) +
+	scale_fill_manual(
+		values = unname(ucl_colours_list[c("Bright Blue", "Light Purple", 
+																			 "Yellow")])
+	) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle),
+		legend = NULL,
+		x = "proportion of violence cases for which prosecution was possible",
+		y = NULL,
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		axis.text.y = element_markdown(size = 7),
+		axis.ticks.y = element_blank(),
+		legend.box.margin = margin(0, 0, 0, 0),
+		legend.margin = margin(0, 0, 0, 0),
+		panel.grid = element_blank(),
+		plot.title.position = "plot"
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 500 / 72, units = "in"
+)
+```
+

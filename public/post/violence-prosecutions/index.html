@@ -28,10 +28,12 @@
   
     
   
-  <meta name="description" content="Lecturer in Crime Science">
+  <meta name="description" content="Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.
+larger image | annotated R code to produce this chart
+Data source: Home Office, 2019">
 
   
-  <link rel="alternate" hreflang="en-us" href="/tags/police/">
+  <link rel="alternate" hreflang="en-us" href="/post/violence-prosecutions/">
 
   
 
@@ -93,15 +95,12 @@
   
 
   
-  <link rel="alternate" href="/tags/police/index.xml" type="application/rss+xml" title="Matt Ashby">
-  <link rel="feed" href="/tags/police/index.xml" type="application/rss+xml" title="Matt Ashby">
-  
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/tags/police/">
+  <link rel="canonical" href="/post/violence-prosecutions/">
 
   
   
@@ -116,12 +115,16 @@
   <meta property="twitter:creator" content="@lesscrime">
   
   <meta property="og:site_name" content="Matt Ashby">
-  <meta property="og:url" content="/tags/police/">
-  <meta property="og:title" content="police | Matt Ashby">
-  <meta property="og:description" content="Lecturer in Crime Science"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/violence-prosecutions/">
+  <meta property="og:title" content="Chart: Some police forces are much more likely to prosecute violence | Matt Ashby">
+  <meta property="og:description" content="Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.
+larger image | annotated R code to produce this chart
+Data source: Home Office, 2019"><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2020-03-02T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2020-03-02T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-03-02T00:00:00&#43;00:00">
   
 
   
@@ -133,7 +136,7 @@
 
 
 
-  <title>police | Matt Ashby</title>
+  <title>Chart: Some police forces are much more likely to prosecute violence | Matt Ashby</title>
 
 </head>
 
@@ -388,161 +391,364 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Chart: Some police forces are much more likely to prosecute violence</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">police</h1>
-
-  
-
-  
-</div>
 
 
 
-<div class="universal-wrapper">
-  
+<meta content="2020-03-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-03-02 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
 
   
   
-  <div>
-    <h2><a href="/post/violence-prosecutions/">Chart: Some police forces are much more likely to prosecute violence</a></h2>
-    <div class="article-style">
-      
-      Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.
-larger image | annotated R code to produce this chart
-Data source: Home Office, 2019
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/police-assaults/">Chart: No big changes in sentences after new police-assaults law</a></h2>
-    <div class="article-style">
-      
-      The government recently doubled the maximum sentence for assaulting a police officer to 12 months in prison, introducing a new offence of assaulting an emergency worker. So far, this change is associated with only small increases in sentences handed down in court.
-larger image | annotated R code to produce this chart
-Data source: Ministry of Justice, 2020
-Notes To test whether there were any differences between imprisonment probability or sentence length before and after the new law was introduced, I ran separate ARIMA regression models (using the auto.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/search-arrests/">Chart: Stop and search has fallen, arrests from searches less so</a></h2>
-    <div class="article-style">
-      
-      Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.
-larger image | annotated R code to produce this chart
-Data source: Home Office, 2019
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/search-hits/">Chart: Stop and search has fallen, arrests from searches less so</a></h2>
-    <div class="article-style">
-      
-      Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.
-larger image | annotated R code to produce this chart
-Data source: Home Office, 2019
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/breath-tests/">Chart: Police crackdowns catch few drink drivers</a></h2>
-    <div class="article-style">
-      
-      Police routinely breathalyse drivers they suspect have been drinking, but also carry out an annual Christmas crackdown, breath-testing more than three times as many drivers in December as in other months. However, only about 1.6% of these extra tests catch a drink driver, compared to about 14% of routine tests.
-larger image | annotated R code to produce this chart
-Data source: Home Office, 2019
-Notes ‘Extra’ tests associated with the annual Chirstmas crackdown on drink driving were calculated as the mean number of tests conducted in December each year minus the mean number of tests conducted in other months.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/custody-deaths/">Chart: 10 times more people die in police collisions than in shootings</a></h2>
-    <div class="article-style">
-      
-      About 100 people a year die following contact with police in England and Wales. Public debate has often focused on deaths in custody or police shootings, but people are much more likely to die in collisions with police vehicles or in suicides following release from custody.
-larger image | annotated R code to produce this chart
-Data source: Independent Office for Police Conduct, 2019
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/football-arrests/">Chart: More than 1,400 football arrests each season</a></h2>
-    <div class="article-style">
-      
-      Over the past five years, more than 1,400 people have been arrested on average each season for football-related offences across the top five English divisions, with incidents reported at over 1,000 different matches. Most arrests are for violence, and about half are for offences outside the grounds themselves. More fans are arrested at away games, even though far fewer fans typically travel than attend home games. However, the rate of arrests at football matches overall is low, at about 3 arrests per 100,000 match spectators.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/use-of-force/">Chart: When police use force, they rarely cause injury</a></h2>
-    <div class="article-style">
-      
-      Police reported using force on over 300,000 occasions last year, or about 850 each day, with most incidents involving either handcuffing or other restraint. Almost all force used by police resulted in no injury to the person force was used against. When officers did injure people, the injuries were usually minor. However, since these are new statistics there is likely to be some under-reporting, especially of minor incidents.
-larger image | annotated R code to produce this chart
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/crime-pressure/">Chart: In five years, crime-related demands on police have almost doubled</a></h2>
-    <div class="article-style">
-      
-      One way to understand crime-related demands on police forces is to track ‘crime pressure’, a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. In the past five years, this measure has risen in every police force in England and Wales, and has doubled in many places.
-larger image | annotated R code to produce this chart
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/police-arrests/">Chart: Police are arresting half as many people as a decade ago</a></h2>
-    <div class="article-style">
-      
-      A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.
-larger image | annotated R code to produce this chart
-      
-    </div>
-  </div>
-  
 
   
-<nav>
-  <ul class="pagination justify-content-center">
+  <span class="article-date">
     
     
-    <li class="page-item"><a class="page-link" href="/tags/police/page/2/">&raquo;</a></li>
+      
+    
+    <time>2 March 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/crime-and-justice-chart-of-the-week/">Crime and justice chart of the week</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/violence-prosecutions/&amp;text=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/violence-prosecutions/&amp;t=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence&amp;body=/post/violence-prosecutions/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/violence-prosecutions/&amp;title=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence%20/post/violence-prosecutions/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/violence-prosecutions/&amp;title=Chart:%20Some%20police%20forces%20are%20much%20more%20likely%20to%20prosecute%20violence" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
     
   </ul>
-</nav>
+</div>
 
+
+  
 
 </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.</p>
+<p><img src="/post/violence-prosecutions_files/figure-html/display%20plot-1.png" width="672" /></p>
+<p><a href="../violence-prosecutions.png">larger image</a> | <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/violence-prosecutions.Rmd">annotated R code to produce this chart</a></p>
+<p>Data source: <a href="https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables">Home Office, 2019</a></p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/criminal-justice/">criminal justice</a>
+  
+  <a class="badge badge-light" href="/tags/police/">police</a>
+  
+  <a class="badge badge-light" href="/tags/violence/">violence</a>
+  
+  <a class="badge badge-light" href="/tags/prosecutions/">prosecutions</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu6f220e83370d2dbfd39d511c0d0919f9_158802_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Matt Ashby</a></h5>
+      <h6 class="card-subtitle">Lecturer in Crime Science</h6>
+      <p class="card-text" itemprop="description">I am a lecturer in crime science at the <a href="https://ucl.ac.uk/jill-dando-institute/" target="_blank">Jill Dando Institute of Security and Crime Science</a> at <a href="https://ucl.ac.uk/" target="_blank">University College London</a> (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/lesscrime" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="//orcid.org/0000-0003-4201-9239" >
+              <i class="ai ai-orcid"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=dwcesrQAAAAJ" target="_blank" rel="noopener">
+              <i class="ai ai-google-scholar"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/mpjashby" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/police-assaults/">Chart: No big changes in sentences after new police-assaults law</a></li>
+          
+          <li><a href="/post/breath-tests/">Chart: Police crackdowns catch few drink drivers</a></li>
+          
+          <li><a href="/post/custody-deaths/">Chart: 10 times more people die in police collisions than in shootings</a></li>
+          
+          <li><a href="/post/football-arrests/">Chart: More than 1,400 football arrests each season</a></li>
+          
+          <li><a href="/post/use-of-force/">Chart: When police use force, they rarely cause injury</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
 
       
 

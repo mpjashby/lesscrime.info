@@ -33,6 +33,7 @@ and future plans (in approximate order with subject names).
 25. [73% of victim-based crime is not reported to police](http://lesscrime.info/post/crime-reporting/)
 26. [England & Wales has highest per-capita prison population in Western Europe](http://lesscrime.info/post/prison-europe/)
 27. [No big changes in sentences after new police-assaults law](http://lesscrime.info/post/police-assaults/)
+28. [Some police forces are much more likely to prosecute violence](http://lesscrime.info/post/violence-prosecutions/)
 
 ## Planned (slug name if code written)
 
@@ -41,7 +42,7 @@ and future plans (in approximate order with subject names).
 30. Clearance rates for different crime types (detection-rates)
 31. Prison population over time
 32. Police use of firearms
-33. Attrition of sex-offending cases in the CJS
+33. Attrition of sex-offending cases in the CJS (use PRC outcomes open data from chart 28)
 34. Importance of crime as an issue of public concern over time
 35. Variation in violence victimisation risk by age, sex etc. (violence-risk)
 36. Incidence of CSEW fraud by type
@@ -58,7 +59,6 @@ and future plans (in approximate order with subject names).
 47. Stop and search over time
 48. Police chief officer pay by force size
 49. Variations in sentencing around the country
-50. Variations in disposals for cannabis possession by police force
 51. Self harm in prisons
 52. Annual prison performance ratings over time
 53. Proportion of prisoners on remand in different European countries
