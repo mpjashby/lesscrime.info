@@ -37,7 +37,7 @@ and future plans (in approximate order with subject names).
 
 ## Planned (slug name if code written)
 
-28. Reasons for crime non-reporting, by crime type
+29. Reasons for crime non-reporting, by crime type
 29. Substance misuse in prison
 30. Clearance rates for different crime types (detection-rates)
 31. Prison population over time
