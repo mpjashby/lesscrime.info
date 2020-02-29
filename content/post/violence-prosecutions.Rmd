@@ -19,7 +19,7 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 chart_details <- list(
 	id = "violence-prosecutions",
 	title = "Some police forces are much more likely to prosecute violence",
-	subtitle = "Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions.",
+	subtitle = "Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions such as paying compensation.",
 	source_url = "https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables",
 	source_title = "Home Office, 2019"
 )
