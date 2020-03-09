@@ -27,7 +27,6 @@ chart_details <- list(
 
 ```{r load packages and helper}
 # custom packages not loaded by helpers.R
-library("lubridate")
 
 # load this after loading custom packages
 source(here::here("helpers.R"))

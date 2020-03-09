@@ -1,6 +1,7 @@
 # this file contains objects and functions that are needed to generate CJ charts
 
 # load core packages
+library("ggtext")
 library("httr")
 library("janitor")
 library("tidyverse")
@@ -41,6 +42,8 @@ names(ucl_colours_list) <- ucl_colours$name
 theme_cjcharts <- function (...) {
   theme_minimal(base_family = "Arial", ...) %+replace%
     theme(
+    	axis.text.x = element_markdown(),
+    	axis.text.y = element_markdown(hjust = 1),
     	axis.ticks = element_line(colour = "grey92"),
       axis.title = element_text(size = 9, hjust = 1),
       legend.key.height = unit(4, "mm"),
@@ -56,6 +59,7 @@ theme_cjcharts <- function (...) {
                               hjust = 0),
       plot.tag.position = c(0.01, 0.01),
       plot.title = element_text(face = "bold", size = 16, hjust = 0),
+    	plot.title.position = "plot",
       strip.text.y = element_text(angle = 0, hjust = 0)
     )
 }
