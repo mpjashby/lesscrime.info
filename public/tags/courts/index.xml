@@ -7,10 +7,27 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Mon, 06 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/courts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chart: In serious cases, justice is often slow</title>
+      <link>/post/prosecution-times/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prosecution-times/</guid>
+      <description>
+
+
+&lt;p&gt;Some serious crime investigations are surprisingly quick: half of murder prosecutions involve a suspect being charged in five days or fewer. But for many serious crimes, justice is often slow: half of fraud prosecutions don’t conclude until almost two years after the crime occurred.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: What offences are people most often prosecuted for?</title>

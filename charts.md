@@ -34,6 +34,7 @@ and future plans (in approximate order with subject names).
 26. [England & Wales has highest per-capita prison population in Western Europe](http://lesscrime.info/post/prison-europe/)
 27. [No big changes in sentences after new police-assaults law](http://lesscrime.info/post/police-assaults/)
 28. [Some police forces are much more likely to prosecute violence](http://lesscrime.info/post/violence-prosecutions/)
+29. [In serious cases, justice is often slow](http://lesscrime.info/post/prosecution-times/)
 
 ## Planned (slug name if code written)
 
