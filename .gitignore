@@ -39,7 +39,9 @@ rsconnect/
 blogdown/
 
 # Temporarily exclude posts used for testing but not yet published
-
+police-chief-pay*
+tracking-crime-changes*
 
 # Raw data files
 *-raw.csv
+*-raw-data.csv
