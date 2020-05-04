@@ -43,6 +43,9 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/mpjashby
+- icon: instagram
+  icon_pack: fab
+  link: https://www.instagram.com/matt_ashby_pics/
 superuser: true
 user_groups:
 - Researchers
