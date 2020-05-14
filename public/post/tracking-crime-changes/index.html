@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.3.1">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Matt Ashby">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="img[style*=&#34;margin: auto&#34;] { padding-top: 3em; padding-bottom: 3em; }  This post first appeared on the Social Research Association blog.
+Understanding if some event is associated with a change in the frequency of crime is a common question, both in practice and in research. A crime analyst might need to understand the impact of a change in tactics, a local journalist might want to check the truth of the mayor’s claims that her policies are working, while an academic might seek to find patterns associated with trends in socio-economic changes.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/tracking-crime-changes/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Lora:400,700|Roboto:400,700&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.802f36aed673a0434c090667f12e3b46.css">
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/tracking-crime-changes/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@lesscrime">
+  <meta property="twitter:creator" content="@lesscrime">
+  
+  <meta property="og:site_name" content="Matt Ashby">
+  <meta property="og:url" content="/post/tracking-crime-changes/">
+  <meta property="og:title" content="Why you can&#39;t identify changes in crime by comparing this month to last month | Matt Ashby">
+  <meta property="og:description" content="img[style*=&#34;margin: auto&#34;] { padding-top: 3em; padding-bottom: 3em; }  This post first appeared on the Social Research Association blog.
+Understanding if some event is associated with a change in the frequency of crime is a common question, both in practice and in research. A crime analyst might need to understand the impact of a change in tactics, a local journalist might want to check the truth of the mayor’s claims that her policies are working, while an academic might seek to find patterns associated with trends in socio-economic changes."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-05-13T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-05-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Why you can&#39;t identify changes in crime by comparing this month to last month | Matt Ashby</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="70" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Matt Ashby</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Why you can&#39;t identify changes in crime by comparing this month to last month</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2020-05-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-05-13 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>13 May 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    10 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/tracking-crime-changes/&amp;text=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/tracking-crime-changes/&amp;t=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month&amp;body=/post/tracking-crime-changes/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/tracking-crime-changes/&amp;title=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month%20/post/tracking-crime-changes/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/tracking-crime-changes/&amp;title=Why%20you%20can&amp;#39;t%20identify%20changes%20in%20crime%20by%20comparing%20this%20month%20to%20last%20month" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<style>
+img[style*="margin: auto"] {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+</style>
+<p><em>This post first appeared on the <a href="https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx" title="Version of this post on the SRA Blog">Social Research Association blog</a>.</em></p>
+<p>Understanding if some event is associated with a change in the frequency of crime is a common question, both in practice and in research. A crime analyst might need to understand the impact of a change in tactics, a local journalist might want to check the truth of the mayor’s claims that her policies are working, while an academic might seek to find patterns associated with trends in socio-economic changes.</p>
+<p>Often, attempts to identify changes in crime frequency involve simply comparing the number of crimes this week/month/year to the number that occurred last week/month/year, or comparing this week, month etc to the same period last year. In recent weeks, we’ve seen these comparisons made to attempt to answer the topical question of how the COVID-19 pandemic is influencing crime. For example, police in San Jose told local news that <a href="https://sanjosespotlight.com/san-jose-police-chief-talks-crime-trends-during-covid-19-shutdown/" title="San Jose Police Chief talks crime trends during COVID-19 shutdown">violent crime had dropped 22% in the month to 18 April 2020 compared to the same period in 2019</a>, while radio station WBUR reported that the <a href="https://www.wbur.org/news/2020/04/17/boston-coronavirus-covid-19-crime-rate" title="&#39;This Is Too Much&#39;: Crime Continues Despite Pandemic">frequency of shootings in Boston was broadly similar in March 2020 in comparison to the previous March</a>. In Scotland, police reported <a href="https://www.sundaypost.com/fp/violent-crime-falls-in-lockdown-but-police-reveal-fraud-is-up-as-crooks-exploit-coronavirus-crisis/" title="Violent crime falls in lockdown but police reveal fraud is up as crooks exploit coronavirus crisis">overall violence fell in April 2020 compared to the year before, but fraud increased</a>.</p>
+<p>Binary comparisons of one period to another are common, but can be seriously misleading. I’m going to outline five reasons why you should avoid binary comparisons, then suggest some alternative methods that can produce more-reliable results. All the examples in this article use <a href="https://www.atlantapd.org/i-want-to/crime-data-downloads">open data from the Atlanta Police Department</a>.</p>
+<div id="throwing-away-useful-information" class="section level1">
+<h1>1. Throwing away useful information</h1>
+<p>The first problem with binary comparisons is that they typically ignore a great deal of other information about crime frequency. Take this chart of how the number of homicides in Atlanta changed from 2016 to 2017:</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-1-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>At first glance, the decrease of 25% in homicides between 2016 and 2017 looks impressive. Whatever the police, mayor, church group, etc is doing to reduce homicide must be very successful, right? But put in the context of previous years, the picture looks quite different:</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>By including all the available data on homicide frequency between 2010 and 2018, we can now see that actually the decrease from 2016 to 2017 was a return to the expected number of homicides after an exceptionally violent year (the 86 homicides in 2017 is almost identical to the median of 87 homicides per year between 2010 and 2018). Maybe whatever the police, mayor etc were doing in 2017 didn’t have the effect we first thought – our impressive-looking decrease might simply be <a href="https://doi.org/10.1093/ije/dyh299" title="Regression to the mean: what it is and how to deal with it">regression to the mean</a>. The 25% drop is probably real (although it’s always worth checking for changes in recording methods), but making a binary comparison threw out useful information that might have completely changed our conclusions about why it happened.</p>
+<p>Whenever you see a binary comparison, try asking yourself ‘yes, but what happened the year before?’ The 25% decrease in homicide between 2016 in 2017 could easily have been announced as a great success, but that year-on-year decrease could be part of any of these very-different scenarios – without more information, it’s impossible to know which is true.</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ignoring-trends" class="section level1">
+<h1>2. Ignoring trends</h1>
+<p>Another reason binary comparisons can be misleading is that they ignore any long-term trend in the data. For example, we can see that the general trend in Atlanta over the past decade has been for the number of burglaries to decrease (although there is also seasonal variation, which we’ll get back to):</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>A researcher might attempt to understand the effect of some change or intervention (maybe a new anti-burglary initiative) by comparing the number of burglaries in a given month this year to the same month last year. This is very common, for example, in <a href="https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html" title="New York magazine: The Controversial Crime-Fighting Program That Changed Big-City Policing Forever">CompStat-style processes used to measure police performance</a>. For example, <a href="https://www1.nyc.gov/site/nypd/stats/crime-statistics/citywide-crime-stats.page" title="NYPD: Citywide Crime Statistics">New York City’s weekly CompStat report</a> includes a comparison of crime frequency over the past 28 days with the same 28 days last year.</p>
+<p>By ignoring pre-existing trends in crime, year-on-year comparisons such as this are very likely to produce misleading results. Over the period 2010–19, the average monthly year-on-year reduction in burglary in Atlanta was about 13%. A researcher doing a simple year-on-year comparison could easily conclude an anti-burglary intervention had been effective when it had actually made no difference at all. If the long-term trend had instead been for burglary to increase, a year-on-year comparison could easily have led to the (equally wrong) conclusion that a new program was making the problem worse.</p>
+</div>
+<div id="months-are-a-terrible-unit-of-analysis" class="section level1">
+<h1>3. Months are a terrible unit of analysis</h1>
+<p>Months are a very common unit of analysis for measuring crime. For example, almost all the academic research on how much crime varies across seasons uses monthly crime counts. But months are a terrible unit of analysis for temporal data. The most obvious reason for this is that not all months are the same length. A <a href="https://edition.cnn.com/2020/04/04/us/domestic-violence-coronavirus-calls-cases-increase-invs/" title="CNN: Some cities see jumps in domestic violence during the pandemic">recent CNN article on domestic violence during the coronavirus pandemic</a> noted:</p>
+<blockquote>
+<p>“[of] 20 large metropolitan police departments that provided data to CNN, nine saw double-digit percentage jumps in domestic violence cases or 911 calls in March, either compared to the previous year or to earlier months in 2020”</p>
+</blockquote>
+<p>but this ignores that March is 11% longer than February, so even if crime occurred at the same rate on every day in both months we’d expect a double-digit increase in crime in March (it also ignores that 11 departments did not see such an increase, but that’s a separate problem).</p>
+<p>The second problem with measuring the frequency of crime by month is that not all months have the same number of each weekday, and many types of crime vary by day of the week. For example, aggravated assaults in Atlanta are concentrated at weekends:</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The varying number of each weekday across months can easily generate changes in crime. October 2010 had 31 days, including five Saturdays and five Sundays, while November had 30 days including four Saturdays and four Sundays, which may go some way to explaining why aggravated assaults decreased by 15% from October to November that year.</p>
+<p>The only good reason to use months as units of analysis is if you only have access to monthly data (e.g. if you’re using published monthly administrative data). If you have access to incident-level data, it is much better to use a unit of analysis that doesn’t have these problems, such as weeks or 28-day periods.</p>
+</div>
+<div id="seasons-matter" class="section level1">
+<h1>4. Seasons matter</h1>
+<p>Many social phenomena, crime included, are more common at some times of year than others. Sticking with aggravated assaults, we can see that they tend to be more common in the summer than the winter (although there is a lot of noise):</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Over the decade 2010–19, on average the frequency of aggravated assault increased slightly (by about 1.7% per month) in the first half of the year and decreased slightly (by about 4.2% per month) in the second. This means that if we were comparing assaults in March to assaults in February (even if we corrected for the number of days in each month, and the different number of weekdays), we’d expect assaults to increase even if nothing had changed except the seasons.</p>
+</div>
+<div id="crime-data-are-noisy" class="section level1">
+<h1>5. Crime data are noisy</h1>
+<p>Perhaps the most-important reason why comparing one year/month/week/day to the next is that crime data are typically quite noisy. Looking at larceny from vehicles in Atlanta, we’d expect a week-to-week change of at least 10% about every other week, at least 17% about once a month and at least 35% about once a year:</p>
+<p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Noise is likely to be higher when analysing shorter time periods, smaller geographic areas or more-serious crimes, because in each case the number of crimes is likely to be lower. Most police crime analysts will have a story of a local commander who came to them in a panic about a 100% week-on-week increase in a particular crime type, only to be reminded that the number of crimes had simply increased from one to two. Analysing small areas, short time periods and serious crimes might well be important, but it requires dealing with a greater degree of noise in the data.</p>
+</div>
+<div id="what-to-do-instead" class="section level1">
+<h1>What to do instead</h1>
+<p>Knowing the limitations of binary comparisons, some of the reported changes in crime during the coronavirus lockdown seem unremarkable. For example, the <a href="https://time.com/5819507/crime-drop-coronavirus/" title="Time: Crime Rates Plummet Around the World as the Coronavirus Keeps People Inside">10% year-on-year drop in crime in Chicago reported by <em>Time</em></a> and the <a href="http://www.washingtonpost.com/world/national-security/coronavirus-new-york-city-crime/2020/03/26/6a408e94-6f9a-11ea-a3ec-70d7479d83f0_story.html" title="The Washington Post: NYPD data shows sharp decline in crime rates">18% week-on-week decrease in burglaries and assaults in New York City reported by <em>The Washington Post</em></a> both seem like they could be entirely unrelated to the virus. There are plenty of theoretical reasons for thinking crime will change during the pandemic, but identifying changes reliably means using all the available information and taking into account trends, seasonality and noise.</p>
+<p>There are several options for robustly identifying changes in crime associated with particular events or interventions. In some circumstances, you can run a randomised controlled trial, with people or places being allocated at random to either receive the intervention (be it an anti-violence initiative or new door locks) or not. Intervention areas can then be compared to non-intervention areas with a high degree of confidence that any systematic difference (other than the intervention) has been eliminated. Randomised trials have been used extensively in some areas, such as <a href="https://www.jratcliffe.net/philadelphia-foot-patrol-experiment" title="Jerry Ratcliffe: The Philadelphia Foot Patrol Experiment">understanding the effectiveness of hotspot policing</a>. However, randomised trials can only be run where you can choose where to target the intervention – you can’t randomise which cities are most affected by a global pandemic.</p>
+<p>When a randomised trial is impossible, you can use quasi-experimental approaches, such as <a href="https://towardsdatascience.com/causal-inference-using-difference-in-differences-causal-impact-and-synthetic-control-f8639c408268">difference-in-difference</a> or <a href="https://conjointly.com/kb/regression-discontinuity-design/">regression discontinuity designs</a>. These approaches involve comparing the people/places/groups that experienced a particular change to people/places/groups that didn’t experience the change but are otherwise similar to those people/places/groups that did.</p>
+<p>Quasi-experimental designs rely on the availability of a comparison group. If this is impossible, as in the case of trying to analyse the effect of a global phenomenon, alternative approaches are needed. <a href="https://doi.org/10.1136/bmj.h2750" title="British Medical Journal: Regression based quasi-experimental approach when randomisation is not an option: interrupted time series analysis">Interrupted time-series designs</a> use earlier data (from before whatever you’re interested in happened) as a comparison, but are only useful for measuring the impact of sudden changes.</p>
+<p>One approach I used recently to understand <a href="https://doi.org/10.31235/osf.io/ep87s" title="Initial evidence on the relationship between the coronavirus pandemic and crime in the United States">how crime changed in large US cities in the early months of the COVID-19 pandemic</a> was to create a synthetic comparison group by using previous crime data to build a model that forecast how much crime would have occurred in the absence of the pandemic. The <a href="https://github.com/mpjashby/covid19-crime/" title="Initial evidence on COVID-19 and crime in the United States">code to replicate that analysis is available online</a>.</p>
+<p>Some of these methods might be beyond the capabilities of some people who need to work out if some event was associated with a change in crime. The increasing number of <a href="https://doi.org/10.1093/police/paw029" title="Unearthing Hidden Keys: Why Pracademics Are an Invaluable (If Underutilized) Resource in Policing Research">pracademics</a> working in (for example) police forces means more agencies have the capability to carry out this sort of analysis. Many universities are also happy to partner with agencies for this type of work.</p>
+<p>Binary comparisons are easy to make, but there is little point if the results might be misleading. The extra work to produce reliable results is almost invariably worth it to avoid being misled, especially when those results are going to be used to make important decisions. Use the links here to identify a method that is going to work for your circumstances, or look for more detail in a textbook such as the free <a href="https://www.scunning.com/causalinference_norap.pdf"><em>Causal Inference: the mixtape</em></a> by <a href="https://www.scunning.com/" title="Scott Cunningham&#39;s website">Scott Cunningham</a>. If you have any questions, feel free to ask me <a href="https://twitter.com/LessCrime">on Twitter</a> or contact me via <a href="http://lesscrime.info/">my website</a>.</p>
+<p><em>The <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/tracking-crime-changes.Rmd">annotated R code to reproduce these charts and figures</a> is available on GitHub.</em></p>
+</div>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/time-series/">time series</a>
+  
+  <a class="badge badge-light" href="/tags/crime/">crime</a>
+  
+  <a class="badge badge-light" href="/tags/open-data/">open data</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu3844a0b9be401c931ce9c3c7908c4225_82420_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Matt Ashby</a></h5>
+      <h6 class="card-subtitle">Lecturer in Crime Science</h6>
+      <p class="card-text" itemprop="description">I am a lecturer in crime science at the <a href="https://ucl.ac.uk/jill-dando-institute/" target="_blank">Jill Dando Institute of Security and Crime Science</a> at <a href="https://ucl.ac.uk/" target="_blank">University College London</a> (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/lesscrime" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="//orcid.org/0000-0003-4201-9239" >
+              <i class="ai ai-orcid"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=dwcesrQAAAAJ" target="_blank" rel="noopener">
+              <i class="ai ai-google-scholar"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/mpjashby" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://www.instagram.com/matt_ashby_pics/" target="_blank" rel="noopener">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/crime-reporting/">Chart: 73% of victim-based crime is not reported to police</a></li>
+          
+          <li><a href="/post/search-hits/">Chart: Stop and search has fallen, arrests from searches less so</a></li>
+          
+          <li><a href="/post/search-arrests/">Chart: Stop and search has fallen, arrests from searches less so</a></li>
+          
+          <li><a href="/post/homicide-europe/">Chart: Homicides haven&#39;t only increased in Britain</a></li>
+          
+          <li><a href="/post/drug-seizures/">Chart: Seizures of the most harmful drugs at UK borders are falling</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.24e4ae3437f67be0520f6066707da44b.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy on this website</a>
+  </p>
+  
+
+  <p class="powered-by">
+    CC-BY &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

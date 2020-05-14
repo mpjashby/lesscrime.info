@@ -1,0 +1,499 @@
+---
+title: "Why you can't identify changes in crime by comparing this month to last month"
+author: "Matt Ashby"
+date: "2020-05-13"
+output:
+  html_document:
+    df_print: paged
+tags:
+- time series
+- crime
+- open data
+slug: tracking-crime-changes
+---
+
+<style>
+img[style*="margin: auto"] {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+</style>
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE, fig.align="center", fig.height = 4, fig.width = 6)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("tsibble")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists("tracking-crime-changes-data.rds")) {
+  
+  # download data
+	data_file <- tempfile(fileext = ".zip")
+	GET("https://www.atlantapd.org/Home/ShowDocument?id=3051", 
+	    write_disk(data_file))
+	
+	# unzip file
+	unzip(data_file, exdir = tempdir())
+  
+	# load and tidy data
+	tidy_data <- glue::glue("{tempdir()}/COBRA-2009-2019.csv") %>% 
+	  read_csv() %>% 
+	  janitor::clean_names() %>%
+	  # add date variable
+	  # mutate(offense_date = parse_date(occur_date, "%Y-%m-%d")) %>%
+	  select(offense_ref = report_number, offense_date = occur_date, 
+	         offense_type = ucr_literal) %>% 
+	  filter(
+	    offense_date >= ymd("2010-01-01"), 
+	    offense_date < ymd("2020-01-01")
+    ) %>% 
+	  count(offense_date, offense_type) %>% 
+	  mutate(
+	    offense_week = as_date(yearweek(offense_date)), 
+	    offense_month = as_date(yearmonth(offense_date))
+	  )
+	  
+	# save tidy data
+	write_csv(tidy_data, "tracking-crime-changes-data.rds")
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv("tracking-crime-changes-data.rds")
+	
+}	
+```
+
+*This post first appeared on the [Social Research Association blog](https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx "Version of this post on the SRA Blog").*
+
+Understanding if some event is associated with a change in the frequency of crime is a common question, both in practice and in research. A crime analyst might need to understand the impact of a change in tactics, a local journalist might want to check the truth of the mayor's claims that her policies are working, while an academic might seek to find patterns associated with trends in socio-economic changes.
+
+Often, attempts to identify changes in crime frequency involve simply comparing the number of crimes this week/month/year to the number that occurred last week/month/year, or comparing this week, month etc to the same period last year. In recent weeks, we've seen these comparisons made to attempt to answer the topical question of how the COVID-19 pandemic is influencing crime. For example, police in San Jose told local news that [violent crime had dropped 22% in the month to 18 April 2020 compared to the same period in 2019](https://sanjosespotlight.com/san-jose-police-chief-talks-crime-trends-during-covid-19-shutdown/ "San Jose Police Chief talks crime trends during COVID-19 shutdown"), while radio station WBUR reported that the [frequency of shootings in Boston was broadly similar in March 2020 in comparison to the previous March](https://www.wbur.org/news/2020/04/17/boston-coronavirus-covid-19-crime-rate "'This Is Too Much': Crime Continues Despite Pandemic"). In Scotland, police reported [overall violence fell in April 2020 compared to the year before, but fraud increased](https://www.sundaypost.com/fp/violent-crime-falls-in-lockdown-but-police-reveal-fraud-is-up-as-crooks-exploit-coronavirus-crisis/ "Violent crime falls in lockdown but police reveal fraud is up as crooks exploit coronavirus crisis").
+
+Binary comparisons of one period to another are common, but can be seriously misleading. I'm going to outline five reasons why you should avoid binary comparisons, then suggest some alternative methods that can produce more-reliable results. All the examples in this article use [open data from the Atlanta Police Department](https://www.atlantapd.org/i-want-to/crime-data-downloads).
+
+
+
+# 1. Throwing away useful information
+
+The first problem with binary comparisons is that they typically ignore a great deal of other information about crime frequency. Take this chart of how the number of homicides in Atlanta changed from 2016 to 2017:
+
+
+```{r echo=FALSE, include=TRUE}
+tidy_data %>% 
+  filter(offense_type == "HOMICIDE") %>% 
+  mutate(year = year(offense_date)) %>% 
+  count(year, wt = n) %>% 
+  filter(year %in% 2016:2017) %>% 
+  mutate(hjust = ifelse(year == 2016, 1, 0)) %>% 
+  ggplot(aes(year, n)) +
+  geom_line(na.rm = TRUE, colour = "#EA7600", size = 1) +
+  geom_point(na.rm = TRUE, colour = "#EA7600") +
+  geom_text(aes(label = glue::glue("  {n} homicides  "), hjust = hjust)) +
+  scale_x_continuous(
+    breaks = 2016:2017, 
+    limits = c(2010, 2018), 
+    labels = scales::number_format(accuracy = 1, big.mark = ""),
+    expand = expansion(mult = c(0.025, 0.1))
+  ) +
+  scale_y_continuous(limits = c(0, NA), 
+                     expand = expansion(mult = c(0, 0.03))) +
+  labs(
+    x = NULL,
+    y = "annual count of homicides",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts()
+```
+
+
+```{r}
+homicide_decrease <- tidy_data %>% 
+  filter(offense_type == "HOMICIDE") %>% 
+  mutate(year = year(offense_date)) %>% 
+  count(year, wt = n) %>% 
+  filter(year %in% 2016:2017) %>% 
+  mutate(change = abs((n - lag(n)) / lag(n))) %>% 
+  filter(!is.na(change)) %>% 
+  pull("change")
+```
+
+
+At first glance, the decrease of `r scales::percent(homicide_decrease, accuracy = 1)` in homicides between 2016 and 2017 looks impressive. Whatever the police, mayor, church group, etc is doing to reduce homicide must be very successful, right? But put in the context of previous years, the picture looks quite different:
+
+
+```{r echo=FALSE, include=TRUE}
+homicide_median <- tidy_data %>% 
+  filter(offense_type == "HOMICIDE") %>% 
+  mutate(year = year(offense_date)) %>% 
+  count(year, wt = n) %>% 
+  summarise(median = median(n, na.rm = TRUE)) %>% 
+  pull("median")
+
+tidy_data %>% 
+  filter(offense_type == "HOMICIDE") %>% 
+  mutate(year = year(offense_date)) %>% 
+  count(year, wt = n) %>% 
+  mutate(
+    label = ifelse(year %in% 2016:2017, glue::glue("  {n} homicides  "), NA),
+    hjust = ifelse(year == 2016, 0, 1),
+    vjust = ifelse(year == 2016, 0, 1)
+  ) %>% 
+  ggplot(aes(year, n)) +
+  geom_hline(aes(yintercept = homicide_median), 
+             colour = elements$average_line_colour, 
+             linetype = elements$average_line_linetype) +
+  geom_line(na.rm = TRUE, colour = "#EA7600", size = 1) +
+  geom_point(na.rm = TRUE, colour = "#EA7600") +
+  geom_text(
+    aes(label = label, hjust = hjust, vjust = vjust), 
+    na.rm = TRUE
+  ) +
+  annotate("text", x = 2018, y = homicide_median - 1, label = "  median", 
+           hjust = 0, vjust = 1, colour = elements$label_line_colour, 
+           size = elements$label_text_size) +
+  scale_x_continuous(
+    breaks = 2010:2018, 
+    limits = c(2010, 2018), 
+    labels = scales::number_format(accuracy = 1, big.mark = ""),
+    expand = expansion(mult = c(0.025, 0.1))
+  ) +
+  scale_y_continuous(limits = c(0, NA), 
+                     expand = expansion(mult = c(0, 0.03))) +
+  labs(
+    x = NULL,
+    y = "annual count of homicides",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts()
+```
+
+
+By including all the available data on homicide frequency between 2010 and 2018, we can now see that actually the decrease from 2016 to 2017 was a return to the expected number of homicides after an exceptionally violent year (the 86 homicides in 2017 is almost identical to the median of 87 homicides per year between 2010 and 2018). Maybe whatever the police, mayor etc were doing in 2017 didn't have the effect we first thought – our impressive-looking decrease might simply be [regression to the mean](https://doi.org/10.1093/ije/dyh299 "Regression to the mean: what it is and how to deal with it"). The `r scales::percent(homicide_decrease, accuracy = 1)` drop is probably real (although it's always worth checking for changes in recording methods), but making a binary comparison threw out useful information that might have completely changed our conclusions about why it happened.
+
+Whenever you see a binary comparison, try asking yourself 'yes, but what happened the year before?' The `r scales::percent(homicide_decrease, accuracy = 1)` decrease in homicide between 2016 in 2017 could easily have been announced as a great success, but that year-on-year decrease could be part of any of these very-different scenarios – without more information, it's impossible to know which is true.
+
+
+```{r echo=FALSE, include=TRUE, fig.height=7, fig.width=7}
+example_homicides <- tribble(
+	~scenario, ~year, ~n, ~highlight,
+	"part of a downward trend", 2010, 145 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2011, 140 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2012, 135 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2013, 130 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2014, 125 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2015, 120 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2016, 114, TRUE,
+	"part of a downward trend", 2017, 86, TRUE,
+	"part of a downward trend", 2018, 80 + runif(1, -3, 3), FALSE,
+	"part of a downward trend", 2019, 75 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2010, 110 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2011, 90 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2012, 110 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2013, 90 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2014, 110 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2015, 90 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2016, 114, TRUE,
+	"random variation with no trend", 2017, 86, TRUE,
+	"random variation with no trend", 2018, 110 + runif(1, -3, 3), FALSE,
+	"random variation with no trend", 2019, 90 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2010, 80 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2011, 85 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2012, 90 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2013, 95 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2014, 100 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2015, 105 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2016, 114, TRUE,
+	"a one-year blip in an upward trend", 2017, 86, TRUE,
+	"a one-year blip in an upward trend", 2018, 120 + runif(1, -3, 3), FALSE,
+	"a one-year blip in an upward trend", 2019, 125 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2010, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2011, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2012, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2013, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2014, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2015, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2016, 114, TRUE,
+	"a one-year blip with no trend", 2017, 86, TRUE,
+	"a one-year blip with no trend", 2018, 115 + runif(1, -3, 3), FALSE,
+	"a one-year blip with no trend", 2019, 115 + runif(1, -3, 3), FALSE
+) %>% 
+	mutate(scenario = factor(scenario, levels = c(
+		"part of a downward trend", "random variation with no trend", 
+		"a one-year blip with no trend", "a one-year blip in an upward trend"
+	)))
+
+ggplot(example_homicides, aes(year, n)) +
+	geom_line(colour = "grey80", size = 1) +
+	geom_point(colour = "grey80") +
+	geom_line(data = filter(example_homicides, highlight == TRUE), 
+						colour = "#EA7600", size = 1) +
+	geom_point(data = filter(example_homicides, highlight == TRUE), 
+						 colour = "#EA7600") +
+  scale_x_continuous(
+    labels = scales::number_format(accuracy = 1, big.mark = "")
+  ) +
+	scale_y_continuous(limits = c(0, NA)) +
+	facet_wrap(vars(scenario), ncol = 2, labeller = label_wrap_gen(width = 20)) +
+  labs(
+    x = NULL,
+    y = "annual count of homicides",
+    caption = "Data: Atlanta Police Department"
+  ) +
+	theme_cjcharts()
+```
+
+
+
+# 2. Ignoring trends
+
+Another reason binary comparisons can be misleading is that they ignore any long-term trend in the data. For example, we can see that the general trend in Atlanta over the past decade has been for the number of burglaries to decrease (although there is also seasonal variation, which we'll get back to):
+
+
+```{r echo=FALSE, include=TRUE}
+tidy_data %>% 
+  filter(offense_type == "BURGLARY-RESIDENCE") %>% 
+  count(offense_month, wt = n) %>% 
+  filter(
+    offense_month >= yearmonth(ymd("2010-01-01")), 
+    offense_month < yearmonth(ymd("2020-01-01"))
+  ) %>% 
+  ggplot(aes(offense_month, n)) +
+  geom_segment(aes(xend = offense_month, yend = 0), colour = "grey75", 
+               size = 0.1) +
+  geom_point(colour = "grey50", size = 0.5) +
+  geom_smooth(method = "loess", formula = "y ~ x", se = FALSE, 
+              colour = "#EA7600") +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", 
+               expand = expansion(mult = 0.02)) +
+  scale_y_continuous(limits = c(0, NA), 
+                     expand = expansion(mult = c(0, 0.025))) +
+  labs(
+    x = NULL,
+    y = "monthly count of residential burglaries",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts() +
+  theme(
+    axis.line.x = element_line(colour = "grey75"),
+    panel.grid = element_blank()
+  )
+```
+
+
+```{r}
+# calculate median year-on-year change to monthly burglary frequency
+burglary_decrease <- tidy_data %>% 
+  filter(offense_type == "BURGLARY-RESIDENCE") %>% 
+  mutate(
+    year = year(offense_date), 
+    month = strftime(offense_date, "%m") # %V for week number
+  ) %>% 
+  count(year, month, wt = n) %>% 
+  arrange(month, year) %>% 
+  group_by(month) %>% 
+  mutate(change = (n - lag(n)) / lag(n)) %>% 
+  ungroup() %>% 
+  summarise(change = median(change, na.rm = TRUE)) %>% 
+  pull("change")
+```
+
+
+A researcher might attempt to understand the effect of some change or intervention (maybe a new anti-burglary initiative) by comparing the number of burglaries in a given month this year to the same month last year. This is very common, for example, in [CompStat-style processes used to measure police performance](https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html "New York magazine: The Controversial Crime-Fighting Program That Changed Big-City Policing Forever"). For example, [New York City's weekly CompStat report](https://www1.nyc.gov/site/nypd/stats/crime-statistics/citywide-crime-stats.page "NYPD: Citywide Crime Statistics") includes a comparison of crime frequency over the past 28 days with the same 28 days last year.
+
+By ignoring pre-existing trends in crime, year-on-year comparisons such as this are very likely to produce misleading results. Over the period 2010–19, the average monthly year-on-year reduction in burglary in Atlanta was about `r scales::percent(abs(burglary_decrease), accuracy = 1)`. A researcher doing a simple year-on-year comparison could easily conclude an anti-burglary intervention had been effective when it had actually made no difference at all. If the long-term trend had instead been for burglary to increase, a year-on-year comparison could easily have led to the (equally wrong) conclusion that a new program was making the problem worse.
+
+
+
+# 3. Months are a terrible unit of analysis
+
+Months are a very common unit of analysis for measuring crime. For example, almost all the academic research on how much crime varies across seasons uses monthly crime counts. But months are a terrible unit of analysis for temporal data. The most obvious reason for this is that not all months are the same length. A [recent CNN article on domestic violence during the coronavirus pandemic](https://edition.cnn.com/2020/04/04/us/domestic-violence-coronavirus-calls-cases-increase-invs/ "CNN: Some cities see jumps in domestic violence during the pandemic") noted:
+
+> "[of] 20 large metropolitan police departments that provided data to CNN, nine saw double-digit percentage jumps in domestic violence cases or 911 calls in March, either compared to the previous year or to earlier months in 2020"
+
+but this ignores that March is 11% longer than February, so even if crime occurred at the same rate on every day in both months we'd expect a double-digit increase in crime in March (it also ignores that 11 departments did not see such an increase, but that's a separate problem). 
+
+The second problem with measuring the frequency of crime by month is that not all months have the same number of each weekday, and many types of crime vary by day of the week. For example, aggravated assaults in Atlanta are concentrated at weekends:
+
+
+```{r echo=FALSE, include=TRUE}
+tidy_data %>% 
+  filter(offense_type == "AGG ASSAULT") %>% 
+  mutate(weekday = wday(offense_date, label = TRUE)) %>% 
+  group_by(weekday) %>% 
+  summarise(mean_n = sum(n, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  mutate(prop = mean_n / sum(mean_n)) %>% 
+  ggplot(aes(weekday, prop)) +
+  geom_col(fill = "#EA7600", alpha = 0.75) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), expand = c(0, 0)) +
+  labs(
+    x = NULL,
+    y = "proportion of all aggravated assaults",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts() +
+  theme(axis.ticks.x = element_blank())
+```
+
+
+```{r}
+# calculate the number of each weekday in each month
+seq.Date(ymd("2010-01-01"), ymd("2019-12-31"), by = "days") %>% 
+  enframe(name = NULL, value = "date") %>% 
+  mutate(
+    month = yearmonth(date), 
+    wday = wday(date, label = TRUE)
+  ) %>% 
+  count(month, wday) %>% 
+  pivot_wider(names_from = wday, values_from = n) %>% 
+  mutate(days = days_in_month(as_date(month)))
+
+agg_assault_change <- tidy_data %>% 
+  filter(
+    offense_type == "AGG ASSAULT", 
+    between(offense_date, ymd("2010-10-01"), ymd("2010-11-30"))
+  ) %>% 
+  count(offense_month, wt = n) %>% 
+  mutate(change = abs((n - lag(n)) / lag(n))) %>% 
+  filter(!is.na(change)) %>% 
+  pull("change")
+```
+
+
+The varying number of each weekday across months can easily generate changes in crime. October 2010 had 31 days, including five Saturdays and five Sundays, while November had 30 days including four Saturdays and four Sundays, which may go some way to explaining why aggravated assaults decreased by `r scales::percent(agg_assault_change, accuracy = 1)` from October to November that year.
+
+The only good reason to use months as units of analysis is if you only have access to monthly data (e.g. if you're using published monthly administrative data). If you have access to incident-level data, it is much better to use a unit of analysis that doesn't have these problems, such as weeks or 28-day periods.
+
+
+
+# 4. Seasons matter
+
+Many social phenomena, crime included, are more common at some times of year than others. Sticking with aggravated assaults, we can see that they tend to be more common in the summer than the winter (although there is a lot of noise):
+
+
+```{r echo=FALSE, include=TRUE}
+tidy_data %>% 
+  filter(offense_type == "AGG ASSAULT") %>% 
+  count(offense_month, wt = n) %>% 
+  mutate(year = year(offense_month)) %>% 
+  ggplot(aes(offense_month, n)) +
+  geom_segment(aes(xend = offense_month, yend = 0), colour = "grey75", 
+               size = 0.25) +
+  geom_point(colour = "grey50", size = 0.5) +
+  geom_smooth(method = "loess", formula = "y ~ x", se = FALSE, 
+              colour = "#EA7600") +
+  scale_x_date(date_breaks = "6 months", date_labels = "%b") +
+  scale_y_continuous(limits = c(0, NA), 
+                     expand = expansion(mult = c(0, 0.025))) +
+  facet_wrap(vars(year), ncol = 10, scales = "free_x", 
+  					 strip.position = "bottom") +
+  labs(
+    x = NULL,
+    y = "monthly count of aggravated assaults",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts() +
+  theme(
+    axis.line.x = element_line(colour = "grey75"),
+    panel.grid = element_blank(),
+    strip.placement = "outside"
+  )
+```
+
+
+```{r}
+seasonal_change <- tidy_data %>% 
+  filter(offense_type == "AGG ASSAULT") %>% 
+	count(offense_month, wt = n) %>% 
+	mutate(
+		change = (n - lag(n)) / lag(n), 
+		month = month(offense_month),
+		half = ifelse(month <= 6, "first", "second")
+	) %>% 
+	group_by(half) %>%
+	summarise(change = abs(median(change, na.rm = TRUE))) %>% 
+	pivot_wider(names_from = half, values_from = change)
+```
+
+
+Over the decade 2010–19, on average the frequency of aggravated assault increased slightly (by about `r scales::percent(seasonal_change$first, accuracy = 0.1)` per month) in the first half of the year and decreased slightly (by about `r scales::percent(seasonal_change$second, accuracy = 0.1)` per month) in the second. This means that if we were comparing assaults in March to assaults in February (even if we corrected for the number of days in each month, and the different number of weekdays), we'd expect assaults to increase even if nothing had changed except the seasons. 
+
+
+
+# 5. Crime data are noisy
+
+```{r}
+noise_changes <- tidy_data %>% 
+  filter(
+    offense_type == "LARCENY-FROM VEHICLE", 
+    year(offense_week) %in% 2010:2019,
+    !offense_week %in% c(min(offense_week), max(offense_week))
+  ) %>% 
+  count(offense_week, wt = n) %>% 
+  mutate(change = (n - lag(n)) / lag(n)) %>% 
+  summarise(
+    q1 = quantile(abs(change), 1 - (26 / 52), na.rm = TRUE),
+    q2 = quantile(abs(change), 1 - (12 / 52), na.rm = TRUE),
+    q3 = quantile(abs(change), 1 - (1 / 52), na.rm = TRUE)
+  )
+```
+
+
+Perhaps the most-important reason why comparing one year/month/week/day to the next is that crime data are typically quite noisy. Looking at larceny from vehicles in Atlanta, we'd expect a week-to-week change of at least `r scales::percent(noise_changes$q1, accuracy = 1)` about every other week, at least `r scales::percent(noise_changes$q2, accuracy = 1)` about once a month and at least `r scales::percent(noise_changes$q3, accuracy = 1)` about once a year:
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+tidy_data %>% 
+  filter(
+    offense_type == "LARCENY-FROM VEHICLE", 
+    year(offense_week) %in% 2010:2019,
+    !offense_week %in% c(min(offense_week), max(offense_week))
+  ) %>% 
+  count(offense_week, wt = n) %>% 
+  mutate(change = (n - lag(n)) / lag(n)) %>% 
+  ggplot(aes(offense_week, change)) +
+  geom_col(colour = "#EA7600") +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", 
+               expand = expansion(mult = 0.02)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     limits = c(-0.7, 0.7), n.breaks = 10, expand = c(0, 0)) +
+  labs(
+    x = NULL,
+    y = "weekly change in larceny from vehicle",
+    caption = "Data: Atlanta Police Department"
+  ) +
+  theme_cjcharts()
+```
+
+
+Noise is likely to be higher when analysing shorter time periods, smaller geographic areas or more-serious crimes, because in each case the number of crimes is likely to be lower. Most police crime analysts will have a story of a local commander who came to them in a panic about a 100% week-on-week increase in a particular crime type, only to be reminded that the number of crimes had simply increased from one to two. Analysing small areas, short time periods and serious crimes might well be important, but it requires dealing with a greater degree of noise in the data.
+
+
+
+# What to do instead
+
+Knowing the limitations of binary comparisons, some of the reported changes in crime during the coronavirus lockdown seem unremarkable. For example, the [10% year-on-year drop in crime in Chicago reported by *Time*](https://time.com/5819507/crime-drop-coronavirus/ "Time: Crime Rates Plummet Around the World as the Coronavirus Keeps People Inside") and the [18% week-on-week decrease in burglaries and assaults in New York City reported by *The Washington Post*](http://www.washingtonpost.com/world/national-security/coronavirus-new-york-city-crime/2020/03/26/6a408e94-6f9a-11ea-a3ec-70d7479d83f0_story.html "The Washington Post: NYPD data shows sharp decline in crime rates") both seem like they could be entirely unrelated to the virus. There are plenty of theoretical reasons for thinking crime will change during the pandemic, but identifying changes reliably means using all the available information and taking into account trends, seasonality and noise.
+
+There are several options for robustly identifying changes in crime associated with particular events or interventions. In some circumstances, you can run a randomised controlled trial, with people or places being allocated at random to either receive the intervention (be it an anti-violence initiative or new door locks) or not. Intervention areas can then be compared to non-intervention areas with a high degree of confidence that any systematic difference (other than the intervention) has been eliminated. Randomised trials have been used extensively in some areas, such as [understanding the effectiveness of hotspot policing](https://www.jratcliffe.net/philadelphia-foot-patrol-experiment "Jerry Ratcliffe: The Philadelphia Foot Patrol Experiment"). However, randomised trials can only be run where you can choose where to target the intervention – you can't randomise which cities are most affected by a global pandemic.
+
+When a randomised trial is impossible, you can use quasi-experimental approaches, such as [difference-in-difference](https://towardsdatascience.com/causal-inference-using-difference-in-differences-causal-impact-and-synthetic-control-f8639c408268) or [regression discontinuity designs](https://conjointly.com/kb/regression-discontinuity-design/). These approaches involve comparing the people/places/groups that experienced a particular change to people/places/groups that didn't experience the change but are otherwise similar to those people/places/groups that did.
+
+Quasi-experimental designs rely on the availability of a comparison group. If this is impossible, as in the case of trying to analyse the effect of a global phenomenon, alternative approaches are needed. [Interrupted time-series designs](https://doi.org/10.1136/bmj.h2750 "British Medical Journal: Regression based quasi-experimental approach when randomisation is not an option: interrupted time series analysis") use earlier data (from before whatever you're interested in happened) as a comparison, but are only useful for measuring the impact of sudden changes.
+
+One approach I used recently to understand [how crime changed in large US cities in the early months of the COVID-19 pandemic](https://doi.org/10.31235/osf.io/ep87s "Initial evidence on the relationship between the coronavirus pandemic and crime in the United States") was to create a synthetic comparison group by using previous crime data to build a model that forecast how much crime would have occurred in the absence of the pandemic. The [code to replicate that analysis is available online](https://github.com/mpjashby/covid19-crime/ "Initial evidence on COVID-19 and crime in the United States").
+
+Some of these methods might be beyond the capabilities of some people who need to work out if some event was associated with a change in crime. The increasing number of [pracademics](https://doi.org/10.1093/police/paw029 "Unearthing Hidden Keys: Why Pracademics Are an Invaluable (If Underutilized) Resource in Policing Research") working in (for example) police forces means more agencies have the capability to carry out this sort of analysis. Many universities are also happy to partner with agencies for this type of work.
+
+Binary comparisons are easy to make, but there is little point if the results might be misleading. The extra work to produce reliable results is almost invariably worth it to avoid being misled, especially when those results are going to be used to make important decisions. Use the links here to identify a method that is going to work for your circumstances, or look for more detail in a textbook such as the free [*Causal Inference: the mixtape*](https://www.scunning.com/causalinference_norap.pdf) by [Scott Cunningham](https://www.scunning.com/ "Scott Cunningham's website"). If you have any questions, feel free to ask me [on Twitter](https://twitter.com/LessCrime) or contact me via [my website](http://lesscrime.info/).
+
+*The [annotated R code to reproduce these charts and figures](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/tracking-crime-changes.Rmd) is available on GitHub.*
+
