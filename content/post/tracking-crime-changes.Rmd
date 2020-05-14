@@ -12,13 +12,6 @@ tags:
 slug: tracking-crime-changes
 ---
 
-<style>
-img[style*="margin: auto"] {
-  padding-top: 3em;
-  padding-bottom: 3em;
-}
-</style>
-
 ```{r set knitr options, include=FALSE}
 knitr::opts_chunk$set(cache = TRUE, include=FALSE, fig.align="center", fig.height = 4, fig.width = 6)
 ```
@@ -496,4 +489,11 @@ Some of these methods might be beyond the capabilities of some people who need t
 Binary comparisons are easy to make, but there is little point if the results might be misleading. The extra work to produce reliable results is almost invariably worth it to avoid being misled, especially when those results are going to be used to make important decisions. Use the links here to identify a method that is going to work for your circumstances, or look for more detail in a textbook such as the free [*Causal Inference: the mixtape*](https://www.scunning.com/causalinference_norap.pdf) by [Scott Cunningham](https://www.scunning.com/ "Scott Cunningham's website"). If you have any questions, feel free to ask me [on Twitter](https://twitter.com/LessCrime) or contact me via [my website](http://lesscrime.info/).
 
 *The [annotated R code to reproduce these charts and figures](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/tracking-crime-changes.Rmd) is available on GitHub.*
+
+<style>
+img[style*="margin: auto"] {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+</style>
 

@@ -21,12 +21,6 @@
       <description>
 
 
-&lt;style&gt;
-img[style*=&#34;margin: auto&#34;] {
-  padding-top: 3em;
-  padding-bottom: 3em;
-}
-&lt;/style&gt;
 &lt;p&gt;&lt;em&gt;This post first appeared on the &lt;a href=&#34;https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx&#34; title=&#34;Version of this post on the SRA Blog&#34;&gt;Social Research Association blog&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Understanding if some event is associated with a change in the frequency of crime is a common question, both in practice and in research. A crime analyst might need to understand the impact of a change in tactics, a local journalist might want to check the truth of the mayor’s claims that her policies are working, while an academic might seek to find patterns associated with trends in socio-economic changes.&lt;/p&gt;
 &lt;p&gt;Often, attempts to identify changes in crime frequency involve simply comparing the number of crimes this week/month/year to the number that occurred last week/month/year, or comparing this week, month etc to the same period last year. In recent weeks, we’ve seen these comparisons made to attempt to answer the topical question of how the COVID-19 pandemic is influencing crime. For example, police in San Jose told local news that &lt;a href=&#34;https://sanjosespotlight.com/san-jose-police-chief-talks-crime-trends-during-covid-19-shutdown/&#34; title=&#34;San Jose Police Chief talks crime trends during COVID-19 shutdown&#34;&gt;violent crime had dropped 22% in the month to 18 April 2020 compared to the same period in 2019&lt;/a&gt;, while radio station WBUR reported that the &lt;a href=&#34;https://www.wbur.org/news/2020/04/17/boston-coronavirus-covid-19-crime-rate&#34; title=&#34;&amp;#39;This Is Too Much&amp;#39;: Crime Continues Despite Pandemic&#34;&gt;frequency of shootings in Boston was broadly similar in March 2020 in comparison to the previous March&lt;/a&gt;. In Scotland, police reported &lt;a href=&#34;https://www.sundaypost.com/fp/violent-crime-falls-in-lockdown-but-police-reveal-fraud-is-up-as-crooks-exploit-coronavirus-crisis/&#34; title=&#34;Violent crime falls in lockdown but police reveal fraud is up as crooks exploit coronavirus crisis&#34;&gt;overall violence fell in April 2020 compared to the year before, but fraud increased&lt;/a&gt;.&lt;/p&gt;
@@ -82,6 +76,12 @@ img[style*=&#34;margin: auto&#34;] {
 &lt;p&gt;Some of these methods might be beyond the capabilities of some people who need to work out if some event was associated with a change in crime. The increasing number of &lt;a href=&#34;https://doi.org/10.1093/police/paw029&#34; title=&#34;Unearthing Hidden Keys: Why Pracademics Are an Invaluable (If Underutilized) Resource in Policing Research&#34;&gt;pracademics&lt;/a&gt; working in (for example) police forces means more agencies have the capability to carry out this sort of analysis. Many universities are also happy to partner with agencies for this type of work.&lt;/p&gt;
 &lt;p&gt;Binary comparisons are easy to make, but there is little point if the results might be misleading. The extra work to produce reliable results is almost invariably worth it to avoid being misled, especially when those results are going to be used to make important decisions. Use the links here to identify a method that is going to work for your circumstances, or look for more detail in a textbook such as the free &lt;a href=&#34;https://www.scunning.com/causalinference_norap.pdf&#34;&gt;&lt;em&gt;Causal Inference: the mixtape&lt;/em&gt;&lt;/a&gt; by &lt;a href=&#34;https://www.scunning.com/&#34; title=&#34;Scott Cunningham&amp;#39;s website&#34;&gt;Scott Cunningham&lt;/a&gt;. If you have any questions, feel free to ask me &lt;a href=&#34;https://twitter.com/LessCrime&#34;&gt;on Twitter&lt;/a&gt; or contact me via &lt;a href=&#34;http://lesscrime.info/&#34;&gt;my website&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;The &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/tracking-crime-changes.Rmd&#34;&gt;annotated R code to reproduce these charts and figures&lt;/a&gt; is available on GitHub.&lt;/em&gt;&lt;/p&gt;
+&lt;style&gt;
+img[style*=&#34;margin: auto&#34;] {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+&lt;/style&gt;
 &lt;/div&gt;
 </description>
     </item>
