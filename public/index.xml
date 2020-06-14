@@ -7,10 +7,19 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Initial evidence on the relationship between the coronavirus pandemic and crime in the United States</title>
+      <link>/publication/coronavirus-and-crime/</link>
+      <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/coronavirus-and-crime/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Why you can&#39;t identify changes in crime by comparing this month to last month</title>
