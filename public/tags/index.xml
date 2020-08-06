@@ -7,10 +7,28 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>CC-BY</copyright>
-    <lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>open access</title>
+      <link>/tags/open-access/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/open-access/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>/tags/tutorial/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tutorial/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>crime</title>
@@ -328,29 +346,11 @@
     </item>
     
     <item>
-      <title>tutorial</title>
-      <link>/tags/tutorial/</link>
-      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>domestic abuse</title>
       <link>/tags/domestic-abuse/</link>
       <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/domestic-abuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>open access</title>
-      <link>/tags/open-access/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/open-access/</guid>
       <description></description>
     </item>
     

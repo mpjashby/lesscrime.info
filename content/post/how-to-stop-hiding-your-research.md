@@ -1,7 +1,7 @@
 ---
 title: "How to stop hiding your research"
 author: "Matt Ashby"
-date: "05 July 2020"
+date: "2020-08-05"
 categories: []
 tags:
 - open access
