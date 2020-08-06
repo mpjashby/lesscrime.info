@@ -758,4 +758,13 @@
     <loc>/authors/admin/</loc>
   </url>
   
+  <url>
+    <loc>/post/how-to-stop-hiding-your-research/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/open-access/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>
