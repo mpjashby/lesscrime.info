@@ -26,7 +26,7 @@ You might be worried about releasing your article publicly before it has been pe
 
 The easiest way to discover your self-archiving rights under a particular journal policy is to search the [Sherpa Romeo](https://v2.sherpa.ac.uk/romeo) database, which summarizes policies from [more than 4,000 publishers](https://v2.sherpa.ac.uk/view/romeo_visualisations/1.html). Take the journal [_Policing_](http://policing.oxfordjournals.org/), published by Oxford University Press. Searching on Sherpa Romeo [shows](https://v2.sherpa.ac.uk/id/publication/687):
 
-![](sherpa_romeo_screenshot.png "Screenshot of the webpage https://v2.sherpa.ac.uk/id/publication/687")
+![](../sherpa_romeo_screenshot.png "Screenshot of the webpage https://v2.sherpa.ac.uk/id/publication/687")
 
 In this case you can:
 
