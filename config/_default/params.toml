@@ -62,7 +62,7 @@ address = "35 Tavistock Square, London WC1H 9EZ"
 office_hours = ""
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
-appointment_url = "https://mattashby.youcanbook.me/"
+appointment_url = "https://outlook.office365.com/owa/calendar/UCL813760@ucl.ac.uk/bookings/"
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.

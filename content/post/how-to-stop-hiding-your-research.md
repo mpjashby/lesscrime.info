@@ -1,5 +1,5 @@
 ---
-title: "How to stop hiding your research"
+title: "Tutorial: How to stop hiding your research"
 author: "Matt Ashby"
 date: "2020-08-05"
 categories: []
