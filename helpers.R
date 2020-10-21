@@ -42,8 +42,8 @@ names(ucl_colours_list) <- ucl_colours$name
 theme_cjcharts <- function (...) {
   theme_minimal(base_family = "Arial", ...) %+replace%
     theme(
-    	axis.text.x = element_markdown(),
-    	axis.text.y = element_markdown(hjust = 1),
+    	# axis.text.x = element_markdown(),
+    	# axis.text.y = element_markdown(hjust = 1),
     	axis.ticks = element_line(colour = "grey92"),
       axis.title = element_text(size = 9, hjust = 1),
       legend.key.height = unit(4, "mm"),
@@ -53,9 +53,9 @@ theme_cjcharts <- function (...) {
       legend.title = element_text(size = 9),
       panel.grid.major.x = element_blank(),
       panel.grid.minor.x = element_blank(),
-      plot.caption = element_text(size = 9, colour = "grey33", hjust = 1, 
+      plot.caption = element_text(size = 9, colour = "grey33", hjust = 1,
       														margin = margin(t = 3)),
-      plot.tag = element_text(size = 12, face = "bold", colour = "grey33", 
+      plot.tag = element_text(size = 12, face = "bold", colour = "grey33",
                               hjust = 0),
       plot.tag.position = c(0.01, 0.01),
       plot.title = element_text(face = "bold", size = 16, hjust = 0),
@@ -90,10 +90,10 @@ format_subtitle <- function (..., .width = 100) {
 # format chart caption
 format_caption <- function (chart_source, chart_id, chart_note = NA) {
 	paste0(
-		"\n\n", 
+		"\n\n",
 		glue::glue(
 			ifelse(!is.na(chart_note), paste0(chart_note, "\n"), ""),
-			"Data: {chart_source} | ", "Details: lesscrime.info/post/{chart_id}", 
+			"Data: {chart_source} | ", "Details: lesscrime.info/post/{chart_id}",
 			.sep = " " #, .envir = .GlobalEnv
 		)
 	)
@@ -103,30 +103,30 @@ format_caption <- function (chart_source, chart_id, chart_note = NA) {
 # add logo to chart
 add_logo <- function (chart, chart_source, chart_id) {
 
-	scs_logo <- grid::rasterGrob(png::readPNG("UCL_logo_SCS_orange.png"), x = 0, 
+	scs_logo <- grid::rasterGrob(png::readPNG("UCL_logo_SCS_orange.png"), x = 0,
 															 hjust = 0)
-	
+
 	ggpubr::ggarrange(
-		ggplotGrob(chart), 
+		ggplotGrob(chart),
 		ggpubr::ggarrange(
-			scs_logo, 
+			scs_logo,
 			grid::textGrob(
-				glue::glue("Data: {chart_source} | ", 
-									 "Details: lesscrime.info/post/{chart_id}", 
+				glue::glue("Data: {chart_source} | ",
+									 "Details: lesscrime.info/post/{chart_id}",
 									 "\nAuthor: Matt Ashby, University College London | ",
 									 "Licence: Creative Commons Attribution ",
 									 .sep = " "),
 				x = unit(1, "npc"),
 				hjust = 1,
-				gp = grid::gpar(col = "grey33", fontfamily = "Arial", 
+				gp = grid::gpar(col = "grey33", fontfamily = "Arial",
 												fontsize = 8, lineheight = 1)
 			),
-			ncol = 2, 
-			nrow = 1, 
+			ncol = 2,
+			nrow = 1,
 			widths = c(0.25, 1)
-		), 
-		ncol = 1, 
-		nrow = 2, 
+		),
+		ncol = 1,
+		nrow = 2,
 		heights = c(1, 0.075)
 	)
 

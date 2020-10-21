@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trends | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/trends/</link>
+      <atom:link href="http://lesscrime.info/tag/trends/index.xml" rel="self" type="application/rss+xml" />
+    <description>trends</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>trends</title>
+      <link>http://lesscrime.info/tag/trends/</link>
+    </image>
+    
+    <item>
+      <title>Chart: Homicides haven&#39;t only increased in Britain</title>
+      <link>http://lesscrime.info/post/homicide-europe/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/homicide-europe/</guid>
+      <description>
+
+
+&lt;p&gt;The homicide-rate increase over the past five years hasn’t been unique to England and Wales, with murders also increasing in France, Germany and Sweden after continent-wide decreases since the 1990s. The UK-wide homicide rate remains about average for European countries.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;
+## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-europe_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-europe.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-europe.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://ec.europa.eu/eurostat/data/database&#34;&gt;Eurostat, 2019&lt;/a&gt; database tables &lt;code&gt;crim_off_cat&lt;/code&gt; and &lt;code&gt;crim_gen&lt;/code&gt; with population data from table &lt;code&gt;demo_pjan&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Much of the homicide drop has already been erased</title>
+      <link>http://lesscrime.info/post/homicide-trends/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/homicide-trends/</guid>
+      <description>
+
+
+&lt;p&gt;The rapid decrease in the homicide (murder, manslaughter and infanticide) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-trends.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data sources: &lt;a href=&#34;https://www.gov.uk/government/statistics/historical-crime-data&#34;&gt;Homicide counts 1898 to 2001/02&lt;/a&gt;,
+&lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Homicide counts 2001/02 onwards&lt;/a&gt;, &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;Population estimates 1838 to 2018&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;This chart uses police-recorded homicide offences because that time series
+extends further back in time than the &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured&#34;&gt;Home Office Homicide Index&lt;/a&gt;, the main
+alternative source of homicide data. The main disadvantage of this approach is
+that crimes that are initially recorded homicides in police data but are
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.&lt;/p&gt;
+&lt;p&gt;Victims of the Hillsborough disaster are recorded in ONS data as manslaughter
+cases in the year ending March 2017 because that was when the revised inquest
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police are arresting half as many people as a decade ago</title>
+      <link>http://lesscrime.info/post/police-arrests/</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-arrests/</guid>
+      <description>
+
+
+&lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police are arresting half as many people as a decade ago</title>
+      <link>http://lesscrime.info/post/police-arrests2/</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-arrests2/</guid>
+      <description>
+
+
+&lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-arrests2_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police cuts haven&#39;t hit everywhere equally</title>
+      <link>http://lesscrime.info/post/police-numbers/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
+      <description>
+
+
+&lt;p&gt;There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven’t dropped equally across police forces. One force (Surrey) has the same number of officers now as 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

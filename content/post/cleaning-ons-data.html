@@ -63,7 +63,7 @@ see.</li>
 <p>This tutorial assumes you have <a href="https://cloud.r-project.org">R</a> installed and
 that you’re comfortable with the basics of <a href="https://www.computerworld.com/article/2497143/business-intelligence-beginner-s-guide-to-r-introduction.html">using R to manipulate data</a>.
 If you don’t have the tidyverse collection of packages installed already, run
-<code>install.packages(&quot;tidyverse&quot;)</code> before continuing. It also a good idea to run
+<code>install.packages("tidyverse")</code> before continuing. It also a good idea to run
 this code from <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/">inside a project</a>.</p>
 </div>
 <div id="download" class="section level1">
@@ -83,19 +83,24 @@ download.file(
 package to read it into R<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. ONS publishes data using a mixture of file formats,
 including both the pre-2007 Excel <code>.xls</code> file format and the current <code>.xlsx</code>
 format<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. The <code>read_excel()</code> function can handle both <code>.xls</code> and <code>.xlsx</code>
-files, but can only load a single sheet from within an Excel workbook (i.e.
+files, but can only load a single sheet from within an Excel workbook (i.e. 
 file). We can use the <code>excel_sheets()</code> function to get the names of each sheet
 in the Excel file.</p>
 <pre class="r"><code>library(&quot;readxl&quot;)
 library(&quot;tidyverse&quot;)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>excel_sheets(&quot;ons_pop_data.xls&quot;)</code></pre>
 <pre><code>##  [1] &quot;Contents &quot;                  &quot;Terms and conditions &quot;     
 ##  [3] &quot;Notes and definitions&quot;      &quot;Admin. geography hierarchy&quot;
@@ -113,20 +118,20 @@ of how ONS optimises for human rather than computer readability), but we can
 remove these rows using the <code>drop_na()</code> function from the <code>tidyr</code> package.</p>
 <pre class="r"><code>drop_na(read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;Contents &quot;))</code></pre>
 <pre><code>## # A tibble: 12 x 2
-##    Contents             `Population Estimates for UK, England and Wales, S…
-##    &lt;chr&gt;                &lt;chr&gt;                                              
-##  1 Terms and conditions Terms and conditions                               
-##  2 Notes and definitio… Notes and definitions                              
-##  3 Admin. geography hi… Administrative geography hierarchy for the United …
-##  4 MYE1                 Population estimates: Summary for the UK, mid-2018 
-##  5 MYE2 - All           Population estimates: Persons by single year of ag…
-##  6 MYE2 - M             Population estimates: Males by single year of age …
-##  7 MYE2 - F             Population estimates: Females by single year of ag…
-##  8 MYE3                 Components of population change for local authorit…
-##  9 MYE4                 Population estimates: Summary for the UK, mid-1971…
-## 10 MYE5                 Population estimates: Population density for local…
-## 11 MYE6                 Median age of population for local authorities in …
-## 12 Related publications Provides links to further population statistics &amp; …</code></pre>
+##    Contents             `Population Estimates for UK, England and Wales, Scotla…
+##    &lt;chr&gt;                &lt;chr&gt;                                                   
+##  1 Terms and conditions Terms and conditions                                    
+##  2 Notes and definitio… Notes and definitions                                   
+##  3 Admin. geography hi… Administrative geography hierarchy for the United Kingd…
+##  4 MYE1                 Population estimates: Summary for the UK, mid-2018      
+##  5 MYE2 - All           Population estimates: Persons by single year of age and…
+##  6 MYE2 - M             Population estimates: Males by single year of age and s…
+##  7 MYE2 - F             Population estimates: Females by single year of age and…
+##  8 MYE3                 Components of population change for local authorities i…
+##  9 MYE4                 Population estimates: Summary for the UK, mid-1971 to m…
+## 10 MYE5                 Population estimates: Population density for local auth…
+## 11 MYE6                 Median age of population for local authorities in the U…
+## 12 Related publications Provides links to further population statistics &amp; relat…</code></pre>
 <p>We’re going to use the data from the mid-2018 UK population summary, so we want
 the <code>MYE1</code> sheet. We can now use <code>read_excel()</code> to load the data.</p>
 <pre class="r"><code>file_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;, sheet = &quot;MYE1&quot;)</code></pre>
@@ -136,7 +141,7 @@ the <code>MYE1</code> sheet. We can now use <code>read_excel()</code> to load th
 ## * `` -&gt; ...4
 ## * `` -&gt; ...5
 ## * `` -&gt; ...6
-## * … and 3 more problems</code></pre>
+## * ...</code></pre>
 </div>
 <div id="clean" class="section level1">
 <h1>Clean the data</h1>
@@ -146,18 +151,18 @@ the <code>MYE1</code> sheet. We can now use <code>read_excel()</code> to load th
 attempt to load this sheet into R:</p>
 <pre class="r"><code>file_data</code></pre>
 <pre><code>## # A tibble: 33 x 9
-##    Contents     ...2   ...3   ...4   ...5   ...6    ...7    ...8    ...9   
-##    &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-##  1 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
-##  2 MYE1: Popul… &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &quot;Pleas… This m… I need… &quot;This …
-##  3 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
-##  4 Country / C… K0200… K0300… K0400… E9200… W92000… S92000… N92000… &lt;NA&gt;   
-##  5 &lt;NA&gt;         UNITE… GREAT… ENGLA… ENGLA… WALES   SCOTLA… NORTHE… &lt;NA&gt;   
-##  6 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
-##  7 All Persons  66435… 64553… 59115… 55977… 3138631 5438100 1881641 &lt;NA&gt;   
-##  8 Males        32790… 31864… 29215… 27667… 1547309 2648751 926200  &lt;NA&gt;   
-##  9 Females      33645… 32689… 29900… 28309… 1591322 2789349 955441  &lt;NA&gt;   
-## 10 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   
+##    Contents     ...2   ...3   ...4   ...5   ...6      ...7     ...8     ...9    
+##    &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+##  1 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;   
+##  2 MYE1: Popul… &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &quot;Please … This me… I need … &quot;This i…
+##  3 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;   
+##  4 Country / C… K0200… K0300… K0400… E9200… &quot;W920000… S920000… N920000…  &lt;NA&gt;   
+##  5 &lt;NA&gt;         UNITE… GREAT… ENGLA… ENGLA… &quot;WALES&quot;   SCOTLAND NORTHER…  &lt;NA&gt;   
+##  6 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;   
+##  7 All Persons  66435… 64553… 59115… 55977… &quot;3138631&quot; 5438100  1881641   &lt;NA&gt;   
+##  8 Males        32790… 31864… 29215… 27667… &quot;1547309&quot; 2648751  926200    &lt;NA&gt;   
+##  9 Females      33645… 32689… 29900… 28309… &quot;1591322&quot; 2789349  955441    &lt;NA&gt;   
+## 10 &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;   
 ## # … with 23 more rows</code></pre>
 <p>This isn’t very useful. There are several problems we need to fix:</p>
 <ol style="list-style-type: decimal">
@@ -174,7 +179,7 @@ contain numbers,</li>
 functions from the tidyverse packages.</p>
 <p>We can exclude all the cells in the sheet except those containing data with the
 <code>range =</code> parameter of <code>read_excel()</code>. We can either specify the cell range
-manually (e.g. <code>range = &quot;A5:H31&quot;</code>) or we can use one of the <code>cell_*</code> collection
+manually (e.g. <code>range = "A5:H31"</code>) or we can use one of the <code>cell_*</code> collection
 of helper functions from the <code>cellranger</code> package, which is loaded with
 <code>readxl</code>.</p>
 <p>We can work out which cells we want to retain either by opening the file in
@@ -188,20 +193,19 @@ happy with the result.</p>
 
 file_data</code></pre>
 <pre><code>## # A tibble: 26 x 8
-##    `Country / Code` K02000001 K03000001 K04000001 E92000001 W92000004
-##    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
-##  1 &lt;NA&gt;             UNITED K… GREAT BR… ENGLAND … ENGLAND   WALES    
-##  2 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  3 All Persons      66435550  64553909  59115809  55977178  3138631  
-##  4 Males            32790202  31864002  29215251  27667942  1547309  
-##  5 Females          33645348  32689907  29900558  28309236  1591322  
-##  6 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  7 Age Groups       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  8 0-4              3914028   3792292   3515430   3346727   168703   
-##  9 5-9              4138524   4009409   3708320   3523866   184454   
-## 10 10-14            3858894   3738572   3450782   3274119   176663   
-## # … with 16 more rows, and 2 more variables: S92000003 &lt;chr&gt;,
-## #   N92000002 &lt;chr&gt;</code></pre>
+##    `Country / Code` K02000001 K03000001 K04000001 E92000001 W92000004 S92000003
+##    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 &lt;NA&gt;             UNITED K… GREAT BR… ENGLAND … ENGLAND   WALES     SCOTLAND 
+##  2 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  3 All Persons      66435550  64553909  59115809  55977178  3138631   5438100  
+##  4 Males            32790202  31864002  29215251  27667942  1547309   2648751  
+##  5 Females          33645348  32689907  29900558  28309236  1591322   2789349  
+##  6 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  7 Age Groups       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  8 0-4              3914028   3792292   3515430   3346727   168703    276862   
+##  9 5-9              4138524   4009409   3708320   3523866   184454    301089   
+## 10 10-14            3858894   3738572   3450782   3274119   176663    287790   
+## # … with 16 more rows, and 1 more variable: N92000002 &lt;chr&gt;</code></pre>
 <p>This deals with the unwanted rows above and below the table, as well as the
 unwanted columns produced because of the feedback questionnaire.</p>
 <p>The next problem is that the column names represent the <a href="https://webarchive.nationalarchives.gov.uk/20160106185615/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/index.html">GSS statistical
@@ -214,7 +218,7 @@ easier to work with.</p>
 <pre class="r"><code>library(&quot;magrittr&quot;)
 
 # set a value for the first row in the first column, which is currently blank
-file_data &lt;- inset(file_data, 1, 1, &quot;group&quot;)
+file_data[1, 1] &lt;- &quot;group&quot;
 
 # replace the existing column names with the values from the first row
 file_data &lt;- set_colnames(file_data, file_data[1, ])
@@ -310,7 +314,7 @@ tidy_data</code></pre>
 <p>Using the <a href="https://cran.r-project.org/package=magrittr/vignettes/magrittr.html"><code>magrittr</code> pipe <code>%&gt;%</code></a>,
 we can combine all these cleaning steps together, which makes the code more
 compact and (arguably) more readable.</p>
-<pre class="r"><code>library(&quot;lubridate&quot;) # lubridate and magrittr are part of the
+<pre><code>library(&quot;lubridate&quot;) # lubridate and magrittr are part of the
 library(&quot;magrittr&quot;) # tidyverse but not loaded with it by default
 library(&quot;readxl&quot;)
 library(&quot;tidyverse&quot;)
@@ -328,22 +332,7 @@ tidy_data &lt;- read_excel(&quot;ons_pop_data.xls&quot;,
     geography = str_to_title(geography),
     population = as.numeric(population)
   )
-
-tidy_data</code></pre>
-<pre><code>## # A tibble: 154 x 3
-##    group       geography      population
-##    &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;
-##  1 All Persons United Kingdom   66435550
-##  2 Males       United Kingdom   32790202
-##  3 Females     United Kingdom   33645348
-##  4 0-4         United Kingdom    3914028
-##  5 5-9         United Kingdom    4138524
-##  6 10-14       United Kingdom    3858894
-##  7 15-19       United Kingdom    3669250
-##  8 20-24       United Kingdom    4184575
-##  9 25-29       United Kingdom    4527175
-## 10 30-34       United Kingdom    4463357
-## # … with 144 more rows</code></pre>
+</code></pre>
 </div>
 <div id="tips" class="section level1">
 <h1>Tips for other ONS tables</h1>
@@ -362,7 +351,7 @@ of personal information.</p>
 <p>The <code>na =</code> parameter of <code>read_excel()</code> can be used to specify values in the
 data that should be treated as missing. For example, if an ONS table uses a
 blank cell to represent data that could not be collected and <code>**</code> to represent
-redacted data, <code>read_excel(&quot;data.xlsx&quot;, sheet = &quot;Sheet 1&quot;, na = c(&quot;&quot;, &quot;**&quot;))</code>
+redacted data, <code>read_excel("data.xlsx", sheet = "Sheet 1", na = c("", "**"))</code>
 will ensure both values are represented by <code>NA</code> in R.</p>
 <p>It isn’t possible to use <code>drop_na()</code> to remove empty rows if there are missing
 values in the data, because <code>drop_na()</code> removes rows that contain <em>any</em> missing
@@ -388,7 +377,7 @@ table as clutter that can be removed using a combination of <code>drop_na()</cod
 <p>If tables have multiple footnotes, some categories or values may end in a
 footnote marker (typically a number). To remove these, use <code>str_remove()</code> from
 <code>stringr</code>. For example, if the column <code>place</code> contains values with footnote
-markers, you can use <code>mutate(data, place = str_remove(place, &quot;\\d+$&quot;))</code> to
+markers, you can use <code>mutate(data, place = str_remove(place, "\\d+$"))</code> to
 remove them, where <code>\\d+</code> is a <a href="https://stringr.tidyverse.org/articles/regular-expressions.html#matching-multiple-characters">regular expression that matches one or more
 numeric characters</a>
 and <a href="https://stringr.tidyverse.org/articles/regular-expressions.html#anchors"><code>$</code> matches only numeric characters at the end of the
@@ -407,10 +396,10 @@ using the data in a time-series model.</p>
 represent each date as a specific moment in time, or as an interval in time.
 For example, if a financial year is stored as <code>2018-19</code> in the <code>year</code> column,
 you can extract the specific moment the year started using
-<code>mutate(year_beginning = ymd(paste(str_sub(year, 0, 4)), &quot;04&quot;, &quot;01&quot;))</code>. In this
+<code>mutate(year_beginning = ymd(paste(str_sub(year, 0, 4)), "04", "01"))</code>. In this
 code, <code>str_sub(year, 0, 4)</code> extracts the first four characters from the string
 <code>2018-19</code>, <code>paste()</code> creates a single character value for 1 April in the given
-year (e.g. <code>2018 04 01</code>) and <code>ymd()</code> converts that string into a date object.</p>
+year (e.g. <code>2018 04 01</code>) and <code>ymd()</code> converts that string into a date object.</p>
 <p>To store a date as an interval, we extract both the date on which the year
 started and the date it ended. For example,</p>
 <pre class="r"><code>mutate(
@@ -424,13 +413,13 @@ started and the date it ended. For example,</p>
 <div id="r-session-information" class="section level2">
 <h2>R session information</h2>
 <p>The code in this tutorial was run in R with the following configuration:</p>
-<pre><code>## R version 3.6.0 (2019-04-26)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS Mojave 10.14.5
+<pre><code>## R version 4.0.1 (2020-06-06)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Catalina 10.15.6
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
 ## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
@@ -439,23 +428,24 @@ started and the date it ended. For example,</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] lubridate_1.7.4 magrittr_1.5    forcats_0.4.0   stringr_1.4.0  
-##  [5] dplyr_0.8.3     purrr_0.3.2     readr_1.3.1     tidyr_0.8.3    
-##  [9] tibble_2.1.3    ggplot2_3.2.1   tidyverse_1.2.1 readxl_1.3.1   
+##  [1] magrittr_1.5    forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
+##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
+##  [9] ggplot2_3.3.2   tidyverse_1.3.0 readxl_1.3.1   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.2       cellranger_1.1.0 pillar_1.4.2     compiler_3.6.0  
-##  [5] tools_3.6.0      zeallot_0.1.0    digest_0.6.20    jsonlite_1.6    
-##  [9] evaluate_0.14    nlme_3.1-141     gtable_0.3.0     lattice_0.20-38 
-## [13] pkgconfig_2.0.2  rlang_0.4.0      cli_1.1.0        rstudioapi_0.10 
-## [17] yaml_2.2.0       haven_2.1.1      blogdown_0.14    xfun_0.8        
-## [21] withr_2.1.2      xml2_1.2.2       httr_1.4.1       knitr_1.24      
-## [25] vctrs_0.2.0      hms_0.5.0        generics_0.0.2   grid_3.6.0      
-## [29] tidyselect_0.2.5 glue_1.3.1       R6_2.4.0         fansi_0.4.0     
-## [33] rmarkdown_1.14   bookdown_0.12    modelr_0.1.5     backports_1.1.4 
-## [37] scales_1.0.0     htmltools_0.3.6  rvest_0.3.4      assertthat_0.2.1
-## [41] colorspace_1.4-1 utf8_1.1.4       stringi_1.4.3    lazyeval_0.2.2  
-## [45] munsell_0.5.0    broom_0.5.2      crayon_1.3.4</code></pre>
+##  [1] tidyselect_1.1.0 xfun_0.18        haven_2.3.1      colorspace_1.4-1
+##  [5] vctrs_0.3.4      generics_0.0.2   htmltools_0.5.0  yaml_2.2.1      
+##  [9] utf8_1.1.4       blob_1.2.1       rlang_0.4.8      pillar_1.4.6    
+## [13] glue_1.4.2       withr_2.3.0      DBI_1.1.0        dbplyr_1.4.4    
+## [17] modelr_0.1.8     lifecycle_0.2.0  munsell_0.5.0    blogdown_0.21   
+## [21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.6      evaluate_0.14   
+## [25] knitr_1.30       fansi_0.4.1      broom_0.7.1      Rcpp_1.0.5      
+## [29] scales_1.1.1     backports_1.1.10 jsonlite_1.7.1   fs_1.5.0        
+## [33] hms_0.5.3        digest_0.6.26    stringi_1.5.3    bookdown_0.21   
+## [37] grid_4.0.1       cli_2.1.0        tools_4.0.1      crayon_1.3.4    
+## [41] pkgconfig_2.0.3  ellipsis_0.3.1   xml2_1.3.2       reprex_0.3.0    
+## [45] lubridate_1.7.9  assertthat_0.2.1 rmarkdown_2.4    httr_1.4.2      
+## [49] rstudioapi_0.11  R6_2.4.1         compiler_4.0.1</code></pre>
 </div>
 </div>
 <div class="footnotes">
@@ -463,11 +453,11 @@ started and the date it ended. For example,</p>
 <ol>
 <li id="fn1"><p>ONS refers to this as ‘open data’, although (almost) all the products it
 produces are already <a href="https://www.ons.gov.uk/methodology/geography/licences">open licensed under the Open Government
-Licence</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+Licence</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>The <code>readxl</code> package is <a href="https://www.tidyverse.org/packages/">installed as part of the
 tidyverse</a> but is not automatically loaded
-by <code>library(&quot;tidyverse&quot;)</code>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+by <code>library("tidyverse")</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>I have not been able to work out why some ONS files are in <code>.xls</code> format
-and some in <code>.xlsx</code>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+and some in <code>.xlsx</code>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

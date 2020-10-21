@@ -110,9 +110,9 @@ chart_labels <- chart_data %>%
 ```{r build plot}
 chart <- ggplot(chart_data, aes(year_ending, arrest_index, fill = group)) +
 	geom_area() +
-	ggtext::geom_rich_text(aes(label = label), data = chart_labels, 
-												 colour = "white", size = elements$label_text_size,
-												 hjust = 1, vjust = 1, label.size = NA) +
+	ggtext::geom_richtext(aes(label = label), data = chart_labels, 
+	                      colour = "white", size = elements$label_text_size,
+	                      hjust = 1, vjust = 1, label.size = NA) +
 	# geom_point(data = chart_labels) +
 	scale_x_date(date_breaks = "2 years", date_labels = "'%y", 
 							 expand = expand_scale(mult = c(0, 0.05))) +

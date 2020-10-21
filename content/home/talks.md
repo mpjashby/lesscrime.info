@@ -5,7 +5,7 @@
 widget = "pages"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 40  # Order that this section will appear.
+weight = 70  # Order that this section will appear.
 
 title = "Recent & Upcoming Talks"
 subtitle = ""
@@ -28,6 +28,7 @@ subtitle = ""
     tag = ""
     category = ""
     publication_type = ""
+    author = ""
     exclude_featured = false
     exclude_past = false
     exclude_future = false
@@ -54,7 +55,7 @@ subtitle = ""
   # gradient_end = "SkyBlue"
   
   # Background image.
-  # image = "background.jpg"  # Name of image in `static/img/`.
+  # image = "background.jpg"  # Name of image in `static/media/`.
   # image_darken = 0.6  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
 
   # Text color (true=light or false=dark).

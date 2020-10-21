@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Recent &amp; Upcoming Talks on Matt Ashby</title>
-    <link>/talk/</link>
-    <description>Recent content in Recent &amp; Upcoming Talks on Matt Ashby</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
-    <language>en-us</language>
-    <copyright>CC-BY</copyright>
-    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <title>Recent &amp; Upcoming Talks | Matt Ashby</title>
+    <link>http://lesscrime.info/talk/</link>
+      <atom:link href="http://lesscrime.info/talk/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent &amp; Upcoming Talks</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Recent &amp; Upcoming Talks</title>
+      <link>http://lesscrime.info/talk/</link>
+    </image>
     
-	    <atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Hot spots: how they form and ways to analyse them</title>
+      <link>http://lesscrime.info/talk/npcc-hotspots/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/npcc-hotspots/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Problem solving at hotspots</title>
-      <link>/talk/pop-hotspots/</link>
+      <link>http://lesscrime.info/talk/pop-hotspots/</link>
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/pop-hotspots/</guid>
+      <guid>http://lesscrime.info/talk/pop-hotspots/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Indoors and outdoors: weather and the spatial displacement of crime</title>
-      <link>/talk/esc-2019/</link>
+      <link>http://lesscrime.info/talk/esc-2019/</link>
       <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/esc-2019/</guid>
+      <guid>http://lesscrime.info/talk/esc-2019/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The value of good data about crime</title>
-      <link>/talk/unodc-kostat/</link>
+      <link>http://lesscrime.info/talk/unodc-kostat/</link>
       <pubDate>Tue, 20 Aug 2019 14:00:00 +0800</pubDate>
-      
-      <guid>/talk/unodc-kostat/</guid>
+      <guid>http://lesscrime.info/talk/unodc-kostat/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Problem solving in Op Pioneer</title>
-      <link>/talk/leics-ebp-2019/</link>
+      <link>http://lesscrime.info/talk/leics-ebp-2019/</link>
       <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/leics-ebp-2019/</guid>
+      <guid>http://lesscrime.info/talk/leics-ebp-2019/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Local variations in crime seasonality</title>
-      <link>/talk/local-seasonality/</link>
+      <link>http://lesscrime.info/talk/local-seasonality/</link>
       <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/local-seasonality/</guid>
+      <guid>http://lesscrime.info/talk/local-seasonality/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Understanding spatio-temporal patterns of crime around schools</title>
-      <link>/talk/crime-around-schools/</link>
+      <link>http://lesscrime.info/talk/crime-around-schools/</link>
       <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/crime-around-schools/</guid>
+      <guid>http://lesscrime.info/talk/crime-around-schools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>How to solve problems using evidence based policing</title>
-      <link>/talk/solving-problems-using-evidence-based-policing/</link>
+      <link>http://lesscrime.info/talk/solving-problems-using-evidence-based-policing/</link>
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/solving-problems-using-evidence-based-policing/</guid>
+      <guid>http://lesscrime.info/talk/solving-problems-using-evidence-based-policing/</guid>
       <description></description>
     </item>
     

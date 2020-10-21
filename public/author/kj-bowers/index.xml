@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KJ Bowers | Matt Ashby</title>
+    <link>http://lesscrime.info/author/kj-bowers/</link>
+      <atom:link href="http://lesscrime.info/author/kj-bowers/index.xml" rel="self" type="application/rss+xml" />
+    <description>KJ Bowers</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 23 May 2013 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>KJ Bowers</title>
+      <link>http://lesscrime.info/author/kj-bowers/</link>
+    </image>
+    
+    <item>
+      <title>A comparison of methods for temporal analysis of aoristic crime</title>
+      <link>http://lesscrime.info/publication/aoristic_methods/</link>
+      <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/aoristic_methods/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

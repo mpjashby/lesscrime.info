@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>T Fujiyama | Matt Ashby</title>
+    <link>http://lesscrime.info/author/t-fujiyama/</link>
+      <atom:link href="http://lesscrime.info/author/t-fujiyama/index.xml" rel="self" type="application/rss+xml" />
+    <description>T Fujiyama</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Sat, 01 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>T Fujiyama</title>
+      <link>http://lesscrime.info/author/t-fujiyama/</link>
+    </image>
+    
+    <item>
+      <title>The when and where of an emerging crime type: the example of metal theft from the railway network of Great Britain</title>
+      <link>http://lesscrime.info/publication/metal_theft_when_and_where/</link>
+      <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/metal_theft_when_and_where/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

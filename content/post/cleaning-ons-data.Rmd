@@ -193,7 +193,7 @@ easier to work with.
 library("magrittr")
 
 # set a value for the first row in the first column, which is currently blank
-file_data <- inset(file_data, 1, 1, "group")
+file_data[1, 1] <- "group"
 
 # replace the existing column names with the values from the first row
 file_data <- set_colnames(file_data, file_data[1, ])
@@ -246,7 +246,7 @@ Using the [`magrittr` pipe `%>%`](https://cran.r-project.org/package=magrittr/vi
 we can combine all these cleaning steps together, which makes the code more 
 compact and (arguably) more readable.
 
-```{r}
+```
 library("lubridate") # lubridate and magrittr are part of the
 library("magrittr") # tidyverse but not loaded with it by default
 library("readxl")
@@ -266,7 +266,6 @@ tidy_data <- read_excel("ons_pop_data.xls",
     population = as.numeric(population)
   )
 
-tidy_data
 ```
 
 

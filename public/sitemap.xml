@@ -1,772 +1,704 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/talk/npcc-hotspots/</loc>
+    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/talk/</loc>
+    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/how-to-stop-hiding-your-research/</loc>
+    <loc>http://lesscrime.info/tag/open-access/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/open-access/</loc>
+    <loc>http://lesscrime.info/post/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/tutorial/</loc>
+    <loc>http://lesscrime.info/tags/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/publication_types/2/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/tag/tutorial/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/post/how-to-stop-hiding-your-research/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/coronavirus-and-police-calls/</loc>
+    <loc>http://lesscrime.info/publication-type/2/</loc>
     <lastmod>2020-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/mpj-ashby/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
+    <loc>http://lesscrime.info/authors/</loc>
     <lastmod>2020-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/coronavirus-and-crime/</loc>
+    <loc>http://lesscrime.info/publication/coronavirus-and-police-calls/</loc>
+    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/mpj-ashby/</loc>
+    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication_types/</loc>
+    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/</loc>
+    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/coronavirus-and-crime/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/tracking-crime-changes/</loc>
+    <loc>http://lesscrime.info/tag/crime/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/crime/</loc>
+    <loc>http://lesscrime.info/tag/open-data/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/open-data/</loc>
+    <loc>http://lesscrime.info/tag/time-series/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/time-series/</loc>
+    <loc>http://lesscrime.info/post/tracking-crime-changes/</loc>
     <lastmod>2020-05-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-03-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/talk/pop-hotspots/</loc>
+    <loc>http://lesscrime.info/categories/</loc>
     <lastmod>2020-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/talk/</loc>
+    <loc>http://lesscrime.info/category/problem-solving/</loc>
     <lastmod>2020-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/problem-solving/</loc>
+    <loc>http://lesscrime.info/talk/pop-hotspots/</loc>
     <lastmod>2020-03-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/prosecution-times/</loc>
+    <loc>http://lesscrime.info/post/prosecution-times/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/crime-and-justice-chart-of-the-week/</loc>
+    <loc>http://lesscrime.info/tag/courts/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/courts/</loc>
+    <loc>http://lesscrime.info/category/crime-and-justice-chart-of-the-week/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/criminal-justice/</loc>
+    <loc>http://lesscrime.info/tag/criminal-justice/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/prosecutions/</loc>
+    <loc>http://lesscrime.info/tag/prosecutions/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/trials/</loc>
+    <loc>http://lesscrime.info/tag/trials/</loc>
     <lastmod>2020-03-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/violence-prosecutions/</loc>
+    <loc>http://lesscrime.info/post/violence-prosecutions/</loc>
     <lastmod>2020-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/police/</loc>
+    <loc>http://lesscrime.info/tag/police/</loc>
     <lastmod>2020-03-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/violence/</loc>
+    <loc>http://lesscrime.info/tag/violence/</loc>
     <lastmod>2020-03-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/police-assaults/</loc>
+    <loc>http://lesscrime.info/post/police-assaults/</loc>
     <lastmod>2020-02-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/prison-europe/</loc>
+    <loc>http://lesscrime.info/post/prison-europe/</loc>
     <lastmod>2020-02-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/csew/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/crime-reporting/</loc>
+    <loc>http://lesscrime.info/post/crime-reporting/</loc>
     <lastmod>2020-02-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/reporting/</loc>
+    <loc>http://lesscrime.info/tag/csew/</loc>
     <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/search-arrests/</loc>
+    <loc>http://lesscrime.info/tag/reporting/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/post/search-arrests/</loc>
     <lastmod>2020-02-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/search-hits/</loc>
+    <loc>http://lesscrime.info/post/search-hits/</loc>
     <lastmod>2020-02-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/stop-and-search/</loc>
+    <loc>http://lesscrime.info/tag/stop-and-search/</loc>
     <lastmod>2020-02-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/homicide-europe/</loc>
+    <loc>http://lesscrime.info/post/homicide-europe/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/international-comparisons/</loc>
+    <loc>http://lesscrime.info/tag/international-comparisons/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/trends/</loc>
+    <loc>http://lesscrime.info/tag/trends/</loc>
     <lastmod>2020-01-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/breath-tests/</loc>
+    <loc>http://lesscrime.info/tag/breath-tests/</loc>
     <lastmod>2020-01-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/breath-tests/</loc>
+    <loc>http://lesscrime.info/post/breath-tests/</loc>
     <lastmod>2020-01-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/custody-deaths/</loc>
+    <loc>http://lesscrime.info/post/custody-deaths/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/deaths/</loc>
+    <loc>http://lesscrime.info/tag/deaths/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/common-prosecutions/</loc>
+    <loc>http://lesscrime.info/post/common-prosecutions/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/dna-database/</loc>
+    <loc>http://lesscrime.info/post/common-prosecutions/</loc>
+    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/post/dna-database/</loc>
     <lastmod>2019-12-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/dna/</loc>
+    <loc>http://lesscrime.info/tag/dna/</loc>
     <lastmod>2019-12-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/ethnicity/</loc>
+    <loc>http://lesscrime.info/tag/ethnicity/</loc>
     <lastmod>2019-12-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/football-arrests/</loc>
+    <loc>http://lesscrime.info/tag/arrests/</loc>
     <lastmod>2019-12-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/arrests/</loc>
+    <loc>http://lesscrime.info/post/football-arrests/</loc>
     <lastmod>2019-12-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/football/</loc>
+    <loc>http://lesscrime.info/tag/football/</loc>
     <lastmod>2019-12-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/drug-seizures/</loc>
+    <loc>http://lesscrime.info/post/drug-seizures/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/drugs/</loc>
+    <loc>http://lesscrime.info/tag/drugs/</loc>
     <lastmod>2019-12-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/use-of-force/</loc>
+    <loc>http://lesscrime.info/post/use-of-force/</loc>
     <lastmod>2019-11-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/use-of-force/</loc>
+    <loc>http://lesscrime.info/tag/use-of-force/</loc>
     <lastmod>2019-11-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/prisoner-types/</loc>
+    <loc>http://lesscrime.info/post/prisoner-types/</loc>
     <lastmod>2019-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/prison/</loc>
+    <loc>http://lesscrime.info/tag/prison/</loc>
     <lastmod>2019-11-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/crime-pressure/</loc>
+    <loc>http://lesscrime.info/post/crime-pressure/</loc>
     <lastmod>2019-11-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/crime-pressure/</loc>
+    <loc>http://lesscrime.info/tag/crime-pressure/</loc>
     <lastmod>2019-11-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/crime-severity/</loc>
+    <loc>http://lesscrime.info/tag/crime-severity/</loc>
     <lastmod>2019-11-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/reoffending-rates/</loc>
+    <loc>http://lesscrime.info/post/reoffending-rates/</loc>
     <lastmod>2019-11-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/offending/</loc>
+    <loc>http://lesscrime.info/tag/offending/</loc>
     <lastmod>2019-11-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/reoffending/</loc>
+    <loc>http://lesscrime.info/tag/reoffending/</loc>
     <lastmod>2019-11-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/knife-sentencing/</loc>
+    <loc>http://lesscrime.info/post/knife-sentencing/</loc>
     <lastmod>2019-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/knife-crime/</loc>
+    <loc>http://lesscrime.info/tag/knife-crime/</loc>
     <lastmod>2019-10-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/sentencing/</loc>
+    <loc>http://lesscrime.info/tag/sentencing/</loc>
     <lastmod>2019-10-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/homicide-trends/</loc>
+    <loc>http://lesscrime.info/post/homicide-trends/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/homicide/</loc>
+    <loc>http://lesscrime.info/tag/homicide/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/police-arrests/</loc>
+    <loc>http://lesscrime.info/post/police-arrests/</loc>
     <lastmod>2019-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/cvs/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/post/police-arrests2/</loc>
+    <lastmod>2019-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/business-crime/</loc>
+    <loc>http://lesscrime.info/tag/business/</loc>
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/business/</loc>
+    <loc>http://lesscrime.info/post/business-crime/</loc>
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/fairness-perception/</loc>
+    <loc>http://lesscrime.info/tag/cvs/</loc>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/post/fairness-perception/</loc>
     <lastmod>2019-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/perceptions/</loc>
+    <loc>http://lesscrime.info/tag/perceptions/</loc>
     <lastmod>2019-09-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/drug-use/</loc>
+    <loc>http://lesscrime.info/post/drug-use/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/talk/esc-2019/</loc>
+    <loc>http://lesscrime.info/talk/esc-2019/</loc>
     <lastmod>2019-09-19T22:35:23+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/police-pay/</loc>
+    <loc>http://lesscrime.info/post/police-pay/</loc>
     <lastmod>2019-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/homicide-methods/</loc>
+    <loc>http://lesscrime.info/post/homicide-methods/</loc>
     <lastmod>2019-09-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/prison-likelihood/</loc>
+    <loc>http://lesscrime.info/tag/age/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/age/</loc>
+    <loc>http://lesscrime.info/post/prison-likelihood/</loc>
     <lastmod>2019-09-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2019-08-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r-tutorials/</loc>
-    <lastmod>2019-08-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/cleaning-ons-data/</loc>
+    <loc>http://lesscrime.info/tag/r/</loc>
     <lastmod>2019-08-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/privacy/</loc>
-    <lastmod>2019-08-29T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/category/r-tutorials/</loc>
+    <lastmod>2019-08-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/partner-abuse/</loc>
+    <loc>http://lesscrime.info/post/cleaning-ons-data/</loc>
+    <lastmod>2019-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/post/partner-abuse/</loc>
     <lastmod>2019-08-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/domestic-abuse/</loc>
+    <loc>http://lesscrime.info/tag/domestic-abuse/</loc>
     <lastmod>2019-08-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/talk/unodc-kostat/</loc>
+    <loc>http://lesscrime.info/talk/unodc-kostat/</loc>
     <lastmod>2019-08-20T14:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/police-numbers/</loc>
+    <loc>http://lesscrime.info/post/police-numbers/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/crime-trends/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/crime-open-database/</loc>
+    <loc>http://lesscrime.info/publication/crime-open-database/</loc>
     <lastmod>2019-07-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication_types/3/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/violence_around_schools/</loc>
+    <loc>http://lesscrime.info/publication-type/3/</loc>
     <lastmod>2019-03-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/talk/leics-ebp-2019/</loc>
+    <loc>http://lesscrime.info/publication/violence_around_schools/</loc>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/talk/leics-ebp-2019/</loc>
     <lastmod>2019-07-11T17:16:21+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/talk/local-seasonality/</loc>
+    <loc>http://lesscrime.info/talk/local-seasonality/</loc>
     <lastmod>2019-07-12T09:37:01+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/weather_and_stop_and_frisk/</loc>
+    <loc>http://lesscrime.info/publication/weather_and_stop_and_frisk/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/l-tompson/</loc>
+    <loc>http://lesscrime.info/author/l-tompson/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/talk/crime-around-schools/</loc>
+    <loc>http://lesscrime.info/talk/crime-around-schools/</loc>
     <lastmod>2019-07-12T09:41:18+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/talk/solving-problems-using-evidence-based-policing/</loc>
+    <loc>http://lesscrime.info/talk/solving-problems-using-evidence-based-policing/</loc>
     <lastmod>2019-07-12T09:55:21+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/a-sidebottom/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/alternative-denominators-in-transport-crime-rates/</loc>
+    <loc>http://lesscrime.info/author/a-sidebottom/</loc>
     <lastmod>2017-11-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/r-solymosi/</loc>
+    <loc>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</loc>
     <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/authors/t-cohen/</loc>
+    <loc>http://lesscrime.info/author/r-solymosi/</loc>
     <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/publication/measuring_crime_harm/</loc>
+    <loc>http://lesscrime.info/author/t-cohen/</loc>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/measuring_crime_harm/</loc>
     <lastmod>2017-08-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/cctv_as_an_investigative_tool/</loc>
+    <loc>http://lesscrime.info/publication/cctv_as_an_investigative_tool/</loc>
     <lastmod>2017-04-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/a-thorpe/</loc>
-    <lastmod>2017-01-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/self_guardianship_at_atms/</loc>
+    <loc>http://lesscrime.info/author/a-thorpe/</loc>
     <lastmod>2017-01-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/children_gender_and_cse/</loc>
+    <loc>http://lesscrime.info/publication/self_guardianship_at_atms/</loc>
+    <lastmod>2017-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/children_gender_and_cse/</loc>
     <lastmod>2016-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/e-cockbain/</loc>
+    <loc>http://lesscrime.info/author/e-cockbain/</loc>
     <lastmod>2016-12-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/authors/h-brayley-morris/</loc>
+    <loc>http://lesscrime.info/author/h-brayley-morris/</loc>
     <lastmod>2016-12-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/publication_types/7/</loc>
-    <lastmod>2016-08-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/crime_science_for_metal_theft/</loc>
+    <loc>http://lesscrime.info/publication-type/7/</loc>
     <lastmod>2016-08-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/h-brayley/</loc>
-    <lastmod>2015-12-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/publication/crime_science_for_metal_theft/</loc>
+    <lastmod>2016-08-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/immaterial_boys/</loc>
+    <loc>http://lesscrime.info/author/h-brayley/</loc>
     <lastmod>2015-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/police_searches_and_routine_activities/</loc>
+    <loc>http://lesscrime.info/publication/immaterial_boys/</loc>
+    <lastmod>2015-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/police_searches_and_routine_activities/</loc>
     <lastmod>2015-11-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/scrap_metal_dealers/</loc>
+    <loc>http://lesscrime.info/publication/scrap_metal_dealers/</loc>
     <lastmod>2015-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/k-j-bowers/</loc>
+    <loc>http://lesscrime.info/author/k-j-bowers/</loc>
     <lastmod>2015-09-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/publication/metal_theft_and_organised_crime/</loc>
+    <loc>http://lesscrime.info/publication/metal_theft_and_organised_crime/</loc>
     <lastmod>2015-09-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/h-borrion/</loc>
-    <lastmod>2014-11-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/t-fujiyama/</loc>
-    <lastmod>2014-11-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/metal_theft_when_and_where/</loc>
+    <loc>http://lesscrime.info/author/h-borrion/</loc>
     <lastmod>2014-11-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/c-perkins/</loc>
-    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/author/t-fujiyama/</loc>
+    <lastmod>2014-11-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/p-edwards/</loc>
-    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/publication/metal_theft_when_and_where/</loc>
+    <lastmod>2014-11-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/sd-johnson/</loc>
-    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/uk_open_source_crime_data/</loc>
+    <loc>http://lesscrime.info/author/c-perkins/</loc>
     <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication_types/4/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/author/p-edwards/</loc>
+    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/c-fox/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/author/sd-johnson/</loc>
+    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/c-mcnaughton-nicholls/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://lesscrime.info/publication/uk_open_source_crime_data/</loc>
+    <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/c-paskell/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/k-gibson/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/m-ashby/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/n-jago/</loc>
-    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/not_just_a_girl_thing/</loc>
+    <loc>http://lesscrime.info/publication-type/4/</loc>
     <lastmod>2014-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/research_on_cse_of_boys/</loc>
+    <loc>http://lesscrime.info/author/c-fox/</loc>
     <lastmod>2014-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/s-harvey/</loc>
+    <loc>http://lesscrime.info/author/c-mcnaughton-nicholls/</loc>
     <lastmod>2014-08-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/publication/metal_price_theft_hypothesis/</loc>
+    <loc>http://lesscrime.info/author/c-paskell/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/k-gibson/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/m-ashby/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/n-jago/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/not_just_a_girl_thing/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/research_on_cse_of_boys/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/s-harvey/</loc>
+    <lastmod>2014-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/metal_price_theft_hypothesis/</loc>
     <lastmod>2014-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/aoristic_methods/</loc>
+    <loc>http://lesscrime.info/publication/aoristic_methods/</loc>
     <lastmod>2013-05-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/kj-bowers/</loc>
+    <loc>http://lesscrime.info/author/kj-bowers/</loc>
     <lastmod>2013-05-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/authors/admin/</loc>
+    <loc>http://lesscrime.info/author/matt-ashby/</loc>
   </url>
   
 </urlset>

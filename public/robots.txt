@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: http://lesscrime.info/sitemap.xml

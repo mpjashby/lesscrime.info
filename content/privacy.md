@@ -1,10 +1,15 @@
 ---
-title: "Privacy on this website"
-author: Matt Ashby
-date: '2019-08-29'
+title: Privacy Policy
+date: "2018-06-28T00:00:00+01:00"
+draft: true
+share: false
+commentable: false
+editable: false
+
+# Optional header image (relative to `static/media/` folder).
+header:
+  caption: ""
+  image: ""
 ---
 
-To the best of my knowledge, this website does not collect any information about 
-you or set any cookies in your browser.
-
-If you have any questions, please [contact me](/#contact).
+Add your privacy policy here and set `draft: false` to publish it. Otherwise, delete this file if you don't need it.

@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Matt Ashby</title>
-    <link>/categories/</link>
-    <description>Recent content in Categories on Matt Ashby</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
-    <language>en-us</language>
-    <copyright>CC-BY</copyright>
-    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate>
-    
-	    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>problem solving</title>
-      <link>/categories/problem-solving/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/problem-solving/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Crime and justice chart of the week</title>
-      <link>/categories/crime-and-justice-chart-of-the-week/</link>
-      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/crime-and-justice-chart-of-the-week/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R Tutorials</title>
-      <link>/categories/r-tutorials/</link>
-      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r-tutorials/</guid>
-      <description></description>
-    </item>
+    <title>Categories | Matt Ashby</title>
+    <link>http://lesscrime.info/categories/</link>
+      <atom:link href="http://lesscrime.info/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Categories</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Categories</title>
+      <link>http://lesscrime.info/categories/</link>
+    </image>
     
   </channel>
 </rss>

@@ -158,7 +158,7 @@ chart <- ggplot(chart_data, aes(offence_name, n, fill = motoring)) +
 						label.size = NA, show.legend = FALSE) +
 	# end of explanatory labels
 	scale_y_continuous(
-		labels = scales::number_format(accuracy = 1, scale = 1/1e3, suffix = "k"), 
+		labels = scales::number_format(accuracy = 1, scale = 1/1e3, suffix = "k"),
 		expand = c(0, 0)
 	) +
 	scale_fill_manual(
@@ -168,15 +168,17 @@ chart <- ggplot(chart_data, aes(offence_name, n, fill = motoring)) +
 	coord_flip() +
 	labs(
     title = chart_details$title,
-    subtitle = format_subtitle(chart_details$subtitle, .width = 80),
+    subtitle = format_subtitle(chart_details$subtitle),
 		x = NULL,
-		y = "average annual prosecutions, 2016–18, excluding out-of-court disposals",
+		y = "average annual prosecutions, 2016-18, excluding out-of-court disposals",
 		alpha = NULL,
 		fill = NULL
 	) +
 	theme_cjcharts() +
 	theme(
-		axis.ticks.y = element_blank(),
+	  axis.text.x = element_text(),
+	  axis.text.y = element_text(hjust = 1),
+	  axis.ticks.y = element_blank(),
 		legend.justification = "right",
 		legend.position = c(1, 0.1),
 		panel.grid.major.x = element_line(),
