@@ -3,12 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://lesscrime.info/talk/npcc-hotspots/</loc>
-    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/publication-type/2/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/authors/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://lesscrime.info/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/author/mpj-ashby/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication_types/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/publication/criminology-oa/</loc>
+    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/talk/npcc-hotspots/</loc>
     <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,32 +73,7 @@
   </url>
   
   <url>
-    <loc>http://lesscrime.info/publication-type/2/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/authors/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://lesscrime.info/publication/coronavirus-and-police-calls/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/author/mpj-ashby/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/publication_types/</loc>
-    <lastmod>2020-06-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/publication/</loc>
     <lastmod>2020-06-25T00:00:00+00:00</lastmod>
   </url>
   
