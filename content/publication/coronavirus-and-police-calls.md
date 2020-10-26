@@ -8,6 +8,7 @@ abstract: 'The coronavirus pandemic poses multiple challenges for policing, incl
 abstract_short: ''
 authors:
   - 'MPJ Ashby'
+doi: 'https://doi.org/10.1093/police/paaa037'
 header:
   caption: ''
   image: ''
@@ -22,7 +23,7 @@ publication_types:
 selected: no
 url_code: 'https://github.com/mpjashby/covid19-calls'
 url_dataset: ''
-url_pdf: 'https://doi.org/10.1093/police/paaa037'
+url_pdf: '/files/coronavirus_and_police_demand_postprint.pdf'
 url_poster: ''
 url_preprint: 'https://doi.org/10.31235/osf.io/h4mcu'
 url_project: 'https://osf.io/7v3nu/'
