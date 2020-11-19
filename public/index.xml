@@ -5,12 +5,21 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Three quarters of new criminological knowledge is hidden from policy makers</title>
+      <link>http://lesscrime.info/talk/crimcon-2020/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/crimcon-2020/</guid>
+      <description>&lt;p&gt;Presentation on the state of open access publishing in criminology, based on my paper &lt;a href=&#34;http://lesscrime.info/publication/criminology-oa/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The open-access availability of criminological research to practitioners and policy makers&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The open-access availability of criminological research to practitioners and policy makers</title>

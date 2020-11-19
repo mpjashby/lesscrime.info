@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2020-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/talk/</loc>
+    <lastmod>2020-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://lesscrime.info/talk/crimcon-2020/</loc>
+    <lastmod>2020-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://lesscrime.info/publication-type/2/</loc>
     <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://lesscrime.info/authors/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/</loc>
     <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url>
   
@@ -39,11 +49,6 @@
   
   <url>
     <loc>http://lesscrime.info/talk/npcc-hotspots/</loc>
-    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://lesscrime.info/talk/</loc>
     <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
