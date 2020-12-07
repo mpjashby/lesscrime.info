@@ -1,4 +1,7 @@
+# RewriteEngine on
+# RewriteCond %{http_host} ^www.lesscrime.info/office-hours/ [NC,OR]
+# RewriteCond %{http_host} ^lesscrime.info/office-hours/ [NC]
+# RewriteRule ^(.*)$ https://outlook.office365.com/owa/calendar/UCL813760@ucl.ac.uk/bookings/ [R=301,NC,L]
+
 RewriteEngine on
-RewriteCond %{http_host} ^www.lesscrime.info/office-hours/ [NC,OR]
-RewriteCond %{http_host} ^lesscrime.info/office-hours/ [NC]
-RewriteRule ^(.*)$ https://outlook.office365.com/owa/calendar/UCL813760@ucl.ac.uk/bookings/ [R=301,NC,L]
+RewriteRule ^office-hours/(.*) https://outlook.office365.com/owa/calendar/UCL813760@ucl.ac.uk/bookings/ [L,R=301]
