@@ -5,12 +5,26 @@
     <link>http://lesscrime.info/publication/</link>
       <atom:link href="http://lesscrime.info/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 21 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Publications</title>
       <link>http://lesscrime.info/publication/</link>
     </image>
+    
+    <item>
+      <title>Stop and Search in London: July to September 2020</title>
+      <link>http://lesscrime.info/publication/stop-search-london-2020-q3/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/stop-search-london-2020-q3/</guid>
+      <description>&lt;p&gt;This report was also covered in the media:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.theguardian.com/law/2020/dec/03/young-black-males-in-london-19-times-more-likely-to-be-stopped-and-searched&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Young black males in London &amp;lsquo;19 times more likely to be stopped and searched&amp;rsquo;&lt;/a&gt;, &lt;em&gt;The Guardian&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.voice-online.co.uk/news/uk-news/2020/12/03/black-men-aged-18-24-are-19-times-more-likely-to-be-stopped-and-searched-in-london/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Black men aged 18-24 are 19 times more likely to be stopped and searched in London&lt;/a&gt;, &lt;em&gt;The Voice&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ucl.ac.uk/news/2020/dec/londons-most-deprived-neighbourhoods-see-more-stop-and-searches&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;London’s most deprived neighbourhoods see more stop and searches&lt;/a&gt;, &lt;em&gt;UCL News&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>The open-access availability of criminological research to practitioners and policy makers</title>
