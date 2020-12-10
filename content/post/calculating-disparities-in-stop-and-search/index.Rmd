@@ -1,0 +1,465 @@
+---
+title: 'Tutorial: Calculating disparities in stop and search'
+author: Matt Ashby
+date: '2020-12-10'
+slug: []
+categories: []
+tags:
+  - stop and search
+  - tutorial
+  - R
+---
+
+
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, fig.align = 'center')
+
+library("scales")
+library("tidyverse")
+```
+
+
+
+I recently published a [report on how stop and search is used in London](http://lesscrime.info/publication/stop-search-london-2020-q3/). Although the report contained lots of information, it was probably inevitable that people would focus on the figures for disparities in stop and search rates between ethnic groups. This has led several people to ask how I calculated these disparities, so I'll set that out in this tutorial.
+
+
+
+## Prepare the data
+
+First, we load the [`tidyverse`](https://tidyverse.org/) R package, which contains various functions for handling data and the [`scales`](https://scales.r-lib.org/) package for formatting numbers.
+
+
+```r
+library("scales")
+library("tidyverse")
+```
+
+
+
+To calculate search rates we need data on searches and data on population. The holy grail of population data would be an accurate representation of the number of people available to be searched in a particular place, since a person in a public place is vastly more likely to be searched in relative terms than someone sitting watching TV in their kitchen. Unfortunately, this data doesn't exist, so we have to rely on residential population data. As I discuss in the report, this is not perfect, but it is probably acceptable if we calculate search rates for London as a whole, rather than particular neighbourhoods.
+
+Search data is available from [data.police.uk](https://data.police.uk/data/) but is unfortunately stuck behind a web form, meaning it is difficult to download directly within an R script. I've instead downloaded the stop-and-search data for the Metropolitan Police for July to September 2020. This is slightly different to the data I used for the report, which also included stops by the City of London Police and British Transport Police in London, but almost all searches in London are done by the Met, so this is unlikely to affect the results much ^[Adding in data from British Transport Police would mean we needed to remove searches conducted by BTP outside London, because they cover the whole of Great Britain. This has to be done using a spatial join, which would make this tutorial quite a lot longer.].
+
+
+
+```{r load search data, include=FALSE}
+# you can download a copy of the data file I downloaded from data.police.uk 
+# from https://github.com/mpjashby/lesscrime.info/tree/master/public/post/calculating-disparities-in-stop-and-search/met_stop_and_search_data_july_to_september_2020.zip
+
+# the search data comes in a ZIP archive, so we will unzip to a temporary
+# directory and then read it from there
+unzip(
+  zipfile = "met_stop_and_search_data_july_to_september_2020.zip",
+  exdir = str_glue("{tempdir()}/stop-search-data/")
+)
+
+# now read all the CSV files from the temporary directory and combine them into
+# a single data frame
+searches <- str_glue("{tempdir()}/stop-search-data/") %>% 
+  dir(pattern = "csv$", full.names = TRUE, recursive = TRUE) %>% 
+  map(read_csv) %>% 
+  bind_rows() %>% 
+  # convert the column names to be easier to work with in R code
+  janitor::clean_names()
+
+# select only the columns we need
+searches <- select(searches, type, gender, age_range, self_defined_ethnicity)
+```
+
+
+
+This gives us a data frame where each row represents a stop and search of one person or vehicle. The first few rows:
+
+
+
+```{r echo=FALSE}
+searches %>% head() %>% knitr::kable()
+```
+
+
+
+[Population estimates for London for 2020](https://data.london.gov.uk/dataset/ethnic-group-population-projections) are available on the Mayor of London's website. These are only estimates, but are probably the best figures available because the latest census data are now nearly a decade out of date. We won't get a more-accurate measure of London population until data from the 2021 Census is published in 2022 or 2023.
+
+
+
+```{r download population data}
+# download the data to a temporary file
+download.file(
+  url = "https://data.london.gov.uk/download/ethnic-group-population-projections/a9598ef0-808c-4f96-9eac-8bb314bd92cd/Ethnic%20group%20projections%20%282016-based%20central%20trend%29.xlsx",
+  destfile = str_glue("{tempdir()}/population_data.xlsx")
+)
+```
+
+
+
+We now load the population data and format it so that it is easier to work with.
+
+
+
+```{r load population data}
+# load two sheets from the same Excel file, one for female population and one
+# for male
+people <- map_dfr(
+  c("Population - Females", "Population - Males"), 
+  ~ readxl::read_excel(path = str_glue("{tempdir()}/population_data.xlsx"), 
+                       sheet = .)
+)
+
+# filter out rows of data we do not need
+people <- filter(
+  people,
+  # filter out rows that have totals for all ages combined, since we only want 
+  # data for each age group separately
+  age != "All ages", 
+  # filter out rows that have values for specific boroughs, since we only want
+  # data for London as a whole
+  borough == "Greater London",
+  # filter out rows that have totals for all ethnic groups combined, since we 
+  # only want data for each group separately
+  !ethnic_group %in% c("All persons", "BAME")
+)
+
+# reformat the data into the format that we need
+people <- mutate(
+  people,
+  # convert age to a numeric value so we can use between()
+  age = as.numeric(age),
+  # categorise ages into age ranges that match the stop and search data
+  age_range = case_when(
+    between(age, 0, 9) ~ "under 10",
+    between(age, 10, 17) ~ "10-17",
+    between(age, 18, 24) ~ "18-24",
+    between(age, 25, 34) ~ "25-34",
+    age > 34 ~ "over 34",
+    TRUE ~ NA_character_
+  ),
+  # change sex to lower case
+  sex = str_to_lower(sex)
+) %>% 
+  # change the name of the variable containing the population count for each
+  # group
+  rename(people = `2020`)
+
+# select only the columns we need
+people <- select(people, sex, age_range, ethnic_group, people)
+```
+
+
+
+This gives us a data frame where each row represents the number of residents in London in each category of age, sex and ethnicity. Again, the first few rows:
+
+
+
+```{r echo=FALSE}
+people %>% 
+  head() %>% 
+  mutate(across(where(is.numeric), comma)) %>% 
+  knitr::kable(align = "lllr")
+```
+
+
+
+## Count searches and people
+
+To calculate search rates, we need to calculate the number of searches involving people in each group. Before we can do this, we need to:
+
+  * rename some columns and the values of the 'sex' variable so they match those in the population data,
+  * aggregate ethnic groups into the categories 'Asian', 'Black', 'Mixed', 'Other' and 'White', since the number of searches in some of the smaller ethnic groups is too low to draw conclusions from,
+  * remove searches of unattended vehicles (or attended vehicles where no people were searched), since we don't have age, sex and ethnicity data for those, 
+  * remove searches for which one or more of age, sex and ethnicity are missing, or where sex is listed as 'other' since there is no population data for this group.
+
+
+
+```{r count searches in each category}
+search_counts <- searches %>% 
+  # rename columns so they match the population data
+  rename(sex = gender, ethnic_group = self_defined_ethnicity) %>% 
+  # change sex to lower case
+  mutate(sex = str_to_lower(sex)) %>% 
+  # aggregate ethnic groups by taking the first word ('White', 'Black' etc) from 
+  # each group name
+  mutate(ethnic_group = str_extract(ethnic_group, "^\\w+")) %>% 
+  filter(
+    # filter out vehicle-only searches
+    type %in% c("Person search", "Person and Vehicle search"),
+    # filter out rows with missing, age, sex or ethnicity
+    !is.na(age_range), !is.na(ethnic_group), sex %in% c("female", "male")
+  ) %>% 
+  # count searches in each category
+  count(sex, age_range, ethnic_group, name = "searches")
+```
+
+
+
+We must also count the number of people in each population group, since in the raw data there is a separate row for each individual year of age. We also aggregate ethnicity categories to match those in the search data.
+
+
+
+```{r count people in each category}
+people_counts <- people %>% 
+  mutate(
+    # 
+    ethnic_group = case_when(
+      ethnic_group %in% c("Bangladeshi", "Indian", "Pakistani", "Other Asian") ~ 
+        "Asian",
+      ethnic_group %in% c("Black African", "Black Caribbean", "Other Black") ~
+        "Black",
+      ethnic_group %in% c("White & Asian", "White & Black African", 
+                          "White & Black Caribbean", "Other Mixed") ~
+        "Mixed",
+      ethnic_group %in% c("White British", "White Irish", "Other White") ~ 
+        "White",
+      TRUE ~ "Other"
+    )
+  ) %>% 
+  # count searches in each category
+  count(sex, age_range, ethnic_group, wt = people, name = "people")
+```
+
+
+
+Now that the two datasets are in the same format, we can merge them to create a single dataset to work with.
+
+
+
+```{r merge data}
+counts <- full_join(
+  search_counts, 
+  people_counts, 
+  by = c("sex", "age_range", "ethnic_group")
+) %>% 
+  # population groups in which no one was searched will have missing values for
+  # the search data, so we convert these missing values to zeros
+  replace_na(list(searches = 0))
+```
+
+
+
+The first few rows of data are:
+
+
+
+```{r echo=FALSE}
+counts %>% 
+  head() %>% 
+  mutate(across(where(is.numeric), comma)) %>% 
+  knitr::kable(align = "lllrr")
+```
+
+
+
+## Calculating search rates and disparity
+
+Now we have data we can work with, we can calculate search rates per 1,000 people in a particular population group and for the population as a whole. Note, however, that some demographic groups have very small numbers of searches so the calculated rates are likely to be unstable. To deal with this, we will only calculate rates for groups for which there were at least 100 searches between July and September 2020. We will also exclude the 'Other' ethnicity category, because it covers such a broad range of different people that it is difficult to interpret the results.
+
+
+
+```{r calculate search rates}
+overall_rate <- sum(counts$searches) / (sum(counts$people) / 1000)
+
+group_rates <- counts %>% 
+  filter(ethnic_group != "Other", searches >= 100) %>% 
+  mutate(search_rate = searches / (people / 1000))
+```
+
+
+
+We could show these values as a table, but there would probably be too much information to easily digest. Instead we can show the different search rates as a chart (remember some values will be missing because there were fewer than 100 searches of people in that group).
+
+
+
+```{r search rates chart}
+ggplot(
+  group_rates,
+  aes(
+    # set the order of the age groups so that the follow the natural age order
+    x = fct_relevel(age_range, "10-17", "18-24", "25-34", "over 34"), 
+    y = search_rate, 
+    fill = sex, 
+    # format the rate for printing
+    label = number(search_rate, accuracy = 0.1)
+  )
+) +
+  geom_col() +
+  geom_text(size = 3.5, vjust = 0, nudge_y = 2) +
+  facet_grid(cols = vars(ethnic_group), rows = vars(sex)) +
+  labs(
+    title = "Stop-and-search rates for different deomgraphic groups",
+    x = NULL, 
+    y = "search rate per 1,000 people"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    plot.title.position = "plot"
+  )
+```
+
+
+
+To calculate disparity ratios, we simply divide the search rate for each group by the overall search rate of `r scales::number(overall_rate, accuracy = 0.01)` searches per 1,000 people.
+
+```{r calculate overall disparity}
+group_disparity <- mutate(group_rates, disparity = search_rate / overall_rate)
+```
+
+
+
+```{r echo=FALSE}
+group_disparity %>% 
+  arrange(desc(search_rate)) %>% 
+  mutate(
+    across(any_of(c("search_rate", "disparity")), number, accuracy = 0.1),
+    across(where(is.numeric), scales::comma)
+  ) %>% 
+  knitr::kable(align = "lllrrrr")
+```
+
+
+
+These disparity ratios are slightly different from those in last week's report, because the data used here are only for the Met, not the data for all three London police forces used in the report. Nevertheless they are similar overall, and in particular the ordering of the groups from highest to lowest is almost identical.
+
+
+
+# Calculating age- and sex-standardised disparity ratios
+
+For some purposes, comparing specific age/sex/ethnicity groups to the population as a whole may not be of interest. For example, we might be interested in comparing people in non-white ethnic groups to white people of the same age and sex. To do this, we have to arrange our data frame into a different format so we can divide the search rate for each group by the corresponding rate for white people.
+
+
+
+```{r calculate standardised disparity}
+standardised_disparity <- group_disparity %>% 
+  # remove columns we don't need, which makes pivot_wider() work more easily
+  select(-searches, -people, -disparity) %>% 
+  # make our data 'wider', so we can divide one column by another
+  # for an explanation of long vs wide data, see 
+  # https://sejdemyr.github.io/r-tutorials/basics/wide-and-long/
+  pivot_wider(names_from = ethnic_group, values_from = search_rate) %>% 
+  # divide each search rate by the corresponding search rate for white people
+  mutate(
+    across(where(is.numeric), ~ . / White, .names = "{.col}_disparity")
+  ) %>% 
+  # convert the data back to 'long' format
+  pivot_longer(where(is.numeric), values_to = "value") %>% 
+  # further convert the data to a semi-wide format, so that each row represents
+  # one demographic group, as in the original data
+  separate(name, into = c("ethnic_group", "cat"), fill = "right") %>% 
+  replace_na(list(cat = "search_rate")) %>% 
+  pivot_wider(names_from = "cat")
+```
+
+
+
+We can visualise these standardised disparities.
+
+
+
+```{r standarised disparities chart, fig.asp=0.33}
+ggplot(
+  standardised_disparity, 
+  aes(
+    x = ethnic_group, 
+    # show age groups in natural order
+    y = fct_rev(fct_relevel(age_range, "10-17", "18-24", "25-34", "over 34")),
+    # set text colour so it is visible over the background fill
+    colour = disparity > diff(range(disparity, na.rm = TRUE)) / 2,
+    fill = replace_na(disparity, 0),
+    # format number for printing
+    label = replace_na(number(disparity, accuracy = 0.01), "–")
+  )
+) +
+  geom_raster() +
+  geom_text(na.rm = TRUE) +
+  scale_x_discrete(position = "top") +
+  scale_colour_manual(values = c(`TRUE` = "grey90", `FALSE` = "grey10")) +
+  scale_fill_gradient(low = "white", high = "darkblue") +
+  facet_grid(cols = vars(sex)) +
+  labs(
+    title = "Standardised stop-and-search disparity ratios", 
+    subtitle = "Rate of search rates for each group relative to white people of the same age and sex",
+    x = NULL, 
+    y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 10),
+    legend.position = "none",
+    panel.grid = element_blank(),
+    plot.title.position = "plot",
+    strip.placement = "outside",
+    strip.text = element_text(face = "bold", size = 10)
+  )
+```
+
+
+
+## Comparing every group to every other group
+
+I've had a request to calculate disparity ratios for every group in comparison to every other group. I'm not sure this is necessarily valuable, but I'm including the following code in case it is useful to anyone else. [The results are saved in an Excel workbook](disparity_ratios.xlsx).
+
+```{r fig.asp=1}
+simplified_data <- group_rates %>% 
+  mutate(
+    # convert categories so they make sense in a sentence
+    sex = case_when(
+      age_range %in% c("under 10", "10-17") & sex == "female" ~ "girls",
+      age_range %in% c("under 10", "10-17") ~ "boys",
+      sex == "female" ~ "women",
+      TRUE ~ "men"
+    ),
+    # convert categories into a description
+    group = str_glue("{ethnic_group} {sex} aged {age_range}")
+  ) %>% 
+  # remove all the columns we don't need
+  select(group, search_rate) %>% 
+  # convert the data frame to a named vector
+  deframe()
+
+every_comparison <- simplified_data %>% 
+  # multiply each value by every other value
+  map_dfr(~ . / simplified_data) %>% 
+  # add the original group names back
+  mutate(group = names(simplified_data)) %>% 
+  # move the original group names to be the first column
+  select(group, everything())
+  
+
+# to create an Excel workbook with multiple sheets, we need to create a list
+# of data frames, with each element in the list corresponding to a worksheet
+list(
+  # the first worksheet contains a table of disparity ratios 
+  "comparisons_table" = rename(
+    # put a description of the table in the first row of the first column
+    every_comparison, 
+    `Group below is X times more likely to be searched than group to right` = 
+      group
+  ),
+  # the second worksheet contains those ratios expressed in sentences, since
+  # tables of the type in the first workbook can sometimes be confusing
+  "comparisons_descriptions" = every_comparison %>% 
+    # convert the data to 'long' format
+    pivot_longer(., -group, names_to = "group2", values_to = "disparity") %>% 
+    # remove rows that compare groups against themselves
+    filter(group != group2) %>% 
+    # write a statement comparing each pair of groups
+    mutate(
+      disp1 = ifelse(disparity > 1, disparity, 1/disparity),
+      disp2 = ifelse(disparity > 1, "more", "less"),
+      desc = str_glue("{group} are {number(disp1, accuracy = 0.1)} times ",
+                      "{disp2} likely to be searched than {group2}")
+    ) %>% 
+    # remove all variables except the descriptive text, and remove the column
+    # name so the first row is blank
+    select(` ` = desc)
+) %>% 
+  openxlsx::write.xlsx("disparity_ratios.xlsx")
+```
+
+
+
+## Conclusion
+
+Disparity ratios are a common way of looking at how stop and search affects different groups in society. They are by no means perfect, since different people (and groups) might experience the same treatment in different ways for all sorts of reasons. Disparity ratios also do not explain why different groups are searched at different rates. I discuss these issues in more detail in the report, which you can [download to read for free](http://lesscrime.info/publication/stop-search-london-2020-q3/).
