@@ -42,7 +42,7 @@ Search data is available from [data.police.uk](https://data.police.uk/data/) but
 
 
 
-```{r load search data, include=FALSE}
+```{r load search data}
 # you can download a copy of the data file I downloaded from data.police.uk 
 # from https://github.com/mpjashby/lesscrime.info/tree/master/public/post/calculating-disparities-in-stop-and-search/met_stop_and_search_data_july_to_september_2020.zip
 

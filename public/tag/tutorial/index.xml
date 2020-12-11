@@ -30,6 +30,85 @@
 library(&amp;quot;tidyverse&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To calculate search rates we need data on searches and data on population. The holy grail of population data would be an accurate representation of the number of people available to be searched in a particular place, since a person in a public place is vastly more likely to be searched in relative terms than someone sitting watching TV in their kitchen. Unfortunately, this data doesn’t exist, so we have to rely on residential population data. As I discuss in the report, this is not perfect, but it is probably acceptable if we calculate search rates for London as a whole, rather than particular neighbourhoods.&lt;/p&gt;
 &lt;p&gt;Search data is available from &lt;a href=&#34;https://data.police.uk/data/&#34;&gt;data.police.uk&lt;/a&gt; but is unfortunately stuck behind a web form, meaning it is difficult to download directly within an R script. I’ve instead downloaded the stop-and-search data for the Metropolitan Police for July to September 2020. This is slightly different to the data I used for the report, which also included stops by the City of London Police and British Transport Police in London, but almost all searches in London are done by the Met, so this is unlikely to affect the results much &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# you can download a copy of the data file I downloaded from data.police.uk 
+# from https://github.com/mpjashby/lesscrime.info/tree/master/public/post/calculating-disparities-in-stop-and-search/met_stop_and_search_data_july_to_september_2020.zip
+
+# the search data comes in a ZIP archive, so we will unzip to a temporary
+# directory and then read it from there
+unzip(
+  zipfile = &amp;quot;met_stop_and_search_data_july_to_september_2020.zip&amp;quot;,
+  exdir = str_glue(&amp;quot;{tempdir()}/stop-search-data/&amp;quot;)
+)
+
+# now read all the CSV files from the temporary directory and combine them into
+# a single data frame
+searches &amp;lt;- str_glue(&amp;quot;{tempdir()}/stop-search-data/&amp;quot;) %&amp;gt;% 
+  dir(pattern = &amp;quot;csv$&amp;quot;, full.names = TRUE, recursive = TRUE) %&amp;gt;% 
+  map(read_csv) %&amp;gt;% 
+  bind_rows() %&amp;gt;% 
+  # convert the column names to be easier to work with in R code
+  janitor::clean_names()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Type = col_character(),
+##   Date = col_datetime(format = &amp;quot;&amp;quot;),
+##   `Part of a policing operation` = col_logical(),
+##   `Policing operation` = col_logical(),
+##   Latitude = col_double(),
+##   Longitude = col_double(),
+##   Gender = col_character(),
+##   `Age range` = col_character(),
+##   `Self-defined ethnicity` = col_character(),
+##   `Officer-defined ethnicity` = col_character(),
+##   Legislation = col_character(),
+##   `Object of search` = col_character(),
+##   Outcome = col_character(),
+##   `Outcome linked to object of search` = col_logical(),
+##   `Removal of more than just outer clothing` = col_logical()
+## )
+## 
+## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Type = col_character(),
+##   Date = col_datetime(format = &amp;quot;&amp;quot;),
+##   `Part of a policing operation` = col_logical(),
+##   `Policing operation` = col_logical(),
+##   Latitude = col_double(),
+##   Longitude = col_double(),
+##   Gender = col_character(),
+##   `Age range` = col_character(),
+##   `Self-defined ethnicity` = col_character(),
+##   `Officer-defined ethnicity` = col_character(),
+##   Legislation = col_character(),
+##   `Object of search` = col_character(),
+##   Outcome = col_character(),
+##   `Outcome linked to object of search` = col_logical(),
+##   `Removal of more than just outer clothing` = col_logical()
+## )
+## 
+## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Type = col_character(),
+##   Date = col_datetime(format = &amp;quot;&amp;quot;),
+##   `Part of a policing operation` = col_logical(),
+##   `Policing operation` = col_logical(),
+##   Latitude = col_double(),
+##   Longitude = col_double(),
+##   Gender = col_character(),
+##   `Age range` = col_character(),
+##   `Self-defined ethnicity` = col_character(),
+##   `Officer-defined ethnicity` = col_character(),
+##   Legislation = col_character(),
+##   `Object of search` = col_character(),
+##   Outcome = col_character(),
+##   `Outcome linked to object of search` = col_logical(),
+##   `Removal of more than just outer clothing` = col_logical()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# select only the columns we need
+searches &amp;lt;- select(searches, type, gender, age_range, self_defined_ethnicity)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This gives us a data frame where each row represents a stop and search of one person or vehicle. The first few rows:&lt;/p&gt;
 &lt;table&gt;
 &lt;colgroup&gt;
