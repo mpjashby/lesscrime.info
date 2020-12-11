@@ -2,7 +2,6 @@
 title: 'Tutorial: Calculating disparities in stop and search'
 author: Matt Ashby
 date: '2020-12-10'
-slug: []
 categories: []
 tags:
   - stop and search
@@ -10,8 +9,8 @@ tags:
   - R
 ---
 
-<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="index_files/anchor-sections/anchor-sections.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <p>I recently published a <a href="http://lesscrime.info/publication/stop-search-london-2020-q3/">report on how stop and search is used in London</a>. Although the report contained lots of information, it was probably inevitable that people would focus on the figures for disparities in stop and search rates between ethnic groups. This has led several people to ask how I calculated these disparities, so I’ll set that out in this tutorial.</p>
@@ -79,6 +78,9 @@ library(&quot;tidyverse&quot;)</code></pre>
 </table>
 <p><a href="https://data.london.gov.uk/dataset/ethnic-group-population-projections">Population estimates for London for 2020</a> are available on the Mayor of London’s website. These are only estimates, but are probably the best figures available because the latest census data are now nearly a decade out of date. We won’t get a more-accurate measure of London population until data from the 2021 Census is published in 2022 or 2023.</p>
 <pre class="r"><code># download the data to a temporary file
+# if this file no longer exists, check 
+# https://data.london.gov.uk/dataset/ethnic-group-population-projections for the
+# current URL
 download.file(
   url = &quot;https://data.london.gov.uk/download/ethnic-group-population-projections/a9598ef0-808c-4f96-9eac-8bb314bd92cd/Ethnic%20group%20projections%20%282016-based%20central%20trend%29.xlsx&quot;,
   destfile = str_glue(&quot;{tempdir()}/population_data.xlsx&quot;)
@@ -324,7 +326,7 @@ group_rates &lt;- counts %&gt;%
     panel.grid.minor.x = element_blank(),
     plot.title.position = &quot;plot&quot;
   )</code></pre>
-<p><img src="index_files/figure-html/search%20rates%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To calculate disparity ratios, we simply divide the search rate for each group by the overall search rate of 6.20 searches per 1,000 people.</p>
 <pre class="r"><code>group_disparity &lt;- mutate(group_rates, disparity = search_rate / overall_rate)</code></pre>
 <table>
@@ -616,7 +618,7 @@ group_rates &lt;- counts %&gt;%
     strip.placement = &quot;outside&quot;,
     strip.text = element_text(face = &quot;bold&quot;, size = 10)
   )</code></pre>
-<p><img src="index_files/figure-html/standarised%20disparities%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="comparing-every-group-to-every-other-group" class="section level2">
 <h2>Comparing every group to every other group</h2>
 <p>I’ve had a request to calculate disparity ratios for every group in comparison to every other group. I’m not sure this is necessarily valuable, but I’m including the following code in case it is useful to anyone else. <a href="disparity_ratios.xlsx">The results are saved in an Excel workbook</a>.</p>

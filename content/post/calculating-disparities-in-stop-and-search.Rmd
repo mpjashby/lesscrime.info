@@ -2,7 +2,6 @@
 title: 'Tutorial: Calculating disparities in stop and search'
 author: Matt Ashby
 date: '2020-12-10'
-slug: []
 categories: []
 tags:
   - stop and search
@@ -85,6 +84,9 @@ searches %>% head() %>% knitr::kable()
 
 ```{r download population data}
 # download the data to a temporary file
+# if this file no longer exists, check 
+# https://data.london.gov.uk/dataset/ethnic-group-population-projections for the
+# current URL
 download.file(
   url = "https://data.london.gov.uk/download/ethnic-group-population-projections/a9598ef0-808c-4f96-9eac-8bb314bd92cd/Ethnic%20group%20projections%20%282016-based%20central%20trend%29.xlsx",
   destfile = str_glue("{tempdir()}/population_data.xlsx")
