@@ -1,13 +1,13 @@
 ---
-name: Matthew P J Ashby
-position: "Lecturer in Crime Science"
-address: "Department of Security and Crime Science, University College London"
-phone: +44 20 3108 3890
+name: Matt
+surname: Ashby
+position: "Lecturer in Crime Science\\tabularnewline University College London"
+address: "Department of Security and Crime Science\\tabularnewline 35 Tavistock Square, London WC1H 9EZ"
+# phone: +44 20 3108 3890
 www: lesscrime.info
 email: "matthew.ashby@ucl.ac.uk"
 twitter: lesscrime
 github: mpjashby
-# linkedin: mariecurie
 date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::hyndman
 ---
@@ -17,7 +17,6 @@ output: vitae::hyndman
 # into the correct location
 file.copy(here::here("CV/CV.pdf"), here::here("static/files/cv.pdf"), 
 					overwrite = TRUE)
-
 ```
 
 ```{r setup, include=FALSE}
@@ -90,21 +89,30 @@ ORCID: `r my_orcid`
 ```{r publications}
 # Biber cannot handle file paths containing spaces, so we will copy 
 # citations.bib to a temporary location that Biber can read
-citations_file <- tempfile(fileext = ".bib")
-invisible(file.copy(from = here::here("CV/citations.bib"), to = citations_file))
+# citations_file <- tempfile(fileext = ".bib")
+# invisible(file.copy(from = here::here("CV/citations.bib"), to = citations_file))
 
 # ~/Documents/citations.bib is a symlink to the citations.bib file in the CV
 # directory of this RStudio project, since Biber is unable to handle file paths
 # containing spaces
-bibliography_entries(citations_file) %>% 
-	arrange(desc(year), author) %>% 
-	mutate(
-		journal = ifelse(
-			is.na(journal) & bibtype == "Article", 
-			str_glue("pre-print on {publisher}"), 
-			journal
-		)
-	)
+# bibliography_entries(citations_file) %>% 
+	# arrange(desc(issued), author) %>% 
+	# mutate(
+	# 	`container-title` = ifelse(
+	# 		is.na(`container-title`) & type == "article-journal", 
+	# 		str_glue("pre-print on {publisher}"), 
+	# 		`container-title`
+	# 	)
+	# )
+
+scholar::get_publications("dwcesrQAAAAJ") %>% 
+  arrange(desc(year)) %>% 
+  detailed_entries(
+    what = title,
+    when = year,
+    with = author,
+    where = str_glue("{journal}{ifelse(number != '', str_glue(', {number}'), '')}")
+  )
 ```
 
 
@@ -129,3 +137,20 @@ tribble(
 ```
 
 
+# Professional service
+
+```{r service}
+tribble(
+  ~start_date, ~end_date, ~title, ~description, ~url,
+  2017, "ongoing", "CrimPapers", "Maintainer of the CrimPapers alert service for new articles in 100+ criminology journals", "https://lesscrime.info/crimpapers/",
+  2018, "ongoing", "Crime Open Database", "Maintainer of the Crime Open Database of harmonised open crime data from 16 large cities in the United States, as well as the associated `crimedata` R package", "http://osf.io/zyaqn/",
+  2019, "ongoing", "Crime Science", "Associate editor of the Crime Science journal, published by Springer", NA,
+  2019, "ongoing", "London Problem Solving Awards", "Judge for the London Problem Solving Awards run jointly by the Metropolitan Police Service, British Transport Police and City of London Police", NA
+) %>% 
+  arrange(start_date) %>% 
+  brief_entries(
+    what = str_glue("{`title`}"),
+    when = str_glue("{`start_date`}–{`end_date`}"),
+    with = str_glue("{`description`}. {ifelse(!is.na(url), {`url`}, '')}")
+  )
+```
