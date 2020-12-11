@@ -749,7 +749,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    15 min read
+    13 min read
   </span>
   
 
@@ -801,7 +801,7 @@ library(&quot;tidyverse&quot;)</code></pre>
 <p>To calculate search rates we need data on searches and data on population. The holy grail of population data would be an accurate representation of the number of people available to be searched in a particular place, since a person in a public place is vastly more likely to be searched in relative terms than someone sitting watching TV in their kitchen. Unfortunately, this data doesn’t exist, so we have to rely on residential population data. As I discuss in the report, this is not perfect, but it is probably acceptable if we calculate search rates for London as a whole, rather than particular neighbourhoods.</p>
 <p>Search data is available from <a href="https://data.police.uk/data/">data.police.uk</a> but is unfortunately stuck behind a web form, meaning it is difficult to download directly within an R script. I’ve instead downloaded the stop-and-search data for the Metropolitan Police for July to September 2020. This is slightly different to the data I used for the report, which also included stops by the City of London Police and British Transport Police in London, but almost all searches in London are done by the Met, so this is unlikely to affect the results much <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <pre class="r"><code># you can download a copy of the data file I downloaded from data.police.uk 
-# from https://github.com/mpjashby/lesscrime.info/tree/master/public/post/calculating-disparities-in-stop-and-search/met_stop_and_search_data_july_to_september_2020.zip
+# from https://github.com/mpjashby/lesscrime.info/raw/master/public/post/met_stop_and_search_data_july_to_september_2020.zip
 
 # the search data comes in a ZIP archive, so we will unzip to a temporary
 # directory and then read it from there
@@ -817,67 +817,9 @@ searches &lt;- str_glue(&quot;{tempdir()}/stop-search-data/&quot;) %&gt;%
   map(read_csv) %&gt;% 
   bind_rows() %&gt;% 
   # convert the column names to be easier to work with in R code
-  janitor::clean_names()</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Type = col_character(),
-##   Date = col_datetime(format = &quot;&quot;),
-##   `Part of a policing operation` = col_logical(),
-##   `Policing operation` = col_logical(),
-##   Latitude = col_double(),
-##   Longitude = col_double(),
-##   Gender = col_character(),
-##   `Age range` = col_character(),
-##   `Self-defined ethnicity` = col_character(),
-##   `Officer-defined ethnicity` = col_character(),
-##   Legislation = col_character(),
-##   `Object of search` = col_character(),
-##   Outcome = col_character(),
-##   `Outcome linked to object of search` = col_logical(),
-##   `Removal of more than just outer clothing` = col_logical()
-## )
-## 
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Type = col_character(),
-##   Date = col_datetime(format = &quot;&quot;),
-##   `Part of a policing operation` = col_logical(),
-##   `Policing operation` = col_logical(),
-##   Latitude = col_double(),
-##   Longitude = col_double(),
-##   Gender = col_character(),
-##   `Age range` = col_character(),
-##   `Self-defined ethnicity` = col_character(),
-##   `Officer-defined ethnicity` = col_character(),
-##   Legislation = col_character(),
-##   `Object of search` = col_character(),
-##   Outcome = col_character(),
-##   `Outcome linked to object of search` = col_logical(),
-##   `Removal of more than just outer clothing` = col_logical()
-## )
-## 
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Type = col_character(),
-##   Date = col_datetime(format = &quot;&quot;),
-##   `Part of a policing operation` = col_logical(),
-##   `Policing operation` = col_logical(),
-##   Latitude = col_double(),
-##   Longitude = col_double(),
-##   Gender = col_character(),
-##   `Age range` = col_character(),
-##   `Self-defined ethnicity` = col_character(),
-##   `Officer-defined ethnicity` = col_character(),
-##   Legislation = col_character(),
-##   `Object of search` = col_character(),
-##   Outcome = col_character(),
-##   `Outcome linked to object of search` = col_logical(),
-##   `Removal of more than just outer clothing` = col_logical()
-## )</code></pre>
-<pre class="r"><code># select only the columns we need
+  janitor::clean_names()
+
+# select only the columns we need
 searches &lt;- select(searches, type, gender, age_range, self_defined_ethnicity)</code></pre>
 <p>This gives us a data frame where each row represents a stop and search of one person or vehicle. The first few rows:</p>
 <table>
