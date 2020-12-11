@@ -5,12 +5,701 @@
     <link>http://lesscrime.info/post/</link>
       <atom:link href="http://lesscrime.info/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>http://lesscrime.info/post/</link>
     </image>
+    
+    <item>
+      <title>Tutorial: Calculating disparities in stop and search</title>
+      <link>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</guid>
+      <description>
+&lt;link href=&#34;http://lesscrime.info/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I recently published a &lt;a href=&#34;http://lesscrime.info/publication/stop-search-london-2020-q3/&#34;&gt;report on how stop and search is used in London&lt;/a&gt;. Although the report contained lots of information, it was probably inevitable that people would focus on the figures for disparities in stop and search rates between ethnic groups. This has led several people to ask how I calculated these disparities, so I’ll set that out in this tutorial.&lt;/p&gt;
+&lt;div id=&#34;prepare-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Prepare the data&lt;/h2&gt;
+&lt;p&gt;First, we load the &lt;a href=&#34;https://tidyverse.org/&#34;&gt;&lt;code&gt;tidyverse&lt;/code&gt;&lt;/a&gt; R package, which contains various functions for handling data and the &lt;a href=&#34;https://scales.r-lib.org/&#34;&gt;&lt;code&gt;scales&lt;/code&gt;&lt;/a&gt; package for formatting numbers.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;scales&amp;quot;)
+library(&amp;quot;tidyverse&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To calculate search rates we need data on searches and data on population. The holy grail of population data would be an accurate representation of the number of people available to be searched in a particular place, since a person in a public place is vastly more likely to be searched in relative terms than someone sitting watching TV in their kitchen. Unfortunately, this data doesn’t exist, so we have to rely on residential population data. As I discuss in the report, this is not perfect, but it is probably acceptable if we calculate search rates for London as a whole, rather than particular neighbourhoods.&lt;/p&gt;
+&lt;p&gt;Search data is available from &lt;a href=&#34;https://data.police.uk/data/&#34;&gt;data.police.uk&lt;/a&gt; but is unfortunately stuck behind a web form, meaning it is difficult to download directly within an R script. I’ve instead downloaded the stop-and-search data for the Metropolitan Police for July to September 2020. This is slightly different to the data I used for the report, which also included stops by the City of London Police and British Transport Police in London, but almost all searches in London are done by the Met, so this is unlikely to affect the results much &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This gives us a data frame where each row represents a stop and search of one person or vehicle. The first few rows:&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;20%&#34; /&gt;
+&lt;col width=&#34;5%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;66%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;type&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;gender&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;age_range&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;self_defined_ethnicity&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person and Vehicle search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black/African/Caribbean/Black British - Any other Black/African/Caribbean background&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White - English/Welsh/Scottish/Northern Irish/British&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White - English/Welsh/Scottish/Northern Irish/British&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White - Any other White background&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Other ethnic group - Not stated&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Person search&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Other ethnic group - Not stated&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a href=&#34;https://data.london.gov.uk/dataset/ethnic-group-population-projections&#34;&gt;Population estimates for London for 2020&lt;/a&gt; are available on the Mayor of London’s website. These are only estimates, but are probably the best figures available because the latest census data are now nearly a decade out of date. We won’t get a more-accurate measure of London population until data from the 2021 Census is published in 2022 or 2023.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# download the data to a temporary file
+# if this file no longer exists, check 
+# https://data.london.gov.uk/dataset/ethnic-group-population-projections for the
+# current URL
+download.file(
+  url = &amp;quot;https://data.london.gov.uk/download/ethnic-group-population-projections/a9598ef0-808c-4f96-9eac-8bb314bd92cd/Ethnic%20group%20projections%20%282016-based%20central%20trend%29.xlsx&amp;quot;,
+  destfile = str_glue(&amp;quot;{tempdir()}/population_data.xlsx&amp;quot;)
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now load the population data and format it so that it is easier to work with.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load two sheets from the same Excel file, one for female population and one
+# for male
+people &amp;lt;- map_dfr(
+  c(&amp;quot;Population - Females&amp;quot;, &amp;quot;Population - Males&amp;quot;), 
+  ~ readxl::read_excel(path = str_glue(&amp;quot;{tempdir()}/population_data.xlsx&amp;quot;), 
+                       sheet = .)
+)
+
+# filter out rows of data we do not need
+people &amp;lt;- filter(
+  people,
+  # filter out rows that have totals for all ages combined, since we only want 
+  # data for each age group separately
+  age != &amp;quot;All ages&amp;quot;, 
+  # filter out rows that have values for specific boroughs, since we only want
+  # data for London as a whole
+  borough == &amp;quot;Greater London&amp;quot;,
+  # filter out rows that have totals for all ethnic groups combined, since we 
+  # only want data for each group separately
+  !ethnic_group %in% c(&amp;quot;All persons&amp;quot;, &amp;quot;BAME&amp;quot;)
+)
+
+# reformat the data into the format that we need
+people &amp;lt;- mutate(
+  people,
+  # convert age to a numeric value so we can use between()
+  age = as.numeric(age),
+  # categorise ages into age ranges that match the stop and search data
+  age_range = case_when(
+    between(age, 0, 9) ~ &amp;quot;under 10&amp;quot;,
+    between(age, 10, 17) ~ &amp;quot;10-17&amp;quot;,
+    between(age, 18, 24) ~ &amp;quot;18-24&amp;quot;,
+    between(age, 25, 34) ~ &amp;quot;25-34&amp;quot;,
+    age &amp;gt; 34 ~ &amp;quot;over 34&amp;quot;,
+    TRUE ~ NA_character_
+  ),
+  # change sex to lower case
+  sex = str_to_lower(sex)
+) %&amp;gt;% 
+  # change the name of the variable containing the population count for each
+  # group
+  rename(people = `2020`)
+
+# select only the columns we need
+people &amp;lt;- select(people, sex, age_range, ethnic_group, people)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This gives us a data frame where each row represents the number of residents in London in each category of age, sex and ethnicity. Again, the first few rows:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;sex&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;age_range&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;ethnic_group&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;people&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19,429&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18,616&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17,883&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17,235&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16,890&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;under 10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White British&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16,741&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;count-searches-and-people&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Count searches and people&lt;/h2&gt;
+&lt;p&gt;To calculate search rates, we need to calculate the number of searches involving people in each group. Before we can do this, we need to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rename some columns and the values of the ‘sex’ variable so they match those in the population data,&lt;/li&gt;
+&lt;li&gt;aggregate ethnic groups into the categories ‘Asian’, ‘Black’, ‘Mixed’, ‘Other’ and ‘White’, since the number of searches in some of the smaller ethnic groups is too low to draw conclusions from,&lt;/li&gt;
+&lt;li&gt;remove searches of unattended vehicles (or attended vehicles where no people were searched), since we don’t have age, sex and ethnicity data for those,&lt;/li&gt;
+&lt;li&gt;remove searches for which one or more of age, sex and ethnicity are missing, or where sex is listed as ‘other’ since there is no population data for this group.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;search_counts &amp;lt;- searches %&amp;gt;% 
+  # rename columns so they match the population data
+  rename(sex = gender, ethnic_group = self_defined_ethnicity) %&amp;gt;% 
+  # change sex to lower case
+  mutate(sex = str_to_lower(sex)) %&amp;gt;% 
+  # aggregate ethnic groups by taking the first word (&amp;#39;White&amp;#39;, &amp;#39;Black&amp;#39; etc) from 
+  # each group name
+  mutate(ethnic_group = str_extract(ethnic_group, &amp;quot;^\\w+&amp;quot;)) %&amp;gt;% 
+  filter(
+    # filter out vehicle-only searches
+    type %in% c(&amp;quot;Person search&amp;quot;, &amp;quot;Person and Vehicle search&amp;quot;),
+    # filter out rows with missing, age, sex or ethnicity
+    !is.na(age_range), !is.na(ethnic_group), sex %in% c(&amp;quot;female&amp;quot;, &amp;quot;male&amp;quot;)
+  ) %&amp;gt;% 
+  # count searches in each category
+  count(sex, age_range, ethnic_group, name = &amp;quot;searches&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We must also count the number of people in each population group, since in the raw data there is a separate row for each individual year of age. We also aggregate ethnicity categories to match those in the search data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;people_counts &amp;lt;- people %&amp;gt;% 
+  mutate(
+    # 
+    ethnic_group = case_when(
+      ethnic_group %in% c(&amp;quot;Bangladeshi&amp;quot;, &amp;quot;Indian&amp;quot;, &amp;quot;Pakistani&amp;quot;, &amp;quot;Other Asian&amp;quot;) ~ 
+        &amp;quot;Asian&amp;quot;,
+      ethnic_group %in% c(&amp;quot;Black African&amp;quot;, &amp;quot;Black Caribbean&amp;quot;, &amp;quot;Other Black&amp;quot;) ~
+        &amp;quot;Black&amp;quot;,
+      ethnic_group %in% c(&amp;quot;White &amp;amp; Asian&amp;quot;, &amp;quot;White &amp;amp; Black African&amp;quot;, 
+                          &amp;quot;White &amp;amp; Black Caribbean&amp;quot;, &amp;quot;Other Mixed&amp;quot;) ~
+        &amp;quot;Mixed&amp;quot;,
+      ethnic_group %in% c(&amp;quot;White British&amp;quot;, &amp;quot;White Irish&amp;quot;, &amp;quot;Other White&amp;quot;) ~ 
+        &amp;quot;White&amp;quot;,
+      TRUE ~ &amp;quot;Other&amp;quot;
+    )
+  ) %&amp;gt;% 
+  # count searches in each category
+  count(sex, age_range, ethnic_group, wt = people, name = &amp;quot;people&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that the two datasets are in the same format, we can merge them to create a single dataset to work with.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;counts &amp;lt;- full_join(
+  search_counts, 
+  people_counts, 
+  by = c(&amp;quot;sex&amp;quot;, &amp;quot;age_range&amp;quot;, &amp;quot;ethnic_group&amp;quot;)
+) %&amp;gt;% 
+  # population groups in which no one was searched will have missing values for
+  # the search data, so we convert these missing values to zeros
+  replace_na(list(searches = 0))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first few rows of data are:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;sex&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;age_range&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;ethnic_group&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;searches&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;people&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;87,696&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;77&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;81,226&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mixed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;41,925&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Other&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;113&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23,377&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;300&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;180,885&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;134&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;64,680&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calculating-search-rates-and-disparity&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Calculating search rates and disparity&lt;/h2&gt;
+&lt;p&gt;Now we have data we can work with, we can calculate search rates per 1,000 people in a particular population group and for the population as a whole. Note, however, that some demographic groups have very small numbers of searches so the calculated rates are likely to be unstable. To deal with this, we will only calculate rates for groups for which there were at least 100 searches between July and September 2020. We will also exclude the ‘Other’ ethnicity category, because it covers such a broad range of different people that it is difficult to interpret the results.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;overall_rate &amp;lt;- sum(counts$searches) / (sum(counts$people) / 1000)
+
+group_rates &amp;lt;- counts %&amp;gt;% 
+  filter(ethnic_group != &amp;quot;Other&amp;quot;, searches &amp;gt;= 100) %&amp;gt;% 
+  mutate(search_rate = searches / (people / 1000))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We could show these values as a table, but there would probably be too much information to easily digest. Instead we can show the different search rates as a chart (remember some values will be missing because there were fewer than 100 searches of people in that group).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(
+  group_rates,
+  aes(
+    # set the order of the age groups so that the follow the natural age order
+    x = fct_relevel(age_range, &amp;quot;10-17&amp;quot;, &amp;quot;18-24&amp;quot;, &amp;quot;25-34&amp;quot;, &amp;quot;over 34&amp;quot;), 
+    y = search_rate, 
+    fill = sex, 
+    # format the rate for printing
+    label = number(search_rate, accuracy = 0.1)
+  )
+) +
+  geom_col() +
+  geom_text(size = 3.5, vjust = 0, nudge_y = 2) +
+  facet_grid(cols = vars(ethnic_group), rows = vars(sex)) +
+  labs(
+    title = &amp;quot;Stop-and-search rates for different deomgraphic groups&amp;quot;,
+    x = NULL, 
+    y = &amp;quot;search rate per 1,000 people&amp;quot;
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = &amp;quot;none&amp;quot;,
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    plot.title.position = &amp;quot;plot&amp;quot;
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To calculate disparity ratios, we simply divide the search rate for each group by the overall search rate of 6.20 searches per 1,000 people.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;group_disparity &amp;lt;- mutate(group_rates, disparity = search_rate / overall_rate)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;sex&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;age_range&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;ethnic_group&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;searches&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;people&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;search_rate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;disparity&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5,713.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52,159&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;109.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3,805.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;81,313&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3,058.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;75,695&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;40.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2,624.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;83,789&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;31.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mixed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;822.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;29,774&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;27.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5,355.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;199,372&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;26.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2,737.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;189,647&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2,221.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;174,204&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;987.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;93,309&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mixed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;450.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;43,712&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mixed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;427.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44,383&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4,461.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;504,165&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2,085.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;258,994&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;252.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;47,977&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mixed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;253.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;61,582&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;724.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;209,483&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4,579.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1,435,342&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;male&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1,124.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;413,450&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;18-24&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Asian&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;134.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;64,680&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;180.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;88,000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;10-17&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;300.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;180,885&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;25-34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;666.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;487,537&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;859.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1,427,660&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;female&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;over 34&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Black&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;186.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;334,834&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These disparity ratios are slightly different from those in last week’s report, because the data used here are only for the Met, not the data for all three London police forces used in the report. Nevertheless they are similar overall, and in particular the ordering of the groups from highest to lowest is almost identical.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;calculating-age--and-sex-standardised-disparity-ratios&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Calculating age- and sex-standardised disparity ratios&lt;/h1&gt;
+&lt;p&gt;For some purposes, comparing specific age/sex/ethnicity groups to the population as a whole may not be of interest. For example, we might be interested in comparing people in non-white ethnic groups to white people of the same age and sex. To do this, we have to arrange our data frame into a different format so we can divide the search rate for each group by the corresponding rate for white people.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;standardised_disparity &amp;lt;- group_disparity %&amp;gt;% 
+  # remove columns we don&amp;#39;t need, which makes pivot_wider() work more easily
+  select(-searches, -people, -disparity) %&amp;gt;% 
+  # make our data &amp;#39;wider&amp;#39;, so we can divide one column by another
+  # for an explanation of long vs wide data, see 
+  # https://sejdemyr.github.io/r-tutorials/basics/wide-and-long/
+  pivot_wider(names_from = ethnic_group, values_from = search_rate) %&amp;gt;% 
+  # divide each search rate by the corresponding search rate for white people
+  mutate(
+    across(where(is.numeric), ~ . / White, .names = &amp;quot;{.col}_disparity&amp;quot;)
+  ) %&amp;gt;% 
+  # convert the data back to &amp;#39;long&amp;#39; format
+  pivot_longer(where(is.numeric), values_to = &amp;quot;value&amp;quot;) %&amp;gt;% 
+  # further convert the data to a semi-wide format, so that each row represents
+  # one demographic group, as in the original data
+  separate(name, into = c(&amp;quot;ethnic_group&amp;quot;, &amp;quot;cat&amp;quot;), fill = &amp;quot;right&amp;quot;) %&amp;gt;% 
+  replace_na(list(cat = &amp;quot;search_rate&amp;quot;)) %&amp;gt;% 
+  pivot_wider(names_from = &amp;quot;cat&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can visualise these standardised disparities.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(
+  standardised_disparity, 
+  aes(
+    x = ethnic_group, 
+    # show age groups in natural order
+    y = fct_rev(fct_relevel(age_range, &amp;quot;10-17&amp;quot;, &amp;quot;18-24&amp;quot;, &amp;quot;25-34&amp;quot;, &amp;quot;over 34&amp;quot;)),
+    # set text colour so it is visible over the background fill
+    colour = disparity &amp;gt; diff(range(disparity, na.rm = TRUE)) / 2,
+    fill = replace_na(disparity, 0),
+    # format number for printing
+    label = replace_na(number(disparity, accuracy = 0.01), &amp;quot;–&amp;quot;)
+  )
+) +
+  geom_raster() +
+  geom_text(na.rm = TRUE) +
+  scale_x_discrete(position = &amp;quot;top&amp;quot;) +
+  scale_colour_manual(values = c(`TRUE` = &amp;quot;grey90&amp;quot;, `FALSE` = &amp;quot;grey10&amp;quot;)) +
+  scale_fill_gradient(low = &amp;quot;white&amp;quot;, high = &amp;quot;darkblue&amp;quot;) +
+  facet_grid(cols = vars(sex)) +
+  labs(
+    title = &amp;quot;Standardised stop-and-search disparity ratios&amp;quot;, 
+    subtitle = &amp;quot;Rate of search rates for each group relative to white people of the same age and sex&amp;quot;,
+    x = NULL, 
+    y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 10),
+    legend.position = &amp;quot;none&amp;quot;,
+    panel.grid = element_blank(),
+    plot.title.position = &amp;quot;plot&amp;quot;,
+    strip.placement = &amp;quot;outside&amp;quot;,
+    strip.text = element_text(face = &amp;quot;bold&amp;quot;, size = 10)
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;comparing-every-group-to-every-other-group&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Comparing every group to every other group&lt;/h2&gt;
+&lt;p&gt;I’ve had a request to calculate disparity ratios for every group in comparison to every other group. I’m not sure this is necessarily valuable, but I’m including the following code in case it is useful to anyone else. &lt;a href=&#34;disparity_ratios.xlsx&#34;&gt;The results are saved in an Excel workbook&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simplified_data &amp;lt;- group_rates %&amp;gt;% 
+  mutate(
+    # convert categories so they make sense in a sentence
+    sex = case_when(
+      age_range %in% c(&amp;quot;under 10&amp;quot;, &amp;quot;10-17&amp;quot;) &amp;amp; sex == &amp;quot;female&amp;quot; ~ &amp;quot;girls&amp;quot;,
+      age_range %in% c(&amp;quot;under 10&amp;quot;, &amp;quot;10-17&amp;quot;) ~ &amp;quot;boys&amp;quot;,
+      sex == &amp;quot;female&amp;quot; ~ &amp;quot;women&amp;quot;,
+      TRUE ~ &amp;quot;men&amp;quot;
+    ),
+    # convert categories into a description
+    group = str_glue(&amp;quot;{ethnic_group} {sex} aged {age_range}&amp;quot;)
+  ) %&amp;gt;% 
+  # remove all the columns we don&amp;#39;t need
+  select(group, search_rate) %&amp;gt;% 
+  # convert the data frame to a named vector
+  deframe()
+
+every_comparison &amp;lt;- simplified_data %&amp;gt;% 
+  # multiply each value by every other value
+  map_dfr(~ . / simplified_data) %&amp;gt;% 
+  # add the original group names back
+  mutate(group = names(simplified_data)) %&amp;gt;% 
+  # move the original group names to be the first column
+  select(group, everything())
+  
+
+# to create an Excel workbook with multiple sheets, we need to create a list
+# of data frames, with each element in the list corresponding to a worksheet
+list(
+  # the first worksheet contains a table of disparity ratios 
+  &amp;quot;comparisons_table&amp;quot; = rename(
+    # put a description of the table in the first row of the first column
+    every_comparison, 
+    `Group below is X times more likely to be searched than group to right` = 
+      group
+  ),
+  # the second worksheet contains those ratios expressed in sentences, since
+  # tables of the type in the first workbook can sometimes be confusing
+  &amp;quot;comparisons_descriptions&amp;quot; = every_comparison %&amp;gt;% 
+    # convert the data to &amp;#39;long&amp;#39; format
+    pivot_longer(., -group, names_to = &amp;quot;group2&amp;quot;, values_to = &amp;quot;disparity&amp;quot;) %&amp;gt;% 
+    # remove rows that compare groups against themselves
+    filter(group != group2) %&amp;gt;% 
+    # write a statement comparing each pair of groups
+    mutate(
+      disp1 = ifelse(disparity &amp;gt; 1, disparity, 1/disparity),
+      disp2 = ifelse(disparity &amp;gt; 1, &amp;quot;more&amp;quot;, &amp;quot;less&amp;quot;),
+      desc = str_glue(&amp;quot;{group} are {number(disp1, accuracy = 0.1)} times &amp;quot;,
+                      &amp;quot;{disp2} likely to be searched than {group2}&amp;quot;)
+    ) %&amp;gt;% 
+    # remove all variables except the descriptive text, and remove the column
+    # name so the first row is blank
+    select(` ` = desc)
+) %&amp;gt;% 
+  openxlsx::write.xlsx(&amp;quot;disparity_ratios.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Disparity ratios are a common way of looking at how stop and search affects different groups in society. They are by no means perfect, since different people (and groups) might experience the same treatment in different ways for all sorts of reasons. Disparity ratios also do not explain why different groups are searched at different rates. I discuss these issues in more detail in the report, which you can &lt;a href=&#34;http://lesscrime.info/publication/stop-search-london-2020-q3/&#34;&gt;download to read for free&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Adding in data from British Transport Police would mean we needed to remove searches conducted by BTP outside London, because they cover the whole of Great Britain. This has to be done using a spatial join, which would make this tutorial quite a lot longer.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Tutorial: How to stop hiding your research</title>
