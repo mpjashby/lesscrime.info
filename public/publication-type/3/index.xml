@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3 | Matt Ashby</title>
-    <link>http://lesscrime.info/publication-type/3/</link>
-      <atom:link href="http://lesscrime.info/publication-type/3/index.xml" rel="self" type="application/rss+xml" />
+    <link>/publication-type/3/</link>
+      <atom:link href="/publication-type/3/index.xml" rel="self" type="application/rss+xml" />
     <description>3</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>3</title>
-      <link>http://lesscrime.info/publication-type/3/</link>
+      <link>/publication-type/3/</link>
     </image>
     
     <item>
       <title>Is there more violence around schools? Four tests across nine cities</title>
-      <link>http://lesscrime.info/publication/violence_around_schools/</link>
+      <link>/publication/violence_around_schools/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/violence_around_schools/</guid>
+      <guid>/publication/violence_around_schools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Does a good cop really never get wet? The impact of weather on stop and frisk</title>
-      <link>http://lesscrime.info/publication/weather_and_stop_and_frisk/</link>
+      <link>/publication/weather_and_stop_and_frisk/</link>
       <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/weather_and_stop_and_frisk/</guid>
+      <guid>/publication/weather_and_stop_and_frisk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alternative denominators in transport crime rates</title>
-      <link>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</link>
+      <link>/publication/alternative-denominators-in-transport-crime-rates/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</guid>
+      <guid>/publication/alternative-denominators-in-transport-crime-rates/</guid>
       <description></description>
     </item>
     

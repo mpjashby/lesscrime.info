@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>open access | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/open-access/</link>
-      <atom:link href="http://lesscrime.info/tag/open-access/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/open-access/</link>
+      <atom:link href="/tag/open-access/index.xml" rel="self" type="application/rss+xml" />
     <description>open access</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>open access</title>
-      <link>http://lesscrime.info/tag/open-access/</link>
+      <link>/tag/open-access/</link>
     </image>
     
     <item>
       <title>Tutorial: How to stop hiding your research</title>
-      <link>http://lesscrime.info/post/how-to-stop-hiding-your-research/</link>
+      <link>/post/how-to-stop-hiding-your-research/</link>
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/how-to-stop-hiding-your-research/</guid>
+      <guid>/post/how-to-stop-hiding-your-research/</guid>
       <description>&lt;p&gt;&lt;em&gt;This post first appeared on the &lt;a href=&#34;https://www.crimcomm.net/post/how-to-stop-hiding-your-research&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#CrimComm Blog&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;You’re a criminal-justice researcher and you’ve just published an article in a top journal. It was a lot of work: you spent months securing ethical approval, collecting data or negotiating access to secondary data, completing the analysis, writing up the results and responding to reviews. You are rightly proud of the result. But – by default and without meaning to – you have probably locked your paper away behind a journal paywall so that many potential readers simply can’t see it.&lt;/p&gt;
 &lt;p&gt;While researchers at universities in western countries typically have electronic access to journals, many others who could benefit from criminal-justice research do not. Universities in developing countries may have very few library resources, while access to journals in police and local-government agencies is typically extremely limited, meaning the increasing band of criminal-justice &lt;a href=&#34;https://www.bbc.co.uk/news/world-us-canada-44293921&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pracademics&lt;/a&gt; (who want to make use of research and have the skills to do so) are often left in the dark.&lt;/p&gt;

@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>business | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/business/</link>
-      <atom:link href="http://lesscrime.info/tag/business/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/business/</link>
+      <atom:link href="/tag/business/index.xml" rel="self" type="application/rss+xml" />
     <description>business</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>business</title>
-      <link>http://lesscrime.info/tag/business/</link>
+      <link>/tag/business/</link>
     </image>
     
     <item>
       <title>Chart: Online crime now the most-likely threat to many businesses</title>
-      <link>http://lesscrime.info/post/business-crime/</link>
+      <link>/post/business-crime/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/business-crime/</guid>
+      <guid>/post/business-crime/</guid>
       <description>
 
 
 &lt;p&gt;Online crime (including hacking, phishing and virus attacks) is now experienced by more businesses than any other type across sectors as varied as manufacturing and communications. But in the sectors most-likely to experience a crime (retail, accomodation and entertainment), traditional offences such as theft are still more likely. The data come from the government’s Commercial Victimisation Survey, which each year asks about crime against selected business types.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/business-crime_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/business-crime_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../business-crime.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/business-crime.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/crime-against-businesses-findings-from-the-2018-commercial-victimisation-survey&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>

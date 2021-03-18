@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>homicide | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/homicide/</link>
-      <atom:link href="http://lesscrime.info/tag/homicide/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/homicide/</link>
+      <atom:link href="/tag/homicide/index.xml" rel="self" type="application/rss+xml" />
     <description>homicide</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>homicide</title>
-      <link>http://lesscrime.info/tag/homicide/</link>
+      <link>/tag/homicide/</link>
     </image>
     
     <item>
       <title>Chart: Much of the homicide drop has already been erased</title>
-      <link>http://lesscrime.info/post/homicide-trends/</link>
+      <link>/post/homicide-trends/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/homicide-trends/</guid>
+      <guid>/post/homicide-trends/</guid>
       <description>
 
 
 &lt;p&gt;The rapid decrease in the homicide (murder, manslaughter and infanticide) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homicide-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../homicide-trends.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data sources: &lt;a href=&#34;https://www.gov.uk/government/statistics/historical-crime-data&#34;&gt;Homicide counts 1898 to 2001/02&lt;/a&gt;,
@@ -45,14 +45,14 @@ the rate for 1989, when the deaths occurred.&lt;/p&gt;
     
     <item>
       <title>Chart: Homicide methods are changing</title>
-      <link>http://lesscrime.info/post/homicide-methods/</link>
+      <link>/post/homicide-methods/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/homicide-methods/</guid>
+      <guid>/post/homicide-methods/</guid>
       <description>
 
 
 &lt;p&gt;Homicide (murder, manslaughter and infanticide) in England and Wales is rare, with about 12 homicides per million people last year, a similar rate to a decade ago. But homicide methods are changing: the rise in knife murders is well known, but there are other changes, too.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-methods_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homicide-methods_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../homicide-methods.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-methods.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018&#34;&gt;Office for National Statistics, 2019&lt;/a&gt;&lt;/p&gt;

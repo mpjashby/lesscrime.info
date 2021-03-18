@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>age | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/age/</link>
-      <atom:link href="http://lesscrime.info/tag/age/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/age/</link>
+      <atom:link href="/tag/age/index.xml" rel="self" type="application/rss+xml" />
     <description>age</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>age</title>
-      <link>http://lesscrime.info/tag/age/</link>
+      <link>/tag/age/</link>
     </image>
     
     <item>
       <title>Chart: For most offences prison is the exception, not the rule</title>
-      <link>http://lesscrime.info/post/prison-likelihood/</link>
+      <link>/post/prison-likelihood/</link>
       <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/prison-likelihood/</guid>
+      <guid>/post/prison-likelihood/</guid>
       <description>
 
 
 &lt;p&gt;Of the 663,000 non-motoring offences for which people were sentenced in 2018, only about 11% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../prison-likelihood.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-likelihood.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;

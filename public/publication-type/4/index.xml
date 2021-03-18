@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>4 | Matt Ashby</title>
-    <link>http://lesscrime.info/publication-type/4/</link>
-      <atom:link href="http://lesscrime.info/publication-type/4/index.xml" rel="self" type="application/rss+xml" />
+    <link>/publication-type/4/</link>
+      <atom:link href="/publication-type/4/index.xml" rel="self" type="application/rss+xml" />
     <description>4</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>4</title>
-      <link>http://lesscrime.info/publication-type/4/</link>
+      <link>/publication-type/4/</link>
     </image>
     
     <item>
       <title>Stop and Search in London: July to September 2020</title>
-      <link>http://lesscrime.info/publication/stop-search-london-2020-q3/</link>
+      <link>/publication/stop-search-london-2020-q3/</link>
       <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/stop-search-london-2020-q3/</guid>
+      <guid>/publication/stop-search-london-2020-q3/</guid>
       <description>&lt;p&gt;This report was also covered in the media:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.theguardian.com/law/2020/dec/03/young-black-males-in-london-19-times-more-likely-to-be-stopped-and-searched&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Young black males in London &amp;lsquo;19 times more likely to be stopped and searched&amp;rsquo;&lt;/a&gt;, &lt;em&gt;The Guardian&lt;/em&gt;&lt;/li&gt;
@@ -28,17 +28,17 @@
     
     <item>
       <title>Not just a girl thing: a large-scale comparison of male and female users of child sexual exploitation services in the UK</title>
-      <link>http://lesscrime.info/publication/not_just_a_girl_thing/</link>
+      <link>/publication/not_just_a_girl_thing/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/not_just_a_girl_thing/</guid>
+      <guid>/publication/not_just_a_girl_thing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research on the Sexual Exploitation of Boys and Young Men: a UK scoping study, a summary of the findings</title>
-      <link>http://lesscrime.info/publication/research_on_cse_of_boys/</link>
+      <link>/publication/research_on_cse_of_boys/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/research_on_cse_of_boys/</guid>
+      <guid>/publication/research_on_cse_of_boys/</guid>
       <description></description>
     </item>
     

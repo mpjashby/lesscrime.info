@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>E Cockbain | Matt Ashby</title>
-    <link>http://lesscrime.info/author/e-cockbain/</link>
-      <atom:link href="http://lesscrime.info/author/e-cockbain/index.xml" rel="self" type="application/rss+xml" />
+    <link>/author/e-cockbain/</link>
+      <atom:link href="/author/e-cockbain/index.xml" rel="self" type="application/rss+xml" />
     <description>E Cockbain</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 01 Dec 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>E Cockbain</title>
-      <link>http://lesscrime.info/author/e-cockbain/</link>
+      <link>/author/e-cockbain/</link>
     </image>
     
     <item>
       <title>Children, gender, and sexual exploitation: a quantitative analysis of administrative data</title>
-      <link>http://lesscrime.info/publication/children_gender_and_cse/</link>
+      <link>/publication/children_gender_and_cse/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/children_gender_and_cse/</guid>
+      <guid>/publication/children_gender_and_cse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Immaterial boys? A large-scale exploration of gender-based differences in child sexual exploitation service users</title>
-      <link>http://lesscrime.info/publication/immaterial_boys/</link>
+      <link>/publication/immaterial_boys/</link>
       <pubDate>Tue, 01 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/immaterial_boys/</guid>
+      <guid>/publication/immaterial_boys/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Not just a girl thing: a large-scale comparison of male and female users of child sexual exploitation services in the UK</title>
-      <link>http://lesscrime.info/publication/not_just_a_girl_thing/</link>
+      <link>/publication/not_just_a_girl_thing/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/not_just_a_girl_thing/</guid>
+      <guid>/publication/not_just_a_girl_thing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research on the Sexual Exploitation of Boys and Young Men: a UK scoping study, a summary of the findings</title>
-      <link>http://lesscrime.info/publication/research_on_cse_of_boys/</link>
+      <link>/publication/research_on_cse_of_boys/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/research_on_cse_of_boys/</guid>
+      <guid>/publication/research_on_cse_of_boys/</guid>
       <description></description>
     </item>
     

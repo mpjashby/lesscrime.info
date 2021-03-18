@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R Tutorials | Matt Ashby</title>
-    <link>http://lesscrime.info/category/r-tutorials/</link>
-      <atom:link href="http://lesscrime.info/category/r-tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <link>/category/r-tutorials/</link>
+      <atom:link href="/category/r-tutorials/index.xml" rel="self" type="application/rss+xml" />
     <description>R Tutorials</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>R Tutorials</title>
-      <link>http://lesscrime.info/category/r-tutorials/</link>
+      <link>/category/r-tutorials/</link>
     </image>
     
     <item>
       <title>Tutorial: Cleaning UK Office for National Statistics data in R</title>
-      <link>http://lesscrime.info/post/cleaning-ons-data/</link>
+      <link>/post/cleaning-ons-data/</link>
       <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/cleaning-ons-data/</guid>
+      <guid>/post/cleaning-ons-data/</guid>
       <description>
 
 
@@ -145,7 +145,7 @@ the &lt;code&gt;MYE1&lt;/code&gt; sheet. We can now use &lt;code&gt;read_excel()
 &lt;div id=&#34;clean&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Clean the data&lt;/h1&gt;
 &lt;p&gt;In Excel, the &lt;code&gt;MYE1&lt;/code&gt; sheet looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;file_data&lt;/code&gt; object contains the result of the &lt;code&gt;read_excel()&lt;/code&gt; function’s
 attempt to load this sheet into R:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data&lt;/code&gt;&lt;/pre&gt;

@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Sidebottom | Matt Ashby</title>
-    <link>http://lesscrime.info/author/a-sidebottom/</link>
-      <atom:link href="http://lesscrime.info/author/a-sidebottom/index.xml" rel="self" type="application/rss+xml" />
+    <link>/author/a-sidebottom/</link>
+      <atom:link href="/author/a-sidebottom/index.xml" rel="self" type="application/rss+xml" />
     <description>A Sidebottom</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>A Sidebottom</title>
-      <link>http://lesscrime.info/author/a-sidebottom/</link>
+      <link>/author/a-sidebottom/</link>
     </image>
     
     <item>
       <title>Alternative denominators in transport crime rates</title>
-      <link>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</link>
+      <link>/publication/alternative-denominators-in-transport-crime-rates/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</guid>
+      <guid>/publication/alternative-denominators-in-transport-crime-rates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Copper cable theft: revisiting the price–theft hypothesis</title>
-      <link>http://lesscrime.info/publication/metal_price_theft_hypothesis/</link>
+      <link>/publication/metal_price_theft_hypothesis/</link>
       <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/metal_price_theft_hypothesis/</guid>
+      <guid>/publication/metal_price_theft_hypothesis/</guid>
       <description></description>
     </item>
     

@@ -105,6 +105,9 @@ tidy_data %>%
     caption = "Data: Atlanta Police Department"
   ) +
   theme_cjcharts()
+
+# save high-res image
+ggsave("tracking-crime-changes-figure1.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -167,6 +170,10 @@ tidy_data %>%
     caption = "Data: Atlanta Police Department"
   ) +
   theme_cjcharts()
+
+
+# save high-res image
+ggsave("tracking-crime-changes-figure2.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -242,6 +249,10 @@ ggplot(example_homicides, aes(year, n)) +
     caption = "Data: Atlanta Police Department"
   ) +
 	theme_cjcharts()
+
+
+# save high-res image
+ggsave("tracking-crime-changes-figure3.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -279,6 +290,10 @@ tidy_data %>%
     axis.line.x = element_line(colour = "grey75"),
     panel.grid = element_blank()
   )
+
+
+# save high-res image
+ggsave("tracking-crime-changes-figure4.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -335,6 +350,10 @@ tidy_data %>%
   ) +
   theme_cjcharts() +
   theme(axis.ticks.x = element_blank())
+
+
+# save high-res image
+ggsave("tracking-crime-changes-figure5.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -400,6 +419,9 @@ tidy_data %>%
     panel.grid = element_blank(),
     strip.placement = "outside"
   )
+
+# save high-res image
+ggsave("tracking-crime-changes-figure6.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -465,6 +487,9 @@ tidy_data %>%
     caption = "Data: Atlanta Police Department"
   ) +
   theme_cjcharts()
+
+# save high-res image
+ggsave("tracking-crime-changes-figure7.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 

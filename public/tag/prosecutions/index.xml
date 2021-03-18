@@ -2,26 +2,55 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>prosecutions | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/prosecutions/</link>
-      <atom:link href="http://lesscrime.info/tag/prosecutions/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/prosecutions/</link>
+      <atom:link href="/tag/prosecutions/index.xml" rel="self" type="application/rss+xml" />
     <description>prosecutions</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>prosecutions</title>
-      <link>http://lesscrime.info/tag/prosecutions/</link>
+      <link>/tag/prosecutions/</link>
     </image>
     
     <item>
+      <title>Chart: Typical rape investigation times doubled between 2012 and 2018</title>
+      <link>/post/rape-prosecution-times/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>/post/rape-prosecution-times/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The time taken for a typical rape case to be prosecuted in court increased only slightly from 2012 to 2018, but the time taken for police to investigate rapes and the CPS to decide whether to charge a suspect has more than doubled. The government has not published updated data since March 2019.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/rape-prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There are several potential reasons for this increase, which could explain it
+either individually or in combination:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cuts to police resources may have led to longer investigation times.&lt;/li&gt;
+&lt;li&gt;Cuts to CPS resources may have led to longer delays in making the decision
+whether or not to charge the suspect.&lt;/li&gt;
+&lt;li&gt;Attempts to increase the proportion of rapes reported to police may mean
+more rape investigations need extended inquiries.&lt;/li&gt;
+&lt;li&gt;Developments in investigative techniques (e.g. analysis of mobile-phone
+data) or changes in offence circumstances may mean investigations take
+longer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;../rape-prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/rape-prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Chart: In serious cases, justice is often slow</title>
-      <link>http://lesscrime.info/post/prosecution-times/</link>
+      <link>/post/prosecution-times/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/prosecution-times/</guid>
+      <guid>/post/prosecution-times/</guid>
       <description>
 
 
 &lt;p&gt;Some serious crime investigations are surprisingly quick: half of murder prosecutions involve a suspect being charged in five days or fewer. But for many serious crimes, justice is often slow: half of fraud prosecutions don’t conclude until almost two years after the crime occurred.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -30,14 +59,14 @@
     
     <item>
       <title>Chart: Some police forces are much more likely to prosecute violence</title>
-      <link>http://lesscrime.info/post/violence-prosecutions/</link>
+      <link>/post/violence-prosecutions/</link>
       <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/violence-prosecutions/</guid>
+      <guid>/post/violence-prosecutions/</guid>
       <description>
 
 
 &lt;p&gt;Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions such as paying compensation.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/violence-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/violence-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../violence-prosecutions.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/violence-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>

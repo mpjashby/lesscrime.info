@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>K J Bowers | Matt Ashby</title>
-    <link>http://lesscrime.info/author/k-j-bowers/</link>
-      <atom:link href="http://lesscrime.info/author/k-j-bowers/index.xml" rel="self" type="application/rss+xml" />
+    <link>/author/k-j-bowers/</link>
+      <atom:link href="/author/k-j-bowers/index.xml" rel="self" type="application/rss+xml" />
     <description>K J Bowers</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 30 Sep 2015 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>K J Bowers</title>
-      <link>http://lesscrime.info/author/k-j-bowers/</link>
+      <link>/author/k-j-bowers/</link>
     </image>
     
     <item>
       <title>Concentrations of railway metal theft and the locations of scrap-metal dealers</title>
-      <link>http://lesscrime.info/publication/scrap_metal_dealers/</link>
+      <link>/publication/scrap_metal_dealers/</link>
       <pubDate>Wed, 30 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/scrap_metal_dealers/</guid>
+      <guid>/publication/scrap_metal_dealers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The when and where of an emerging crime type: the example of metal theft from the railway network of Great Britain</title>
-      <link>http://lesscrime.info/publication/metal_theft_when_and_where/</link>
+      <link>/publication/metal_theft_when_and_where/</link>
       <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/metal_theft_when_and_where/</guid>
+      <guid>/publication/metal_theft_when_and_where/</guid>
       <description></description>
     </item>
     

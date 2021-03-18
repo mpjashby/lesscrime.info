@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tutorial | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/tutorial/</link>
-      <atom:link href="http://lesscrime.info/tag/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/tutorial/</link>
+      <atom:link href="/tag/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <description>tutorial</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>tutorial</title>
-      <link>http://lesscrime.info/tag/tutorial/</link>
+      <link>/tag/tutorial/</link>
     </image>
     
     <item>
       <title>Tutorial: Calculating disparities in stop and search</title>
-      <link>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</link>
+      <link>/post/calculating-disparities-in-stop-and-search/</link>
       <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</guid>
+      <guid>/post/calculating-disparities-in-stop-and-search/</guid>
       <description>
-&lt;link href=&#34;http://lesscrime.info/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I recently published a &lt;a href=&#34;http://lesscrime.info/publication/stop-search-london-2020-q3/&#34;&gt;report on how stop and search is used in London&lt;/a&gt;. Although the report contained lots of information, it was probably inevitable that people would focus on the figures for disparities in stop and search rates between ethnic groups. This has led several people to ask how I calculated these disparities, so I’ll set that out in this tutorial.&lt;/p&gt;
@@ -356,7 +356,7 @@ group_rates &amp;lt;- counts %&amp;gt;%
     panel.grid.minor.x = element_blank(),
     plot.title.position = &amp;quot;plot&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To calculate disparity ratios, we simply divide the search rate for each group by the overall search rate of 6.20 searches per 1,000 people.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;group_disparity &amp;lt;- mutate(group_rates, disparity = search_rate / overall_rate)&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
@@ -648,7 +648,7 @@ group_rates &amp;lt;- counts %&amp;gt;%
     strip.placement = &amp;quot;outside&amp;quot;,
     strip.text = element_text(face = &amp;quot;bold&amp;quot;, size = 10)
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;div id=&#34;comparing-every-group-to-every-other-group&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparing every group to every other group&lt;/h2&gt;
 &lt;p&gt;I’ve had a request to calculate disparity ratios for every group in comparison to every other group. I’m not sure this is necessarily valuable, but I’m including the following code in case it is useful to anyone else. &lt;a href=&#34;disparity_ratios.xlsx&#34;&gt;The results are saved in an Excel workbook&lt;/a&gt;.&lt;/p&gt;
@@ -724,9 +724,9 @@ list(
     
     <item>
       <title>Tutorial: How to stop hiding your research</title>
-      <link>http://lesscrime.info/post/how-to-stop-hiding-your-research/</link>
+      <link>/post/how-to-stop-hiding-your-research/</link>
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/how-to-stop-hiding-your-research/</guid>
+      <guid>/post/how-to-stop-hiding-your-research/</guid>
       <description>&lt;p&gt;&lt;em&gt;This post first appeared on the &lt;a href=&#34;https://www.crimcomm.net/post/how-to-stop-hiding-your-research&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#CrimComm Blog&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;You’re a criminal-justice researcher and you’ve just published an article in a top journal. It was a lot of work: you spent months securing ethical approval, collecting data or negotiating access to secondary data, completing the analysis, writing up the results and responding to reviews. You are rightly proud of the result. But – by default and without meaning to – you have probably locked your paper away behind a journal paywall so that many potential readers simply can’t see it.&lt;/p&gt;
 &lt;p&gt;While researchers at universities in western countries typically have electronic access to journals, many others who could benefit from criminal-justice research do not. Universities in developing countries may have very few library resources, while access to journals in police and local-government agencies is typically extremely limited, meaning the increasing band of criminal-justice &lt;a href=&#34;https://www.bbc.co.uk/news/world-us-canada-44293921&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pracademics&lt;/a&gt; (who want to make use of research and have the skills to do so) are often left in the dark.&lt;/p&gt;
@@ -753,9 +753,9 @@ list(
     
     <item>
       <title>Tutorial: Cleaning UK Office for National Statistics data in R</title>
-      <link>http://lesscrime.info/post/cleaning-ons-data/</link>
+      <link>/post/cleaning-ons-data/</link>
       <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/cleaning-ons-data/</guid>
+      <guid>/post/cleaning-ons-data/</guid>
       <description>
 
 
@@ -884,7 +884,7 @@ the &lt;code&gt;MYE1&lt;/code&gt; sheet. We can now use &lt;code&gt;read_excel()
 &lt;div id=&#34;clean&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Clean the data&lt;/h1&gt;
 &lt;p&gt;In Excel, the &lt;code&gt;MYE1&lt;/code&gt; sheet looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;file_data&lt;/code&gt; object contains the result of the &lt;code&gt;read_excel()&lt;/code&gt; function’s
 attempt to load this sheet into R:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data&lt;/code&gt;&lt;/pre&gt;

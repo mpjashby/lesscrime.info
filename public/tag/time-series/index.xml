@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>time series | Matt Ashby</title>
-    <link>http://lesscrime.info/tag/time-series/</link>
-      <atom:link href="http://lesscrime.info/tag/time-series/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/time-series/</link>
+      <atom:link href="/tag/time-series/index.xml" rel="self" type="application/rss+xml" />
     <description>time series</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>time series</title>
-      <link>http://lesscrime.info/tag/time-series/</link>
+      <link>/tag/time-series/</link>
     </image>
     
     <item>
       <title>Why you can&#39;t identify changes in crime by comparing this month to last month</title>
-      <link>http://lesscrime.info/post/tracking-crime-changes/</link>
+      <link>/post/tracking-crime-changes/</link>
       <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/tracking-crime-changes/</guid>
+      <guid>/post/tracking-crime-changes/</guid>
       <description>
 
 
@@ -27,12 +27,12 @@
 &lt;div id=&#34;throwing-away-useful-information&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;1. Throwing away useful information&lt;/h1&gt;
 &lt;p&gt;The first problem with binary comparisons is that they typically ignore a great deal of other information about crime frequency. Take this chart of how the number of homicides in Atlanta changed from 2016 to 2017:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;At first glance, the decrease of 25% in homicides between 2016 and 2017 looks impressive. Whatever the police, mayor, church group, etc is doing to reduce homicide must be very successful, right? But put in the context of previous years, the picture looks quite different:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;By including all the available data on homicide frequency between 2010 and 2018, we can now see that actually the decrease from 2016 to 2017 was a return to the expected number of homicides after an exceptionally violent year (the 86 homicides in 2017 is almost identical to the median of 87 homicides per year between 2010 and 2018). Maybe whatever the police, mayor etc were doing in 2017 didn’t have the effect we first thought – our impressive-looking decrease might simply be &lt;a href=&#34;https://doi.org/10.1093/ije/dyh299&#34; title=&#34;Regression to the mean: what it is and how to deal with it&#34;&gt;regression to the mean&lt;/a&gt;. The 25% drop is probably real (although it’s always worth checking for changes in recording methods), but making a binary comparison threw out useful information that might have completely changed our conclusions about why it happened.&lt;/p&gt;
 &lt;p&gt;Whenever you see a binary comparison, try asking yourself ‘yes, but what happened the year before?’ The 25% decrease in homicide between 2016 in 2017 could easily have been announced as a great success, but that year-on-year decrease could be part of any of these very-different scenarios – without more information, it’s impossible to know which is true.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ignoring-trends&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;2. Ignoring trends&lt;/h1&gt;
@@ -41,7 +41,7 @@
 ## (&amp;quot;&amp;gt;=.Date&amp;quot;, &amp;quot;&amp;gt;=.vctrs_vctr&amp;quot;) for &amp;quot;&amp;gt;=&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning in mask$eval_all_filter(dots, env_filter): Incompatible methods
 ## (&amp;quot;&amp;lt;.Date&amp;quot;, &amp;quot;&amp;lt;.vctrs_vctr&amp;quot;) for &amp;quot;&amp;lt;&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A researcher might attempt to understand the effect of some change or intervention (maybe a new anti-burglary initiative) by comparing the number of burglaries in a given month this year to the same month last year. This is very common, for example, in &lt;a href=&#34;https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html&#34; title=&#34;New York magazine: The Controversial Crime-Fighting Program That Changed Big-City Policing Forever&#34;&gt;CompStat-style processes used to measure police performance&lt;/a&gt;. For example, &lt;a href=&#34;https://www1.nyc.gov/site/nypd/stats/crime-statistics/citywide-crime-stats.page&#34; title=&#34;NYPD: Citywide Crime Statistics&#34;&gt;New York City’s weekly CompStat report&lt;/a&gt; includes a comparison of crime frequency over the past 28 days with the same 28 days last year.&lt;/p&gt;
 &lt;p&gt;By ignoring pre-existing trends in crime, year-on-year comparisons such as this are very likely to produce misleading results. Over the period 2010–19, the average monthly year-on-year reduction in burglary in Atlanta was about 13%. A researcher doing a simple year-on-year comparison could easily conclude an anti-burglary intervention had been effective when it had actually made no difference at all. If the long-term trend had instead been for burglary to increase, a year-on-year comparison could easily have led to the (equally wrong) conclusion that a new program was making the problem worse.&lt;/p&gt;
 &lt;/div&gt;
@@ -54,20 +54,20 @@
 &lt;p&gt;but this ignores that March is 11% longer than February, so even if crime occurred at the same rate on every day in both months we’d expect a double-digit increase in crime in March (it also ignores that 11 departments did not see such an increase, but that’s a separate problem).&lt;/p&gt;
 &lt;p&gt;The second problem with measuring the frequency of crime by month is that not all months have the same number of each weekday, and many types of crime vary by day of the week. For example, aggravated assaults in Atlanta are concentrated at weekends:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The varying number of each weekday across months can easily generate changes in crime. October 2010 had 31 days, including five Saturdays and five Sundays, while November had 30 days including four Saturdays and four Sundays, which may go some way to explaining why aggravated assaults decreased by 15% from October to November that year.&lt;/p&gt;
 &lt;p&gt;The only good reason to use months as units of analysis is if you only have access to monthly data (e.g. if you’re using published monthly administrative data). If you have access to incident-level data, it is much better to use a unit of analysis that doesn’t have these problems, such as weeks or 28-day periods.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;seasons-matter&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;4. Seasons matter&lt;/h1&gt;
 &lt;p&gt;Many social phenomena, crime included, are more common at some times of year than others. Sticking with aggravated assaults, we can see that they tend to be more common in the summer than the winter (although there is a lot of noise):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Over the decade 2010–19, on average the frequency of aggravated assault increased slightly (by about 1.7% per month) in the first half of the year and decreased slightly (by about 4.2% per month) in the second. This means that if we were comparing assaults in March to assaults in February (even if we corrected for the number of days in each month, and the different number of weekdays), we’d expect assaults to increase even if nothing had changed except the seasons.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;crime-data-are-noisy&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;5. Crime data are noisy&lt;/h1&gt;
 &lt;p&gt;Perhaps the most-important reason why comparing one year/month/week/day to the next is that crime data are typically quite noisy. Looking at larceny from vehicles in Atlanta, we’d expect a week-to-week change of at least 10% about every other week, at least 17% about once a month and at least 35% about once a year:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/tracking-crime-changes_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/tracking-crime-changes_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;576&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Noise is likely to be higher when analysing shorter time periods, smaller geographic areas or more-serious crimes, because in each case the number of crimes is likely to be lower. Most police crime analysts will have a story of a local commander who came to them in a panic about a 100% week-on-week increase in a particular crime type, only to be reminded that the number of crimes had simply increased from one to two. Analysing small areas, short time periods and serious crimes might well be important, but it requires dealing with a greater degree of noise in the data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-to-do-instead&#34; class=&#34;section level1&#34;&gt;
@@ -92,14 +92,14 @@ img[style*=&#34;margin: auto&#34;] {
     
     <item>
       <title>Chart: Stop and search has fallen, arrests from searches less so</title>
-      <link>http://lesscrime.info/post/search-arrests/</link>
+      <link>/post/search-arrests/</link>
       <pubDate>Mon, 03 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/search-arrests/</guid>
+      <guid>/post/search-arrests/</guid>
       <description>
 
 
 &lt;p&gt;Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/search-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/search-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../search-arrests.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
@@ -108,14 +108,14 @@ img[style*=&#34;margin: auto&#34;] {
     
     <item>
       <title>Chart: Stop and search has fallen, arrests from searches less so</title>
-      <link>http://lesscrime.info/post/search-hits/</link>
+      <link>/post/search-hits/</link>
       <pubDate>Mon, 03 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/search-hits/</guid>
+      <guid>/post/search-hits/</guid>
       <description>
 
 
 &lt;p&gt;Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/search-hits_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/search-hits_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../search-hits.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-hits.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
