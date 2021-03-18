@@ -1,0 +1,170 @@
+---
+title: "Chart: Typical rape investigation times doubled between 2012 and 2018"
+author: Matt Ashby
+date: '2021-03-17'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - criminal justice
+  - courts
+  - prosecutions
+  - trials
+---
+	
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE, echo=FALSE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "rape-prosecution-times",
+	title = "Typical rape investigation times doubled between 2012 and 2018",
+	subtitle = "The time taken for a typical rape case to be prosecuted in court increased only slightly from 2012 to 2018, but the time taken for police to investigate rapes and the CPS to decide whether to charge a suspect has more than doubled. The government has not published updated data since March 2019.",
+	source_url = "https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019",
+	source_title = "Ministry of Justice, 2019"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+# get data
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# the data in the file https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/851931/time_offence_tool.xlsx are hidden in a pivot table, so we load a version manually extracted from the pivot table, including data for the most-recent available year
+	
+	tidy_data <- read_csv("rape-prosecution-times-raw-data.csv") %>% 
+		clean_names() %>% 
+		rename(year = row_labels)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+	
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	mutate(
+		offence_to_charge = median_offence_to_charge_days,
+		offence_to_first_hearing = median_charge_to_first_listing_days,
+		offence_to_main_hearing = 
+			median_charge_to_first_listing_days +
+			median_sending_to_crown_court_to_main_hearing_days,
+		offence_to_completion = 
+			median_charge_to_first_listing_days +
+			median_sending_to_crown_court_to_main_hearing_days +
+			median_main_hearing_to_completion_days
+	) %>% 
+	select(year, offence_to_charge, offence_to_first_hearing, 
+				 offence_to_main_hearing, offence_to_completion) %>% 
+	mutate(
+	) %>% 
+	pivot_longer(-year, names_to = "period", values_to = "days") %>% 
+	filter(!is.na(year)) %>% 
+	mutate(
+		months = days / (365 / 12),
+		period = recode_factor(
+			period,
+			"offence_to_charge" = "offence to suspect being charged",
+			"offence_to_first_hearing" = 
+				"suspect being charged to first court appearance",
+			"offence_to_main_hearing" = 
+				"first court appearance to main hearing",
+			"offence_to_completion" = 
+				"main hearing to case being completed"
+		),
+		phase = ifelse(
+		  period == "offence to suspect being charged",
+		  "investigation by police and charging decision by CPS",
+		  "prosecution in the courts"
+		),
+		year = fct_reorder(as.character(year), -year)
+	) %>% 
+	arrange(year, period) %>% 
+	group_by(year, phase) %>% 
+	mutate(prev = ifelse(is.na(lag(months)), 0, lag(months))) %>% 
+	ungroup()
+```
+
+```{r build plot}
+chart <- ggplot(
+	chart_data, 
+	aes(x = prev, y = year, xend = months, yend = year, colour = period)
+) +
+	geom_segment(
+		size = 1.25, 
+		arrow = arrow(angle = 40, length = unit(6, "points"), type = "closed")
+	) +
+  facet_grid(cols = vars(phase), scales = "free_x", space = "free_x") +
+	scale_x_continuous(
+		breaks = seq(0, 24, by = 3),
+		minor_breaks = seq(0, 24, by = 1),
+		expand = expansion(mult = c(0, 0.02))
+	) +
+	scale_colour_manual(
+		guide = guide_legend(nrow = 2),
+		values = unname(ucl_colours_list[c("Mid Blue", "Bright Blue", "Light Blue", 
+																			 "Blue Celeste")])
+	) +
+	labs(
+		title = chart_details$title,
+		subtitle = format_subtitle(chart_details$subtitle, .width = 105),
+		legend = NULL,
+		x = "median months from rape being committed/defendant being charged, Crown Court cases only",
+		y = NULL,
+		colour = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+		legend.box.margin = margin(0, 0, 0, 0),
+		legend.direction = "vertical",
+		legend.margin = margin(0, 0, 0, 0),
+		panel.grid.major.x = element_line(),
+		panel.grid.minor.x = element_line(),
+		panel.grid.major.y = element_blank()
+	)
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+There are several potential reasons for this increase, which could explain it
+either individually or in combination:
+
+  * Cuts to police resources may have led to longer investigation times.
+  * Cuts to CPS resources may have led to longer delays in making the decision
+    whether or not to charge the suspect.
+  * Attempts to increase the proportion of rapes reported to police may mean 
+    more rape investigations need extended inquiries.
+  * Developments in investigative techniques (e.g. analysis of mobile-phone
+    data) or changes in offence circumstances may mean investigations take 
+    longer.
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+)
+```
