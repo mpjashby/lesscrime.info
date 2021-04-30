@@ -5,12 +5,28 @@
     <link>/tag/trends/</link>
       <atom:link href="/tag/trends/index.xml" rel="self" type="application/rss+xml" />
     <description>trends</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 27 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>trends</title>
       <link>/tag/trends/</link>
     </image>
+    
+    <item>
+      <title>Chart: Police cuts still being felt in most forces</title>
+      <link>/post/police-numbers/</link>
+      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/police-numbers/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The government this week announced that almost 9,000 police officers had been recruited in England and Wales as part of a plan to increase police numbers by 20,000 by 2023. But in many parts of the country there are still fewer officers than a decade ago – six forces have lost more than a fifth of officers compared to 2010.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/police-uplift-2021_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-uplift-2021.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-uplift-2021.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;Home Office, 2021&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Homicides haven&#39;t only increased in Britain</title>
