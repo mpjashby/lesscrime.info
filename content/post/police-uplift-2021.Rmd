@@ -1,0 +1,228 @@
+---
+title: "Chart: Police cuts still being felt in most forces"
+author: Matt Ashby
+date: '2021-04-30'
+slug: police-numbers
+categories: ["Crime and justice chart of the week"]
+tags:
+  - police
+  - trends
+  - criminal justice
+---
+
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-uplift-2021",
+	title = "Police cuts still being felt in most forces",
+	subtitle = "The government this week announced that almost 9,000 police officers had been recruited in England and Wales as part of a plan to increase police numbers by 20,000 by 2023. But in many parts of the country there are still fewer officers than a decade ago – six forces have lost more than a fifth of officers compared to 2010.",
+	source_url = "https://www.gov.uk/government/collections/police-workforce-england-and-wales",
+	source_title = "Home Office, 2021"
+)
+```
+
+```{r load packages and helper}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+library("readODS")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+  
+  # Get new data from the Home Office website
+  new_data_file <- tempfile(fileext = ".ods")
+  GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/956740/police-workforce-sep20-tables.ods", write_disk(new_data_file))
+  new_data <- new_data_file %>% 
+    read_ods(sheet = "Table_1", skip = 4) %>% 
+    select(1:2, 4:5) %>% 
+    set_names(nm = c("force_code", "force_name", "2020-03", "2020-09")) %>% 
+    as_tibble() %>% 
+    filter(str_detect(force_code, "^(E23|W15)")) %>% 
+    pivot_longer(starts_with("20"), names_to = "date", values_to = "officers") %>% 
+    select(date, force_name, officers)
+  
+  # Get existing data used for previous chart
+  tidy_data <- read_csv("police-numbers-data.csv.gz") %>% 
+    mutate(date = str_glue("{year}-03")) %>% 
+    bind_rows(new_data) %>% 
+    mutate(date = ym(date)) %>% 
+    select(date, force_name, officers)
+  
+  # save tidy data
+  write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+  
+} else {
+  
+  # load tidy data
+  tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+  
+}
+```
+
+
+```{r prepare plot data}
+chart_data <- tidy_data %>% 
+	ungroup() %>% 
+	filter(date >= ym("2010-03"), force_name != "London, City of") %>% 
+	mutate(
+		force_name = str_replace(force_name, "^North ", "N "),
+		force_name = str_replace(force_name, "^South ", "S "),
+		force_name = str_replace(force_name, "^West ", "W "),
+		force_name = str_replace(force_name, " Yorkshire$", " Yorks"),
+		force_name = recode(force_name, 
+  		"Avon & Somerset" = "Avon & Som",
+			"Bedfordshire" = "Beds",
+			"Cambridgeshire" = "Cambs",
+			"Derbyshire" = "Derbys",
+			"Devon & Cornwall" = "Dvn & Corn",
+			"Gloucestershire" = "Gloucs",
+			"Greater Manchester" = "G Mnchstr",
+			"Hampshire" = "Hants",
+	  	"Hertfordshire" = "Herts",
+			"Lancashire" = "Lancs",
+			"Leicestershire" = "Leics",
+			"Lincolnshire" = "Lincs",
+  		"Metropolitan Police" = "Met Police",
+  		"Northamptonshire" = "Northants",
+			"Nottinghamshire" = "Notts",
+			"Staffordshire" = "Staffs",
+			"Thames Valley" = "Thames V",
+			"Warwickshire" = "Warwicks",
+			"W Midlands" = "W Mids"
+  	)
+	) %>% 
+	group_by(force_name) %>% 
+	mutate(
+		perc_change = (officers - first(officers)) / first(officers),
+		diff_perc_change = perc_change - lag(perc_change),
+		trajectory = sum(nth(diff_perc_change, -3), nth(diff_perc_change, -2), 
+										 nth(diff_perc_change, -1)),
+		force_group = fct_case_when(
+		  # Forces that never lost more than 5% of their officers
+			last(perc_change) > -0.05 & min(perc_change, na.rm = TRUE) > -0.05 ~ 
+				"no major loss\nof officers (<5%)",
+			# Forces that lost more than 5% of officers but have since recovered
+			last(perc_change) > -0.05 ~ "recovered from\nprevious losses",
+			# Forces that are recovering officer numbers
+			trajectory >= 0.015 ~ 
+				"recovering after\nprevious losses",
+			# Forces that have stabilised but not yet begun recovering
+			(trajectory >= -0.015 & last(perc_change) <= -0.05) |
+				(last(perc_change) > nth(perc_change, -2)) ~ 
+				"now stable after\nprevious losses",
+			# Forces that are still decreasing
+			trajectory < -0.015 ~ "still\ndecreasing",
+			TRUE ~ "other"
+		),
+		last = ifelse(date == last(date), TRUE, NA),
+		label = ifelse(last == TRUE, sprintf("%+.0f%%", perc_change * 100), NA),
+		label = ifelse(label == "-0%", "0%", label), 
+		label_vjust = ifelse(last(perc_change) < 0, "bottom", "top")
+	) %>% 
+	ungroup() %>% 
+	# calculate average change for each year for England and Wales
+	group_by(date) %>% 
+	mutate(ew_officers = sum(officers)) %>% 
+	ungroup() %>% 
+	mutate(
+		ew_perc_change = (ew_officers - first(ew_officers)) / first(ew_officers)
+	) %>% 
+	select(-ew_officers) %>% 
+	ungroup() %>% 
+	mutate(force_name = ifelse(
+	  force_group == "still decreasing", 
+	  str_glue("bold(\"{force_name}\")"), 
+	  str_glue("\"{force_name}\"")
+	))
+
+forces_in_order <- chart_data %>% 
+	filter(date == last(date)) %>% 
+	arrange(desc(perc_change)) %>% 
+	pull("force_name")
+
+chart_data <- chart_data %>% 
+	mutate(force_name = fct_relevel(force_name, forces_in_order))
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+	ggplot(aes(x = date, y = perc_change, ymin = 0, ymax = perc_change, 
+						 colour = force_group, fill = force_group)) + 
+	geom_ribbon(colour = NA, alpha = 0.1) +
+	geom_line(aes(y = ew_perc_change, 
+								linetype = "England & Wales\naverage change"), 
+						colour = "grey50") + 
+	geom_line(size = 0.75) + 
+	geom_point(aes(shape = last), na.rm = TRUE, show.legend = FALSE) +
+	geom_text(aes(y = 0, label = label, vjust = label_vjust), 
+						size = elements$label_text_size * (7 / 9), 
+						hjust = "right", na.rm = TRUE, show.legend = FALSE) + 
+	scale_x_continuous(breaks = c(2010, 2019), labels = c("'10", "'19")) + 
+	scale_y_continuous(
+		breaks = c(0, min(chart_data$perc_change)), 
+		labels = scales::percent_format(accuracy = 1)
+	) + 
+	scale_colour_manual(
+		aesthetics = c("colour", "fill"),
+		values = unname(
+		  ucl_colours_list[c("Bright Blue", "Mid Blue", "Orange", "Bright Red")]
+		), 
+		guide = guide_legend(ncol = 1), 
+		name = "trajectory"
+	) +
+	scale_linetype_manual(values = "11") +
+	coord_cartesian(clip = "off") +
+	facet_wrap(vars(force_name), labeller = label_parsed) +
+  labs(
+    title = chart_details$title,
+    subtitle = format_subtitle(chart_details$subtitle, .width = 110),
+    x = NULL,
+    y = "change in number of police officers relative to 2010",
+    linetype = NULL
+  ) +
+	theme_cjcharts() +
+	theme(
+		axis.text = element_text(size = 7),
+		legend.key.width = unit(18, "points"),
+		legend.text = element_text(margin = margin(t = 4, b = 4)),
+		legend.title.align = 0,
+		legend.position = "right",
+		legend.margin = margin(t = 4, r = 0, b = 4, l = 0),
+		legend.box.margin = margin(),
+		panel.grid.minor.y = element_blank(),
+		panel.spacing = unit(0.4, "lines"),
+		strip.text = element_text(size = 8),
+		strip.background = element_blank()
+	)
+
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE, fig.asp=1}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png) | [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 600 / 72, units = "in"
+)
+```
+
