@@ -1,0 +1,946 @@
+---
+title: "Increases in crime-related demand are hitting some forces harder than others"
+author: Matt Ashby
+date: '2021-07-19'
+categories:
+  - Crime and justice chart of the week
+tags:
+  - crime
+  - crime pressure
+  - crime severity
+  - police
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>One way to understand crime-related demands on police forces is to track ‘crime pressure’, a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. Over the past decade years, this measure has risen in every police force in England and Wales, and has doubled in many places.</p>
+<p><img src="/post/crime-pressure-force_files/figure-html/display%20plot-1.png" width="672" /></p>
+<p><a href="../crime-pressure-force.png">larger image</a>
+| <a href="https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-pressure-force.Rmd">annotated R code to produce this chart</a></p>
+<p>Data source: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics">Office for National Statistics, 2020</a></p>
+<div id="duovkaohaq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#duovkaohaq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#duovkaohaq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#duovkaohaq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#duovkaohaq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#duovkaohaq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#duovkaohaq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#duovkaohaq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#duovkaohaq .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#duovkaohaq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#duovkaohaq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#duovkaohaq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#duovkaohaq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#duovkaohaq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#duovkaohaq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#duovkaohaq .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#duovkaohaq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#duovkaohaq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#duovkaohaq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#duovkaohaq .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#duovkaohaq .gt_left {
+  text-align: left;
+}
+
+#duovkaohaq .gt_center {
+  text-align: center;
+}
+
+#duovkaohaq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#duovkaohaq .gt_font_normal {
+  font-weight: normal;
+}
+
+#duovkaohaq .gt_font_bold {
+  font-weight: bold;
+}
+
+#duovkaohaq .gt_font_italic {
+  font-style: italic;
+}
+
+#duovkaohaq .gt_super {
+  font-size: 65%;
+}
+
+#duovkaohaq .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="13" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Crime severity per officer</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2010</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2011</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2012</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2013</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2014</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2015</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2016</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2017</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2018</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2019</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">2020</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">change, 2010–20</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Dorset</td>
+<td class="gt_row gt_right">6.5</td>
+<td class="gt_row gt_right">6.6</td>
+<td class="gt_row gt_right">6.2</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">6.5</td>
+<td class="gt_row gt_right">7.4</td>
+<td class="gt_row gt_right">9.0</td>
+<td class="gt_row gt_right">9.6</td>
+<td class="gt_row gt_right">11.7</td>
+<td class="gt_row gt_right">13.5</td>
+<td class="gt_row gt_right">13.3</td>
+<td class="gt_row gt_right">103%</td></tr>
+    <tr><td class="gt_row gt_left">Suffolk</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">5.1</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">7.6</td>
+<td class="gt_row gt_right">7.9</td>
+<td class="gt_row gt_right">10.0</td>
+<td class="gt_row gt_right">10.2</td>
+<td class="gt_row gt_right">10.2</td>
+<td class="gt_row gt_right">92%</td></tr>
+    <tr><td class="gt_row gt_left">S Yorks</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">6.2</td>
+<td class="gt_row gt_right">7.9</td>
+<td class="gt_row gt_right">9.2</td>
+<td class="gt_row gt_right">10.0</td>
+<td class="gt_row gt_right">10.0</td>
+<td class="gt_row gt_right">130%</td></tr>
+    <tr><td class="gt_row gt_left">Lincs</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">6.8</td>
+<td class="gt_row gt_right">8.2</td>
+<td class="gt_row gt_right">9.5</td>
+<td class="gt_row gt_right">147%</td></tr>
+    <tr><td class="gt_row gt_left">Hants</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">6.9</td>
+<td class="gt_row gt_right">8.6</td>
+<td class="gt_row gt_right">9.4</td>
+<td class="gt_row gt_right">9.4</td>
+<td class="gt_row gt_right">155%</td></tr>
+    <tr><td class="gt_row gt_left">Northants</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">7.8</td>
+<td class="gt_row gt_right">9.1</td>
+<td class="gt_row gt_right">8.6</td>
+<td class="gt_row gt_right">79%</td></tr>
+    <tr><td class="gt_row gt_left">W Yorks</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">5.0</td>
+<td class="gt_row gt_right">6.8</td>
+<td class="gt_row gt_right">7.4</td>
+<td class="gt_row gt_right">8.7</td>
+<td class="gt_row gt_right">9.3</td>
+<td class="gt_row gt_right">8.4</td>
+<td class="gt_row gt_right">73%</td></tr>
+    <tr><td class="gt_row gt_left">Notts</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">8.6</td>
+<td class="gt_row gt_right">9.0</td>
+<td class="gt_row gt_right">8.1</td>
+<td class="gt_row gt_right">48%</td></tr>
+    <tr><td class="gt_row gt_left">W Mids</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">7.0</td>
+<td class="gt_row gt_right">8.1</td>
+<td class="gt_row gt_right">7.9</td>
+<td class="gt_row gt_right">113%</td></tr>
+    <tr><td class="gt_row gt_left">Essex</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">5.7</td>
+<td class="gt_row gt_right">6.2</td>
+<td class="gt_row gt_right">7.2</td>
+<td class="gt_row gt_right">7.8</td>
+<td class="gt_row gt_right">7.9</td>
+<td class="gt_row gt_right">130%</td></tr>
+    <tr><td class="gt_row gt_left">Humberside</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">5.9</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">6.9</td>
+<td class="gt_row gt_right">7.8</td>
+<td class="gt_row gt_right">8.4</td>
+<td class="gt_row gt_right">7.5</td>
+<td class="gt_row gt_right">71%</td></tr>
+    <tr><td class="gt_row gt_left">Kent</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">8.6</td>
+<td class="gt_row gt_right">8.5</td>
+<td class="gt_row gt_right">7.5</td>
+<td class="gt_row gt_right">157%</td></tr>
+    <tr><td class="gt_row gt_left">Derbys</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">6.8</td>
+<td class="gt_row gt_right">7.4</td>
+<td class="gt_row gt_right">92%</td></tr>
+    <tr><td class="gt_row gt_left">Staffs</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">5.1</td>
+<td class="gt_row gt_right">6.3</td>
+<td class="gt_row gt_right">7.5</td>
+<td class="gt_row gt_right">8.8</td>
+<td class="gt_row gt_right">8.7</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">83%</td></tr>
+    <tr><td class="gt_row gt_left">Sussex</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">6.8</td>
+<td class="gt_row gt_right">6.9</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">129%</td></tr>
+    <tr><td class="gt_row gt_left">Lancs</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">6.7</td>
+<td class="gt_row gt_right">8.7</td>
+<td class="gt_row gt_right">7.2</td>
+<td class="gt_row gt_right">140%</td></tr>
+    <tr><td class="gt_row gt_left">Leics</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">7.6</td>
+<td class="gt_row gt_right">7.2</td>
+<td class="gt_row gt_right">82%</td></tr>
+    <tr><td class="gt_row gt_left">Avon &amp; Som</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">6.2</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">8.0</td>
+<td class="gt_row gt_right">7.5</td>
+<td class="gt_row gt_right">7.2</td>
+<td class="gt_row gt_right">80%</td></tr>
+    <tr><td class="gt_row gt_left">Cleveland</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">5.0</td>
+<td class="gt_row gt_right">6.5</td>
+<td class="gt_row gt_right">7.4</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">153%</td></tr>
+    <tr><td class="gt_row gt_left">Durham</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">2.7</td>
+<td class="gt_row gt_right">2.7</td>
+<td class="gt_row gt_right">2.4</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">5.1</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">148%</td></tr>
+    <tr><td class="gt_row gt_left">Beds</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">5.7</td>
+<td class="gt_row gt_right">6.5</td>
+<td class="gt_row gt_right">8.2</td>
+<td class="gt_row gt_right">7.1</td>
+<td class="gt_row gt_right">61%</td></tr>
+    <tr><td class="gt_row gt_left">Warwicks</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">7.0</td>
+<td class="gt_row gt_right">8.9</td>
+<td class="gt_row gt_right">8.3</td>
+<td class="gt_row gt_right">7.0</td>
+<td class="gt_row gt_right">69%</td></tr>
+    <tr><td class="gt_row gt_left">Cambs</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">6.9</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">6.9</td>
+<td class="gt_row gt_right">48%</td></tr>
+    <tr><td class="gt_row gt_left">W Mercia</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">5.9</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">7.3</td>
+<td class="gt_row gt_right">7.6</td>
+<td class="gt_row gt_right">6.7</td>
+<td class="gt_row gt_right">95%</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">England &amp; Wales</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.6</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.6</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.6</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.6</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.7</td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.0</td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.6</td>
+<td class="gt_row gt_right" style="font-weight: bold;">5.2</td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.3</td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.8</td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.4</td>
+<td class="gt_row gt_right" style="font-weight: bold;">78%</td></tr>
+    <tr><td class="gt_row gt_left">Norfolk</td>
+<td class="gt_row gt_right">2.6</td>
+<td class="gt_row gt_right">2.7</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">2.5</td>
+<td class="gt_row gt_right">2.7</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">147%</td></tr>
+    <tr><td class="gt_row gt_left">Wiltshire</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">7.0</td>
+<td class="gt_row gt_right">6.6</td>
+<td class="gt_row gt_right">6.3</td>
+<td class="gt_row gt_right">92%</td></tr>
+    <tr><td class="gt_row gt_left">Gwent</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">6.4</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">48%</td></tr>
+    <tr><td class="gt_row gt_left">Cheshire</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">83%</td></tr>
+    <tr><td class="gt_row gt_left">Northumb</td>
+<td class="gt_row gt_right">2.1</td>
+<td class="gt_row gt_right">2.1</td>
+<td class="gt_row gt_right">2.0</td>
+<td class="gt_row gt_right">1.9</td>
+<td class="gt_row gt_right">2.2</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">6.7</td>
+<td class="gt_row gt_right">5.9</td>
+<td class="gt_row gt_right">179%</td></tr>
+    <tr><td class="gt_row gt_left">N Wales</td>
+<td class="gt_row gt_right">2.6</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">6.3</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">121%</td></tr>
+    <tr><td class="gt_row gt_left">Thames V</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.5</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">5.7</td>
+<td class="gt_row gt_right">36%</td></tr>
+    <tr><td class="gt_row gt_left">Gloucs</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.3</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">69%</td></tr>
+    <tr><td class="gt_row gt_left">Herts</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.7</td>
+<td class="gt_row gt_right">5.9</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">67%</td></tr>
+    <tr><td class="gt_row gt_left">Surrey</td>
+<td class="gt_row gt_right">3.2</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">2.6</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">5.9</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">72%</td></tr>
+    <tr><td class="gt_row gt_left">Dvn &amp; Corn</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.0</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">5.6</td>
+<td class="gt_row gt_right">5.8</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">90%</td></tr>
+    <tr><td class="gt_row gt_left">Merseyside</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">6.1</td>
+<td class="gt_row gt_right">6.0</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">92%</td></tr>
+    <tr><td class="gt_row gt_left">S Wales</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">5.1</td>
+<td class="gt_row gt_right">5.4</td>
+<td class="gt_row gt_right">5.2</td>
+<td class="gt_row gt_right">47%</td></tr>
+    <tr><td class="gt_row gt_left">N Yorks</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">2.9</td>
+<td class="gt_row gt_right">2.8</td>
+<td class="gt_row gt_right">3.3</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">3.9</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">5.3</td>
+<td class="gt_row gt_right">5.0</td>
+<td class="gt_row gt_right">73%</td></tr>
+    <tr><td class="gt_row gt_left">Met Police</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">3.6</td>
+<td class="gt_row gt_right">3.4</td>
+<td class="gt_row gt_right">3.5</td>
+<td class="gt_row gt_right">3.8</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">4.8</td>
+<td class="gt_row gt_right">4.6</td>
+<td class="gt_row gt_right">30%</td></tr>
+    <tr><td class="gt_row gt_left">Cumbria</td>
+<td class="gt_row gt_right">2.0</td>
+<td class="gt_row gt_right">2.2</td>
+<td class="gt_row gt_right">2.0</td>
+<td class="gt_row gt_right">2.1</td>
+<td class="gt_row gt_right">2.2</td>
+<td class="gt_row gt_right">2.6</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.1</td>
+<td class="gt_row gt_right">4.1</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">4.4</td>
+<td class="gt_row gt_right">124%</td></tr>
+    <tr><td class="gt_row gt_left">Dyfed-Powys</td>
+<td class="gt_row gt_right">1.9</td>
+<td class="gt_row gt_right">2.0</td>
+<td class="gt_row gt_right">1.9</td>
+<td class="gt_row gt_right">1.9</td>
+<td class="gt_row gt_right">1.9</td>
+<td class="gt_row gt_right">2.2</td>
+<td class="gt_row gt_right">2.7</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">4.2</td>
+<td class="gt_row gt_right">118%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
+<p>The Office for National Statistics (ONS) publishes <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics">estimates of the severity of different types of police-recorded crime</a>, derived from the average sentence imposed in court for each type of offence. In the same dataset, ONS publishes an overall estimate of the severity of crime per capita in each police force area. To convert this to an estimate of crime severity per officer (referred to above as <em>crime pressure</em>), severity per capita was multiplied by police force area population<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and then divided by the <a href="https://www.gov.uk/government/collections/police-workforce-england-and-wales">number of full-time equivalent police officers in each force</a>. Crime pressure is therefore defined as the severity of police-recorded crime per full-time equivalent officer.</p>
+<p>Estimates of the severity of different crimes are inherently limited, although they are likely to be more informative for some purposes than simply counting crimes (which implicitly assumes all crimes are of equal importance). For a further discussion of this, see <a href="/publication/measuring_crime_harm/"><em>Comparing methods for measuring crime harm/severity</em></a>.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Police force area populations were calculated by aggregating <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">mid-year population estimates for local authorities</a> to police force areas using the ONS open geography portal <a href="https://geoportal.statistics.gov.uk/datasets/local-authority-district-to-community-safety-partnerships-to-police-force-areas-december-2018-lookup-in-england-and-wales">local authority to police force lookup table</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
