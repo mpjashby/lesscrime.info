@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent &amp; upcoming talks | Matt Ashby</title>
+    <link>http://lesscrime.info/event/</link>
+      <atom:link href="http://lesscrime.info/event/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent &amp; upcoming talks</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 08 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Recent &amp; upcoming talks</title>
+      <link>http://lesscrime.info/event/</link>
+    </image>
+    
+    <item>
+      <title>Changes in police calls for service during the early months of the 2020 coronavirus pandemic</title>
+      <link>http://lesscrime.info/talk/n8-covid-calls/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/n8-covid-calls/</guid>
+      <description>&lt;p&gt;Presentation on changes in calls for service during the early months of the COVID-19 pandemic, based on my paper &lt;a href=&#34;http://lesscrime.info/publication/coronavirus-and-police-calls/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Changes in Police Calls for Service During the Early Months of the 2020 Coronavirus Pandemic&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Three quarters of new criminological knowledge is hidden from policy makers</title>
+      <link>http://lesscrime.info/talk/crimcon-2020/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/crimcon-2020/</guid>
+      <description>&lt;p&gt;Presentation on the state of open access publishing in criminology, based on my paper &lt;a href=&#34;http://lesscrime.info/publication/criminology-oa/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The open-access availability of criminological research to practitioners and policy makers&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hot spots: how they form and ways to analyse them</title>
+      <link>http://lesscrime.info/talk/npcc-hotspots/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/npcc-hotspots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Problem solving at hotspots</title>
+      <link>http://lesscrime.info/talk/problem-solving-at-hotspots/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/problem-solving-at-hotspots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Indoors and outdoors: weather and the spatial displacement of crime</title>
+      <link>http://lesscrime.info/talk/esc-2019/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/esc-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The value of good data about crime</title>
+      <link>http://lesscrime.info/talk/unodc-kostat/</link>
+      <pubDate>Tue, 20 Aug 2019 14:00:00 +0800</pubDate>
+      <guid>http://lesscrime.info/talk/unodc-kostat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Problem solving in Op Pioneer</title>
+      <link>http://lesscrime.info/talk/leics-ebp-2019/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/leics-ebp-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Local variations in crime seasonality</title>
+      <link>http://lesscrime.info/talk/local-seasonality/</link>
+      <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/local-seasonality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Understanding spatio-temporal patterns of crime around schools</title>
+      <link>http://lesscrime.info/talk/crime-around-schools/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/crime-around-schools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How to solve problems using evidence based policing</title>
+      <link>http://lesscrime.info/talk/solving-problems-using-evidence-based-policing/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/solving-problems-using-evidence-based-policing/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

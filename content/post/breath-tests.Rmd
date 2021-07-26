@@ -28,10 +28,7 @@ chart_details <- list(
 ```{r load packages and helper}
 # custom packages not loaded by helpers.R
 library("lubridate")
-library("reticulate")
-
-# load ODS to CSV converter
-source_python(here::here("ods_to_csv.py"))
+library(readODS)
 
 # load this after loading custom packages
 source(here::here("helpers.R"))
@@ -44,12 +41,10 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 	data_file <- tempfile(fileext = ".ods")
 	GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841257/breath-test-police-powers-procedures-mar19-hosb2519-tables.ods", write_disk(data_file))
 	
-	# convert ODS sheet to CSV
-	ods_to_csv(data_file, "BT_01", glue::glue("{data_file}.csv"))
-
 	# read data
-	tidy_data <- glue::glue("{data_file}.csv") %>% 
-		read_csv(skip = 1) %>% 
+	tidy_data <- data_file %>% 
+		read_ods(sheet = "BT_01", skip = 1) %>% 
+	  as_tibble() %>% 
 		rename(
 			year = `Calendar Year`,
 			force = `Police Force`,
@@ -59,10 +54,11 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 			positive = `Number of positive or refused breath tests`
 		) %>% 
 		mutate(
-			negative = tests - positive,
-			quarter = str_sub(quarter, 0, 2)
-		) %>% 
-		pivot_longer(c("positive", "negative"), names_to = "type", 
+		  across(c(tests, positive), as.numeric),
+  		negative = tests - positive,
+	  	quarter = str_sub(quarter, 0, 2)
+		) %>%
+		pivot_longer(c("positive", "negative"), names_to = "type",
 								 values_to = "count")
 
 	# save tidy data
@@ -87,7 +83,7 @@ pfa_lookup <- read_csv("https://opendata.arcgis.com/datasets/7874e494dc544a138a5
 ```{r prepare data for chart}
 # get population for police force areas
 pfa_population <- pop_data %>% 
-  left_join(pfa_lookup, by = c("lad2018_code" = "lad18cd")) %>% 
+  left_join(pfa_lookup, by = c("ladcode19" = "lad18cd")) %>% 
   # combine MPS and City Police because they're combined in the severity scores
   mutate(
     pfa18cd = if_else(pfa18cd == "E23000034", "E23000001", pfa18cd),
@@ -97,16 +93,15 @@ pfa_population <- pop_data %>%
   ) %>% 
   group_by(pfa18cd, pfa18nm, year) %>% 
   summarise(population = sum(population)) %>% 
+  ungroup() %>% 
   # remove rows that represent Scottish/NI population, for which pfa18cd is NA
   remove_missing(na.rm = TRUE) %>%
   mutate(year = as.numeric(year))
 
 chart_data <- tidy_data %>%
 	mutate(
-		date = as_date(glue::glue("1 {month} {year}"), tz = "GMT", 
-									 format = "%d %B %Y"),
-		month_date = as_date(glue::glue("1 {month} 2019"), tz = "GMT", 
-									 format = "%d %B %Y")
+		date = as_date(glue::glue("1 {month} {year}"), format = "%d %B %Y"),
+		month_date = as_date(glue::glue("1 {month} 2019"), format = "%d %B %Y")
 	) %>% 
 	filter(
 		date >= ymd("2010-01-01"), 

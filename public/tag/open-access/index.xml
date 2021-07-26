@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>open access | Matt Ashby</title>
-    <link>/tag/open-access/</link>
-      <atom:link href="/tag/open-access/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/tag/open-access/</link>
+      <atom:link href="http://lesscrime.info/tag/open-access/index.xml" rel="self" type="application/rss+xml" />
     <description>open access</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>open access</title>
-      <link>/tag/open-access/</link>
+      <link>http://lesscrime.info/tag/open-access/</link>
     </image>
     
     <item>
       <title>Tutorial: How to stop hiding your research</title>
-      <link>/post/how-to-stop-hiding-your-research/</link>
+      <link>http://lesscrime.info/post/how-to-stop-hiding-your-research/</link>
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/how-to-stop-hiding-your-research/</guid>
+      <guid>http://lesscrime.info/post/how-to-stop-hiding-your-research/</guid>
       <description>&lt;p&gt;&lt;em&gt;This post first appeared on the &lt;a href=&#34;https://www.crimcomm.net/post/how-to-stop-hiding-your-research&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#CrimComm Blog&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;You’re a criminal-justice researcher and you’ve just published an article in a top journal. It was a lot of work: you spent months securing ethical approval, collecting data or negotiating access to secondary data, completing the analysis, writing up the results and responding to reviews. You are rightly proud of the result. But – by default and without meaning to – you have probably locked your paper away behind a journal paywall so that many potential readers simply can’t see it.&lt;/p&gt;
 &lt;p&gt;While researchers at universities in western countries typically have electronic access to journals, many others who could benefit from criminal-justice research do not. Universities in developing countries may have very few library resources, while access to journals in police and local-government agencies is typically extremely limited, meaning the increasing band of criminal-justice &lt;a href=&#34;https://www.bbc.co.uk/news/world-us-canada-44293921&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pracademics&lt;/a&gt; (who want to make use of research and have the skills to do so) are often left in the dark.&lt;/p&gt;
@@ -26,7 +26,29 @@
 &lt;p&gt;Even though authors can release their articles online, recent research shows &lt;a href=&#34;https://doi.org/10.31235/osf.io/wnq7h&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;only about a quarter of articles in criminology journals are open access&lt;/a&gt; (either green or gold). This means that in the past three years, over 9,000 criminology articles that could have been open to the public were instead locked away.&lt;/p&gt;
 &lt;p&gt;You might be worried about releasing your article publicly before it has been peer reviewed. What if you&amp;rsquo;ve made a mistake? You can decide not to post the submitted version online, choosing instead to post the accepted version once it is available. But doing this means your research stays hidden during the review and revision process. If a practitioner needs to make a decision now about a policy or practice, they may prefer to have access to your research (perhaps with a note explaining it has not yet been reviewed) rather than have to make the decision blind, only to see your research released a few months later when it no longer matters to them. It&amp;rsquo;s also worth remembering that the peer-review process is not perfect. Many mistakes (and worse) have been published despite being read by multiple reviewers, so authors should not treat peer review as the only determinant of research quality. I post both the submitted and accepted versions of my articles, trusting readers to understand that all research should be read critically.&lt;/p&gt;
 &lt;p&gt;The easiest way to discover your self-archiving rights under a particular journal policy is to search the &lt;a href=&#34;https://v2.sherpa.ac.uk/romeo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sherpa Romeo&lt;/a&gt; database, which summarizes policies from &lt;a href=&#34;https://v2.sherpa.ac.uk/view/romeo_visualisations/1.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;more than 4,000 publishers&lt;/a&gt;. Take the journal &lt;a href=&#34;http://policing.oxfordjournals.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Policing&lt;/em&gt;&lt;/a&gt;, published by Oxford University Press. Searching on Sherpa Romeo &lt;a href=&#34;https://v2.sherpa.ac.uk/id/publication/687&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shows&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../sherpa_romeo_screenshot.png&#34; alt=&#34;&#34; title=&#34;Screenshot of the webpage https://v2.sherpa.ac.uk/id/publication/687&#34;&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-screenshot-of-the-webpage-httpsv2sherpaacukidpublication687&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;../sherpa_romeo_screenshot.png&#34; alt=&#34;Screenshot of the webpage https://v2.sherpa.ac.uk/id/publication/687&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Screenshot of the webpage &lt;a href=&#34;https://v2.sherpa.ac.uk/id/publication/687&#34;&gt;https://v2.sherpa.ac.uk/id/publication/687&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
 &lt;p&gt;In this case you can:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;post the submitted (pre-print) version on your own website, an &amp;lsquo;institutional repository&amp;rsquo; (your university website) or a &amp;lsquo;subject repository&amp;rsquo; (a pre-print server),&lt;/li&gt;

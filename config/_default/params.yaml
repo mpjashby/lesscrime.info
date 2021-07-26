@@ -1,0 +1,147 @@
+# SITE SETUP
+# Guide: https://wowchemy.com/docs/getting-started/
+# Documentation: https://wowchemy.com/docs/
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+
+# Appearance
+
+theme: forest
+day_night: true
+font: 'Rose'
+font_size: L
+
+# SEO
+
+site_type: Person
+local_business_type: ''
+org_name: ''
+description: ''
+twitter: ''
+
+# Contact (edit or remove options as required)
+
+email: matthew.ashby@ucl.ac.uk
+phone: +44 (0) 20 3108 3890
+address:
+  street: 35 Tavistock Square
+  city: London
+  region: ''
+  postcode: WC1H 9EZ
+  country: United Kingdom
+  country_code: UK
+coordinates:
+  latitude: '51.524914'
+  longitude: '-0.129780'
+directions: ''
+office_hours: ''
+appointment_url: 'http://lesscrime.info/office-hours/'
+contact_links:
+  - icon: twitter
+    icon_pack: fab
+    name: DM me on Twitter
+    link: 'https://twitter.com/lesscrime'
+
+
+# Site header
+
+main_menu:
+  enable: true
+  align: l
+  show_logo: true
+  show_language: false
+  show_day_night: true
+  show_search: true
+  highlight_active_link: true
+
+# Localization
+
+date_format: '2 January 2006'
+time_format: '15:04'
+address_format: en-gb
+
+# Site features
+
+highlight: true
+highlight_languages:
+  - r
+  - python
+  - latex
+math: false
+diagram: false
+privacy_pack: false
+edit_page:
+  repo_url: ''
+  content_dir: ''
+  repo_branch: main
+  editable:
+    page: false
+    post: false
+    book: false
+show_related:
+  book: true
+  page: false
+  post: true
+  project: false
+  publication: true
+  event: true
+reading_time: true
+section_pager: false
+docs_section_pager: true
+sharing: true
+copyright_license:
+  enable: true
+  allow_derivatives: true
+  share_alike: false
+  allow_commercial: true
+  notice: 'Content on this site is licensed under {license} except where stated otherwise'
+abstract_length: 135
+plugins_js: []
+avatar:
+  gravatar: false
+  shape: circle
+publications:
+  date_format: January 2006
+  citation_style: apa
+projects:
+  post_view: 2
+  publication_view: 2
+  talk_view: 2
+breadcrumb:
+  page_types:
+    book: true
+comments:
+  provider: ''
+  commentable:
+    post: false
+    book: false
+    project: false
+    publication: false
+    event: false
+  disqus:
+    shortname: ''
+    show_count: true
+  commento:
+    url: ''
+search:
+  provider: wowchemy
+  algolia:
+    app_id: ''
+    api_key: ''
+    index_name: ''
+    show_logo: false
+map:
+  provider: mapnik
+  api_key: ''
+  zoom: 17
+marketing:
+  google_analytics: ''
+  google_tag_manager: ''
+  google_site_verification: ''
+  baidu_site_verification: ''
+  baidu_tongji: ''
+cms:
+  branch: master
+  local_backend: false
+icon:
+  pack:
+    ai: true

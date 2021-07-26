@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MPJ Ashby | Matt Ashby</title>
-    <link>/author/mpj-ashby/</link>
-      <atom:link href="/author/mpj-ashby/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/author/mpj-ashby/</link>
+      <atom:link href="http://lesscrime.info/author/mpj-ashby/index.xml" rel="self" type="application/rss+xml" />
     <description>MPJ Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 03 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>MPJ Ashby</title>
-      <link>/author/mpj-ashby/</link>
+      <link>http://lesscrime.info/author/mpj-ashby/</link>
     </image>
     
     <item>
       <title>Stop and Search in London: July to September 2020</title>
-      <link>/publication/stop-search-london-2020-q3/</link>
+      <link>http://lesscrime.info/publication/stop-search-london-2020-q3/</link>
       <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/stop-search-london-2020-q3/</guid>
+      <guid>http://lesscrime.info/publication/stop-search-london-2020-q3/</guid>
       <description>&lt;p&gt;This report was also covered in the media:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.theguardian.com/law/2020/dec/03/young-black-males-in-london-19-times-more-likely-to-be-stopped-and-searched&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Young black males in London &amp;lsquo;19 times more likely to be stopped and searched&amp;rsquo;&lt;/a&gt;, &lt;em&gt;The Guardian&lt;/em&gt;&lt;/li&gt;
@@ -28,161 +28,161 @@
     
     <item>
       <title>The open-access availability of criminological research to practitioners and policy makers</title>
-      <link>/publication/criminology-oa/</link>
+      <link>http://lesscrime.info/publication/criminology-oa/</link>
       <pubDate>Wed, 21 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/criminology-oa/</guid>
+      <guid>http://lesscrime.info/publication/criminology-oa/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Changes in Police Calls for Service During the Early Months of the 2020 Coronavirus Pandemic</title>
-      <link>/publication/coronavirus-and-police-calls/</link>
+      <link>http://lesscrime.info/publication/coronavirus-and-police-calls/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/coronavirus-and-police-calls/</guid>
+      <guid>http://lesscrime.info/publication/coronavirus-and-police-calls/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Initial evidence on the relationship between the coronavirus pandemic and crime in the United States</title>
-      <link>/publication/coronavirus-and-crime/</link>
+      <link>http://lesscrime.info/publication/coronavirus-and-crime/</link>
       <pubDate>Mon, 18 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/coronavirus-and-crime/</guid>
+      <guid>http://lesscrime.info/publication/coronavirus-and-crime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Studying crime and place with the Crime Open Database</title>
-      <link>/publication/crime-open-database/</link>
+      <link>http://lesscrime.info/publication/crime-open-database/</link>
       <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/crime-open-database/</guid>
+      <guid>http://lesscrime.info/publication/crime-open-database/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Is there more violence around schools? Four tests across nine cities</title>
-      <link>/publication/violence_around_schools/</link>
+      <link>http://lesscrime.info/publication/violence_around_schools/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/violence_around_schools/</guid>
+      <guid>http://lesscrime.info/publication/violence_around_schools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Does a good cop really never get wet? The impact of weather on stop and frisk</title>
-      <link>/publication/weather_and_stop_and_frisk/</link>
+      <link>http://lesscrime.info/publication/weather_and_stop_and_frisk/</link>
       <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/weather_and_stop_and_frisk/</guid>
+      <guid>http://lesscrime.info/publication/weather_and_stop_and_frisk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alternative denominators in transport crime rates</title>
-      <link>/publication/alternative-denominators-in-transport-crime-rates/</link>
+      <link>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</link>
       <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/alternative-denominators-in-transport-crime-rates/</guid>
+      <guid>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comparing methods for measuring crime harm/severity</title>
-      <link>/publication/measuring_crime_harm/</link>
+      <link>http://lesscrime.info/publication/measuring_crime_harm/</link>
       <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/measuring_crime_harm/</guid>
+      <guid>http://lesscrime.info/publication/measuring_crime_harm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The value of CCTV surveillance cameras as an investigative tool: an empirical analysis</title>
-      <link>/publication/cctv_as_an_investigative_tool/</link>
+      <link>http://lesscrime.info/publication/cctv_as_an_investigative_tool/</link>
       <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/cctv_as_an_investigative_tool/</guid>
+      <guid>http://lesscrime.info/publication/cctv_as_an_investigative_tool/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Self-guardianship at automated teller machines</title>
-      <link>/publication/self_guardianship_at_atms/</link>
+      <link>http://lesscrime.info/publication/self_guardianship_at_atms/</link>
       <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/self_guardianship_at_atms/</guid>
+      <guid>http://lesscrime.info/publication/self_guardianship_at_atms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Children, gender, and sexual exploitation: a quantitative analysis of administrative data</title>
-      <link>/publication/children_gender_and_cse/</link>
+      <link>http://lesscrime.info/publication/children_gender_and_cse/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/children_gender_and_cse/</guid>
+      <guid>http://lesscrime.info/publication/children_gender_and_cse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Using crime science for understanding and preventing theft of metal from the British railway network</title>
-      <link>/publication/crime_science_for_metal_theft/</link>
+      <link>http://lesscrime.info/publication/crime_science_for_metal_theft/</link>
       <pubDate>Sun, 28 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/crime_science_for_metal_theft/</guid>
+      <guid>http://lesscrime.info/publication/crime_science_for_metal_theft/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Immaterial boys? A large-scale exploration of gender-based differences in child sexual exploitation service users</title>
-      <link>/publication/immaterial_boys/</link>
+      <link>http://lesscrime.info/publication/immaterial_boys/</link>
       <pubDate>Tue, 01 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/immaterial_boys/</guid>
+      <guid>http://lesscrime.info/publication/immaterial_boys/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Routine activities and proactive police activity: a macro-scale analysis of police searches in London and New York City</title>
-      <link>/publication/police_searches_and_routine_activities/</link>
+      <link>http://lesscrime.info/publication/police_searches_and_routine_activities/</link>
       <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/police_searches_and_routine_activities/</guid>
+      <guid>http://lesscrime.info/publication/police_searches_and_routine_activities/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Concentrations of railway metal theft and the locations of scrap-metal dealers</title>
-      <link>/publication/scrap_metal_dealers/</link>
+      <link>http://lesscrime.info/publication/scrap_metal_dealers/</link>
       <pubDate>Wed, 30 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/scrap_metal_dealers/</guid>
+      <guid>http://lesscrime.info/publication/scrap_metal_dealers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Is metal theft committed by organized crime groups, and why does it matter?</title>
-      <link>/publication/metal_theft_and_organised_crime/</link>
+      <link>http://lesscrime.info/publication/metal_theft_and_organised_crime/</link>
       <pubDate>Thu, 03 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/metal_theft_and_organised_crime/</guid>
+      <guid>http://lesscrime.info/publication/metal_theft_and_organised_crime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The when and where of an emerging crime type: the example of metal theft from the railway network of Great Britain</title>
-      <link>/publication/metal_theft_when_and_where/</link>
+      <link>http://lesscrime.info/publication/metal_theft_when_and_where/</link>
       <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/metal_theft_when_and_where/</guid>
+      <guid>http://lesscrime.info/publication/metal_theft_when_and_where/</guid>
       <description></description>
     </item>
     
     <item>
       <title>UK open source crime data: accuracy and possibilities for research</title>
-      <link>/publication/uk_open_source_crime_data/</link>
+      <link>http://lesscrime.info/publication/uk_open_source_crime_data/</link>
       <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/uk_open_source_crime_data/</guid>
+      <guid>http://lesscrime.info/publication/uk_open_source_crime_data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Copper cable theft: revisiting the price–theft hypothesis</title>
-      <link>/publication/metal_price_theft_hypothesis/</link>
+      <link>http://lesscrime.info/publication/metal_price_theft_hypothesis/</link>
       <pubDate>Fri, 14 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/metal_price_theft_hypothesis/</guid>
+      <guid>http://lesscrime.info/publication/metal_price_theft_hypothesis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A comparison of methods for temporal analysis of aoristic crime</title>
-      <link>/publication/aoristic_methods/</link>
+      <link>http://lesscrime.info/publication/aoristic_methods/</link>
       <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/aoristic_methods/</guid>
+      <guid>http://lesscrime.info/publication/aoristic_methods/</guid>
       <description></description>
     </item>
     

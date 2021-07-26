@@ -138,7 +138,7 @@ chart <- ggplot(chart_data, aes(year, rate, colour = country)) +
 							colour = elements$average_line_colour, size = 0.5,
 							linetype = elements$average_line_linetype) +
 	geom_point(colour = "grey75", size = 0.75) +
-	geom_smooth(method = "loess", se = FALSE, na.rm = TRUE) +
+	geom_smooth(method = "loess", formula = "y ~ x", se = FALSE, na.rm = TRUE) +
 	# add explanatory labels
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
 						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE, 

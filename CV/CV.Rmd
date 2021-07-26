@@ -9,7 +9,7 @@ email: "matthew.ashby@ucl.ac.uk"
 twitter: lesscrime
 github: mpjashby
 date: "`r format(Sys.time(), '%B %Y')`"
-output: vitae::hyndman
+output: vitae::hyndman()
 ---
 
 ```{r eval=FALSE, include=FALSE}

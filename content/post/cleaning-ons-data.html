@@ -19,6 +19,7 @@ image:
 projects: []
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>TL; DR: <a href="#complete">skip to the complete script</a></p>
@@ -88,16 +89,11 @@ file). We can use the <code>excel_sheets()</code> function to get the names of e
 in the Excel file.</p>
 <pre class="r"><code>library(&quot;readxl&quot;)
 library(&quot;tidyverse&quot;)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
@@ -193,18 +189,18 @@ happy with the result.</p>
 
 file_data</code></pre>
 <pre><code>## # A tibble: 26 x 8
-##    `Country / Code` K02000001 K03000001 K04000001 E92000001 W92000004 S92000003
-##    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
-##  1 &lt;NA&gt;             UNITED K… GREAT BR… ENGLAND … ENGLAND   WALES     SCOTLAND 
-##  2 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  3 All Persons      66435550  64553909  59115809  55977178  3138631   5438100  
-##  4 Males            32790202  31864002  29215251  27667942  1547309   2648751  
-##  5 Females          33645348  32689907  29900558  28309236  1591322   2789349  
-##  6 &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  7 Age Groups       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
-##  8 0-4              3914028   3792292   3515430   3346727   168703    276862   
-##  9 5-9              4138524   4009409   3708320   3523866   184454    301089   
-## 10 10-14            3858894   3738572   3450782   3274119   176663    287790   
+##    `Country / Code` K02000001  K03000001 K04000001 E92000001 W92000004 S92000003
+##    &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    
+##  1 &lt;NA&gt;             UNITED KI… GREAT BR… ENGLAND … ENGLAND   WALES     SCOTLAND 
+##  2 &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  3 All Persons      66435550   64553909  59115809  55977178  3138631   5438100  
+##  4 Males            32790202   31864002  29215251  27667942  1547309   2648751  
+##  5 Females          33645348   32689907  29900558  28309236  1591322   2789349  
+##  6 &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  7 Age Groups       &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     
+##  8 0-4              3914028    3792292   3515430   3346727   168703    276862   
+##  9 5-9              4138524    4009409   3708320   3523866   184454    301089   
+## 10 10-14            3858894    3738572   3450782   3274119   176663    287790   
 ## # … with 16 more rows, and 1 more variable: N92000002 &lt;chr&gt;</code></pre>
 <p>This deals with the unwanted rows above and below the table, as well as the
 unwanted columns produced because of the feedback questionnaire.</p>
@@ -228,20 +224,20 @@ file_data &lt;- slice(file_data, 2:n())
 
 file_data</code></pre>
 <pre><code>## # A tibble: 25 x 8
-##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
-##    &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;
-##  1 &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
-##  2 All … 66435550         64553909        59115809         559771… 3138…
-##  3 Males 32790202         31864002        29215251         276679… 1547…
-##  4 Fema… 33645348         32689907        29900558         283092… 1591…
-##  5 &lt;NA&gt;  &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
-##  6 Age … &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;    &lt;NA&gt; 
-##  7 0-4   3914028          3792292         3515430          3346727 1687…
-##  8 5-9   4138524          4009409         3708320          3523866 1844…
-##  9 10-14 3858894          3738572         3450782          3274119 1766…
-## 10 15-19 3669250          3555359         3270795          3096575 1742…
-## # … with 15 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;, `NORTHERN
-## #   IRELAND` &lt;chr&gt;</code></pre>
+##    group     `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WALE… ENGLAND  WALES 
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt; 
+##  1 &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;               &lt;NA&gt;     &lt;NA&gt;  
+##  2 All Pers… 66435550         64553909        59115809           55977178 31386…
+##  3 Males     32790202         31864002        29215251           27667942 15473…
+##  4 Females   33645348         32689907        29900558           28309236 15913…
+##  5 &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;               &lt;NA&gt;     &lt;NA&gt;  
+##  6 Age Grou… &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;               &lt;NA&gt;     &lt;NA&gt;  
+##  7 0-4       3914028          3792292         3515430            3346727  168703
+##  8 5-9       4138524          4009409         3708320            3523866  184454
+##  9 10-14     3858894          3738572         3450782            3274119  176663
+## 10 15-19     3669250          3555359         3270795            3096575  174220
+## # … with 15 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;,
+## #   NORTHERN IRELAND &lt;chr&gt;</code></pre>
 <p>Next we remove any rows containing empty cells, since none of the data rows
 contain empty cells (see <a href="#tips">Tips</a>, below, for tables where this isn’t the
 case).</p>
@@ -249,20 +245,20 @@ case).</p>
 
 file_data</code></pre>
 <pre><code>## # A tibble: 22 x 8
-##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
-##    &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt;
-##  1 All … 66435550         64553909        59115809         559771… 3138…
-##  2 Males 32790202         31864002        29215251         276679… 1547…
-##  3 Fema… 33645348         32689907        29900558         283092… 1591…
-##  4 0-4   3914028          3792292         3515430          3346727 1687…
-##  5 5-9   4138524          4009409         3708320          3523866 1844…
-##  6 10-14 3858894          3738572         3450782          3274119 1766…
-##  7 15-19 3669250          3555359         3270795          3096575 1742…
-##  8 20-24 4184575          4068584         3717960          3512654 2053…
-##  9 25-29 4527175          4404612         4022272          3815924 2063…
-## 10 30-34 4463357          4337288         3976030          3787597 1884…
-## # … with 12 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;, `NORTHERN
-## #   IRELAND` &lt;chr&gt;</code></pre>
+##    group     `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WALE… ENGLAND  WALES 
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt; 
+##  1 All Pers… 66435550         64553909        59115809           55977178 31386…
+##  2 Males     32790202         31864002        29215251           27667942 15473…
+##  3 Females   33645348         32689907        29900558           28309236 15913…
+##  4 0-4       3914028          3792292         3515430            3346727  168703
+##  5 5-9       4138524          4009409         3708320            3523866  184454
+##  6 10-14     3858894          3738572         3450782            3274119  176663
+##  7 15-19     3669250          3555359         3270795            3096575  174220
+##  8 20-24     4184575          4068584         3717960            3512654  205306
+##  9 25-29     4527175          4404612         4022272            3815924  206348
+## 10 30-34     4463357          4337288         3976030            3787597  188433
+## # … with 12 more rows, and 2 more variables: SCOTLAND &lt;chr&gt;,
+## #   NORTHERN IRELAND &lt;chr&gt;</code></pre>
 <p>We can convert the data from wide to long using <code>gather()</code> from the <code>tidyr</code>
 package. <code>gather()</code> can be a slightly confusing function to use, but there are
 some useful tutorials available by <a href="https://garrettgman.github.io/tidying/#gather">Garrett Grolemund</a>, <a href="https://uc-r.github.io/tidyr#gather--function">UC Business Analytics</a> and <a href="https://r4ds.had.co.nz/tidy-data.html#spreading-and-gathering">R for Data
@@ -413,13 +409,13 @@ started and the date it ended. For example,</p>
 <div id="r-session-information" class="section level2">
 <h2>R session information</h2>
 <p>The code in this tutorial was run in R with the following configuration:</p>
-<pre><code>## R version 4.0.1 (2020-06-06)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Catalina 10.15.6
+<pre><code>## R version 4.1.0 (2021-05-18)
+## Platform: aarch64-apple-darwin20 (64-bit)
+## Running under: macOS Big Sur 11.1
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
 ## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
@@ -428,24 +424,25 @@ started and the date it ended. For example,</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] magrittr_1.5    forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
-##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
-##  [9] ggplot2_3.3.2   tidyverse_1.3.0 readxl_1.3.1   
+##  [1] magrittr_2.0.1  forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
+##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.3     tibble_3.1.2   
+##  [9] ggplot2_3.3.5   tidyverse_1.3.1 readxl_1.3.1   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.1.0 xfun_0.18        haven_2.3.1      colorspace_1.4-1
-##  [5] vctrs_0.3.4      generics_0.0.2   htmltools_0.5.0  yaml_2.2.1      
-##  [9] utf8_1.1.4       blob_1.2.1       rlang_0.4.8      pillar_1.4.6    
-## [13] glue_1.4.2       withr_2.3.0      DBI_1.1.0        dbplyr_1.4.4    
-## [17] modelr_0.1.8     lifecycle_0.2.0  munsell_0.5.0    blogdown_0.21   
-## [21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.6      evaluate_0.14   
-## [25] knitr_1.30       fansi_0.4.1      broom_0.7.1      Rcpp_1.0.5      
-## [29] scales_1.1.1     backports_1.1.10 jsonlite_1.7.1   fs_1.5.0        
-## [33] hms_0.5.3        digest_0.6.26    stringi_1.5.3    bookdown_0.21   
-## [37] grid_4.0.1       cli_2.1.0        tools_4.0.1      crayon_1.3.4    
-## [41] pkgconfig_2.0.3  ellipsis_0.3.1   xml2_1.3.2       reprex_0.3.0    
-## [45] lubridate_1.7.9  assertthat_0.2.1 rmarkdown_2.4    httr_1.4.2      
-## [49] rstudioapi_0.11  R6_2.4.1         compiler_4.0.1</code></pre>
+##  [1] tidyselect_1.1.1  xfun_0.24         bslib_0.2.5.1     haven_2.4.1      
+##  [5] colorspace_2.0-2  vctrs_0.3.8       generics_0.1.0    htmltools_0.5.1.1
+##  [9] yaml_2.2.1        utf8_1.2.1        rlang_0.4.11      jquerylib_0.1.4  
+## [13] pillar_1.6.1      withr_2.4.2       glue_1.4.2        DBI_1.1.1        
+## [17] dbplyr_2.1.1      modelr_0.1.8      lifecycle_1.0.0   munsell_0.5.0    
+## [21] blogdown_1.4.1    gtable_0.3.0      cellranger_1.1.0  rvest_1.0.0      
+## [25] evaluate_0.14     knitr_1.33        fansi_0.5.0       broom_0.7.8      
+## [29] Rcpp_1.0.6        backports_1.2.1   scales_1.1.1      jsonlite_1.7.2   
+## [33] fs_1.5.0          hms_1.1.0         digest_0.6.27     stringi_1.6.2    
+## [37] bookdown_0.22     grid_4.1.0        cli_2.5.0         tools_4.1.0      
+## [41] sass_0.4.0        crayon_1.4.1      pkgconfig_2.0.3   ellipsis_0.3.2   
+## [45] xml2_1.3.2        reprex_2.0.0      lubridate_1.7.10  rstudioapi_0.13  
+## [49] assertthat_0.2.1  rmarkdown_2.9     httr_1.4.2        R6_2.5.0         
+## [53] compiler_4.1.0</code></pre>
 </div>
 </div>
 <div class="footnotes">

@@ -12,6 +12,7 @@ tags:
 slug: tracking-crime-changes
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p><em>This post first appeared on the <a href="https://the-sra.org.uk/SRA/Blog/whyyoucantidentifychangesincrimebycomparingthismonthtolastmonth.aspx" title="Version of this post on the SRA Blog">Social Research Association blog</a>.</em></p>
@@ -47,7 +48,6 @@ slug: tracking-crime-changes
 </blockquote>
 <p>but this ignores that March is 11% longer than February, so even if crime occurred at the same rate on every day in both months we’d expect a double-digit increase in crime in March (it also ignores that 11 departments did not see such an increase, but that’s a separate problem).</p>
 <p>The second problem with measuring the frequency of crime by month is that not all months have the same number of each weekday, and many types of crime vary by day of the week. For example, aggravated assaults in Atlanta are concentrated at weekends:</p>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="/post/tracking-crime-changes_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The varying number of each weekday across months can easily generate changes in crime. October 2010 had 31 days, including five Saturdays and five Sundays, while November had 30 days including four Saturdays and four Sundays, which may go some way to explaining why aggravated assaults decreased by 15% from October to November that year.</p>
 <p>The only good reason to use months as units of analysis is if you only have access to monthly data (e.g. if you’re using published monthly administrative data). If you have access to incident-level data, it is much better to use a unit of analysis that doesn’t have these problems, such as weeks or 28-day periods.</p>

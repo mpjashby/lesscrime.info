@@ -2,24 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R | Matt Ashby</title>
-    <link>/tag/r/</link>
-      <atom:link href="/tag/r/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/tag/r/</link>
+      <atom:link href="http://lesscrime.info/tag/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>R</title>
-      <link>/tag/r/</link>
+      <link>http://lesscrime.info/tag/r/</link>
     </image>
     
     <item>
       <title>Tutorial: Calculating disparities in stop and search</title>
-      <link>/post/calculating-disparities-in-stop-and-search/</link>
+      <link>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</link>
       <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/post/calculating-disparities-in-stop-and-search/</guid>
+      <guid>http://lesscrime.info/post/calculating-disparities-in-stop-and-search/</guid>
       <description>
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I recently published a &lt;a href=&#34;http://lesscrime.info/publication/stop-search-london-2020-q3/&#34;&gt;report on how stop and search is used in London&lt;/a&gt;. Although the report contained lots of information, it was probably inevitable that people would focus on the figures for disparities in stop and search rates between ethnic groups. This has led several people to ask how I calculated these disparities, so I’ll set that out in this tutorial.&lt;/p&gt;
@@ -356,7 +355,7 @@ group_rates &amp;lt;- counts %&amp;gt;%
     panel.grid.minor.x = element_blank(),
     plot.title.position = &amp;quot;plot&amp;quot;
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/search%20rates%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To calculate disparity ratios, we simply divide the search rate for each group by the overall search rate of 6.20 searches per 1,000 people.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;group_disparity &amp;lt;- mutate(group_rates, disparity = search_rate / overall_rate)&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
@@ -648,7 +647,7 @@ group_rates &amp;lt;- counts %&amp;gt;%
     strip.placement = &amp;quot;outside&amp;quot;,
     strip.text = element_text(face = &amp;quot;bold&amp;quot;, size = 10)
   )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/calculating-disparities-in-stop-and-search_files/figure-html/standarised%20disparities%20chart-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;div id=&#34;comparing-every-group-to-every-other-group&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparing every group to every other group&lt;/h2&gt;
 &lt;p&gt;I’ve had a request to calculate disparity ratios for every group in comparison to every other group. I’m not sure this is necessarily valuable, but I’m including the following code in case it is useful to anyone else. &lt;a href=&#34;disparity_ratios.xlsx&#34;&gt;The results are saved in an Excel workbook&lt;/a&gt;.&lt;/p&gt;
@@ -724,10 +723,11 @@ list(
     
     <item>
       <title>Tutorial: Cleaning UK Office for National Statistics data in R</title>
-      <link>/post/cleaning-ons-data/</link>
+      <link>http://lesscrime.info/post/cleaning-ons-data/</link>
       <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/post/cleaning-ons-data/</guid>
+      <guid>http://lesscrime.info/post/cleaning-ons-data/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;TL; DR: &lt;a href=&#34;#complete&#34;&gt;skip to the complete script&lt;/a&gt;&lt;/p&gt;
@@ -797,16 +797,11 @@ file). We can use the &lt;code&gt;excel_sheets()&lt;/code&gt; function to get th
 in the Excel file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;readxl&amp;quot;)
 library(&amp;quot;tidyverse&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -855,7 +850,7 @@ the &lt;code&gt;MYE1&lt;/code&gt; sheet. We can now use &lt;code&gt;read_excel()
 &lt;div id=&#34;clean&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Clean the data&lt;/h1&gt;
 &lt;p&gt;In Excel, the &lt;code&gt;MYE1&lt;/code&gt; sheet looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/cleaning-ons-data/mye1-sheet-preview.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;file_data&lt;/code&gt; object contains the result of the &lt;code&gt;read_excel()&lt;/code&gt; function’s
 attempt to load this sheet into R:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file_data&lt;/code&gt;&lt;/pre&gt;
@@ -902,18 +897,18 @@ happy with the result.&lt;/p&gt;
 
 file_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 26 x 8
-##    `Country / Code` K02000001 K03000001 K04000001 E92000001 W92000004 S92000003
-##    &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;    
-##  1 &amp;lt;NA&amp;gt;             UNITED K… GREAT BR… ENGLAND … ENGLAND   WALES     SCOTLAND 
-##  2 &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
-##  3 All Persons      66435550  64553909  59115809  55977178  3138631   5438100  
-##  4 Males            32790202  31864002  29215251  27667942  1547309   2648751  
-##  5 Females          33645348  32689907  29900558  28309236  1591322   2789349  
-##  6 &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
-##  7 Age Groups       &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
-##  8 0-4              3914028   3792292   3515430   3346727   168703    276862   
-##  9 5-9              4138524   4009409   3708320   3523866   184454    301089   
-## 10 10-14            3858894   3738572   3450782   3274119   176663    287790   
+##    `Country / Code` K02000001  K03000001 K04000001 E92000001 W92000004 S92000003
+##    &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;    
+##  1 &amp;lt;NA&amp;gt;             UNITED KI… GREAT BR… ENGLAND … ENGLAND   WALES     SCOTLAND 
+##  2 &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;       &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
+##  3 All Persons      66435550   64553909  59115809  55977178  3138631   5438100  
+##  4 Males            32790202   31864002  29215251  27667942  1547309   2648751  
+##  5 Females          33645348   32689907  29900558  28309236  1591322   2789349  
+##  6 &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;       &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
+##  7 Age Groups       &amp;lt;NA&amp;gt;       &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;     
+##  8 0-4              3914028    3792292   3515430   3346727   168703    276862   
+##  9 5-9              4138524    4009409   3708320   3523866   184454    301089   
+## 10 10-14            3858894    3738572   3450782   3274119   176663    287790   
 ## # … with 16 more rows, and 1 more variable: N92000002 &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This deals with the unwanted rows above and below the table, as well as the
 unwanted columns produced because of the feedback questionnaire.&lt;/p&gt;
@@ -937,20 +932,20 @@ file_data &amp;lt;- slice(file_data, 2:n())
 
 file_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 25 x 8
-##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
-##    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;
-##  1 &amp;lt;NA&amp;gt;  &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;    &amp;lt;NA&amp;gt; 
-##  2 All … 66435550         64553909        59115809         559771… 3138…
-##  3 Males 32790202         31864002        29215251         276679… 1547…
-##  4 Fema… 33645348         32689907        29900558         283092… 1591…
-##  5 &amp;lt;NA&amp;gt;  &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;    &amp;lt;NA&amp;gt; 
-##  6 Age … &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;    &amp;lt;NA&amp;gt; 
-##  7 0-4   3914028          3792292         3515430          3346727 1687…
-##  8 5-9   4138524          4009409         3708320          3523866 1844…
-##  9 10-14 3858894          3738572         3450782          3274119 1766…
-## 10 15-19 3669250          3555359         3270795          3096575 1742…
-## # … with 15 more rows, and 2 more variables: SCOTLAND &amp;lt;chr&amp;gt;, `NORTHERN
-## #   IRELAND` &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+##    group     `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WALE… ENGLAND  WALES 
+##    &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; 
+##  1 &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;               &amp;lt;NA&amp;gt;     &amp;lt;NA&amp;gt;  
+##  2 All Pers… 66435550         64553909        59115809           55977178 31386…
+##  3 Males     32790202         31864002        29215251           27667942 15473…
+##  4 Females   33645348         32689907        29900558           28309236 15913…
+##  5 &amp;lt;NA&amp;gt;      &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;               &amp;lt;NA&amp;gt;     &amp;lt;NA&amp;gt;  
+##  6 Age Grou… &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            &amp;lt;NA&amp;gt;               &amp;lt;NA&amp;gt;     &amp;lt;NA&amp;gt;  
+##  7 0-4       3914028          3792292         3515430            3346727  168703
+##  8 5-9       4138524          4009409         3708320            3523866  184454
+##  9 10-14     3858894          3738572         3450782            3274119  176663
+## 10 15-19     3669250          3555359         3270795            3096575  174220
+## # … with 15 more rows, and 2 more variables: SCOTLAND &amp;lt;chr&amp;gt;,
+## #   NORTHERN IRELAND &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Next we remove any rows containing empty cells, since none of the data rows
 contain empty cells (see &lt;a href=&#34;#tips&#34;&gt;Tips&lt;/a&gt;, below, for tables where this isn’t the
 case).&lt;/p&gt;
@@ -958,20 +953,20 @@ case).&lt;/p&gt;
 
 file_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 22 x 8
-##    group `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WA… ENGLAND WALES
-##    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;
-##  1 All … 66435550         64553909        59115809         559771… 3138…
-##  2 Males 32790202         31864002        29215251         276679… 1547…
-##  3 Fema… 33645348         32689907        29900558         283092… 1591…
-##  4 0-4   3914028          3792292         3515430          3346727 1687…
-##  5 5-9   4138524          4009409         3708320          3523866 1844…
-##  6 10-14 3858894          3738572         3450782          3274119 1766…
-##  7 15-19 3669250          3555359         3270795          3096575 1742…
-##  8 20-24 4184575          4068584         3717960          3512654 2053…
-##  9 25-29 4527175          4404612         4022272          3815924 2063…
-## 10 30-34 4463357          4337288         3976030          3787597 1884…
-## # … with 12 more rows, and 2 more variables: SCOTLAND &amp;lt;chr&amp;gt;, `NORTHERN
-## #   IRELAND` &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+##    group     `UNITED KINGDOM` `GREAT BRITAIN` `ENGLAND AND WALE… ENGLAND  WALES 
+##    &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; 
+##  1 All Pers… 66435550         64553909        59115809           55977178 31386…
+##  2 Males     32790202         31864002        29215251           27667942 15473…
+##  3 Females   33645348         32689907        29900558           28309236 15913…
+##  4 0-4       3914028          3792292         3515430            3346727  168703
+##  5 5-9       4138524          4009409         3708320            3523866  184454
+##  6 10-14     3858894          3738572         3450782            3274119  176663
+##  7 15-19     3669250          3555359         3270795            3096575  174220
+##  8 20-24     4184575          4068584         3717960            3512654  205306
+##  9 25-29     4527175          4404612         4022272            3815924  206348
+## 10 30-34     4463357          4337288         3976030            3787597  188433
+## # … with 12 more rows, and 2 more variables: SCOTLAND &amp;lt;chr&amp;gt;,
+## #   NORTHERN IRELAND &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can convert the data from wide to long using &lt;code&gt;gather()&lt;/code&gt; from the &lt;code&gt;tidyr&lt;/code&gt;
 package. &lt;code&gt;gather()&lt;/code&gt; can be a slightly confusing function to use, but there are
 some useful tutorials available by &lt;a href=&#34;https://garrettgman.github.io/tidying/#gather&#34;&gt;Garrett Grolemund&lt;/a&gt;, &lt;a href=&#34;https://uc-r.github.io/tidyr#gather--function&#34;&gt;UC Business Analytics&lt;/a&gt; and &lt;a href=&#34;https://r4ds.had.co.nz/tidy-data.html#spreading-and-gathering&#34;&gt;R for Data
@@ -1122,13 +1117,13 @@ started and the date it ended. For example,&lt;/p&gt;
 &lt;div id=&#34;r-session-information&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;R session information&lt;/h2&gt;
 &lt;p&gt;The code in this tutorial was run in R with the following configuration:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## R version 4.0.1 (2020-06-06)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Catalina 10.15.6
+&lt;pre&gt;&lt;code&gt;## R version 4.1.0 (2021-05-18)
+## Platform: aarch64-apple-darwin20 (64-bit)
+## Running under: macOS Big Sur 11.1
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
 ## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
@@ -1137,24 +1132,25 @@ started and the date it ended. For example,&lt;/p&gt;
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] magrittr_1.5    forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2    
-##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.2     tibble_3.0.4   
-##  [9] ggplot2_3.3.2   tidyverse_1.3.0 readxl_1.3.1   
+##  [1] magrittr_2.0.1  forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
+##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.3     tibble_3.1.2   
+##  [9] ggplot2_3.3.5   tidyverse_1.3.1 readxl_1.3.1   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.1.0 xfun_0.18        haven_2.3.1      colorspace_1.4-1
-##  [5] vctrs_0.3.4      generics_0.0.2   htmltools_0.5.0  yaml_2.2.1      
-##  [9] utf8_1.1.4       blob_1.2.1       rlang_0.4.8      pillar_1.4.6    
-## [13] glue_1.4.2       withr_2.3.0      DBI_1.1.0        dbplyr_1.4.4    
-## [17] modelr_0.1.8     lifecycle_0.2.0  munsell_0.5.0    blogdown_0.21   
-## [21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.6      evaluate_0.14   
-## [25] knitr_1.30       fansi_0.4.1      broom_0.7.1      Rcpp_1.0.5      
-## [29] scales_1.1.1     backports_1.1.10 jsonlite_1.7.1   fs_1.5.0        
-## [33] hms_0.5.3        digest_0.6.26    stringi_1.5.3    bookdown_0.21   
-## [37] grid_4.0.1       cli_2.1.0        tools_4.0.1      crayon_1.3.4    
-## [41] pkgconfig_2.0.3  ellipsis_0.3.1   xml2_1.3.2       reprex_0.3.0    
-## [45] lubridate_1.7.9  assertthat_0.2.1 rmarkdown_2.4    httr_1.4.2      
-## [49] rstudioapi_0.11  R6_2.4.1         compiler_4.0.1&lt;/code&gt;&lt;/pre&gt;
+##  [1] tidyselect_1.1.1  xfun_0.24         bslib_0.2.5.1     haven_2.4.1      
+##  [5] colorspace_2.0-2  vctrs_0.3.8       generics_0.1.0    htmltools_0.5.1.1
+##  [9] yaml_2.2.1        utf8_1.2.1        rlang_0.4.11      jquerylib_0.1.4  
+## [13] pillar_1.6.1      withr_2.4.2       glue_1.4.2        DBI_1.1.1        
+## [17] dbplyr_2.1.1      modelr_0.1.8      lifecycle_1.0.0   munsell_0.5.0    
+## [21] blogdown_1.4.1    gtable_0.3.0      cellranger_1.1.0  rvest_1.0.0      
+## [25] evaluate_0.14     knitr_1.33        fansi_0.5.0       broom_0.7.8      
+## [29] Rcpp_1.0.6        backports_1.2.1   scales_1.1.1      jsonlite_1.7.2   
+## [33] fs_1.5.0          hms_1.1.0         digest_0.6.27     stringi_1.6.2    
+## [37] bookdown_0.22     grid_4.1.0        cli_2.5.0         tools_4.1.0      
+## [41] sass_0.4.0        crayon_1.4.1      pkgconfig_2.0.3   ellipsis_0.3.2   
+## [45] xml2_1.3.2        reprex_2.0.0      lubridate_1.7.10  rstudioapi_0.13  
+## [49] assertthat_0.2.1  rmarkdown_2.9     httr_1.4.2        R6_2.5.0         
+## [53] compiler_4.1.0&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;

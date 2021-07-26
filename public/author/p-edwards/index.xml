@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>P Edwards | Matt Ashby</title>
-    <link>/author/p-edwards/</link>
-      <atom:link href="/author/p-edwards/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/author/p-edwards/</link>
+      <atom:link href="http://lesscrime.info/author/p-edwards/index.xml" rel="self" type="application/rss+xml" />
     <description>P Edwards</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Mon, 20 Oct 2014 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 20 Oct 2014 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>P Edwards</title>
-      <link>/author/p-edwards/</link>
+      <link>http://lesscrime.info/author/p-edwards/</link>
     </image>
     
     <item>
       <title>UK open source crime data: accuracy and possibilities for research</title>
-      <link>/publication/uk_open_source_crime_data/</link>
+      <link>http://lesscrime.info/publication/uk_open_source_crime_data/</link>
       <pubDate>Mon, 20 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/uk_open_source_crime_data/</guid>
+      <guid>http://lesscrime.info/publication/uk_open_source_crime_data/</guid>
       <description></description>
     </item>
     

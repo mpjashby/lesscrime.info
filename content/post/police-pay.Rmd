@@ -16,10 +16,10 @@ knitr::opts_chunk$set(cache = TRUE, include=FALSE)
 ```{r set chart parameters}
 chart_details <- list(
 	id = "police-pay",
-	title = "Over 10 years, pay for new police officers has fallen 22%",
-	subtitle = "A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £6,700 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.",
+	title = "Over 12 years, pay for new police officers has fallen 22%",
+	subtitle = "A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £7,200 less now than they would have been in 2010, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.",
 	source_url = "https://www.whatdotheyknow.com/request/police_constable_pay_scales",
-	source_title = "Police Federation, 2019"
+	source_title = "Police Federation, Home Office"
 )
 ```
 
@@ -56,17 +56,19 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 		"2016-09-01", 22896, 31971, 37626,
 		"2017-09-01", 23124, 32616, 38382,
 		"2018-09-01", 23586, 33267, 39150, # officers with 5 years' service will be at point 6 on new scale
-		"2019-09-01", 24177, 34098, 40128
+		"2019-09-01", 24177, 34098, 40128,
+		"2020-09-01", 24780, 34950, 41130,
+		"2021-09-01", 24780, 34950, 41130
 	) %>% 
 		gather("service", "pay", -date) %>% 
 		mutate(date = ymd(date), year = year(date))
 	
 	# get ONS CPIH inflation indices, where 2015 = 100
 	deflator <- read_csv("https://www.ons.gov.uk/generator?format=csv&uri=/economy/inflationandpriceindices/timeseries/l522/mm23", skip = 8, col_names = c("year", "index")) %>% 
-		slice(1:31) %>% 
-		# add 2019 data based on Q2 figure at
+		slice(1:33) %>% 
+		# add 2021 data based on Q2 figure at
 		# https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23
-		add_row(year = "2019", index = 107.8) %>% 
+		add_row(year = "2021", index = 110.9) %>% 
 		mutate(year = as.numeric(year))
 	
 	# adjust pay for inflation using method described at 
@@ -116,7 +118,7 @@ chart_data <- tidy_data %>%
 		cash_change = ifelse(year == first(year), NA, cash_change),
 		change_label = scales::comma(cash_change, accuracy = 1),
 		change_label = case_when(
-			year == first(year) ~ scales::comma(pay_adj, accuracy = 1, prefix = " £"),
+			year == first(year) ~ scales::comma(pay_adj, accuracy = 1, prefix = " £", suffix = " in 2021 terms"),
 			cash_change > 0 ~ paste0(" +", change_label),
 			cash_change < 0 ~ str_replace(change_label, "^-", " –"),
 			TRUE ~ ""
@@ -143,10 +145,10 @@ chart_data <- tidy_data %>%
 # add chart labels
 chart_labels <- tribble(
 	~x, ~y, ~xend, ~yend, ~service, ~label, ~hjust, ~vjust, ~curve,
-	ymd("2005-09-01"), 31500, ymd("2007-09-01"), 47000, "pay after initial training", balance_lines("an officer completing training in 2005 earned the equivalent of £30,900 in 2019 terms", 2), "left", "bottom", "left",
-	ymd("2010-09-01"), 37500, ymd("2011-03-01"), 42000, "pay after 5 years' service", balance_lines("the 2010 pay freeze began to erode salaries for existing officers in real terms", 4), "left", "bottom", "left",
-	ymd("2013-09-01"), 25000, ymd("2015-03-01"), 39000, "pay after initial training", balance_lines("in 2013, salaries for new officers were reduced by £4,800 in 2019 terms", 3), "left", "bottom", "left",
-	ymd("2018-09-01"), 40500, ymd("2017-09-01"), 45000, "pay after 10 years' service", balance_lines("below-inflation increases have reduced salaries slightly further since the pay freeze ended", 3), "right", "bottom", "right"
+	ymd("2005-09-01"), 32500, ymd("2007-09-01"), 47000, "pay after initial training", balance_lines("an officer completing training in 2005 earned the equivalent of £31,800 in 2021 terms", 2), "left", "bottom", "left",
+	ymd("2010-09-01"), 38500, ymd("2011-03-01"), 42000, "pay after 5 years' service", balance_lines("the 2010 pay freeze began to erode salaries for existing officers in real terms", 4), "left", "bottom", "left",
+	ymd("2013-09-01"), 26000, ymd("2015-03-01"), 39000, "pay after initial training", balance_lines("in 2013, salaries for new officers were reduced by £4,900 in 2021 terms", 3), "left", "bottom", "left",
+	ymd("2018-09-01"), 42000, ymd("2017-09-01"), 45500, "pay after 10 years' service", balance_lines("below-inflation increases have reduced salaries slightly further since the pay freeze ended", 3), "right", "bottom", "right"
 ) %>% 
 	mutate(
 		party = "Labour",
@@ -185,12 +187,12 @@ chart <- chart_data %>%
 	# end of explanatory labels
 	coord_cartesian(clip = "off") +
 	scale_x_date(date_breaks = "2 years", date_labels = "'%y", 
-							 expand = expand_scale(mult = c(0, 0.01))) +
+							 expand = expansion(mult = c(0, 0.01))) +
 	scale_y_continuous(
 		breaks = seq(0, 40e3, by = 5e3),
-		labels = scales::number_format(scale = 1/1000, prefix = "£", suffix = "k"),
+		labels = scales::number_format(accuracy = 1, scale = 1/1000, prefix = "£", suffix = "k"),
 		limits = c(0, NA), 
-		expand = expand_scale(add = c(0, 6000))
+		expand = expansion(add = c(0, 6000))
 	) + 
 	scale_fill_manual(
 		values = c("Labour" = "#DC241F", "Coalition" = "#8DB9CA",
@@ -202,10 +204,10 @@ chart <- chart_data %>%
 	facet_grid(cols = vars(service)) +
 	labs(
 		title = chart_details$title,
-		subtitle = format_subtitle(chart_details$subtitle),
+		subtitle = format_subtitle(chart_details$subtitle, .width = 120),
 		legend = NULL,
 		x = NULL,
-		y = "gross salary before allowances, inflation adjusted to 2019",
+		y = "gross salary before allowances, inflation adjusted to 2021",
 		fill = NULL
 	) +
 	theme_cjcharts() +
@@ -235,8 +237,8 @@ For 2019, second-quarter inflation estimates have been used.
 ```{r export chart}
 # save PNG for social media
 ggsave(
-	filename = paste0(chart_details$id, ".png"), 
+	filename = paste0(chart_details$id, "-2021.png"), 
 	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
-	device = "png", width = 600 / 72, height = 400 / 72, units = "in"
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in", bg = "white"
 )
 ```

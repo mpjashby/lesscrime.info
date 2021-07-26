@@ -146,7 +146,7 @@ chart_labels <- tribble(
 ```{r build plot}
 chart <- ggplot(chart_data, aes(year, homicide_rate)) +
   geom_point(aes(alpha = "point"), colour = "grey75", na.rm = TRUE) +
-  geom_smooth(aes(colour = "line"), method = "loess", span = 0.2, se = FALSE, 
+  geom_smooth(aes(colour = "line"), method = "loess", formula = "y ~ x", span = 0.2, se = FALSE, 
               na.rm = TRUE, key_glyph = "timeseries", alpha = 1) +
 	# add explanatory labels
 	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),

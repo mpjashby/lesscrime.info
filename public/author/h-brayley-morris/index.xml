@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>H Brayley-Morris | Matt Ashby</title>
-    <link>/author/h-brayley-morris/</link>
-      <atom:link href="/author/h-brayley-morris/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/author/h-brayley-morris/</link>
+      <atom:link href="http://lesscrime.info/author/h-brayley-morris/index.xml" rel="self" type="application/rss+xml" />
     <description>H Brayley-Morris</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Thu, 01 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 01 Dec 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>H Brayley-Morris</title>
-      <link>/author/h-brayley-morris/</link>
+      <link>http://lesscrime.info/author/h-brayley-morris/</link>
     </image>
     
     <item>
       <title>Children, gender, and sexual exploitation: a quantitative analysis of administrative data</title>
-      <link>/publication/children_gender_and_cse/</link>
+      <link>http://lesscrime.info/publication/children_gender_and_cse/</link>
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/children_gender_and_cse/</guid>
+      <guid>http://lesscrime.info/publication/children_gender_and_cse/</guid>
       <description></description>
     </item>
     

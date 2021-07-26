@@ -107,7 +107,7 @@ tidy_data %>%
   theme_cjcharts()
 
 # save high-res image
-ggsave("tracking-crime-changes-figure1.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure1.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -173,7 +173,7 @@ tidy_data %>%
 
 
 # save high-res image
-ggsave("tracking-crime-changes-figure2.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure2.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -252,7 +252,7 @@ ggplot(example_homicides, aes(year, n)) +
 
 
 # save high-res image
-ggsave("tracking-crime-changes-figure3.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure3.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -293,7 +293,7 @@ tidy_data %>%
 
 
 # save high-res image
-ggsave("tracking-crime-changes-figure4.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure4.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -353,7 +353,7 @@ tidy_data %>%
 
 
 # save high-res image
-ggsave("tracking-crime-changes-figure5.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure5.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -421,7 +421,7 @@ tidy_data %>%
   )
 
 # save high-res image
-ggsave("tracking-crime-changes-figure6.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure6.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 
@@ -489,7 +489,7 @@ tidy_data %>%
   theme_cjcharts()
 
 # save high-res image
-ggsave("tracking-crime-changes-figure7.pdf", width = 10, height = 6.67, dpi = 300)
+# ggsave("tracking-crime-changes-figure7.pdf", width = 10, height = 6.67, dpi = 300)
 ```
 
 

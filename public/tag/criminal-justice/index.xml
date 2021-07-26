@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>criminal justice | Matt Ashby</title>
-    <link>/tag/criminal-justice/</link>
-      <atom:link href="/tag/criminal-justice/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://lesscrime.info/tag/criminal-justice/</link>
+      <atom:link href="http://lesscrime.info/tag/criminal-justice/index.xml" rel="self" type="application/rss+xml" />
     <description>criminal justice</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>CC-BY</copyright><lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>criminal justice</title>
-      <link>/tag/criminal-justice/</link>
+      <link>http://lesscrime.info/tag/criminal-justice/</link>
     </image>
     
     <item>
       <title>Chart: Police cuts still being felt in most forces</title>
-      <link>/post/police-numbers/</link>
+      <link>http://lesscrime.info/post/police-numbers/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/post/police-numbers/</guid>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;The government this week announced that almost 9,000 police officers had been recruited in England and Wales as part of a plan to increase police numbers by 20,000 by 2023. But in many parts of the country there are still fewer officers than a decade ago – six forces have lost more than a fifth of officers compared to 2010.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-uplift-2021_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-uplift-2021_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../police-uplift-2021.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-uplift-2021.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;Home Office, 2021&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -30,15 +30,15 @@
     
     <item>
       <title>Chart: Typical rape investigation times doubled between 2012 and 2018</title>
-      <link>/post/rape-prosecution-times/</link>
+      <link>http://lesscrime.info/post/rape-prosecution-times/</link>
       <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>/post/rape-prosecution-times/</guid>
+      <guid>http://lesscrime.info/post/rape-prosecution-times/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;The time taken for a typical rape case to be prosecuted in court increased only slightly from 2012 to 2018, but the time taken for police to investigate rapes and the CPS to decide whether to charge a suspect has more than doubled. The government has not published updated data since March 2019.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/rape-prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/rape-prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are several potential reasons for this increase, which could explain it
 either individually or in combination:&lt;/p&gt;
 &lt;ul&gt;
@@ -59,14 +59,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: In serious cases, justice is often slow</title>
-      <link>/post/prosecution-times/</link>
+      <link>http://lesscrime.info/post/prosecution-times/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/post/prosecution-times/</guid>
+      <guid>http://lesscrime.info/post/prosecution-times/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Some serious crime investigations are surprisingly quick: half of murder prosecutions involve a suspect being charged in five days or fewer. But for many serious crimes, justice is often slow: half of fraud prosecutions don’t conclude until almost two years after the crime occurred.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -75,14 +76,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: Some police forces are much more likely to prosecute violence</title>
-      <link>/post/violence-prosecutions/</link>
+      <link>http://lesscrime.info/post/violence-prosecutions/</link>
       <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/post/violence-prosecutions/</guid>
+      <guid>http://lesscrime.info/post/violence-prosecutions/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions such as paying compensation.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/violence-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/violence-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../violence-prosecutions.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/violence-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -90,14 +92,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: No big changes in sentences after new police-assaults law</title>
-      <link>/post/police-assaults/</link>
+      <link>http://lesscrime.info/post/police-assaults/</link>
       <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/post/police-assaults/</guid>
+      <guid>http://lesscrime.info/post/police-assaults/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;The government recently doubled the maximum sentence for assaulting a police officer to 12 months in prison, introducing a new offence of assaulting an emergency worker. So far, this change is associated with only small increases in sentences handed down in court.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-assaults_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-assaults_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../police-assaults.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-assaults.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-september-2019&#34;&gt;Ministry of Justice, 2020&lt;/a&gt;&lt;/p&gt;
@@ -161,14 +164,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: Police crackdowns catch few drink drivers</title>
-      <link>/post/breath-tests/</link>
+      <link>http://lesscrime.info/post/breath-tests/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/post/breath-tests/</guid>
+      <guid>http://lesscrime.info/post/breath-tests/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Police routinely breathalyse drivers they suspect have been drinking, but also carry out an annual Christmas crackdown, breath-testing more than three times as many drivers in December as in other months. However, only about 1.6% of these extra tests catch a drink driver, compared to about 14% of routine tests.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/breath-tests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/breath-tests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../breath-tests.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/breath-tests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
@@ -181,14 +185,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: 10 times more people die in police collisions than in shootings</title>
-      <link>/post/custody-deaths/</link>
+      <link>http://lesscrime.info/post/custody-deaths/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/post/custody-deaths/</guid>
+      <guid>http://lesscrime.info/post/custody-deaths/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;About 100 people a year die following contact with police in England and Wales. Public debate has often focused on deaths in custody or police shootings, but people are much more likely to die in collisions with police vehicles or in suicides following release from custody.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/custody-deaths_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/custody-deaths_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../custody-deaths.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/custody-deaths.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.policeconduct.gov.uk/research-and-learning/statistics/annual-deaths-during-or-following-police-contact-statistics&#34;&gt;Independent Office for Police Conduct, 2019&lt;/a&gt;&lt;/p&gt;
@@ -197,30 +202,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: What offences are people most often prosecuted for?</title>
-      <link>/post/common-prosecutions/</link>
+      <link>http://lesscrime.info/post/common-prosecutions/</link>
       <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/post/common-prosecutions/</guid>
+      <guid>http://lesscrime.info/post/common-prosecutions/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/common-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../common-prosecutions.png&#34;&gt;larger image&lt;/a&gt;
-| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/common-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Chart: What offences are people most often prosecuted for?</title>
-      <link>/post/common-prosecutions/</link>
-      <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/post/common-prosecutions/</guid>
-      <description>
-
-
-&lt;p&gt;About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/common-prosecutions2_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/common-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../common-prosecutions.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/common-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -229,14 +219,15 @@ longer.&lt;/li&gt;
     
     <item>
       <title>Chart: One in ten of us is on the National DNA Database</title>
-      <link>/post/dna-database/</link>
+      <link>http://lesscrime.info/post/dna-database/</link>
       <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/post/dna-database/</guid>
+      <guid>http://lesscrime.info/post/dna-database/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;About 5.3 million people in England and Wales (about 10% of the population aged 10 or over) have their DNA stored on the National DNA Database, one of the largest DNA databases in the world. Police routinely collect DNA from arrested suspects, and it can be stored (often permanently) if they are convicted of almost any offence.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/dna-database_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/dna-database_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../dna-database.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/dna-database.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/national-dna-database-statistics&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
@@ -253,14 +244,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: More than 1,400 football arrests each season</title>
-      <link>/post/football-arrests/</link>
+      <link>http://lesscrime.info/post/football-arrests/</link>
       <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/post/football-arrests/</guid>
+      <guid>http://lesscrime.info/post/football-arrests/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Over the past five years, more than 1,400 people have been arrested on average each season for football-related offences across the top five English divisions, with incidents reported at over 1,000 different matches. Most arrests are for violence, and about half are for offences outside the grounds themselves. More fans are arrested at away games, even though far fewer fans typically travel than attend home games. However, the rate of arrests at football matches overall is low, at about 3 arrests per 100,000 match spectators.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/football-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/football-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../football-arrests.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/football-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/football-related-arrests-and-banning-orders-england-and-wales-2018-to-2019-season&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
@@ -269,14 +261,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: When police use force, they rarely cause injury</title>
-      <link>/post/use-of-force/</link>
+      <link>http://lesscrime.info/post/use-of-force/</link>
       <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/post/use-of-force/</guid>
+      <guid>http://lesscrime.info/post/use-of-force/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Police reported using force on over 300,000 occasions last year, or about 850 each day, with most incidents involving either handcuffing or other restraint. Almost all force used by police resulted in no injury to the person force was used against. When officers did injure people, the injuries were usually minor. However, since these are new statistics there is likely to be some under-reporting, especially of minor incidents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/use-of-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/use-of-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../use-of-force.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/use-of-force.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-use-of-force-statistics-england-and-wales-april-2017-to-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
@@ -285,14 +278,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Most prison sentences are for violent crimes</title>
-      <link>/post/prisoner-types/</link>
+      <link>http://lesscrime.info/post/prisoner-types/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/post/prisoner-types/</guid>
+      <guid>http://lesscrime.info/post/prisoner-types/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;About 69,000 adults (more than 95% of them men) are currently serving prison sentences, most of them for violent or sexual offences. However, over 10,000 adults are serving sentences for drug offences, more than for all types of theft combined.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/prisoner-types_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prisoner-types_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../prisoner-types.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prisoner-types.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/offender-management-statistics-quarterly&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -301,14 +295,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Young offenders are more likely to re-offend than adults</title>
-      <link>/post/reoffending-rates/</link>
+      <link>http://lesscrime.info/post/reoffending-rates/</link>
       <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/post/reoffending-rates/</guid>
+      <guid>http://lesscrime.info/post/reoffending-rates/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Most people convicted of a crime will not be convicted or cautioned for another offence within 12 months, although young offenders are more likely to offend again than adults. Most re-offending is by a small number of prolific offenders who frequently pass through the criminal justice system – more than 60% of people released from short prison sentences will reoffend within a year.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/reoffending-rates_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/reoffending-rates_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../reoffending-rates.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/reoffending-rates.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/proven-reoffending-statistics-july-to-september-2017&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -317,14 +312,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Sentences for knife carrying are increasing, but not for teens</title>
-      <link>/post/knife-sentencing/</link>
+      <link>http://lesscrime.info/post/knife-sentencing/</link>
       <pubDate>Mon, 28 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/post/knife-sentencing/</guid>
+      <guid>http://lesscrime.info/post/knife-sentencing/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Sentences for carrying a bladed or pointed article have become more severe for adults over the past decade, with 41% of men now going to prison on conviction. For younger offenders, the picture is different: half of girls and a third of boys caught with a knife receive no penalty – a proportion that is largely unchanged since 2008 – while fewer than one in ten receive a custodial sentence.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/knife-sentencing_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/knife-sentencing_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../knife-sentencing.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/knife-sentencing.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -333,30 +329,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Police are arresting half as many people as a decade ago</title>
-      <link>/post/police-arrests/</link>
+      <link>http://lesscrime.info/post/police-arrests/</link>
       <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/post/police-arrests/</guid>
+      <guid>http://lesscrime.info/post/police-arrests/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
-| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Chart: Police are arresting half as many people as a decade ago</title>
-      <link>/post/police-arrests2/</link>
-      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/post/police-arrests2/</guid>
-      <description>
-
-
-&lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-arrests2_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
@@ -365,14 +346,15 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Most people think the justice system is fair, fewer say it&#39;s effective</title>
-      <link>/post/fairness-perception/</link>
+      <link>http://lesscrime.info/post/fairness-perception/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/post/fairness-perception/</guid>
+      <guid>http://lesscrime.info/post/fairness-perception/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Every month, the Crime Survey for England and Wales asks a representative sample of adults about their perceptions of the criminal justice system. Across age, education, ethnic and employment groups, most people believe the system as a whole is fair, but only about half say it is effective.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../fairness-perception.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/fairness-perception.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -380,17 +362,18 @@ other ethnicity.&lt;/p&gt;
     
     <item>
       <title>Chart: Over 10 years, basic police pay has fallen by 22% in real terms</title>
-      <link>/post/police-pay/</link>
+      <link>http://lesscrime.info/post/police-pay/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/post/police-pay/</guid>
+      <guid>http://lesscrime.info/post/police-pay/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £6,700 less now than they would have been a decade ago, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-pay_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £7,200 less now than they would have been in 2010, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-pay_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../police-pay.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-pay.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, Home Office&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Pay for years before 2019 has been adjusted for inflation using the &lt;a href=&#34;https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23&#34;&gt;Office for
 National Statistics preferred CPIH measure&lt;/a&gt;.
 For 2019, second-quarter inflation estimates have been used.&lt;/p&gt;
@@ -399,14 +382,15 @@ For 2019, second-quarter inflation estimates have been used.&lt;/p&gt;
     
     <item>
       <title>Chart: For most offences prison is the exception, not the rule</title>
-      <link>/post/prison-likelihood/</link>
+      <link>http://lesscrime.info/post/prison-likelihood/</link>
       <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/post/prison-likelihood/</guid>
+      <guid>http://lesscrime.info/post/prison-likelihood/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Of the 663,000 non-motoring offences for which people were sentenced in 2018, only about 11% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../prison-likelihood.png&#34;&gt;larger image&lt;/a&gt;
 | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-likelihood.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
@@ -415,14 +399,15 @@ For 2019, second-quarter inflation estimates have been used.&lt;/p&gt;
     
     <item>
       <title>Chart: Police cuts haven&#39;t hit everywhere equally</title>
-      <link>/post/police-numbers/</link>
+      <link>http://lesscrime.info/post/police-numbers/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/post/police-numbers/</guid>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
       <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven’t dropped equally across police forces. One force (Surrey) has the same number of officers now as 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
 </description>
