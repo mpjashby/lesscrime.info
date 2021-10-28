@@ -5,12 +5,21 @@
     <link>http://lesscrime.info/event/</link>
       <atom:link href="http://lesscrime.info/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; upcoming talks</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 08 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 28 Oct 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; upcoming talks</title>
       <link>http://lesscrime.info/event/</link>
     </image>
+    
+    <item>
+      <title>Modelling and forecasting time series in R</title>
+      <link>http://lesscrime.info/talk/time-series-models-nscr/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/time-series-models-nscr/</guid>
+      <description>&lt;p&gt;Presentation on using time-series models in R.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Changes in police calls for service during the early months of the 2020 coronavirus pandemic</title>
