@@ -55,3 +55,4 @@ title: Matt Ashby
 ---
 
 I am a lecturer in crime science at the [Jill Dando Institute of Security and Crime Science](https://ucl.ac.uk/jill-dando-institute/) at [University College London](https://ucl.ac.uk/) (UCL). I am interested in crime analysis – particularly how crime concentrates in time and space – in crime prevention and in transport crime.
+
