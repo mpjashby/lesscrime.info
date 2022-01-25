@@ -1,16 +1,16 @@
----
+--- 
 name: Matt
 surname: Ashby
 position: "Lecturer in Crime Science\\tabularnewline University College London"
 address: "Department of Security and Crime Science\\tabularnewline 35 Tavistock Square, London WC1H 9EZ"
-# phone: +44 20 3108 3890
-www: lesscrime.info
+phone: "+44 20 3108 3890"
+www: "lesscrime.info"
 email: "matthew.ashby@ucl.ac.uk"
 twitter: lesscrime
 github: mpjashby
 date: "`r format(Sys.time(), '%B %Y')`"
-output: vitae::hyndman()
----
+output: vitae::hyndman
+--- 
 
 ```{r eval=FALSE, include=FALSE}
 # AFTER KNITTING THIS FILE, run the following line to copy the resulting PDF
@@ -86,7 +86,7 @@ orcid_qualifications(my_orcid) %>%
 
 ORCID: `r my_orcid`
 
-```{r publications}
+```{r publications, results="asis"}
 # Biber cannot handle file paths containing spaces, so we will copy 
 # citations.bib to a temporary location that Biber can read
 # citations_file <- tempfile(fileext = ".bib")
@@ -105,14 +105,26 @@ ORCID: `r my_orcid`
 	# 	)
 	# )
 
+# scholar::get_publications("dwcesrQAAAAJ") %>% 
+#   arrange(desc(year)) %>% 
+#   detailed_entries(
+#     what = title,
+#     when = year,
+#     with = author,
+#     where = str_glue("{journal}{ifelse(number != '', str_glue(', {number}'), '')}")
+#   )
+
 scholar::get_publications("dwcesrQAAAAJ") %>% 
   arrange(desc(year)) %>% 
-  detailed_entries(
-    what = title,
-    when = year,
-    with = author,
-    where = str_glue("{journal}{ifelse(number != '', str_glue(', {number}'), '')}")
-  )
+  pwalk(function (...) {
+    current <- tibble(...)
+    print(str_glue(
+      "\\smallskip\n**{current$title}**\n\n{current$author}\n\n{current$journal}", 
+      " ({current$year})",
+      "{ifelse(current$number != '', str_glue(' {current$number}'), '')}\n",
+      "\n\n"
+    ))
+  })
 ```
 
 
