@@ -2,34 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://lesscrime.info/courses/example/python/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/author/alex-mcmillan/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/courses/example/visualization/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/authors/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/courses/example/stats/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/talk/n8-covid-calls-webinar/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/eon-kim/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/karen-byrom/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/matt-ashby/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/nadia-kennar/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/phoebe-liebelt/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/event/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/reka-solymosi/</loc>
+    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication-type/2/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/a-sidebottom/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/c-clemmow/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/g-laycock/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/k-bullock/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/matt-ashby/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/n-tilley/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/police-perceptions-of-pop/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication_types/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/r-armitage/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/s-kirby/</loc>
+    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/40-years-of-pop/</loc>
+    <lastmod>2021-12-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/publication-type/4/</loc>
     <lastmod>2021-12-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/authors/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/matt-ashby/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/tag/police/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/publication_types/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/publication/</loc>
     <lastmod>2021-12-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/tag/stop-and-search/</loc>
@@ -44,10 +92,31 @@
     <loc>http://lesscrime.info/tags/</loc>
     <lastmod>2021-12-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/talk/time-series-models-nscr/</loc>
-    <lastmod>2021-10-28T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/author/a-mcmillan/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/event/</loc>
+    <loc>http://lesscrime.info/author/e-kim/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/k-byrom/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/n-kennar/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/p-liebelt/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/pop-barriers-and-facilitators/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/r-solymosi/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/n8-covid-calls/</loc>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/talk/time-series-models-nscr/</loc>
     <lastmod>2021-10-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/publication/stop-and-search-london-2021-q2/</loc>
@@ -95,12 +164,6 @@
     <loc>http://lesscrime.info/tag/trials/</loc>
     <lastmod>2021-03-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/courses/</loc>
-    <lastmod>2021-01-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/courses/example/</loc>
-    <lastmod>2021-01-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/tag/r/</loc>
     <lastmod>2020-12-10T00:00:00+00:00</lastmod>
   </url><url>
@@ -121,9 +184,6 @@
   </url><url>
     <loc>http://lesscrime.info/talk/crimcon-2020/</loc>
     <lastmod>2020-11-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/publication-type/2/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/publication/criminology-oa/</loc>
     <lastmod>2020-10-21T00:00:00+00:00</lastmod>
@@ -167,31 +227,10 @@
     <loc>http://lesscrime.info/tag/violence/</loc>
     <lastmod>2020-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/author/a-sidebottom/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/c-clemmow/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/g-laycock/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/publication/implementing-problem-oriented-policing/</loc>
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/author/k-bullock/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/n-tilley/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/publication/pop-in-england-and-wales/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/r-armitage/</loc>
-    <lastmod>2020-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/author/s-kirby/</loc>
     <lastmod>2020-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/publication/problem-solving-practice-guide/</loc>
@@ -380,9 +419,6 @@
     <loc>http://lesscrime.info/publication/alternative-denominators-in-transport-crime-rates/</loc>
     <lastmod>2017-11-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/author/r-solymosi/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/author/t-cohen/</loc>
     <lastmod>2017-11-20T00:00:00+00:00</lastmod>
   </url><url>
@@ -412,21 +448,6 @@
   </url><url>
     <loc>http://lesscrime.info/publication/crime_science_for_metal_theft/</loc>
     <lastmod>2016-08-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/deep-learning/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/demo/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/project/external-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/project/internal-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/h-brayley/</loc>
     <lastmod>2015-12-01T00:00:00+00:00</lastmod>
@@ -504,5 +525,7 @@
     <lastmod>2013-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/admin/</loc>
+  </url><url>
+    <loc>http://lesscrime.info/bio/</loc>
   </url>
 </urlset>
