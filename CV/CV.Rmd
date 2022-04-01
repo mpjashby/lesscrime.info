@@ -134,17 +134,19 @@ Funding awarded, typically jointly with colleagues.
 
 ```{r funding}
 tribble(
-	~type, ~title, ~start_date, ~end_date, ~value, ~funder,
-	"Research project", "Problem-Oriented Policing in England and Wales", 2019, 2020, "£246,000", "Police Transformation Fund",
-	"Vice Chancellor's PhD studentship", "Building evidence to support police initial response to incidents", 2018, 2021, "£60,000", "Nottingham Trent University",
-	"Vice Chancellor's PhD studentship", "Crime reduction and public reassurance in a diverse society", 2017, 2020, "£60,000", "Nottingham Trent University",
-	"Knowledge transfer partnership", "Problem Solving for Neighbourhood Policing", 2012, 2013, "£16,000", "Engineering and Physical Sciences Research Council"
+	~type, ~title, ~start_date, ~end_date, ~value, ~funder, ~role,
+	"Knowledge transfer", "Implementing problem-oriented and evidence-based responses for reducing violent crime in London", 2021, 2022, "£264,000", "Metropolitan Police Service", "Co-investigator",
+	"Research project", "Building blocks for knife crime", 2020, 2021, "£122,000", "College of Policing",  "Co-investigator",
+	"Research project", "Problem-Oriented Policing in England and Wales", 2019, 2020, "£246,000", "Police Transformation Fund",  "Co-investigator",
+	"PhD studentship", "Building evidence to support police initial response to incidents", 2018, 2021, "£60,000", "Nottingham Trent University", "Supervisor",
+	"PhD studentship", "Crime reduction and public reassurance in a diverse society", 2017, 2020, "£60,000", "Nottingham Trent University", "Supervisor",
+	"Knowledge transfer", "Problem Solving for Neighbourhood Policing", 2012, 2013, "£16,000", "Engineering and Physical Sciences Research Council", "Co-investigator",
 ) %>% 
 	arrange(desc(start_date)) %>% 
 	brief_entries(
 		what = str_glue("{`type`}: {`title`}"),
 		when = str_glue("{`start_date`}–{`end_date`}"),
-		with = str_glue("{`value`} funding from {`funder`}")
+		with = str_glue("{`role`}, {`value`} funding from {`funder`}")
 	)
 ```
 
