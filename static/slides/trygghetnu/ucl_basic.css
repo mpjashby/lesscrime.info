@@ -1,0 +1,102 @@
+/*
+
+Thie file tweeks the CSS underlying the xaringan template
+
+*/
+
+
+
+/* ALL SLIDES */
+
+body, h1, h2, h3 {
+  font-family: "Helvetica";
+}
+
+/* remove slide number */
+.remark-slide-number {
+  display: none;
+}
+
+h3 {
+  text-align: left;
+}
+
+
+
+/* TITLE SLIDE */
+
+.title-slide {
+  color: #000000;
+  background-image: url("presentation-background.jpg");
+  background-position: center;
+  background-size: 100%;
+}
+
+.title-slide h1 {
+  padding: 0.5em;
+  color: #000000;
+  background-color: #FFFFFF;
+  font-size: 2em;
+  text-align: left;
+}
+
+.title-slide h3 {
+  margin-top: 2em;
+  padding: 0.5em;
+  color: #000000;
+  background-color: #FFFFFF;
+  font-size: 1.2em;
+  font-weight: normal;
+  text-align: left;
+}
+
+.reverse {
+  color: #FFFFFF;
+  background-color: #0097A9;
+}
+
+
+
+/* GREEN-SCREEN SLIDES */
+
+.green-screen {
+  background-color: #00B050;
+}
+
+
+
+/* BIG TEXT */
+
+.big-text p, .big-text li {
+  font-size: 200%;
+}
+
+.big-text li {
+	margin: 0.5em 0;
+}
+
+
+
+/* FULL-SCREEN IMAGE SLIDES */
+
+.big-picture {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.big-picture > p {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* SPEAKER NOTES SLIDES */
+
+.speaker-notes {
+  margin: 0;
+  padding: 1em;
+  font-size: 3em;
+  line-height: 1.4;
+}
