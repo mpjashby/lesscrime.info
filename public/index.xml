@@ -5,12 +5,29 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 24 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 22 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Stop and Search in London: January to December 2021</title>
+      <link>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</link>
+      <pubDate>Fri, 22 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>What effects do CCTV cameras have in criminal investigations?</title>
+      <link>http://lesscrime.info/talk/trygghetnu/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/trygghetnu/</guid>
+      <description>&lt;p&gt;Presentation to the &lt;a href=&#34;https://www.securityuser.com/se/eventkalendarium/Konferenser/TrygghetNu&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Trygghetnu conference&lt;/a&gt; organised by &lt;a href=&#34;https://www.securityuser.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Security User magazine&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Changes to police demand in COVID-19 pandemic</title>

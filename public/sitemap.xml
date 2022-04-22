@@ -2,10 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://lesscrime.info/author/alex-mcmillan/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
+    <loc>http://lesscrime.info/publication-type/4/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/authors/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/matt-ashby/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/police/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication_types/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/stop-and-search/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/stop-and-search-in-london/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tags/</loc>
+    <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/event/</loc>
+    <lastmod>2022-04-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/talk/trygghetnu/</loc>
+    <lastmod>2022-04-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/author/alex-mcmillan/</loc>
     <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/talk/n8-covid-calls-webinar/</loc>
@@ -20,16 +56,10 @@
     <loc>http://lesscrime.info/author/matt-ashby/</loc>
     <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/author/nadia-kennar/</loc>
     <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/phoebe-liebelt/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/event/</loc>
     <lastmod>2022-03-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/reka-solymosi/</loc>
@@ -50,19 +80,10 @@
     <loc>http://lesscrime.info/author/k-bullock/</loc>
     <lastmod>2022-03-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/author/matt-ashby/</loc>
-    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/author/n-tilley/</loc>
     <lastmod>2022-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/publication/police-perceptions-of-pop/</loc>
-    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/publication_types/</loc>
-    <lastmod>2022-03-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/publication/</loc>
     <lastmod>2022-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/r-armitage/</loc>
@@ -74,22 +95,7 @@
     <loc>http://lesscrime.info/publication/40-years-of-pop/</loc>
     <lastmod>2021-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/publication-type/4/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/police/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/stop-and-search/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/stop-and-search-in-london/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/publication/stop-and-search-london-2021-q3/</loc>
-    <lastmod>2021-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tags/</loc>
     <lastmod>2021-12-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/a-mcmillan/</loc>
