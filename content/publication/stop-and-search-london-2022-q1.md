@@ -1,5 +1,5 @@
 ---
-title: "Stop and Search in London: January to December 2021"
+title: "Stop and Search in London: April 2021 to March 2022"
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here 
@@ -18,8 +18,7 @@ publication_types: ["4"]
 
 abstract: "*Stop and Search in London* reports summarise how police in London are using their stop-and-search powers. An updated report is issued every three months. 
 
-Police in London stopped and searched 232,215 people and vehicles in the 12 months from January to December 2021. The number of searches has generally decreased over the past year.66% of searches in that period were for drugs, with 74% of all searches resulting in no further action.Searches are heavily concentrated in some areas – half of all searches occurred in 10% of neighbourhoods."
-
+Police in London stopped and searched 215,423 people and vehicles in the 12 months from April 2021 to March 2022. The number of searches has generally decreased over the past year. 65% of searches in that period were for drugs, with 73% of all searches resulting in no further action. Searches are heavily concentrated in some areas – half of all searches occurred in 9% of neighbourhoods."
 
 tags: ["Stop and Search in London", "stop and search", "police"]
 
@@ -31,7 +30,7 @@ featured: false
 # - name: Custom Link
 #   url: http://example.org
 
-url_pdf: '/files/stop-and-search-london-2021-q4.pdf'
+url_pdf: '/files/stop-and-search-london-2022-q1.pdf'
 url_code: 'https://github.com/mpjashby/stop-search-london/'
 url_dataset: ''
 url_poster: ''
