@@ -7,7 +7,7 @@ title: "Stop and Search in London: April 2021 to March 2022"
 authors:
 - admin
 
-date: "2022-04-22T00:00:00Z"
+date: "2022-06-01T00:00:00Z"
 # doi: ""
 
 # Publication type.
