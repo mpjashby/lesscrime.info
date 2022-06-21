@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Comparing harm-spots and hot-spots for crime analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Matt Ashby, University College London" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="ucl-basic.css" type="text/css" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Comparing harm-spots and hot-spots for crime analysis
+]
+.author[
+### Matt Ashby, University College London
+]
+
+---
+
+
+class: animate__animated animate__fadeIn, center, middle
+
+
+
+
+
+
+
+&lt;img src="ecca-2022_files/figure-html/map-specific-crimes-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+
+
+&lt;img src="ecca-2022_files/figure-html/map-violence-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, big-text
+
+Which neighbourhood team should we allocate more officers to?
+
+--
+
+Which district should we prioritise for extra funding?
+
+--
+
+Which local politicians should we focus on working with?
+
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle, big-text
+
+$$
+\text{harm} = \sum ( \text{crimes of a type} \times \text{severity of that type} )
+$$
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/chart-harm-values-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/map-grid-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/map-count-vs-harm-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/count-harm-correlation-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/count-harm-correlation2-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/count-harm-correlation3-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/map-diff-ranks-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/map-diff-ranks2-1.png" width="1008" /&gt;
+
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+&lt;img src="ecca-2022_files/figure-html/map-diff-ranks3-1.png" width="1008" /&gt;
+
+
+---
+
+class: animate__animated animate__fadeIn, center, middle
+
+<div id="libwawstjj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#libwawstjj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#libwawstjj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#libwawstjj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#libwawstjj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#libwawstjj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#libwawstjj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#libwawstjj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#libwawstjj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#libwawstjj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#libwawstjj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#libwawstjj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#libwawstjj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#libwawstjj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#libwawstjj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#libwawstjj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#libwawstjj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#libwawstjj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#libwawstjj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#libwawstjj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#libwawstjj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#libwawstjj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#libwawstjj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#libwawstjj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#libwawstjj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#libwawstjj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#libwawstjj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#libwawstjj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#libwawstjj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#libwawstjj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#libwawstjj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#libwawstjj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#libwawstjj .gt_left {
+  text-align: left;
+}
+
+#libwawstjj .gt_center {
+  text-align: center;
+}
+
+#libwawstjj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#libwawstjj .gt_font_normal {
+  font-weight: normal;
+}
+
+#libwawstjj .gt_font_bold {
+  font-weight: bold;
+}
+
+#libwawstjj .gt_font_italic {
+  font-style: italic;
+}
+
+#libwawstjj .gt_super {
+  font-size: 65%;
+}
+
+#libwawstjj .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#libwawstjj .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#libwawstjj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#libwawstjj .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#libwawstjj .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#libwawstjj .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3">
+        <span class="gt_column_spanner">Most common types of crime in the 100 grid cells with the most …</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">disproportionately high <em>crime counts</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">disproportionately high <em>harm</em></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>1st</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Miscellaneous theft</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Common assault and battery</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>2nd</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Theft from a motor vehicle</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Assaults occasioning actual bodily harm</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>3rd</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p><strong>Theft from shops</strong></p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Theft from a motor vehicle</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>4th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Common assault and battery</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Criminal damage</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>5th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Criminal damage</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Other burglary in a dwelling</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>6th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p><strong>Stealing from the person of another</strong></p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p><strong>Sending letters etc. with intent to cause distress or anxiety</strong></p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>7th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p><strong>Making off without payment</strong></p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Miscellaneous theft</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>8th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Assaults occasioning actual bodily harm</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p>Theft of motor vehicle</p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>9th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Other burglary in a dwelling</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p><strong>Wound / inflict grievous bodily harm without intent</strong></p>
+</div></td></tr>
+    <tr><td class="gt_row gt_left"><div class='gt_from_md'><p>10th</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #832424;"><div class='gt_from_md'><p>Theft of motor vehicle</p>
+</div></td>
+<td class="gt_row gt_left" style="color: #3A3A98;"><div class='gt_from_md'><p><strong>Robbery</strong></p>
+</div></td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="3"> offence types in <strong>bold</strong> only appear in one column</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+
+
+
+---
+
+class: animate__animated animate__fadeIn, big-text
+
+### Main points
+
+--
+
+The overall correlation between count and harm is high
+
+--
+
+The correlation in hotspots is lower, meaning high-harm places might be missed
+
+--
+
+Mapping based on counts largely ignores violent crime
+
+
+
+---
+
+class: animate__animated animate__fadeIn, big-text
+
+### Next steps
+
+--
+
+Are the findings similar using administrative areas?
+
+--
+
+What are the demographic characteristics of high-harm areas?
+
+--
+
+How stable are high-harm areas?
+
+
+
+---
+
+class: animate__animated animate__fadeIn, middle, big-text
+
+These slides:&lt;br&gt;
+&lt;b&gt;http://lesscrime.info/talk/ecca-2022&lt;/b&gt;
+
+Questions/comments:&lt;br&gt;
+&lt;b&gt;matthew.ashby@ucl.ac.uk&lt;/b&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
