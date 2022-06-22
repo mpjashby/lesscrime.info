@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://lesscrime.info/talk/ecca-2022/</loc>
+    <lastmod>2022-06-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2022-06-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/event/</loc>
+    <lastmod>2022-06-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://lesscrime.info/publication-type/4/</loc>
     <lastmod>2022-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/authors/</loc>
-    <lastmod>2022-06-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/</loc>
     <lastmod>2022-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/author/matt-ashby/</loc>
@@ -37,9 +43,6 @@
   </url><url>
     <loc>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</loc>
     <lastmod>2022-04-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/event/</loc>
-    <lastmod>2022-04-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/talk/trygghetnu/</loc>
     <lastmod>2022-04-07T00:00:00+00:00</lastmod>
