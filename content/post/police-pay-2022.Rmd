@@ -55,12 +55,13 @@ if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
 		"2015-09-01", 22668, 31971, 37626,
 		"2016-09-01", 22896, 31971, 37626,
 		"2017-09-01", 23124, 32616, 38382,
-		# officers with 5 years' service will be at point 6 on new scale
-		"2018-09-01", 23586, 33267, 39150, 
+		# From 2018 onwards, PCs with 5 years' service are on post-2013 pay scale
+		# Officers with 5 years' service will be at point 6 on new scale
+		"2018-09-01", 23586, 33267, 39150,
 		"2019-09-01", 24177, 34098, 40128,
 		"2020-09-01", 24780, 34950, 41130,
 		"2021-09-01", 24780, 34950, 41130,
-		"2022-09-01", 24780 + 1900, 34950 + 1900, 41130 + 1900
+		"2022-09-01", 26682, 36852, 43032
 	) %>% 
 		gather("service", "pay", -date) %>% 
 		mutate(date = ymd(date), year = year(date))
