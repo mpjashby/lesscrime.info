@@ -247,9 +247,9 @@ add_logo(chart + labs(title = NULL, subtitle = NULL),
 
 Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 
-Pay for years before 2019 has been adjusted for inflation using the [Office for
+Pay for years before 2022 has been adjusted for inflation using the [Office for
 National Statistics preferred CPIH measure](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23).
-For 2019, second-quarter inflation estimates have been used.
+For 2022, the inflation estimate for May (the latest available) has been used.
 
 ```{r export chart}
 # save PNG for social media
