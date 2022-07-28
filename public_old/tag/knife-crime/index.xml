@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>knife crime | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/knife-crime/</link>
+      <atom:link href="http://lesscrime.info/tag/knife-crime/index.xml" rel="self" type="application/rss+xml" />
+    <description>knife crime</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 28 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>knife crime</title>
+      <link>http://lesscrime.info/tag/knife-crime/</link>
+    </image>
+    
+    <item>
+      <title>Chart: Sentences for knife carrying are increasing, but not for teens</title>
+      <link>http://lesscrime.info/post/knife-sentencing/</link>
+      <pubDate>Mon, 28 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/knife-sentencing/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Sentences for carrying a bladed or pointed article have become more severe for adults over the past decade, with 41% of men now going to prison on conviction. For younger offenders, the picture is different: half of girls and a third of boys caught with a knife receive no penalty – a proportion that is largely unchanged since 2008 – while fewer than one in ten receive a custodial sentence.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/knife-sentencing_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../knife-sentencing.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/knife-sentencing.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

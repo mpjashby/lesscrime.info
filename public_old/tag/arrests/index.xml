@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arrests | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/arrests/</link>
+      <atom:link href="http://lesscrime.info/tag/arrests/index.xml" rel="self" type="application/rss+xml" />
+    <description>arrests</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>arrests</title>
+      <link>http://lesscrime.info/tag/arrests/</link>
+    </image>
+    
+    <item>
+      <title>Chart: More than 1,400 football arrests each season</title>
+      <link>http://lesscrime.info/post/football-arrests/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/football-arrests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Over the past five years, more than 1,400 people have been arrested on average each season for football-related offences across the top five English divisions, with incidents reported at over 1,000 different matches. Most arrests are for violence, and about half are for offences outside the grounds themselves. More fans are arrested at away games, even though far fewer fans typically travel than attend home games. However, the rate of arrests at football matches overall is low, at about 3 arrests per 100,000 match spectators.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/football-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../football-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/football-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/football-related-arrests-and-banning-orders-england-and-wales-2018-to-2019-season&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police are arresting half as many people as a decade ago</title>
+      <link>http://lesscrime.info/post/police-arrests/</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-arrests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

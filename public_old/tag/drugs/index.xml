@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>drugs | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/drugs/</link>
+      <atom:link href="http://lesscrime.info/tag/drugs/index.xml" rel="self" type="application/rss+xml" />
+    <description>drugs</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>drugs</title>
+      <link>http://lesscrime.info/tag/drugs/</link>
+    </image>
+    
+    <item>
+      <title>Chart: Seizures of the most harmful drugs at UK borders are falling</title>
+      <link>http://lesscrime.info/post/drug-seizures/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/drug-seizures/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Border Force is responsible for seizing drugs at ports, airports and international parcels depots. However, reports by the Chief Inspector of Borders and Immigration suggest drug-detection efforts are hindered by understaffing, lack of training and focus on conducting passport checks on travellers. Most drug seizures are of small amounts: only 19% of seizures involve more than one kilogram of drugs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/drug-seizures_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-seizures.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/drug-seizures.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/seizures-of-drugs-in-england-and-wales-financial-year-ending-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For estimates of the relative harmfulness of different controlled drugs, see
+‘&lt;a href=&#34;https://doi.org/10.1016/S0140-6736(10)61462-6&#34;&gt;Drug harms in the UK: a multicriteria decision analysis&lt;/a&gt;’ by Nutt et al.&lt;/p&gt;
+&lt;p&gt;Reports on Border Force can be found on the website of the &lt;a href=&#34;https://www.gov.uk/government/organisations/independent-chief-inspector-of-borders-and-immigration&#34;&gt;Independent Chief Inspector of Borders and Immigration&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Drug use was falling, but that seems to be changing</title>
+      <link>http://lesscrime.info/post/drug-use/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/drug-use/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Self-reported drug use has fallen for most of the past 20 years according to the Crime Survey for England and Wales, but in the past seven years the use of cannabis, cocaine and ecstasy has increased substantially, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium, with about 10% of adults saying they’ve used an illegal drug in the past year.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/drug-use_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-use.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/drug-use.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/drug-misuse-declared&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

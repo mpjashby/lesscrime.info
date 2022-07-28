@@ -5,12 +5,31 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Chart: Police cuts still being felt in most forces</title>
+      <link>http://lesscrime.info/post/police-numbers/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
+      <description>
+
+
+&lt;p&gt;The government plans to reverse their previous police cuts by recruiting 20,000 extra police officers between 2019 and 2023. But the funding for those officers isn’t spread evenly, meaning 18 forces now have more officers than in 2010 while eight forces still have at least 10% fewer officers than 12 years ago.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-uplift-2022_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-uplift-2022.png&#34;&gt;larger image&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The situation is different for police staff. Police staff do a variety of important roles in policing, from answering emergency calls and collecting forensic evidence to analysing intelligence information and managing detainees in custody. When forced to make cuts in the 2010s, most forces chose to reduce the number of support staff to maintain the number of police officers. The legacy of those cuts is still being felt: only eight forces have as many police staff now as in 2010.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-uplift-2022_files/figure-html/display%20plot%202-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-uplift-2022-staff.png&#34;&gt;larger image&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-uplift-2022.Rmd&#34;&gt;annotated R code to produce these charts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2022&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Over 13 years, basic police pay has fallen by 22% in real terms</title>

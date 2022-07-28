@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biography and CV | Matt Ashby</title>
+    <link>http://lesscrime.info/bio/</link>
+      <atom:link href="http://lesscrime.info/bio/index.xml" rel="self" type="application/rss+xml" />
+    <description>Biography and CV</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Biography and CV</title>
+      <link>http://lesscrime.info/bio/</link>
+    </image>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crime and justice chart of the week | Matt Ashby</title>
+    <link>http://lesscrime.info/category/crime-and-justice-chart-of-the-week/</link>
+      <atom:link href="http://lesscrime.info/category/crime-and-justice-chart-of-the-week/index.xml" rel="self" type="application/rss+xml" />
+    <description>Crime and justice chart of the week</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Crime and justice chart of the week</title>
+      <link>http://lesscrime.info/category/crime-and-justice-chart-of-the-week/</link>
+    </image>
+    
+    <item>
+      <title>Increases in crime-related demand are hitting some forces harder than others</title>
+      <link>http://lesscrime.info/post/crime-pressure-force/</link>
+      <pubDate>Mon, 19 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/crime-pressure-force/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;One way to understand crime-related demands on police forces is to track ‘crime pressure’, a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. Over the past decade years, this measure has risen in every police force in England and Wales, and has doubled in many places.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/crime-pressure-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-pressure-force.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-pressure-force.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;Office for National Statistics, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;hjbbsainvc&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#hjbbsainvc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hjbbsainvc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hjbbsainvc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hjbbsainvc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hjbbsainvc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hjbbsainvc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hjbbsainvc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hjbbsainvc .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjbbsainvc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjbbsainvc .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#hjbbsainvc .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#hjbbsainvc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hjbbsainvc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#hjbbsainvc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjbbsainvc .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjbbsainvc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hjbbsainvc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hjbbsainvc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hjbbsainvc .gt_left {
+  text-align: left;
+}
+
+#hjbbsainvc .gt_center {
+  text-align: center;
+}
+
+#hjbbsainvc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hjbbsainvc .gt_font_normal {
+  font-weight: normal;
+}
+
+#hjbbsainvc .gt_font_bold {
+  font-weight: bold;
+}
+
+#hjbbsainvc .gt_font_italic {
+  font-style: italic;
+}
+
+#hjbbsainvc .gt_super {
+  font-size: 65%;
+}
+
+#hjbbsainvc .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;13&#34; class=&#34;gt_heading gt_title gt_font_normal gt_bottom_border&#34; style&gt;Crime severity per officer&lt;/th&gt;
+    &lt;/tr&gt;
+    
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;name&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2010&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2011&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2012&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2013&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2014&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2015&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2016&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2017&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2018&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2019&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2020&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;change, 2010–20&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dorset&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;11.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;13.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;13.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;103%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Suffolk&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;S Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;130%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Lincs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;147%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Hants&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;155%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Northants&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;79%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;73%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Notts&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Mids&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;113%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Essex&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;130%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Humberside&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;71%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Kent&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;157%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Derbys&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Staffs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;83%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Sussex&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;129%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Lancs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;140%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Leics&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;82%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Avon &amp;amp; Som&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;80%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cleveland&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;153%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Durham&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;148%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Beds&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;61%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Warwicks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;69%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cambs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Mercia&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;95%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;England &amp;amp; Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;78%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Norfolk&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;147%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Wiltshire&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Gwent&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cheshire&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;83%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Northumb&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;179%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;N Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;121%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Thames V&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;36%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Gloucs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;69%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Herts&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;67%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Surrey&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;72%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dvn &amp;amp; Corn&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;90%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Merseyside&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;S Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;47%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;N Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;73%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Met Police&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;30%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cumbria&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;124%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dyfed-Powys&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;118%&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;The Office for National Statistics (ONS) publishes &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;estimates of the severity of different types of police-recorded crime&lt;/a&gt;, derived from the average sentence imposed in court for each type of offence. In the same dataset, ONS publishes an overall estimate of the severity of crime per capita in each police force area. To convert this to an estimate of crime severity per officer (referred to above as &lt;em&gt;crime pressure&lt;/em&gt;), severity per capita was multiplied by police force area population&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and then divided by the &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;number of full-time equivalent police officers in each force&lt;/a&gt;. Crime pressure is therefore defined as the severity of police-recorded crime per full-time equivalent officer.&lt;/p&gt;
+&lt;p&gt;Estimates of the severity of different crimes are inherently limited, although they are likely to be more informative for some purposes than simply counting crimes (which implicitly assumes all crimes are of equal importance). For a further discussion of this, see &lt;a href=&#34;http://lesscrime.info/publication/measuring_crime_harm/&#34;&gt;&lt;em&gt;Comparing methods for measuring crime harm/severity&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Police force area populations were calculated by aggregating &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;mid-year population estimates for local authorities&lt;/a&gt; to police force areas using the ONS open geography portal &lt;a href=&#34;https://geoportal.statistics.gov.uk/datasets/local-authority-district-to-community-safety-partnerships-to-police-force-areas-december-2018-lookup-in-england-and-wales&#34;&gt;local authority to police force lookup table&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police cuts still being felt in most forces</title>
+      <link>http://lesscrime.info/post/police-numbers/</link>
+      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The government this week announced that almost 9,000 police officers had been recruited in England and Wales as part of a plan to increase police numbers by 20,000 by 2023. But in many parts of the country there are still fewer officers than a decade ago – six forces have lost more than a fifth of officers compared to 2010.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-uplift-2021_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-uplift-2021.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-uplift-2021.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;Home Office, 2021&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Typical rape investigation times doubled between 2012 and 2018</title>
+      <link>http://lesscrime.info/post/rape-prosecution-times/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/rape-prosecution-times/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The time taken for a typical rape case to be prosecuted in court increased only slightly from 2012 to 2018, but the time taken for police to investigate rapes and the CPS to decide whether to charge a suspect has more than doubled. The government has not published updated data since March 2019.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/rape-prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There are several potential reasons for this increase, which could explain it
+either individually or in combination:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cuts to police resources may have led to longer investigation times.&lt;/li&gt;
+&lt;li&gt;Cuts to CPS resources may have led to longer delays in making the decision
+whether or not to charge the suspect.&lt;/li&gt;
+&lt;li&gt;Attempts to increase the proportion of rapes reported to police may mean
+more rape investigations need extended inquiries.&lt;/li&gt;
+&lt;li&gt;Developments in investigative techniques (e.g. analysis of mobile-phone
+data) or changes in offence circumstances may mean investigations take
+longer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;../rape-prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/rape-prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: In serious cases, justice is often slow</title>
+      <link>http://lesscrime.info/post/prosecution-times/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/prosecution-times/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Some serious crime investigations are surprisingly quick: half of murder prosecutions involve a suspect being charged in five days or fewer. But for many serious crimes, justice is often slow: half of fraud prosecutions don’t conclude until almost two years after the crime occurred.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prosecution-times_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prosecution-times.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prosecution-times.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-court-statistics-quarterly-july-to-september-2019&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Some police forces are much more likely to prosecute violence</title>
+      <link>http://lesscrime.info/post/violence-prosecutions/</link>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/violence-prosecutions/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Once police have enough evidence to prosecute an offender, they or prosecutors must decide whether to send the case to court or deal with it informally. For violent crimes, the likelihood of a case going to court varies substantially across police forces, with some prosecuting over 80% of cases and others diverting two thirds to other resolutions such as paying compensation.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/violence-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../violence-prosecutions.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/violence-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-recorded-crime-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: No big changes in sentences after new police-assaults law</title>
+      <link>http://lesscrime.info/post/police-assaults/</link>
+      <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-assaults/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The government recently doubled the maximum sentence for assaulting a police officer to 12 months in prison, introducing a new offence of assaulting an emergency worker. So far, this change is associated with only small increases in sentences handed down in court.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-assaults_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-assaults.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-assaults.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-september-2019&#34;&gt;Ministry of Justice, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;To test whether there were any differences between imprisonment probability or sentence length before and after the new law was introduced, I ran separate ARIMA regression models (using the &lt;code&gt;auto.arima()&lt;/code&gt; function in the &lt;a href=&#34;http://pkg.robjhyndman.com/forecast&#34;&gt;&lt;code&gt;forecast&lt;/code&gt;&lt;/a&gt; R package) on the monthly probability of being imprisoned for assaulting police and on the average length of prison sentences. Each model included a variable that was set to false for months before the new law was introduced and true for months afterwards. If these variables were statistically significant (i.e. &lt;span class=&#34;math inline&#34;&gt;\(p &amp;lt; 0.05\)&lt;/span&gt;) we can say there is a difference in either imprisonment probability or imprisonment length after the law was introduced.&lt;/p&gt;
+&lt;p&gt;The first model assessed whether the new law was associated with any change in the probability of being imprisoned on conviction for assaulting a police officer. This table shows that there was a small, but statistically significant, increase in the probability of being imprisoned after the new law came into effect.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;standard error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.135&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.005&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;after new law passed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.026&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.007&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The second model assessed whether the new law was associated with any change in the number of days imprisonment that people were sentenced to, if they were sent to prison for assaulting police. This table shows there was another small, but again statistically significant, increase in sentence length.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;standard error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;after new law passed&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;&amp;lt;0.001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Both these models are limited, because there are no comparison groups against which to compare the differences observed. This means it is not possible to estimate how likely it is that any differences are due to the new law or to other factors (such as long-term trends in sentencing practice) that were happening at the same time.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: England &amp; Wales has highest per-capita prison population in Western Europe</title>
+      <link>http://lesscrime.info/post/prison-europe/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/prison-europe/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;While Turkey has Europe’s highest imprisonment rate, England and Wales locks up more people per 100,000 population than any other western European country.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prison-europe_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prison-europe.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-europe.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://ec.europa.eu/eurostat/data/database&#34;&gt;Eurostat, 2019&lt;/a&gt; database tables &lt;code&gt;crim_pris_cap&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: 73% of victim-based crime is not reported to police</title>
+      <link>http://lesscrime.info/post/crime-reporting/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/crime-reporting/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Of the 10.9 million crimes which individual adults aged 16 years and over experienced in the past year, only 27% were reported to the authorities. Reporting rates vary substantially, with more-serious crimes more likely to be reported. Fraud makes up almost half of victim-based crime but is particularly unlikely to be reported, dragging down the overall average.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/crime-reporting_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-reporting.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-reporting.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesannualtrendanddemographictables&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Stop and search has fallen, arrests from searches less so</title>
+      <link>http://lesscrime.info/post/search-arrests/</link>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/search-arrests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Police can search people they suspect of having prohibited items such as drugs or weapons. Since 2011, searches have decreased by 70%. Only 12% of searches lead to arrest, but this is increasing – total arrests from searches have decreased only 38% since 2011, suggesting police are getting better at targeting offenders.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/search-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../search-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/search-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Homicides haven&#39;t only increased in Britain</title>
+      <link>http://lesscrime.info/post/homicide-europe/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/homicide-europe/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The homicide-rate increase over the past five years hasn’t been unique to England and Wales, with murders also increasing in France, Germany and Sweden after continent-wide decreases since the 1990s. The UK-wide homicide rate remains about average for European countries.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;
+## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-europe_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-europe.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-europe.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://ec.europa.eu/eurostat/data/database&#34;&gt;Eurostat, 2019&lt;/a&gt; database tables &lt;code&gt;crim_off_cat&lt;/code&gt; and &lt;code&gt;crim_gen&lt;/code&gt; with population data from table &lt;code&gt;demo_pjan&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police crackdowns catch few drink drivers</title>
+      <link>http://lesscrime.info/post/breath-tests/</link>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/breath-tests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Police routinely breathalyse drivers they suspect have been drinking, but also carry out an annual Christmas crackdown, breath-testing more than three times as many drivers in December as in other months. However, only about 1.6% of these extra tests catch a drink driver, compared to about 14% of routine tests.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/breath-tests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../breath-tests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/breath-tests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2019&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;‘Extra’ tests associated with the annual Chirstmas crackdown on drink driving were calculated as the mean number of tests conducted in December each year minus the mean number of tests conducted in other months.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: 10 times more people die in police collisions than in shootings</title>
+      <link>http://lesscrime.info/post/custody-deaths/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/custody-deaths/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;About 100 people a year die following contact with police in England and Wales. Public debate has often focused on deaths in custody or police shootings, but people are much more likely to die in collisions with police vehicles or in suicides following release from custody.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/custody-deaths_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../custody-deaths.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/custody-deaths.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.policeconduct.gov.uk/research-and-learning/statistics/annual-deaths-during-or-following-police-contact-statistics&#34;&gt;Independent Office for Police Conduct, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: What offences are people most often prosecuted for?</title>
+      <link>http://lesscrime.info/post/common-prosecutions/</link>
+      <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/common-prosecutions/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/common-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../common-prosecutions.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/common-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: One in ten of us is on the National DNA Database</title>
+      <link>http://lesscrime.info/post/dna-database/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/dna-database/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;About 5.3 million people in England and Wales (about 10% of the population aged 10 or over) have their DNA stored on the National DNA Database, one of the largest DNA databases in the world. Police routinely collect DNA from arrested suspects, and it can be stored (often permanently) if they are convicted of almost any offence.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/dna-database_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../dna-database.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/dna-database.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/national-dna-database-statistics&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The estimated proportion of people on the National DNA Database attempts to take
+account of the presence of duplicate records on the database by reducing the
+number of samples in each category by 14.1%, the estimated proportion of records
+that are duplicates. See the data source for more information.&lt;/p&gt;
+&lt;p&gt;Since the National DNA Database does not have an equivalent ethnicity category
+to the ‘Mixed/multiple ethnic group’ categories in population data, people in
+these groups have been categorised on this chart as being of Black, Asian or
+other ethnicity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: More than 1,400 football arrests each season</title>
+      <link>http://lesscrime.info/post/football-arrests/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/football-arrests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Over the past five years, more than 1,400 people have been arrested on average each season for football-related offences across the top five English divisions, with incidents reported at over 1,000 different matches. Most arrests are for violence, and about half are for offences outside the grounds themselves. More fans are arrested at away games, even though far fewer fans typically travel than attend home games. However, the rate of arrests at football matches overall is low, at about 3 arrests per 100,000 match spectators.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/football-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../football-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/football-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/football-related-arrests-and-banning-orders-england-and-wales-2018-to-2019-season&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Seizures of the most harmful drugs at UK borders are falling</title>
+      <link>http://lesscrime.info/post/drug-seizures/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/drug-seizures/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Border Force is responsible for seizing drugs at ports, airports and international parcels depots. However, reports by the Chief Inspector of Borders and Immigration suggest drug-detection efforts are hindered by understaffing, lack of training and focus on conducting passport checks on travellers. Most drug seizures are of small amounts: only 19% of seizures involve more than one kilogram of drugs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/drug-seizures_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-seizures.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/drug-seizures.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/seizures-of-drugs-in-england-and-wales-financial-year-ending-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For estimates of the relative harmfulness of different controlled drugs, see
+‘&lt;a href=&#34;https://doi.org/10.1016/S0140-6736(10)61462-6&#34;&gt;Drug harms in the UK: a multicriteria decision analysis&lt;/a&gt;’ by Nutt et al.&lt;/p&gt;
+&lt;p&gt;Reports on Border Force can be found on the website of the &lt;a href=&#34;https://www.gov.uk/government/organisations/independent-chief-inspector-of-borders-and-immigration&#34;&gt;Independent Chief Inspector of Borders and Immigration&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: When police use force, they rarely cause injury</title>
+      <link>http://lesscrime.info/post/use-of-force/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/use-of-force/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Police reported using force on over 300,000 occasions last year, or about 850 each day, with most incidents involving either handcuffing or other restraint. Almost all force used by police resulted in no injury to the person force was used against. When officers did injure people, the injuries were usually minor. However, since these are new statistics there is likely to be some under-reporting, especially of minor incidents.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/use-of-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../use-of-force.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/use-of-force.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-use-of-force-statistics-england-and-wales-april-2017-to-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Most prison sentences are for violent crimes</title>
+      <link>http://lesscrime.info/post/prisoner-types/</link>
+      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/prisoner-types/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;About 69,000 adults (more than 95% of them men) are currently serving prison sentences, most of them for violent or sexual offences. However, over 10,000 adults are serving sentences for drug offences, more than for all types of theft combined.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prisoner-types_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prisoner-types.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prisoner-types.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/offender-management-statistics-quarterly&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Young offenders are more likely to re-offend than adults</title>
+      <link>http://lesscrime.info/post/reoffending-rates/</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/reoffending-rates/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Most people convicted of a crime will not be convicted or cautioned for another offence within 12 months, although young offenders are more likely to offend again than adults. Most re-offending is by a small number of prolific offenders who frequently pass through the criminal justice system – more than 60% of people released from short prison sentences will reoffend within a year.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/reoffending-rates_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../reoffending-rates.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/reoffending-rates.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/proven-reoffending-statistics-july-to-september-2017&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Sentences for knife carrying are increasing, but not for teens</title>
+      <link>http://lesscrime.info/post/knife-sentencing/</link>
+      <pubDate>Mon, 28 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/knife-sentencing/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Sentences for carrying a bladed or pointed article have become more severe for adults over the past decade, with 41% of men now going to prison on conviction. For younger offenders, the picture is different: half of girls and a third of boys caught with a knife receive no penalty – a proportion that is largely unchanged since 2008 – while fewer than one in ten receive a custodial sentence.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/knife-sentencing_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../knife-sentencing.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/knife-sentencing.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Much of the homicide drop has already been erased</title>
+      <link>http://lesscrime.info/post/homicide-trends/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/homicide-trends/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The rapid decrease in the homicide (murder, manslaughter and infanticide) rate in England and Wales between 2000 and 2014 was unprecedented over the previous century, but a third of that decrease has already been reversed.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-trends_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-trends.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-trends.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data sources: &lt;a href=&#34;https://www.gov.uk/government/statistics/historical-crime-data&#34;&gt;Homicide counts 1898 to 2001/02&lt;/a&gt;,
+&lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Homicide counts 2001/02 onwards&lt;/a&gt;, &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;Population estimates 1838 to 2018&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;This chart uses police-recorded homicide offences because that time series
+extends further back in time than the &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018#how-is-homicide-defined-and-measured&#34;&gt;Home Office Homicide Index&lt;/a&gt;, the main
+alternative source of homicide data. The main disadvantage of this approach is
+that crimes that are initially recorded homicides in police data but are
+subsequently discovered not to be will not be included in the Homicide Index
+data but will be included in police-recorded counts.&lt;/p&gt;
+&lt;p&gt;Victims of the Hillsborough disaster are recorded in ONS data as manslaughter
+cases in the year ending March 2017 because that was when the revised inquest
+verdicts were returned. However, in the chart above these cases are included in
+the rate for 1989, when the deaths occurred.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police are arresting half as many people as a decade ago</title>
+      <link>http://lesscrime.info/post/police-arrests/</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-arrests/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;A combination of legal changes and decreases in many common types of crime, together with closures of custody suites due to budget cuts, mean police are making about 760,000 fewer arrests per year now, compared to a decade ago. The number of children arrested has decreased fastest, potentially driven by recognition of the negative consequences of criminalising young people.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-arrests_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-arrests.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/cj-charts/blob/master/content/police-arrests.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-powers-and-procedures-england-and-wales-year-ending-31-march-2018&#34;&gt;Home Office, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Online crime now the most-likely threat to many businesses</title>
+      <link>http://lesscrime.info/post/business-crime/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/business-crime/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Online crime (including hacking, phishing and virus attacks) is now experienced by more businesses than any other type across sectors as varied as manufacturing and communications. But in the sectors most-likely to experience a crime (retail, accomodation and entertainment), traditional offences such as theft are still more likely. The data come from the government’s Commercial Victimisation Survey, which each year asks about crime against selected business types.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/business-crime_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../business-crime.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/business-crime.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/crime-against-businesses-findings-from-the-2018-commercial-victimisation-survey&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Most people think the justice system is fair, fewer say it&#39;s effective</title>
+      <link>http://lesscrime.info/post/fairness-perception/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/fairness-perception/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Every month, the Crime Survey for England and Wales asks a representative sample of adults about their perceptions of the criminal justice system. Across age, education, ethnic and employment groups, most people believe the system as a whole is fair, but only about half say it is effective.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/fairness-perception_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../fairness-perception.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/fairness-perception.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/perceptionscriminaljusticesystemcsewopendatatable&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Drug use was falling, but that seems to be changing</title>
+      <link>http://lesscrime.info/post/drug-use/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/drug-use/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Self-reported drug use has fallen for most of the past 20 years according to the Crime Survey for England and Wales, but in the past seven years the use of cannabis, cocaine and ecstasy has increased substantially, particularly among people aged 16–24. However, drug use is still lower now than it was at the turn of the millenium, with about 10% of adults saying they’ve used an illegal drug in the past year.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/drug-use_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../drug-use.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/drug-use.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/collections/drug-misuse-declared&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Over 10 years, basic police pay has fallen by 22% in real terms</title>
+      <link>http://lesscrime.info/post/police-pay/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-pay/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;A combination of government-led changes to pay mean a police constable who has just completed initial training in England and Wales is paid about £7,200 less now than they would have been in 2010, once inflation is taken into account. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-pay_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-pay.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-pay.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, Home Office&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pay for years before 2019 has been adjusted for inflation using the &lt;a href=&#34;https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23&#34;&gt;Office for
+National Statistics preferred CPIH measure&lt;/a&gt;.
+For 2019, second-quarter inflation estimates have been used.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Homicide methods are changing</title>
+      <link>http://lesscrime.info/post/homicide-methods/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/homicide-methods/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Homicide (murder, manslaughter and infanticide) in England and Wales is rare, with about 12 homicides per million people last year, a similar rate to a decade ago. But homicide methods are changing: the rise in knife murders is well known, but there are other changes, too.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/homicide-methods_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../homicide-methods.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/homicide-methods.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/homicideinenglandandwales/yearendingmarch2018&#34;&gt;Office for National Statistics, 2019&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The homicide counts here exclude victims of the Hillsborough disaster, who died
+in 1989 but were recorded as manslaughter cases in 2017, and victims of the
+Manchester Arena bombing in 2018.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: For most offences prison is the exception, not the rule</title>
+      <link>http://lesscrime.info/post/prison-likelihood/</link>
+      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/prison-likelihood/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Of the 663,000 non-motoring offences for which people were sentenced in 2018, only about 11% resulted in a prison sentence. Some convictions, like rape and robbery, almost always result in a prison sentence (at least for adult offenders), while other offences very rarely result in imprisonment.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/prison-likelihood_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../prison-likelihood.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/prison-likelihood.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Almost 7 million adults have been victims of partner abuse</title>
+      <link>http://lesscrime.info/post/partner-abuse/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/partner-abuse/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Among the 42 million adults in England and Wales aged between 16 and 74, 1.3 million have been sexually assaulted by a current or former partner, 4.3 million subjected to non-sexual assault and 2.3 million have been stalked. In every category, at least twice as many women as men have been victimised.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/partner-abuse_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../partner-abuse.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/partner-abuse.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/articles/domesticabusefindingsfromthecrimesurveyforenglandandwales/yearendingmarch2018&#34;&gt;Crime Survey for England and Wales, 2018&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart: Police cuts haven&#39;t hit everywhere equally</title>
+      <link>http://lesscrime.info/post/police-numbers/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-numbers/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;There are almost 22,000 fewer police officers in England and Wales than in 2010, but numbers haven’t dropped equally across police forces. One force (Surrey) has the same number of officers now as 10 years ago, while officer numbers in forces like Humberside are increasing after steep cuts. But in almost half of forces, numbers are still falling despite a decade of often above-average cuts already.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-numbers_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-numbers.png&#34;&gt;larger image&lt;/a&gt; | &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-numbers.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/police-workforce-open-data-tables&#34;&gt;Home Office, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

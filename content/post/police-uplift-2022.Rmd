@@ -1,0 +1,374 @@
+---
+title: "Chart: Cuts to officer numbers still being felt in some forces"
+author: Matt Ashby
+date: '2022-07-27'
+slug: "police-uplift-2022"
+categories: ["Crime and justice chart of the week"]
+tags:
+  - police
+  - trends
+  - criminal justice
+---
+
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-uplift-2022",
+	title = "Cuts to officer numbers still being felt in some forces",
+	subtitle = "The government plans to reverse their previous police cuts by recruiting 20,000 extra police officers between 2019 and 2023. But the funding for those officers isn't spread evenly, meaning 18 forces now have more officers than in 2010 while eight forces still have at least 10% fewer officers than 12 years ago.",
+  title2 = "Most police forces have cut staff from support roles",
+  subtitle2 = "Police staff do a variety of important roles in policing, from answering emergency calls and collecting forensic evidence to analysing intelligence information and managing detainees in custody. When forced to make cuts in the 2010s, most forces chose to reduce the number of support staff to maintain the number of police officers. The legacy of those cuts is still being felt: only eight forces have as many police staff now as in 2010.",
+	source_url = "https://www.gov.uk/government/statistics/police-workforce-open-data-tables",
+	source_title = "Home Office, 2022"
+)
+```
+
+```{r load packages and helper, cache=FALSE}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+library("readODS")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+  
+  # Get new data from the Home Office website
+  new_data_file <- tempfile(fileext = ".ods")
+  GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1093587/open-data-table-police-workforce-270722.ods", write_disk(new_data_file))
+  tidy_data <- new_data_file %>% 
+    read_ods(sheet = "Data", na = "N/A") %>% 
+    as_tibble() %>% 
+    janitor::clean_names() %>% 
+    filter(!is.na(geo_code)) %>% 
+    rename(date = as_at_31_march) %>% 
+    mutate(
+      date = ym(str_glue("{date}-03")),
+      worker_type = str_to_lower(worker_type)
+    ) %>% 
+    replace_na(list(total_fte = 0))
+  
+  # save tidy data
+  write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+  
+} else {
+  
+  # load tidy data
+  tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+  
+}
+```
+
+
+```{r prepare plot data}
+common_data <- tidy_data %>% 
+	mutate(
+		force_name = str_replace(force_name, "^North ", "N "),
+		force_name = str_replace(force_name, "^South ", "S "),
+		force_name = str_replace(force_name, "^West ", "W "),
+		force_name = str_replace(force_name, " Yorkshire$", " Yorks"),
+		force_name = recode(force_name, 
+  		"Avon & Somerset" = "Avon & Som",
+			"Bedfordshire" = "Beds",
+			"Cambridgeshire" = "Cambs",
+			"Derbyshire" = "Derbys",
+			"Devon & Cornwall" = "Dvn & Corn",
+			"Gloucestershire" = "Gloucs",
+			"Greater Manchester" = "G Mnchstr",
+			"Hampshire" = "Hants",
+	  	"Hertfordshire" = "Herts",
+			"Lancashire" = "Lancs",
+			"Leicestershire" = "Leics",
+			"Lincolnshire" = "Lincs",
+  		"Metropolitan Police" = "Met Police",
+  		"Northamptonshire" = "Northants",
+			"Nottinghamshire" = "Notts",
+			"Staffordshire" = "Staffs",
+			"Thames Valley" = "Thames V",
+			"Warwickshire" = "Warwicks",
+			"W Midlands" = "W Mids"
+  	)
+	)
+
+chart_data <- common_data %>% 
+	filter(
+	  date >= ym("2010-03"), 
+	  force_name != "London, City of",
+	  worker_type == "police officer"
+	) %>% 
+  count(date, force_name, wt = total_fte, name = "officers") %>% 
+	group_by(force_name) %>% 
+	mutate(
+		perc_change = (officers - first(officers)) / first(officers),
+		diff_perc_change = perc_change - lag(perc_change),
+		trajectory = sum(nth(diff_perc_change, -3), nth(diff_perc_change, -2), 
+										 nth(diff_perc_change, -1)),
+		force_group = fct_case_when(
+		  last(perc_change) > 0 ~ "more\nofficers now",
+		  last(perc_change) > -0.05 ~ "0–5% fewer\nofficers now",
+			TRUE ~ ">5% fewer\nofficers now"
+		),
+		last = if_else(date == last(date), TRUE, NA),
+		label = if_else(
+		  last == TRUE, 
+		  scales::number(
+		    perc_change, 
+		    accuracy = 0.1, 
+		    scale = 100, 
+		    suffix = "%", 
+		    style_negative = "minus", 
+		    style_positive = "plus"
+		  ), 
+		  NA_character_
+		),
+		label_y = if_else(last(perc_change) > 0, last(perc_change), 0)
+	) %>% 
+	ungroup() %>% 
+	# calculate average change for each year for England and Wales
+	group_by(date) %>% 
+	mutate(ew_officers = sum(officers)) %>% 
+	ungroup() %>% 
+	mutate(
+		ew_perc_change = (ew_officers - first(ew_officers)) / first(ew_officers)
+	) %>% 
+	select(-ew_officers) %>% 
+	ungroup()
+
+forces_in_order <- chart_data %>% 
+	filter(date == last(date)) %>% 
+	arrange(desc(perc_change)) %>% 
+	pull("force_name")
+
+chart_data <- chart_data %>% 
+	mutate(force_name = fct_relevel(force_name, forces_in_order))
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+	ggplot(aes(
+	  x = date, 
+	  y = perc_change, 
+	  ymin = 0, 
+	  ymax = perc_change, 
+	  colour = force_group, 
+	  fill = force_group
+	)) + 
+	geom_ribbon(colour = NA, alpha = 0.1) +
+	geom_line(aes(y = ew_perc_change, 
+								linetype = "England & Wales\naverage change"), 
+						colour = "grey50") + 
+	geom_line(size = 0.75) + 
+	geom_point(aes(shape = last), na.rm = TRUE, show.legend = FALSE) +
+	geom_text(
+	  aes(y = label_y, label = label), 
+	  size = elements$label_text_size * (7 / 9), 
+	  hjust = "right", 
+	  vjust = 0,
+	  na.rm = TRUE, 
+	  show.legend = FALSE
+	) + 
+	scale_x_continuous(breaks = c(2010, 2019), labels = c("'10", "'19")) + 
+	scale_y_continuous(
+		labels = scales::label_percent(accuracy = 1, style_negative = "minus", style_positive = "plus")
+	) + 
+	scale_colour_manual(
+		aesthetics = c("colour", "fill"),
+		values = unname(
+		  ucl_colours_list[c("Mid Blue", "Orange", "Bright Red")]
+		), 
+		guide = guide_legend(ncol = 1), 
+		name = "compared to 2010 …"
+	) +
+	scale_linetype_manual(values = "11") +
+	coord_cartesian(clip = "off") +
+	facet_wrap(vars(force_name)) +
+  labs(
+    title = chart_details$title,
+    subtitle = chart_details$subtitle,
+    x = NULL,
+    y = "change in number of police officers relative to 2010",
+    linetype = NULL
+  ) +
+	theme_cjcharts() +
+	theme(
+		axis.text = element_text(size = 7),
+		legend.key.width = unit(18, "points"),
+		legend.text = element_text(margin = margin(t = 4, b = 4)),
+		legend.title.align = 0,
+		legend.position = "right",
+		legend.margin = margin(t = 4, r = 0, b = 4, l = 0),
+		legend.box.margin = margin(),
+		panel.grid.minor.y = element_blank(),
+		panel.spacing = unit(0.4, "lines"),
+		plot.subtitle = ggtext::element_textbox_simple(margin = margin(t = 6, b = 6)),
+		strip.text = element_text(size = 8),
+		strip.background = element_blank()
+	)
+
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE, cache=FALSE, fig.asp=1}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+
+```{r build-second-plot}
+chart2_data <- common_data %>% 
+	filter(
+	  date >= ym("2010-03"), 
+	  force_name != "London, City of",
+	  worker_type %in% c("police staff", "police community support officer", "designated officer")
+	) %>% 
+  count(date, force_name, wt = total_fte, name = "officers") %>% 
+	group_by(force_name) %>% 
+	mutate(
+		perc_change = (officers - first(officers)) / first(officers),
+		diff_perc_change = perc_change - lag(perc_change),
+		trajectory = sum(nth(diff_perc_change, -3), nth(diff_perc_change, -2), 
+										 nth(diff_perc_change, -1)),
+		force_group = fct_case_when(
+		  last(perc_change) >= 0 ~ "more\nstaff now",
+		  last(perc_change) > -0.05 ~ "0–5% fewer\nstaff now",
+			TRUE ~ ">5% fewer\nstaff now"
+		),
+		last = if_else(date == last(date), TRUE, NA),
+		label = if_else(
+		  last == TRUE, 
+		  scales::number(
+		    perc_change, 
+		    accuracy = 0.1, 
+		    scale = 100, 
+		    suffix = "%", 
+		    style_negative = "minus", 
+		    style_positive = "plus"
+		  ), 
+		  NA_character_
+		),
+		label_y = if_else(last(perc_change) > 0, last(perc_change), 0)
+	) %>% 
+	ungroup() %>% 
+	# calculate average change for each year for England and Wales
+	group_by(date) %>% 
+	mutate(ew_officers = sum(officers)) %>% 
+	ungroup() %>% 
+	mutate(
+		ew_perc_change = (ew_officers - first(ew_officers)) / first(ew_officers)
+	) %>% 
+	select(-ew_officers) %>% 
+	ungroup()
+
+forces_in_order2 <- chart2_data %>% 
+	filter(date == last(date)) %>% 
+	arrange(desc(perc_change)) %>% 
+	pull("force_name")
+
+chart2_data <- chart2_data %>% 
+	mutate(
+	  force_name = fct_relevel(force_name, forces_in_order2),
+	  force_name = fct_recode(force_name, "Lincs§" = "Lincs", "Cleveland†" = "Cleveland")
+	)
+
+chart2 <- chart2_data %>% 
+	ggplot(aes(
+	  x = date, 
+	  y = perc_change, 
+	  ymin = 0, 
+	  ymax = perc_change, 
+	  colour = force_group, 
+	  fill = force_group
+	)) + 
+	geom_ribbon(colour = NA, alpha = 0.1) +
+	geom_line(aes(y = ew_perc_change, 
+								linetype = "England & Wales\naverage change"), 
+						colour = "grey50") + 
+	geom_line(size = 0.75) + 
+	geom_point(aes(shape = last), na.rm = TRUE, show.legend = FALSE) +
+	geom_text(
+	  aes(y = label_y, label = label), 
+	  size = elements$label_text_size * (7 / 9), 
+	  hjust = "right", 
+	  vjust = 0,
+	  na.rm = TRUE, 
+	  show.legend = FALSE
+	) + 
+	scale_x_continuous(breaks = c(2010, 2019), labels = c("'10", "'19")) + 
+	scale_y_continuous(
+		labels = scales::label_percent(accuracy = 1, style_negative = "minus", style_positive = "plus")
+	) + 
+	scale_colour_manual(
+		aesthetics = c("colour", "fill"),
+		values = unname(
+		  ucl_colours_list[c("Mid Blue", "Orange", "Bright Red")]
+		), 
+		guide = guide_legend(ncol = 1), 
+		name = "compared to 2010 …"
+	) +
+	scale_linetype_manual(values = "11") +
+	coord_cartesian(clip = "off") +
+	facet_wrap(vars(force_name)) +
+  labs(
+    title = chart_details$title2,
+    subtitle = chart_details$subtitle2,
+    caption = "\\* Includes community support officers and designated officers. † Cleveland outsourced most police staff from 2011 to 2020. § Lincolnshire outsourced most police staff from 2012 to 2022.",
+    x = NULL,
+    y = "change in number of police staff* relative to 2010",
+    linetype = NULL
+  ) +
+	theme_cjcharts() +
+	theme(
+		axis.text = element_text(size = 7),
+		legend.key.width = unit(18, "points"),
+		legend.text = element_text(margin = margin(t = 4, b = 4)),
+		legend.title.align = 0,
+		legend.position = "right",
+		legend.margin = margin(t = 4, r = 0, b = 4, l = 0),
+		legend.box.margin = margin(),
+		panel.grid.minor.y = element_blank(),
+		panel.spacing = unit(0.4, "lines"),
+		plot.caption = ggtext::element_textbox_simple(),
+		plot.caption.position = "plot",
+		plot.subtitle = ggtext::element_textbox_simple(margin = margin(t = 6, b = 6)),
+		strip.text = element_text(size = 8),
+		strip.background = element_blank()
+	)
+
+```
+
+The situation is different for police staff. `r chart_details$subtitle2`
+
+```{r display plot 2, echo=FALSE, include=TRUE, cache=FALSE, fig.asp=1}
+add_logo(chart2 + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`-staff.png)
+
+[annotated R code to produce these charts](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export charts, cache=FALSE}
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 600 / 72, units = "in", bg = "white"
+)
+
+ggsave(
+	filename = paste0(chart_details$id, "-staff.png"), 
+	plot = add_logo(chart2, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 600 / 72, units = "in", bg = "white"
+)
+```
+

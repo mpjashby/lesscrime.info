@@ -107,7 +107,7 @@ add_logo <- function (chart, chart_source, chart_id) {
 															 hjust = 0)
 
 	ggpubr::ggarrange(
-		ggplotGrob(chart),
+		ggplot2::ggplotGrob(chart),
 		ggpubr::ggarrange(
 			scs_logo,
 			grid::textGrob(

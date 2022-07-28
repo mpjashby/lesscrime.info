@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>K J Bowers | Matt Ashby</title>
+    <link>http://lesscrime.info/author/k-j-bowers/</link>
+      <atom:link href="http://lesscrime.info/author/k-j-bowers/index.xml" rel="self" type="application/rss+xml" />
+    <description>K J Bowers</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>K J Bowers</title>
+      <link>http://lesscrime.info/author/k-j-bowers/</link>
+    </image>
+    
+    <item>
+      <title>Concentrations of railway metal theft and the locations of scrap-metal dealers</title>
+      <link>http://lesscrime.info/publication/scrap_metal_dealers/</link>
+      <pubDate>Wed, 30 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/scrap_metal_dealers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The when and where of an emerging crime type: the example of metal theft from the railway network of Great Britain</title>
+      <link>http://lesscrime.info/publication/metal_theft_when_and_where/</link>
+      <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/publication/metal_theft_when_and_where/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

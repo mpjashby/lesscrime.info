@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reporting | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/reporting/</link>
+      <atom:link href="http://lesscrime.info/tag/reporting/index.xml" rel="self" type="application/rss+xml" />
+    <description>reporting</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 10 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>reporting</title>
+      <link>http://lesscrime.info/tag/reporting/</link>
+    </image>
+    
+    <item>
+      <title>Chart: 73% of victim-based crime is not reported to police</title>
+      <link>http://lesscrime.info/post/crime-reporting/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/crime-reporting/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Of the 10.9 million crimes which individual adults aged 16 years and over experienced in the past year, only 27% were reported to the authorities. Reporting rates vary substantially, with more-serious crimes more likely to be reported. Fraud makes up almost half of victim-based crime but is particularly unlikely to be reported, dragging down the overall average.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/crime-reporting_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-reporting.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-reporting.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesannualtrendanddemographictables&#34;&gt;Crime Survey for England and Wales, 2019&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

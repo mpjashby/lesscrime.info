@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>crime severity | Matt Ashby</title>
+    <link>http://lesscrime.info/tag/crime-severity/</link>
+      <atom:link href="http://lesscrime.info/tag/crime-severity/index.xml" rel="self" type="application/rss+xml" />
+    <description>crime severity</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>crime severity</title>
+      <link>http://lesscrime.info/tag/crime-severity/</link>
+    </image>
+    
+    <item>
+      <title>Increases in crime-related demand are hitting some forces harder than others</title>
+      <link>http://lesscrime.info/post/crime-pressure-force/</link>
+      <pubDate>Mon, 19 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/crime-pressure-force/</guid>
+      <description>
+&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;One way to understand crime-related demands on police forces is to track ‘crime pressure’, a measure of investigative workload representing the number of crimes reported to a force per officer, weighted according to Office for National Statistics estimates of the relative severity of different crimes. Over the past decade years, this measure has risen in every police force in England and Wales, and has doubled in many places.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/crime-pressure-force_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../crime-pressure-force.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-pressure-force.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;Office for National Statistics, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;hjbbsainvc&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#hjbbsainvc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hjbbsainvc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hjbbsainvc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hjbbsainvc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hjbbsainvc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hjbbsainvc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hjbbsainvc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hjbbsainvc .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjbbsainvc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hjbbsainvc .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#hjbbsainvc .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#hjbbsainvc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hjbbsainvc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#hjbbsainvc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjbbsainvc .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hjbbsainvc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hjbbsainvc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hjbbsainvc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hjbbsainvc .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hjbbsainvc .gt_left {
+  text-align: left;
+}
+
+#hjbbsainvc .gt_center {
+  text-align: center;
+}
+
+#hjbbsainvc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hjbbsainvc .gt_font_normal {
+  font-weight: normal;
+}
+
+#hjbbsainvc .gt_font_bold {
+  font-weight: bold;
+}
+
+#hjbbsainvc .gt_font_italic {
+  font-style: italic;
+}
+
+#hjbbsainvc .gt_super {
+  font-size: 65%;
+}
+
+#hjbbsainvc .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;table class=&#34;gt_table&#34;&gt;
+  &lt;thead class=&#34;gt_header&#34;&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&#34;13&#34; class=&#34;gt_heading gt_title gt_font_normal gt_bottom_border&#34; style&gt;Crime severity per officer&lt;/th&gt;
+    &lt;/tr&gt;
+    
+  &lt;/thead&gt;
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;name&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2010&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2011&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2012&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2013&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2014&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2015&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2016&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2017&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2018&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2019&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;2020&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;change, 2010–20&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dorset&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;11.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;13.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;13.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;103%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Suffolk&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;S Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;10.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;130%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Lincs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;147%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Hants&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;155%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Northants&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;79%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;73%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Notts&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;9.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Mids&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;113%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Essex&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;130%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Humberside&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;71%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Kent&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;157%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Derbys&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Staffs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;83%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Sussex&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;129%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Lancs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;140%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Leics&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;82%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Avon &amp;amp; Som&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;80%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cleveland&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;153%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Durham&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;148%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Beds&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;61%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Warwicks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;8.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;69%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cambs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;W Mercia&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;95%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34; style=&#34;font-weight: bold;&#34;&gt;England &amp;amp; Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34; style=&#34;font-weight: bold;&#34;&gt;78%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Norfolk&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;147%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Wiltshire&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;7.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Gwent&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;48%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cheshire&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;83%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Northumb&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;179%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;N Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;121%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Thames V&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;36%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Gloucs&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;69%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Herts&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;67%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Surrey&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;72%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dvn &amp;amp; Corn&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;90%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Merseyside&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;6.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;92%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;S Wales&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;47%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;N Yorks&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.3&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;5.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;73%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Met Police&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.5&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.8&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;30%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Cumbria&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.6&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.1&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.4&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;124%&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class=&#34;gt_row gt_left&#34;&gt;Dyfed-Powys&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;1.9&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;2.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.0&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;3.7&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;4.2&lt;/td&gt;
+&lt;td class=&#34;gt_row gt_right&#34;&gt;118%&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p&gt;The Office for National Statistics (ONS) publishes &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics&#34;&gt;estimates of the severity of different types of police-recorded crime&lt;/a&gt;, derived from the average sentence imposed in court for each type of offence. In the same dataset, ONS publishes an overall estimate of the severity of crime per capita in each police force area. To convert this to an estimate of crime severity per officer (referred to above as &lt;em&gt;crime pressure&lt;/em&gt;), severity per capita was multiplied by police force area population&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and then divided by the &lt;a href=&#34;https://www.gov.uk/government/collections/police-workforce-england-and-wales&#34;&gt;number of full-time equivalent police officers in each force&lt;/a&gt;. Crime pressure is therefore defined as the severity of police-recorded crime per full-time equivalent officer.&lt;/p&gt;
+&lt;p&gt;Estimates of the severity of different crimes are inherently limited, although they are likely to be more informative for some purposes than simply counting crimes (which implicitly assumes all crimes are of equal importance). For a further discussion of this, see &lt;a href=&#34;http://lesscrime.info/publication/measuring_crime_harm/&#34;&gt;&lt;em&gt;Comparing methods for measuring crime harm/severity&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Police force area populations were calculated by aggregating &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland&#34;&gt;mid-year population estimates for local authorities&lt;/a&gt; to police force areas using the ONS open geography portal &lt;a href=&#34;https://geoportal.statistics.gov.uk/datasets/local-authority-district-to-community-safety-partnerships-to-police-force-areas-december-2018-lookup-in-england-and-wales&#34;&gt;local authority to police force lookup table&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
