@@ -103,8 +103,9 @@ format_caption <- function (chart_source, chart_id, chart_note = NA) {
 # add logo to chart
 add_logo <- function (chart, chart_source, chart_id) {
 
-	scs_logo <- grid::rasterGrob(png::readPNG("UCL_logo_SCS_orange.png"), x = 0,
-															 hjust = 0)
+	scs_logo <- here::here("content/post/UCL_logo_SCS_orange.png") %>% 
+	  png::readPNG() %>% 
+	  grid::rasterGrob(x = 0, hjust = 0)
 
 	ggpubr::ggarrange(
 		ggplot2::ggplotGrob(chart),

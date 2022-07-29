@@ -1,0 +1,242 @@
+---
+title: "Adjusting for population change, the number of police officers in England and Wales now is less than in 31 of the past 40 years"
+author: Matt Ashby
+date: '2022-07-29'
+slug: police-strength
+categories: ["Crime and justice chart of the week"]
+tags:
+  - police
+  - trends
+  - criminal justice
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-strength",
+	title = "Adjusting for population change, the number of police officers in England and Wales now is less than in 31 of the past 40 years",
+	source_url = "https://www.gov.uk/government/statistics/police-workforce-open-data-tables",
+	source_title = "Home Office, 2022"
+)
+```
+
+```{r load packages and helper, cache=FALSE}
+# custom packages not loaded by helpers.R
+library("ggrepel")
+library("lubridate")
+library("readODS")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+  
+  # Get data from 1977 to 2000 from pages 13 onwards of
+  # https://researchbriefings.files.parliament.uk/documents/RP01-28/RP01-28.pdf
+  tidy_data_early <- tribble(
+    ~date, ~officers,
+    "31 March 1977", 108115,
+    "31 March 1978", 106732,
+    "31 March 1979", 109653,
+    "31 March 1980", 112958,
+    "31 March 1981", 116590,
+    "31 March 1982", 118470,
+    "31 March 1983", 119496,
+    "31 March 1984", 119543,
+    "31 March 1985", 118620,
+    "31 March 1986", 119279,
+    "31 March 1987", 120421,
+    "31 March 1988", 122269,
+    "31 March 1989", 123729,
+    "31 March 1990", 124834,
+    "31 March 1991", 125453,
+    "31 March 1992", 125570,
+    "31 March 1993", 126128
+  )
+  
+  # Get data from 1994 to 2010 from page 14 of  https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/115745/hosb1410.pdf
+  tidy_data_mid <- tribble(
+    ~date, ~officers,
+    "31 March 1994", 127897,
+    "31 March 1995", 127222,
+    "31 March 1996", 126901,
+    "31 March 1997", 127158,
+    "31 March 1998", 126814,
+    "31 March 1999", 126096,
+    "31 March 2000", 124170,
+    "31 March 2001", 125682,
+    "31 March 2002", 129603
+  )
+  
+  
+  # Get data from 2003 onwards
+  new_data_file <- tempfile(fileext = ".ods")
+  GET("https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1093761/police-workforce-mar22-tables.ods", write_disk(new_data_file))
+  tidy_data_late <- new_data_file %>% 
+    read_ods(sheet = "Table_H3", skip = 4) %>% 
+    set_names(nm = c("date", names(.)[1:12])) %>% 
+    as_tibble() %>% 
+    slice(1:20) %>% 
+    select(date, officers = Total)
+  
+  tidy_data <- bind_rows(tidy_data_early, tidy_data_mid, tidy_data_late) %>% 
+    mutate(date = dmy(date), year = year(date)) %>% 
+    left_join(population, by = "year")
+  
+	# Save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+  
+	# Load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+  
+}
+
+# Get population data
+pop_england <- read_csv(
+  "https://www.ons.gov.uk/generator?format=csv&uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/enpop/pop", 
+  skip = 8, 
+  col_names = c("year", "population")
+)
+pop_wales <- read_csv(
+  "https://www.ons.gov.uk/generator?format=csv&uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/wapop/pop",
+  skip = 8, 
+  col_names = c("year", "population")
+)
+population <- bind_rows(
+  "england" = pop_england, 
+  "wales" = pop_wales, 
+  .id = "country"
+) %>% 
+  count(year, wt = population, name = "population") %>% 
+  # Add years based on population projections, since population estimates are
+  # not yet available
+  add_row(year = 2021, population = 59979677) %>% 
+  add_row(year = 2022, population = 60219165)
+
+
+```
+
+```{r title-calculations}
+# CALCULATE STATISTICS USED IN TEXT --------------------------------------------
+
+# Extract year with the highest number of officers per population
+max_officers_year <- tidy_data %>% 
+  mutate(officer_rate = officers / (population / 100000)) %>% 
+  filter(year(date) == 2010)
+
+# Calculate how many extra officers would be needed to get back to that rate
+# now
+extra_needed <- ((last(population$population) / max_officers_year$population) * last(tidy_data$officers)) - last(tidy_data$officers)
+
+chart_details$subtitle <- str_glue(
+  "The government is reversing its earlier cuts to police numbers, but population increases mean that despite 13,800 extra posts over the past two years, the number of officers per 100,000 people now is still at levels not seen (before austerity) since 1980. To get back to the equivalent number of officers as in 2010, the government would have to fund another {scales::comma(extra_needed, accuracy = 100)} posts ({scales::comma(extra_needed - (20000 - 13790), accuracy = 100)} more than planned)."
+)
+```
+
+```{r prepare chart data}
+prime_ministers <- tribble(
+  ~start, ~end, ~name,
+  "5 April 1976", "4 May 1979", "Callaghan",
+  "4 May 1979", "28 November 1990", "Thatcher",
+  "28 November 1990", "2 May 1997", "Major",
+  "2 May 1997", "27 June 2007", "Blair",
+  "27 June 2007", "11 May 2010", "Brown",
+  "11 May 2010", "13 July 2016", "Cameron",
+  "13 July 2016", "24 July 2019", "May",
+  "24 July 2019", "28 July 2022", "Johnson"
+) %>% 
+  mutate(
+    across(c(start, end), dmy),
+    midpoint = ((end - start) / 2) + start,
+    name = str_glue(" {name} "),
+    vjust = as.numeric(row_number() %% 2 == 0)
+  )
+
+chart_data <- tidy_data %>% 
+  mutate(
+    label_officers = scales::number(officers, accuracy = 1, scale = 1/1000, suffix = "K"),
+    label_pop = scales::number(population, accuracy = 0.1, scale = 1/1000000, suffix = "M"),
+    label = if_else(
+      date == min(date), 
+      str_glue(" {label_officers} officers for {label_pop} people"), 
+      str_glue(" {label_officers} for {label_pop}")
+    ),
+    officer_rate = officers / (population / 100000),
+    party = case_when(
+      date < dmy("3 May 1979") ~ "Labour",
+      date < dmy("1 May 1997") ~ "Conservative",
+      date < dmy("6 May 2010") ~ "Labour",
+      date < dmy("7 May 2015") ~ "Conservative/Liberal Democrat coalition",
+      TRUE ~ "Conservative"
+    )
+  )
+```
+
+```{r build chart, cache=FALSE}
+chart <- ggplot(
+  chart_data, 
+  aes(x = date, y = officer_rate, fill = party, label = label)
+) +
+  annotate("label", x = last(chart_data$date), y = last(chart_data$officer_rate) * 1.01, label = "officers per 100k\npeople in 2022", hjust = 1, size = 2.75, vjust = 0, label.size = NA, lineheight = elements$label_text_lineheight) +
+  geom_col() +
+  geom_hline(aes(yintercept = last(officer_rate)), linetype = elements$average_line_linetype) +
+  geom_text(aes(y = 0), angle = 90, colour = "white", hjust = 0, size = 2.4) +
+  geom_text(aes(x = midpoint, y = 295, label = name), data = prime_ministers, inherit.aes = FALSE, size = 2.75, vjust = 1) +
+  geom_segment(aes(x = start, xend = end, y = 300, yend = 300), data = prime_ministers, inherit.aes = FALSE) +
+  geom_point(aes(x = start, y = 300), shape = "|", data = prime_ministers, inherit.aes = FALSE) +
+  scale_x_date(date_breaks = "4 years", date_labels = "%Y", expand = expansion()) +
+  scale_y_continuous(breaks = seq(0, 250, by = 50), expand = expansion(c(0, 0.05))) +
+	scale_fill_manual(
+		values = c(
+		  "Labour" = "#DC241F", 
+		  "Conservative/Liberal Democrat coalition" = "#8DB9CA",
+		  "Conservative" = "#0087DC"
+		),
+	) +
+  coord_cartesian(clip = "off") +
+  labs(
+		title = chart_details$title,
+		subtitle = chart_details$subtitle,
+    x = NULL,
+    y = "officers per 100,000 residents in England and Wales",
+    fill = NULL
+  ) +
+  theme_cjcharts() +
+  theme(
+    legend.position = "none",
+    plot.title = ggtext::element_textbox_simple(),
+    plot.subtitle = ggtext::element_textbox_simple(margin = margin(t = 6, b = 6), size = 9)
+  )
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(
+  chart + labs(title = NULL, subtitle = NULL), 
+  chart_details$source_title, 
+  chart_details$id
+)
+```
+
+[larger image](`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`/index.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+```{r export chart, cache=FALSE}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 400 / 72, units = "in", bg = "white"
+)
+```

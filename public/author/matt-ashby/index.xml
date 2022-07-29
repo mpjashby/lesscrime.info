@@ -5,99 +5,20 @@
     <link>http://lesscrime.info/author/matt-ashby/</link>
       <atom:link href="http://lesscrime.info/author/matt-ashby/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 24 Mar 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://lesscrime.info/author/matt-ashby/avatar_hu3844a0b9be401c931ce9c3c7908c4225_82420_270x270_fill_q75_lanczos_center.jpg</url>
+      <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/author/matt-ashby/</link>
     </image>
     
     <item>
-      <title>Stop and Search in London: April 2021 to March 2022</title>
-      <link>http://lesscrime.info/publication/stop-and-search-london-2022-q1/</link>
-      <pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/stop-and-search-london-2022-q1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Stop and Search in London: January to December 2021</title>
-      <link>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</link>
-      <pubDate>Fri, 22 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/stop-and-search-london-2021-q4/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Police perceptions of problem-oriented policing and evidence-based policing: evidence from England and Wales</title>
-      <link>http://lesscrime.info/publication/police-perceptions-of-pop/</link>
-      <pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/police-perceptions-of-pop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Forty years of problem-oriented policing: A review of progress in England and Wales</title>
-      <link>http://lesscrime.info/publication/40-years-of-pop/</link>
-      <pubDate>Mon, 20 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/40-years-of-pop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Stop and Search in London: October 2020 to September 2021</title>
-      <link>http://lesscrime.info/publication/stop-and-search-london-2021-q3/</link>
-      <pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/stop-and-search-london-2021-q3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Problem-oriented policing in England and Wales: barriers and facilitators</title>
-      <link>http://lesscrime.info/publication/pop-barriers-and-facilitators/</link>
-      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/pop-barriers-and-facilitators/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Understanding changing demand for police during Covid-19</title>
-      <link>http://lesscrime.info/publication/n8-covid-calls/</link>
-      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/n8-covid-calls/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Stop and Search in London: June 2020 to July 2021</title>
-      <link>http://lesscrime.info/publication/stop-and-search-london-2021-q2/</link>
-      <pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/stop-and-search-london-2021-q2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Implementing and sustaining problem-oriented policing: a guide</title>
-      <link>http://lesscrime.info/publication/implementing-problem-oriented-policing/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/implementing-problem-oriented-policing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Problem-Oriented Policing in England and Wales in 2019</title>
-      <link>http://lesscrime.info/publication/pop-in-england-and-wales/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/pop-in-england-and-wales/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Successful police problem-solving: a practice guide</title>
-      <link>http://lesscrime.info/publication/problem-solving-practice-guide/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/publication/problem-solving-practice-guide/</guid>
-      <description></description>
+      <title>Changes to police demand in COVID-19 pandemic</title>
+      <link>http://lesscrime.info/talk/n8-covid-calls-webinar/</link>
+      <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/n8-covid-calls-webinar/</guid>
+      <description>&lt;p&gt;Joint presentation with staff from Cheshire Constabulary on how demand for policing changed during the first year of the COVID pandemic.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
