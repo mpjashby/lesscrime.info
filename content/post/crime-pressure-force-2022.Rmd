@@ -1,5 +1,5 @@
 ---
-title: "Increases in crime-related demand are hitting some forces harder than others"
+title: "Most police forces are still handling higher crime-related demand"
 author: Matt Ashby
 date: '2022-08-18'
 categories:
@@ -12,7 +12,7 @@ tags:
 ---
 
 ```{r set knitr options, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE, include=FALSE)
+knitr::opts_chunk$set(cache = FALSE, include=FALSE)
 ```
 
 ```{r set chart parameters}
@@ -34,7 +34,7 @@ library(lubridate)
 library(readxl)
 
 # load this after loading custom packages
-source(here::here("helpers.R"))
+source("https://raw.githubusercontent.com/mpjashby/r-helper/main/helpers.R")
 ```
 
 ```{r get and tidy data}
@@ -365,8 +365,8 @@ add_logo(chart + labs(title = NULL, subtitle = NULL),
 
 Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
 
-```{r, echo=FALSE, include=TRUE}
-chart_data %>% 
+```{r, echo=FALSE, include=TRUE, cache=FALSE}
+chart_data %>%
   group_by(year_ending) %>% 
   summarise(across(c("total_severity", "officers"), sum), .groups = "drop") %>% 
   mutate(
