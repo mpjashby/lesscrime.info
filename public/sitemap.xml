@@ -2,28 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://lesscrime.info/categories/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/crime/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/category/crime-and-justice-chart-of-the-week/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/crime-pressure/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/crime-severity/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/post/crime-pressure-force-2022/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tag/police/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/post/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/tags/</loc>
+    <lastmod>2022-08-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://lesscrime.info/post/police-strength/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/categories/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/category/crime-and-justice-chart-of-the-week/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/tag/criminal-justice/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/police/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/post/</loc>
-    <lastmod>2022-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tags/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/tag/trends/</loc>
@@ -157,15 +169,6 @@
   </url><url>
     <loc>http://lesscrime.info/publication/stop-and-search-london-2021-q2/</loc>
     <lastmod>2021-10-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/crime/</loc>
-    <lastmod>2021-07-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/crime-pressure/</loc>
-    <lastmod>2021-07-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/tag/crime-severity/</loc>
-    <lastmod>2021-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/post/crime-pressure-force/</loc>
     <lastmod>2021-07-19T00:00:00+00:00</lastmod>
