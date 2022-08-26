@@ -15,8 +15,11 @@ output: vitae::hyndman
 ```{r eval=FALSE, include=FALSE}
 # AFTER KNITTING THIS FILE, run the following line to copy the resulting PDF
 # into the correct location
-file.copy(here::here("CV/CV.pdf"), here::here("static/files/cv.pdf"), 
-					overwrite = TRUE)
+file.copy(
+  from = here::here("CV/CV.pdf"), 
+  to = here::here("static/files/cv.pdf"), 
+  overwrite = TRUE
+)
 ```
 
 ```{r setup, include=FALSE}
@@ -135,6 +138,7 @@ Funding awarded, typically jointly with colleagues.
 ```{r funding}
 tribble(
 	~type, ~title, ~start_date, ~end_date, ~value, ~funder, ~role,
+	"Research project", "Deciphering and disrupting the social, spatial and temporal systems behind transnational human trafficking: a data-science approach", 2018, 2023, "£365,000", "ESRC", "Co-investigator",
 	"Knowledge transfer", "Implementing problem-oriented and evidence-based responses for reducing violent crime in London", 2021, 2022, "£264,000", "Metropolitan Police Service", "Co-investigator",
 	"Research project", "Building blocks for knife crime", 2020, 2021, "£122,000", "College of Policing",  "Co-investigator",
 	"Research project", "Problem-Oriented Policing in England and Wales", 2019, 2020, "£246,000", "Police Transformation Fund",  "Co-investigator",
@@ -159,7 +163,7 @@ tribble(
   2017, "ongoing", "CrimPapers", "Maintainer of the CrimPapers alert service for new articles in 100+ criminology journals", "https://lesscrime.info/crimpapers/",
   2018, "ongoing", "Crime Open Database", "Maintainer of the Crime Open Database of harmonised open crime data from 16 large cities in the United States, as well as the associated `crimedata` R package", "http://osf.io/zyaqn/",
   2019, "ongoing", "Crime Science", "Associate editor of the Crime Science journal, published by Springer", NA,
-  2019, "ongoing", "London Problem Solving Awards", "Judge for the London Problem Solving Awards run jointly by the Metropolitan Police Service, British Transport Police and City of London Police", NA
+  2019, "2021", "London Problem Solving Awards", "Judge for the London Problem Solving Awards run jointly by the Metropolitan Police Service, British Transport Police and City of London Police", NA
 ) %>% 
   arrange(start_date) %>% 
   brief_entries(
