@@ -1,0 +1,269 @@
+---
+title: "Chart: Government proposals would mean pay for new police officers will have fallen by a quarter in 13 years"
+author: Matt Ashby
+date: '2023-02-21'
+slug: police-pay-2023-proposal
+categories: ["Crime and justice chart of the week"]
+tags:
+  - criminal justice
+  - police
+---
+
+```{r set knitr options, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, include=FALSE)
+```
+
+```{r set chart parameters}
+chart_details <- list(
+	id = "police-pay-2023-proposal",
+	title = "Government proposals would mean pay for new police officers will have fallen by a quarter in 13 years",
+	subtitle = "The Home Office has proposed a 3.5% increase in police pay for 2023. If that were applied equally across all pay points, it would mean that a police constable who has just completed initial training in England and Wales would be paid about £9,500 less in 2023 than they would have been in 2010 once inflation is taken into account -- a real-terms reduction of 26%. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.",
+	source_url = "https://www.whatdotheyknow.com/request/police_constable_pay_scales",
+	source_title = "Police Federation, Home Office"
+)
+```
+
+```{r load packages and helper, include=FALSE}
+# custom packages not loaded by helpers.R
+library("lubridate")
+library("readxl")
+
+# load this after loading custom packages
+source(here::here("helpers.R"))
+```
+
+```{r get and tidy data}
+if (!file.exists(paste0(chart_details$id, "-data.csv.gz"))) {
+	
+	# the data are provided as a series of scanned PDFs of Federation circulars,
+	# so must be entered manually
+	# 2019 police data from https://www.gov.uk/government/publications/police-remuneration-review-body-report-2019-england-and-wales
+	police_pay <- tribble(
+		~date, ~new, ~mid, ~top,
+		# "2005-04-01", 22107, 31092,
+		"2005-09-01", 22770, 27213, 32025,
+		"2006-09-01", 23454, 28029, 32985,
+		"2007-12-01", 24039, 28731, 33810,
+		"2008-09-01", 24675, 29493, 34707,
+		"2009-09-01", 25317, 30261, 35610,
+		"2010-09-01", 25962, 31032, 36519,
+		"2011-09-01", 25962, 31032, 36519,
+		"2012-09-01", 25962, 31032, 36519,
+		# "2013-04-01", 22000, 36885,
+		"2013-09-01", 22221, 31341, 36885,
+		"2014-09-01", 22443, 31653, 37254,
+		"2015-09-01", 22668, 31971, 37626,
+		"2016-09-01", 22896, 31971, 37626,
+		"2017-09-01", 23124, 32616, 38382,
+		# From 2018 onwards, PCs with 5 years' service are on post-2013 pay scale
+		# Officers with 5 years' service will be at point 6 on new scale
+		"2018-09-01", 23586, 33267, 39150,
+		"2019-09-01", 24177, 34098, 40128,
+		"2020-09-01", 24780, 34950, 41130,
+		"2021-09-01", 24780, 34950, 41130,
+		"2022-09-01", 26682, 36852, 43032,
+		# Home Office is proposing a 3.5% pay increase
+		"2023-09-01", 26682 * 1.035, 36852 * 1.035, 43032 * 1.035
+	) %>% 
+		gather("service", "pay", -date) %>% 
+		mutate(date = ymd(date), year = year(date))
+	
+	# Get ONS CPIH inflation indices, where 2015 = 100
+	# Source: https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23
+	deflator <- read_csv("https://www.ons.gov.uk/generator?format=csv&uri=/economy/inflationandpriceindices/timeseries/l522/mm23", skip = 8, col_names = c("year", "index")) %>% 
+		slice(1:35) %>% 
+		# add 2023 forecast for CPI from the OBR (p 15)
+		# Source: https://obr.uk/docs/dlm_uploads/CCS0822661240-002_SECURE_OBR_EFO_November_2022_WEB_ACCESSIBLE.pdf
+		add_row(year = "2023", index = 120.5 * 1.074) %>% 
+		mutate(year = as.numeric(year))
+	
+	# adjust pay for inflation using method described at 
+	# https://researchbriefings.parliament.uk/ResearchBriefing/Summary/SN04962
+	tidy_data <- police_pay %>% 
+		left_join(deflator, by = "year") %>% 
+		mutate(
+			date = as_date(ifelse(is.na(date), ymd(paste(year, "04 01")), date)),
+			index19 = index / last(index),
+			pay_adj = pay / index19
+		)
+	
+	# save tidy data
+	write_csv(tidy_data, paste0(chart_details$id, "-data.csv.gz"))	
+
+} else {
+	
+	# load tidy data
+	tidy_data <- read_csv(paste0(chart_details$id, "-data.csv.gz"))
+	
+}
+
+```
+
+```{r prepare data for chart}
+chart_data <- tidy_data %>% 
+	mutate(
+		date = ymd(paste(year, "09", "01")),
+		party = fct_case_when(
+			year < 2010 ~ "Labour",
+			year < 2015 ~ "Coalition",
+			TRUE ~ "Conservative"
+		),
+		service = fct_case_when(
+			service == "new" ~ "pay after initial training",
+			service == "mid" ~ "pay after 5 years' service",
+			service == "top" ~ "pay after 10 years' service",
+			TRUE ~ NA_character_
+		)
+	) %>% 
+	# calculate changes
+	group_by(service) %>% 
+	mutate(
+		perc_change = (pay_adj - lag(pay_adj)) / lag(pay_adj),
+		cash_change = (pay_adj - lag(pay_adj)),
+		perc_change = ifelse(year == first(year), NA, perc_change),
+		cash_change = ifelse(year == first(year), NA, cash_change),
+		change_label = scales::comma(cash_change, accuracy = 1),
+		change_label = case_when(
+			year == first(year) ~ scales::comma(pay_adj, accuracy = 1, prefix = " £", suffix = " in 2023 terms"),
+			cash_change > 0 ~ paste0(" +", change_label),
+			cash_change < 0 ~ str_replace(change_label, "^-", " –"),
+			TRUE ~ ""
+		),
+		change_label = ifelse(
+			year == last(year), 
+			paste0(
+				change_label, 
+				" = ", 
+				scales::comma(pay_adj, accuracy = 1, prefix = "£"),
+				" (",
+				perc_change(first(pay_adj), last(pay_adj), accuracy = 1, style_negative = "minus"),
+				")"
+			), 
+			change_label
+		)
+	) %>% 
+	ungroup()
+
+# RULES FOR CHART LABELS
+# Label positions must be calculated manually, using the space created by 
+# calling expand_scale() on the relevant scale(s). `curve` can either be 'left',
+# 'right' or 'straight' and these will be plotted by separate calls to 
+# `geom_curve()` or `geom_segment()` since the direction of curvature cannot be
+# set via an aesthetic
+
+# add chart labels
+chart_labels <- tribble(
+	~x, ~y, ~xend, ~yend, ~service, ~label, ~hjust, ~vjust, ~curve,
+	ymd("2005-09-01"), 38000, ymd("2006-09-01"), 50000, "pay after initial training", balance_lines(paste("an officer completing training in 2005 earned the equivalent of", scales::dollar(pluck(filter(tidy_data, service == "new", year == 2005), "pay_adj", 1), accuracy = 100, prefix = "£"), "in 2023 terms"), 2), "left", "bottom", "left",
+	ymd("2013-09-01"), 30000, ymd("2014-03-01"), 34000, "pay after initial training", balance_lines(paste("in 2013, salaries for new officers were reduced by", scales::dollar(pluck(filter(mutate(tidy_data, pay_diff = abs(pay_adj - lag(pay_adj))), service == "new", year == 2013), "pay_diff", 1), accuracy = 100, prefix = "£"), "in 2023 terms"), 5), "left", "bottom", "left",
+	ymd("2010-09-01"), 45000, ymd("2011-03-01"), 48000, "pay after 5 years' service", balance_lines("the 2010 pay freeze began to erode salaries for existing officers in real terms", 4), "left", "bottom", "left",
+	ymd("2023-09-01"), 46000, ymd("2022-09-01"), 53500, "pay after 10 years' service", balance_lines("below-inflation increases have reduced salaries further since the pay freeze ended", 3), "right", "bottom", "right"
+) %>% 
+	mutate(
+		party = "Labour",
+		service = factor(service, levels = levels(chart_data$service))
+	)
+```
+
+```{r calculations for title, include=FALSE}
+# Percentage and absolute differences in pay for title and subtitle
+tidy_data %>% 
+  group_by(service) %>% 
+  mutate(
+    pay_diff = pay_adj - first(pay_adj), 
+    pay_diff_perc = pay_diff / first(pay_adj)
+  ) %>%
+  ungroup() %>% 
+  filter(service == "new", year == last(year))
+```
+
+```{r build plot}
+chart <- chart_data %>% 
+	ggplot(aes(date, pay_adj, fill = party)) + 
+	geom_col() + 
+	geom_text(aes(label = change_label), colour = "white", 
+						size = elements$label_text_size * 0.9, angle = -90, hjust = 0) +
+	# add explanatory labels
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "right"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature,
+						 colour = elements$label_line_colour,
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "straight"),
+						 inherit.aes = FALSE, colour = elements$label_line_colour,
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_curve(aes(x = x, y = y, xend = xend, yend = yend),
+						 data = filter(chart_labels, curve == "left"), inherit.aes = FALSE,
+						 curvature = elements$label_line_curvature * -1,
+						 colour = elements$label_line_colour,
+						 arrow = elements$label_arrow, show.legend = FALSE) +
+	geom_label(aes(x = xend, y = yend, label = label, hjust = hjust,
+								 vjust = vjust),
+						data = chart_labels, inherit.aes = FALSE,
+						colour = elements$label_text_colour,
+						fill = elements$label_text_fill, size = elements$label_text_size,
+						lineheight = elements$label_text_lineheight,
+						label.size = NA, show.legend = FALSE) +
+	# end of explanatory labels
+	coord_cartesian(clip = "off") +
+	scale_x_date(date_breaks = "2 years", date_labels = "'%y", 
+							 expand = expansion(mult = c(0, 0.01))) +
+	scale_y_continuous(
+		breaks = seq(0, 58e3, by = 5e3),
+		labels = scales::number_format(accuracy = 1, scale = 1/1000, prefix = "£", suffix = "k"),
+		limits = c(0, NA), 
+		expand = expansion(add = c(0, 6500))
+	) + 
+	scale_fill_manual(
+		values = c("Labour" = "#DC241F", "Coalition" = "#8DB9CA",
+							 "Conservative" = "#0087DC"),
+		labels = c("Labour" = "Labour, 1997–2010  ", 
+							 "Coalition" = "Coalition, 2010–2015  ", 
+							 "Conservative" = "Conservative, 2015–present  ")
+	) +
+	facet_grid(cols = vars(service)) +
+	labs(
+		title = chart_details$title,
+		subtitle = chart_details$subtitle,
+		legend = NULL,
+		x = NULL,
+		y = "gross salary before allowances, inflation adjusted to 2023",
+		fill = NULL
+	) +
+	theme_cjcharts() +
+	theme(
+	  legend.margin = margin(),
+	  legend.box.margin = margin(),
+		panel.grid.major = element_blank(),
+		panel.grid.minor = element_blank(),
+		plot.title = ggtext::element_textbox_simple(),
+		plot.subtitle = ggtext::element_textbox_simple(margin = margin(t = 12, b = 6))
+	)
+
+```
+
+`r chart_details$subtitle`
+
+```{r display plot, echo=FALSE, include=TRUE}
+add_logo(chart + labs(title = NULL, subtitle = NULL), 
+				 chart_details$source_title, chart_details$id)
+```
+
+[larger image](../`r chart_details$id`.png)
+| [annotated R code to produce this chart](https://github.com/mpjashby/lesscrime.info/blob/master/content/post/`r chart_details$id`.Rmd)
+
+Data source: [`r chart_details$source_title`](`r chart_details$source_url`)
+
+Pay for years up to 2022 has been adjusted for inflation using the [Office for
+National Statistics preferred CPIH measure](https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23).
+For 2023, the [CPI inflation forecast produced by the Office for Budge Responsibility](https://obr.uk/docs/dlm_uploads/CCS0822661240-002_SECURE_OBR_EFO_November_2022_WEB_ACCESSIBLE.pdf) in November 2022 (the latest available) has been used.
+
+```{r export chart}
+# save PNG for social media
+ggsave(
+	filename = paste0(chart_details$id, ".png"), 
+	plot = add_logo(chart, chart_details$source_title, chart_details$id), 
+	device = "png", width = 600 / 72, height = 500 / 72, units = "in", bg = "white"
+)
+```

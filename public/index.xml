@@ -5,12 +5,31 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 18 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 21 Feb 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Chart: Government proposals would mean pay for new police officers will have fallen by a quarter in 13 years</title>
+      <link>http://lesscrime.info/post/police-pay-2023-proposal/</link>
+      <pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/police-pay-2023-proposal/</guid>
+      <description>
+
+
+&lt;p&gt;The Home Office has proposed a 3.5% increase in police pay for 2023. If that were applied equally across all pay points, it would mean that a police constable who has just completed initial training in England and Wales would be paid about £9,500 less in 2023 than they would have been in 2010 once inflation is taken into account – a real-terms reduction of 26%. These figures exclude overtime and special allowances, but those are unlikely to have made up for decreasing basic pay.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/police-pay-2023-proposal_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../police-pay-2023-proposal.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/police-pay-2023-proposal.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.whatdotheyknow.com/request/police_constable_pay_scales&#34;&gt;Police Federation, Home Office&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pay for years up to 2022 has been adjusted for inflation using the &lt;a href=&#34;https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23&#34;&gt;Office for
+National Statistics preferred CPIH measure&lt;/a&gt;.
+For 2023, the &lt;a href=&#34;https://obr.uk/docs/dlm_uploads/CCS0822661240-002_SECURE_OBR_EFO_November_2022_WEB_ACCESSIBLE.pdf&#34;&gt;CPI inflation forecast produced by the Office for Budge Responsibility&lt;/a&gt; in November 2022 (the latest available) has been used.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Increases in crime-related demand are hitting some forces harder than others</title>
