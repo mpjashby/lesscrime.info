@@ -1,0 +1,82 @@
+---
+title: Locator maps for Met Police BCUs
+author: Matt Ashby
+date: '2023-03-17'
+slug: locator-maps-for-met-police-bcus
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2023-03-17T20:30:27Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+I needed to make maps showing the locations of the various Basic Command Units in the Metropolitan Police Service in London. I didn't have anywhere specific to put these, but they might conceivably be useful for other people, so I've put the maps below. The [code to make these maps is on Gist](https://gist.github.com/mpjashby/7485de3f8fc0565abf0dfec61b025550).
+
+Feel free to use these maps in any projects -- see the bottom of the page for a link to the Creative Commons Attribution licence.
+
+
+### Central East
+
+![Locator map for the Met Police Central East BCU](https://i.imgur.com/zaHdruH.png)
+
+
+### Central North
+
+![Locator map for the Met Police Central North BCU](https://i.imgur.com/Cn1OYrw.png)
+
+
+### Central South
+
+![Locator map for the Met Police Central South BCU](https://i.imgur.com/3WTVnMy.png)
+
+
+### Central West
+
+![Locator map for the Met Police Central West BCU](https://i.imgur.com/NlvIUfW.png)
+
+
+### East Area
+
+![Locator map for the Met Police East Area BCU](https://i.imgur.com/4738GOW.png)
+
+
+### North Area
+
+![Locator map for the Met Police North Area BCU](https://i.imgur.com/eI5LK7d.png)
+
+
+### North East
+
+![Locator map for the Met Police North East BCU](https://i.imgur.com/yKtkK52.png)
+
+
+### North West
+
+![Locator map for the Met Police North West BCU](https://i.imgur.com/LwIJCCh.png)
+
+
+### South Area
+
+![Locator map for the Met Police South Area BCU](https://i.imgur.com/JJ2hhYH.png)
+
+
+### South East
+
+![Locator map for the Met Police South East BCU](https://i.imgur.com/ptTVfCk.png)
+
+
+### South West
+
+![Locator map for the Met Police South West BCU](https://i.imgur.com/qrx7Xtf.png)
+
+
+### West Area
+
+![Locator map for the Met Police West Area BCU](https://i.imgur.com/F5PB7QU.png)

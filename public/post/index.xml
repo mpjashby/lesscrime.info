@@ -5,12 +5,109 @@
     <link>http://lesscrime.info/post/</link>
       <atom:link href="http://lesscrime.info/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 21 Feb 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 17 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>http://lesscrime.info/post/</link>
     </image>
+    
+    <item>
+      <title>Locator maps for Met Police BCUs</title>
+      <link>http://lesscrime.info/post/locator-maps-for-met-police-bcus/</link>
+      <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/locator-maps-for-met-police-bcus/</guid>
+      <description>
+
+
+&lt;p&gt;I needed to make maps showing the locations of the various Basic Command Units in the Metropolitan Police Service in London. I didn’t have anywhere specific to put these, but they might conceivably be useful for other people, so I’ve put the maps below. The &lt;a href=&#34;https://gist.github.com/mpjashby/7485de3f8fc0565abf0dfec61b025550&#34;&gt;code to make these maps is on Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Feel free to use these maps in any projects – see the bottom of the page for a link to the Creative Commons Attribution licence.&lt;/p&gt;
+&lt;div id=&#34;central-east&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Central East&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/zaHdruH.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police Central East BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;central-north&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Central North&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/Cn1OYrw.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police Central North BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;central-south&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Central South&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/3WTVnMy.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police Central South BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;central-west&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Central West&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/NlvIUfW.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police Central West BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;east-area&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;East Area&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/4738GOW.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police East Area BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;north-area&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;North Area&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/eI5LK7d.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police North Area BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;north-east&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;North East&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/yKtkK52.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police North East BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;north-west&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;North West&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/LwIJCCh.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police North West BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;south-area&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;South Area&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/JJ2hhYH.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police South Area BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;south-east&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;South East&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/ptTVfCk.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police South East BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;south-west&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;South West&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/qrx7Xtf.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police South West BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;west-area&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;West Area&lt;/h3&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.imgur.com/F5PB7QU.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Locator map for the Met Police West Area BCU&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Chart: Government proposals would mean pay for new police officers will have fallen by a quarter in 13 years</title>
