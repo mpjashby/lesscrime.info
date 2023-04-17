@@ -9,7 +9,7 @@ subtitle: ''
 summary: 'Presentation on how police can effectively solve crime problems.'
 event: 'London Problem Solving Conference 2023'
 location: 'London, England'
-url_slides: '/slides/london-pop-2023/'
+url_slides: '/slides/london-pop-2023/problem_solving_tips.pptx'
 authors: []
 featured: no
 image:
