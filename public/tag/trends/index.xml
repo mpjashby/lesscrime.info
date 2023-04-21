@@ -5,12 +5,28 @@
     <link>http://lesscrime.info/tag/trends/</link>
       <atom:link href="http://lesscrime.info/tag/trends/index.xml" rel="self" type="application/rss+xml" />
     <description>trends</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 21 Apr 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>trends</title>
       <link>http://lesscrime.info/tag/trends/</link>
     </image>
+    
+    <item>
+      <title>Rates of most common crimes have dropped since 2010</title>
+      <link>http://lesscrime.info/post/crime-since-2010/</link>
+      <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/post/crime-since-2010/</guid>
+      <description>
+
+
+&lt;p&gt;The Crime Survey for England and Wales is based on a large, representative sample of households. The survey measures crime in a consistent way that is not affected by changes in police recording of crime, so it can be used to reliably track changes in crime over time. Data from the Crime Suvey show that the proportion of people who say they or their household has been a victim of most common types of crime such as violence and burglary has dropped substantially since 2010.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/crime-since-2010/index_files/figure-html/display-plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;crime-since-2010.png&#34;&gt;larger image&lt;/a&gt;
+| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/crime-since-2010.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Data source: &lt;a href=&#34;https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables&#34;&gt;Office for National Statistics&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Adjusting for population change, the number of police officers in England and Wales now is less than in 31 of the past 40 years</title>
