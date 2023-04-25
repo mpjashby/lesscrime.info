@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://lesscrime.info/talk/gcb-prl/</loc>
+    <lastmod>2023-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/</loc>
+    <lastmod>2023-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/event/</loc>
+    <lastmod>2023-04-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://lesscrime.info/tag/asb/</loc>
     <lastmod>2023-04-21T19:01:54+01:00</lastmod>
   </url><url>
@@ -15,9 +24,6 @@
     <lastmod>2023-04-21T19:01:54+01:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/tag/csew/</loc>
-    <lastmod>2023-04-21T19:01:54+01:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/</loc>
     <lastmod>2023-04-21T19:01:54+01:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/tag/perceptions/</loc>
@@ -39,9 +45,6 @@
     <lastmod>2023-04-21T19:01:54+01:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/talk/london-pop-2023/</loc>
-    <lastmod>2023-04-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://lesscrime.info/event/</loc>
     <lastmod>2023-04-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/post/locator-maps-for-met-police-bcus/</loc>
