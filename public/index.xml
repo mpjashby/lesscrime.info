@@ -5,12 +5,22 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 25 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 13 Jun 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Sports events and violence in large cities in the United States</title>
+      <link>http://lesscrime.info/talk/stockholm-2023/</link>
+      <pubDate>Tue, 13 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/stockholm-2023/</guid>
+      <description>&lt;p&gt;Presentation presenting early results of a study into the relationship between violence and sporting events in large US cities
+.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Benchmarking crime in London against other global cities</title>
@@ -4499,16 +4509,6 @@ and some in &lt;code&gt;.xlsx&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34; class=&#
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://lesscrime.info/admin/config.yml</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Sports events and violence in large cities in the United States</title>
-      <link>http://lesscrime.info/talk/stockholm-2023/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/talk/stockholm-2023/</guid>
-      <description>&lt;p&gt;Presentation presenting early results of a study into the relationship between violence and sporting events in large US cities
-.&lt;/p&gt;
-</description>
     </item>
     
   </channel>
