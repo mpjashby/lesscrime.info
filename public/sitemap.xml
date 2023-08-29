@@ -2,11 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://lesscrime.info/talk/forecasting-dhpol/</loc>
+    <lastmod>2023-08-29T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://lesscrime.info/</loc>
-    <lastmod>2023-06-13T00:00:00+00:00</lastmod>
+    <lastmod>2023-08-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/event/</loc>
-    <lastmod>2023-06-13T00:00:00+00:00</lastmod>
+    <lastmod>2023-08-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://lesscrime.info/talk/ecca-2023/</loc>
+    <lastmod>2023-06-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://lesscrime.info/talk/stockholm-2023/</loc>
     <lastmod>2023-06-13T00:00:00+00:00</lastmod>
@@ -323,9 +329,6 @@
     <loc>http://lesscrime.info/tag/deaths/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://lesscrime.info/post/common-prosecutions/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://lesscrime.info/post/dna-database/</loc>
     <lastmod>2019-12-16T00:00:00+00:00</lastmod>
   </url><url>
@@ -574,8 +577,8 @@
   </url><url>
     <loc>http://lesscrime.info/admin/</loc>
   </url><url>
-    <loc>http://lesscrime.info/bio/</loc>
+    <loc>http://lesscrime.info/post/common-prosecutions/</loc>
   </url><url>
-    <loc>http://lesscrime.info/talk/ecca-2023/</loc>
+    <loc>http://lesscrime.info/bio/</loc>
   </url>
 </urlset>

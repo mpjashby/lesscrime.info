@@ -5,12 +5,30 @@
     <link>http://lesscrime.info/</link>
       <atom:link href="http://lesscrime.info/index.xml" rel="self" type="application/rss+xml" />
     <description>Matt Ashby</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 13 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 29 Aug 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://lesscrime.info/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Matt Ashby</title>
       <link>http://lesscrime.info/</link>
     </image>
+    
+    <item>
+      <title>Forecasting crime for strategic crime analysis</title>
+      <link>http://lesscrime.info/talk/forecasting-dhpol/</link>
+      <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/forecasting-dhpol/</guid>
+      <description>&lt;p&gt;Presentation comparing different methods for forecasting the frequency of crime to support strategic crime analysis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Forecasting crime for strategic crime analysis: a comparison of methods</title>
+      <link>http://lesscrime.info/talk/ecca-2023/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://lesscrime.info/talk/ecca-2023/</guid>
+      <description>&lt;p&gt;Presentation comparing different methods for forecasting the frequency of crime to support strategic crime analysis.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Sports events and violence in large cities in the United States</title>
@@ -3521,23 +3539,6 @@ img[style*=&#34;margin: auto&#34;] {
     </item>
     
     <item>
-      <title>Chart: What offences are people most often prosecuted for?</title>
-      <link>http://lesscrime.info/post/common-prosecutions/</link>
-      <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/post/common-prosecutions/</guid>
-      <description>
-&lt;script src=&#34;http://lesscrime.info/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;About 1.4 million criminal cases were prosecuted in England and Wales last year. Motoring offences and minor non-violent offences such as TV licence evasion are the most commonly prosecuted, with many more cases in those categories dealt with by fixed penalties or other out-of-court disposals.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://lesscrime.info/post/common-prosecutions_files/figure-html/display%20plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;../common-prosecutions.png&#34;&gt;larger image&lt;/a&gt;
-| &lt;a href=&#34;https://github.com/mpjashby/lesscrime.info/blob/master/content/post/common-prosecutions.Rmd&#34;&gt;annotated R code to produce this chart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data source: &lt;a href=&#34;https://www.gov.uk/government/statistics/criminal-justice-system-statistics-quarterly-december-2018&#34;&gt;Ministry of Justice, 2019&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Chart: One in ten of us is on the National DNA Database</title>
       <link>http://lesscrime.info/post/dna-database/</link>
       <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
@@ -4512,12 +4513,11 @@ and some in &lt;code&gt;.xlsx&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34; class=&#
     </item>
     
     <item>
-      <title>Forecasting crime for strategic crime analysis: a comparison of methods</title>
-      <link>http://lesscrime.info/talk/ecca-2023/</link>
+      <title></title>
+      <link>http://lesscrime.info/post/common-prosecutions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://lesscrime.info/talk/ecca-2023/</guid>
-      <description>&lt;p&gt;Presentation comparing different methods for forecasting the frequency of crime to support strategic crime analysis.&lt;/p&gt;
-</description>
+      <guid>http://lesscrime.info/post/common-prosecutions/</guid>
+      <description>��������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������</description>
     </item>
     
   </channel>
