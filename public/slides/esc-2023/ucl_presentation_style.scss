@@ -1,0 +1,65 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: "Helvetica", "Arial", serif !default;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-h2-font-size: 1em;
+
+// title slide
+$presentation-title-slide-text-align: left;
+$presentation-h1-font-size: 1.5em;
+
+
+
+/*-- scss:rules --*/
+
+// blocks
+.reveal .big-image {
+  text-align: center;
+}
+.reveal .big-image img {
+  max-height: 80%;
+  border: 1px solid #000;
+}
+.reveal .big-text {
+  font-size: 2em;
+}
+.reveal .bottom-note {
+  clear: both;
+  width: 100%;
+  color: #666666;
+  font-size: 0.5em;
+}
+
+// headings
+.reveal h2 {
+  margin-bottom: 1.5em;
+  font-weight: 500;
+}
+.reveal h3 {
+  margin-top: 1.75em;
+}
+.reveal p.author {
+  font-size: 0.75em;
+}
+
+// lists
+.reveal li.visible {
+  color: #999;
+}
+.reveal li.visible.current-fragment {
+  color: $body-color;
+}
+.reveal .nobullets ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+.reveal .nobullets li {
+  list-style: none;
+}
+
+
+// text
+.reveal .small {
+  font-size: 75%;
+}
